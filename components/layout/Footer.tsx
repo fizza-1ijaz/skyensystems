@@ -20,9 +20,9 @@ export function Footer() {
   return (
     <footer className="mt-20 border-t border-slate-200 bg-white/50 backdrop-blur-xl">
       <div className="mx-auto max-w-7xl px-6 py-16 md:px-10">
-        <div className="grid grid-cols-1 gap-12 lg:grid-cols-4">
+        <div className="grid grid-cols-2 gap-8 md:gap-12 lg:grid-cols-4">
           {/* Brand Column */}
-          <div className="col-span-1 lg:col-span-2 space-y-8">
+          <div className="col-span-2 lg:col-span-2 space-y-8">
             <Link href="/" className="group flex items-center gap-3">
               <div className="relative overflow-hidden rounded-xl border border-blue-200/50 shadow-md">
                 <Image
@@ -43,7 +43,7 @@ export function Footer() {
           </div>
 
           {/* Links Column */}
-          <div>
+          <div className="col-span-1">
             <h4 className="font-bold text-slate-900 mb-6 uppercase tracking-widest text-xs">Navigation</h4>
             <ul className="space-y-4">
               {mainLinks.map((link) => (
@@ -58,7 +58,7 @@ export function Footer() {
           </div>
 
           {/* Legal Column */}
-          <div>
+          <div className="col-span-1">
             <h4 className="font-bold text-slate-900 mb-6 uppercase tracking-widest text-xs">Legal</h4>
             <ul className="space-y-4">
               {legalLinks.map((link) => (

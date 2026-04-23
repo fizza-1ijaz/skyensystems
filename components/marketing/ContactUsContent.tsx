@@ -57,19 +57,19 @@ export default function ContactUsContent() {
     <div className="flex flex-col gap-20 pb-24">
       {/* Hero Section */}
       <section className="relative pt-36 pb-20 overflow-hidden">
-        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-blue-50/50 to-transparent -z-10" />
+        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-[#e8f8f6]/70 to-transparent -z-10" />
         <div className="container mx-auto px-6 relative z-10 text-center">
           <motion.div 
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             className="max-w-4xl mx-auto space-y-6"
           >
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-100 text-blue-700 text-xs font-bold uppercase tracking-widest">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#e8f8f6] text-[#1aaebf] text-xs font-bold uppercase tracking-widest">
               Contact Skyen Team
             </div>
             <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight text-slate-900">
               Let&apos;s build the <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#1fc7cf] via-[#56d3c9] to-[#2cb9cf]">
                 Future of Education
               </span>
             </h1>
@@ -90,16 +90,16 @@ export default function ContactUsContent() {
             viewport={{ once: true }}
             className="space-y-12"
           >
-            <div className="space-y-4">
+            <div className="space-y-4 text-center">
               <h2 className="text-3xl font-bold text-slate-900">Get in Touch</h2>
               <p className="text-slate-500">Reach out via any of these channels or fill the form.</p>
             </div>
 
             <div className="grid gap-6">
               {[
-                { icon: Mail, label: "Email Us", value: "info@skyensolutions.com", color: "bg-blue-50 text-blue-600" },
-                { icon: Phone, label: "Call Us", value: "00923316786786", color: "bg-indigo-50 text-indigo-600" },
-                { icon: MapPin, label: "Office", value: "12/27 AA Commercial Sector D Bahria Town Lahore", color: "bg-cyan-50 text-cyan-600" },
+                { icon: Mail, label: "Email Us", value: "info@skyensolutions.com", color: "bg-[#e8f8f6] text-[#1aaebf]" },
+                { icon: Phone, label: "Call Us", value: "00923316786786", color: "bg-[#e8f8f6] text-[#1aaebf]" },
+                { icon: MapPin, label: "Office", value: "12/27 AA Commercial Sector D Bahria Town Lahore", color: "bg-[#e8f8f6] text-[#1aaebf]" },
               ].map((item, idx) => (
                 <div key={idx} className="flex items-center gap-6 p-6 rounded-3xl border border-slate-100 bg-white shadow-sm hover:shadow-md transition-shadow">
                   <div className={`p-4 rounded-2xl ${item.color}`}>
@@ -123,7 +123,7 @@ export default function ContactUsContent() {
                 href="https://mail.google.com/mail/?view=cm&fs=1&to=info@skyensolutions.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 text-blue-400 font-bold hover:gap-4 transition-all relative z-10"
+                className="inline-flex items-center justify-center gap-2 text-[#1aaebf] font-bold hover:gap-4 transition-all relative z-10 mx-auto"
               >
                 Contact Directly <ArrowRight size={20} />
               </a>
@@ -237,10 +237,10 @@ export default function ContactUsContent() {
                       required
                       checked={formData.agreeTerms}
                       onChange={(e) => setFormData({...formData, agreeTerms: e.target.checked})}
-                      className="mt-1 w-5 h-5 rounded border-slate-300 text-blue-600 focus:ring-blue-500"
+                      className="mt-1 w-5 h-5 rounded border-slate-300 text-[#1aaebf] focus:ring-[#1aaebf]"
                     />
                     <span className="text-sm text-slate-600">
-                      I agree to the <Link href="/terms" className="text-blue-600 font-bold hover:underline">Terms of Use</Link>.
+                      I agree to the <Link href="/terms" className="text-[#1aaebf] font-bold hover:underline">Terms of Use</Link>.
                     </span>
                   </label>
                   <label className="flex items-start gap-3 cursor-pointer group">
@@ -249,10 +249,10 @@ export default function ContactUsContent() {
                       required
                       checked={formData.agreePrivacy}
                       onChange={(e) => setFormData({...formData, agreePrivacy: e.target.checked})}
-                      className="mt-1 w-5 h-5 rounded border-slate-300 text-blue-600 focus:ring-blue-500"
+                      className="mt-1 w-5 h-5 rounded border-slate-300 text-[#1aaebf] focus:ring-[#1aaebf]"
                     />
                     <span className="text-sm text-slate-600">
-                      I consent to the processing of my personal data as described in your <Link href="/privacy-policy" className="text-blue-600 font-bold hover:underline">Privacy Policy</Link> and <Link href="/gdpr" className="text-blue-600 font-bold hover:underline">GDPR Compliance Notice</Link>.
+                      I consent to the processing of my personal data as described in your <Link href="/privacy-policy" className="text-[#1aaebf] font-bold hover:underline">Privacy Policy</Link> and <Link href="/gdpr" className="text-[#1aaebf] font-bold hover:underline">GDPR Compliance Notice</Link>.
                     </span>
                   </label>
                 </div>
@@ -260,7 +260,7 @@ export default function ContactUsContent() {
                 <button 
                   type="submit"
                   disabled={status === "submitting"}
-                  className="w-full bg-blue-600 text-white font-bold py-5 rounded-2xl flex items-center justify-center gap-3 hover:bg-blue-700 hover:scale-[1.02] active:scale-[0.98] transition-all shadow-xl shadow-blue-500/25 disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-full bg-[#1aaebf] text-white font-bold py-5 rounded-2xl flex items-center justify-center gap-3 hover:bg-[#1699a8] hover:scale-[1.02] active:scale-[0.98] transition-all shadow-xl shadow-[#1aaebf]/25 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {status === "submitting" ? "Sending..." : "Send Message"}
                   <Send size={20} />

@@ -160,7 +160,7 @@ export function HomePageContent() {
 
       {/* Services Bento Grid */}
       <section id="services" className="container mx-auto px-6 space-y-12">
-        <div className="max-w-2xl">
+        <div className="max-w-2xl mx-auto text-center">
           <h2 className="text-sm font-bold text-[#1aaebf] uppercase tracking-[0.2em] mb-4">Our Expertise</h2>
           <h3 className="text-3xl md:text-5xl font-bold text-slate-900">Comprehensive Solutions for Modern Businesses</h3>
         </div>
@@ -177,15 +177,15 @@ export function HomePageContent() {
               key={idx}
               variants={itemVariants}
               whileHover={{ y: -5 }}
-              className={`group relative overflow-hidden rounded-3xl border border-slate-200 bg-white p-8 shadow-sm transition-all hover:shadow-xl hover:border-[#8ce2d9] ${service.size}`}
+              className={`group relative overflow-hidden rounded-3xl border border-slate-200 bg-white p-8 shadow-sm transition-all hover:shadow-xl hover:border-[#8ce2d9] text-center ${service.size}`}
             >
-              <div className={`inline-flex p-3 rounded-2xl ${service.color} text-white mb-6 shadow-lg shadow-inherit/20`}>
+              <div className={`inline-flex p-3 rounded-2xl ${service.color} text-white mb-6 shadow-lg shadow-inherit/20 mx-auto`}>
                 <service.icon size={28} />
               </div>
               <h4 className="text-2xl font-bold text-slate-900 mb-3">{service.title}</h4>
               <p className="text-slate-600 leading-relaxed mb-6">{service.description}</p>
               
-              <Link href={service.href} className="inline-flex items-center text-sm font-bold text-[#1aaebf] gap-1 group/link">
+              <Link href={service.href} className="inline-flex items-center justify-center w-full text-sm font-bold text-[#1aaebf] gap-1 group/link">
                 Learn Details 
                 <ArrowRight size={16} className="transition-transform group-hover/link:translate-x-1" />
               </Link>
@@ -200,7 +200,7 @@ export function HomePageContent() {
       {/* Process Section */}
       <section className="bg-slate-900 py-24 rounded-[3rem] mx-4 overflow-hidden relative">
         <div className="container mx-auto px-6 relative z-10">
-          <div className="max-w-2xl mb-16">
+          <div className="max-w-2xl mb-16 mx-auto text-center">
             <h2 className="text-sm font-bold text-[#67d8cf] uppercase tracking-[0.2em] mb-4">The Workflow</h2>
             <h3 className="text-3xl md:text-5xl font-bold text-white">How We Turn Ideas into Assets</h3>
           </div>

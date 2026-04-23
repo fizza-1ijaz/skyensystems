@@ -56,10 +56,10 @@ export function Navbar() {
             <Link
               key={item.label}
               href={item.href}
-              className="relative text-sm font-medium text-[#3a467a] transition-colors hover:text-blue-600 group"
+              className="relative text-sm font-medium text-[#3a467a] transition-colors hover:text-[#1aaebf] group"
             >
               {item.label}
-              <span className="absolute -bottom-1 left-0 h-0.5 w-0 bg-blue-600 transition-all group-hover:w-full" />
+              <span className="absolute -bottom-1 left-0 h-0.5 w-0 bg-[#1aaebf] transition-all group-hover:w-full" />
             </Link>
           ))}
         </nav>

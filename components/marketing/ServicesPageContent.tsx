@@ -42,6 +42,8 @@ const itemVariants = {
   visible: { y: 0, opacity: 1 },
 };
 
+const toSlug = (value: string) => value.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+
 const categoryIcons: Record<string, any> = {
   "Enterprise Systems & Operations": Database,
   "Custom Application Development": Layers,
@@ -130,8 +132,9 @@ export function ServicesPageContent({ categories }: { categories: Category[] }) 
                 {category.items.map((item, itemIndex) => (
                   <motion.article
                     key={item.name}
+                    id={toSlug(item.name)}
                     variants={itemVariants}
-                    className="group relative flex flex-col p-8 rounded-3xl border border-slate-200 bg-white shadow-sm hover:shadow-xl hover:border-blue-100 transition-all overflow-hidden"
+                    className="group relative flex flex-col p-8 rounded-3xl border border-slate-200 bg-white shadow-sm hover:shadow-xl hover:border-blue-100 transition-all overflow-hidden scroll-mt-32"
                   >
                     {/* Decorative Background Blob */}
                     <div className="absolute -top-12 -right-12 w-32 h-32 bg-blue-50 rounded-full opacity-50 group-hover:scale-150 transition-transform duration-700" />

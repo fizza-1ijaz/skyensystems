@@ -65,7 +65,7 @@ export default function ContactUsContent() {
             className="max-w-4xl mx-auto space-y-6"
           >
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-100 text-blue-700 text-xs font-bold uppercase tracking-widest">
-              Contact Skyen Solutions
+              Contact Skyen Team
             </div>
             <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight text-slate-900">
               Let&apos;s build the <br />
@@ -98,8 +98,8 @@ export default function ContactUsContent() {
             <div className="grid gap-6">
               {[
                 { icon: Mail, label: "Email Us", value: "info@skyensolutions.com", color: "bg-blue-50 text-blue-600" },
-                { icon: Phone, label: "Call Us", value: "+1 (555) 000-0000", color: "bg-indigo-50 text-indigo-600" },
-                { icon: MapPin, label: "Office", value: "Innovation Hub, Tech City", color: "bg-cyan-50 text-cyan-600" },
+                { icon: Phone, label: "Call Us", value: "00923316786786", color: "bg-indigo-50 text-indigo-600" },
+                { icon: MapPin, label: "Office", value: "12/27 AA Commercial Sector D Bahria Town Lahore", color: "bg-cyan-50 text-cyan-600" },
               ].map((item, idx) => (
                 <div key={idx} className="flex items-center gap-6 p-6 rounded-3xl border border-slate-100 bg-white shadow-sm hover:shadow-md transition-shadow">
                   <div className={`p-4 rounded-2xl ${item.color}`}>
@@ -119,9 +119,14 @@ export default function ContactUsContent() {
               </div>
               <h3 className="text-xl font-bold mb-4 relative z-10">Direct Support</h3>
               <p className="text-slate-400 mb-6 relative z-10">We respond within 24 hours on business days at <strong>info@skyensolutions.com</strong>.</p>
-              <Link href="mailto:info@skyensolutions.com" className="flex items-center gap-2 text-blue-400 font-bold hover:gap-4 transition-all relative z-10">
+              <a
+                href="https://mail.google.com/mail/?view=cm&fs=1&to=info@skyensolutions.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 text-blue-400 font-bold hover:gap-4 transition-all relative z-10"
+              >
                 Contact Directly <ArrowRight size={20} />
-              </Link>
+              </a>
             </div>
           </motion.div>
 

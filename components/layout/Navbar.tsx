@@ -46,7 +46,7 @@ export function Navbar() {
             />
           </div>
           <span className="text-lg font-bold tracking-tight text-[#1b2151]">
-            Skyen<span className="text-blue-600">Systems</span>
+            Skyen<span className="text-[#1aaebf]">Systems</span>
           </span>
         </Link>
 
@@ -67,7 +67,7 @@ export function Navbar() {
         <div className="flex items-center gap-4">
           <Link
             href="/services"
-            className="hidden items-center gap-2 rounded-full bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-lg shadow-blue-500/25 transition-all hover:bg-blue-700 hover:shadow-blue-500/40 md:flex"
+            className="hidden items-center gap-2 rounded-full bg-[#1aaebf] px-6 py-2.5 text-sm font-semibold text-white shadow-lg shadow-[#1aaebf]/25 transition-all hover:bg-[#1699a8] hover:shadow-[#1aaebf]/40 md:flex"
           >
             Start Project
             <ArrowRight className="h-4 w-4" />
@@ -102,7 +102,7 @@ export function Navbar() {
           ))}
           <Link
             href="/services"
-            className="flex items-center justify-center gap-2 rounded-xl bg-blue-600 py-4 text-white"
+            className="flex items-center justify-center gap-2 rounded-xl bg-[#1aaebf] py-4 text-white hover:bg-[#1699a8] transition-colors"
             onClick={() => setIsMobileMenuOpen(false)}
           >
             Start Project

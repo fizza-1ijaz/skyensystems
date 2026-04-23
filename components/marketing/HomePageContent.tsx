@@ -21,13 +21,15 @@ const services = [
   {
     title: "Custom Software",
     description: "Tailored platforms built for your specific business workflows.",
+    href: "/services#custom-learning-management-systems-lms",
     icon: Code,
-    color: "bg-blue-500",
+    color: "bg-[#1fc7cf]",
     size: "col-span-2 md:col-span-1 row-span-2",
   },
   {
     title: "AI & Automation",
     description: "Unlock efficiency with intelligent insights.",
+    href: "/services#intelligent-assistants-chatbots",
     icon: Cpu,
     color: "bg-indigo-500",
     size: "col-span-2 md:col-span-1 row-span-1",
@@ -35,6 +37,7 @@ const services = [
   {
     title: "Mobile Apps",
     description: "High-performance iOS and Android experiences.",
+    href: "/services#mobile-first-apps-ios-android",
     icon: Smartphone,
     color: "bg-cyan-500",
     size: "col-span-2 md:col-span-1 row-span-1",
@@ -42,6 +45,7 @@ const services = [
   {
     title: "Tech Consulting",
     description: "Expert guidance on scalability and architecture.",
+    href: "/services#strategic-technology-consulting",
     icon: LineChart,
     color: "bg-violet-500",
     size: "col-span-2 md:col-span-2 row-span-1",
@@ -96,9 +100,9 @@ export function HomePageContent() {
       {/* Hero Section */}
       <section className="relative overflow-hidden pt-36 pb-20 md:pt-48 md:pb-32">
         {/* Animated Background Blobs */}
-        <div className="absolute top-0 -left-4 w-72 h-72 bg-blue-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob" />
-        <div className="absolute top-0 -right-4 w-72 h-72 bg-indigo-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000" />
-        <div className="absolute -bottom-8 left-20 w-72 h-72 bg-purple-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-4000" />
+        <div className="absolute top-0 -left-4 w-72 h-72 bg-[#1fc7cf] rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob" />
+        <div className="absolute top-0 -right-4 w-72 h-72 bg-[#56d3c9] rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000" />
+        <div className="absolute -bottom-8 left-20 w-72 h-72 bg-[#34bccf] rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-4000" />
 
         <div className="container mx-auto px-6 relative z-10">
           <motion.div 
@@ -107,17 +111,9 @@ export function HomePageContent() {
             transition={{ duration: 0.8, ease: "easeOut" }}
             className="max-w-4xl mx-auto text-center space-y-8"
           >
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass border border-blue-100 text-blue-600 text-xs font-bold uppercase tracking-wider">
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
-              </span>
-              Top-Tier Software House
-            </div>
-            
             <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight text-slate-900 text-balance">
               Building the Future of <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-500 underline decoration-blue-200/50">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#1fc7cf] via-[#56d3c9] to-[#2cb9cf] underline decoration-[#8ce2d9]">
                 Scalable Software
               </span>
             </h1>
@@ -147,7 +143,7 @@ export function HomePageContent() {
 
       {/* Stats Section */}
       <section className="container mx-auto px-6">
-        <div className="glass rounded-3xl p-8 md:p-12 border border-white/40 shadow-2xl shadow-blue-500/5 grid grid-cols-2 md:grid-cols-4 gap-8">
+        <div className="glass rounded-3xl p-8 md:p-12 border border-white/40 shadow-2xl shadow-[#1fc7cf]/10 grid grid-cols-2 md:grid-cols-4 gap-8">
           {[
             { label: "Projects Delivered", value: "120+" },
             { label: "Countries Served", value: "18" },
@@ -165,7 +161,7 @@ export function HomePageContent() {
       {/* Services Bento Grid */}
       <section id="services" className="container mx-auto px-6 space-y-12">
         <div className="max-w-2xl">
-          <h2 className="text-sm font-bold text-blue-600 uppercase tracking-[0.2em] mb-4">Our Expertise</h2>
+          <h2 className="text-sm font-bold text-[#1aaebf] uppercase tracking-[0.2em] mb-4">Our Expertise</h2>
           <h3 className="text-3xl md:text-5xl font-bold text-slate-900">Comprehensive Solutions for Modern Businesses</h3>
         </div>
 
@@ -181,7 +177,7 @@ export function HomePageContent() {
               key={idx}
               variants={itemVariants}
               whileHover={{ y: -5 }}
-              className={`group relative overflow-hidden rounded-3xl border border-slate-200 bg-white p-8 shadow-sm transition-all hover:shadow-xl hover:border-blue-100 ${service.size}`}
+              className={`group relative overflow-hidden rounded-3xl border border-slate-200 bg-white p-8 shadow-sm transition-all hover:shadow-xl hover:border-[#8ce2d9] ${service.size}`}
             >
               <div className={`inline-flex p-3 rounded-2xl ${service.color} text-white mb-6 shadow-lg shadow-inherit/20`}>
                 <service.icon size={28} />
@@ -189,7 +185,7 @@ export function HomePageContent() {
               <h4 className="text-2xl font-bold text-slate-900 mb-3">{service.title}</h4>
               <p className="text-slate-600 leading-relaxed mb-6">{service.description}</p>
               
-              <Link href="#" className="inline-flex items-center text-sm font-bold text-blue-600 gap-1 group/link">
+              <Link href={service.href} className="inline-flex items-center text-sm font-bold text-[#1aaebf] gap-1 group/link">
                 Learn Details 
                 <ArrowRight size={16} className="transition-transform group-hover/link:translate-x-1" />
               </Link>
@@ -205,7 +201,7 @@ export function HomePageContent() {
       <section className="bg-slate-900 py-24 rounded-[3rem] mx-4 overflow-hidden relative">
         <div className="container mx-auto px-6 relative z-10">
           <div className="max-w-2xl mb-16">
-            <h2 className="text-sm font-bold text-blue-400 uppercase tracking-[0.2em] mb-4">The Workflow</h2>
+            <h2 className="text-sm font-bold text-[#67d8cf] uppercase tracking-[0.2em] mb-4">The Workflow</h2>
             <h3 className="text-3xl md:text-5xl font-bold text-white">How We Turn Ideas into Assets</h3>
           </div>
 
@@ -223,9 +219,9 @@ export function HomePageContent() {
                 className="relative z-10 space-y-6 group"
               >
                 <div className="relative">
-                  <div className="w-20 h-20 rounded-2xl bg-slate-800 border border-slate-700 flex items-center justify-center text-blue-400 mb-2 transition-transform group-hover:scale-110 group-hover:rotate-3">
+                  <div className="w-20 h-20 rounded-2xl bg-slate-800 border border-slate-700 flex items-center justify-center text-[#67d8cf] mb-2 transition-transform group-hover:scale-110 group-hover:rotate-3">
                     <step.icon size={32} />
-                    <div className="absolute -top-3 -right-3 w-8 h-8 rounded-full bg-blue-500 text-white flex items-center justify-center text-xs font-bold shadow-lg">
+                    <div className="absolute -top-3 -right-3 w-8 h-8 rounded-full bg-[#1fc7cf] text-white flex items-center justify-center text-xs font-bold shadow-lg">
                       {step.step}
                     </div>
                   </div>
@@ -243,21 +239,21 @@ export function HomePageContent() {
       {/* Trust Section */}
       <section className="container mx-auto px-6 text-center">
         <div className="max-w-4xl mx-auto glass rounded-3xl p-12 border border-white/20 shadow-xl overflow-hidden relative">
-          <div className="absolute top-0 right-0 p-8 text-blue-500 opacity-10">
+          <div className="absolute top-0 right-0 p-8 text-[#1fc7cf] opacity-10">
             <CheckCircle2 size={120} />
           </div>
           
           <h2 className="text-3xl font-bold text-slate-900 mb-6">Trusted by Businesses Worldwide</h2>
           <p className="text-xl italic text-slate-600 leading-relaxed relative z-10">
-            &ldquo;The platform didn&apos;t just improve our workflow—it completely streamlined our operations and enhanced user experience beyond our expectations.&rdquo;
+            &ldquo;The LMS Skyen built didn&apos;t just digitize our courses-it transformed how our teachers create and students engage. It feels like it was built by someone who&apos;s actually been in a classroom.&rdquo;
           </p>
           <div className="mt-8 flex items-center justify-center gap-4">
-            <div className="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center text-blue-600">
+            <div className="w-12 h-12 rounded-full bg-[#e8f8f6] flex items-center justify-center text-[#1aaebf]">
               <Users size={24} />
             </div>
             <div className="text-left">
-              <div className="font-bold text-slate-900">David Chen</div>
-              <div className="text-sm text-slate-500">CTO, NexGen Logistics</div>
+              <div className="font-bold text-slate-900">Dr. Sarah Chen</div>
+              <div className="text-sm text-slate-500">Director of Digital Learning, Future Academy</div>
             </div>
           </div>
         </div>
@@ -265,7 +261,7 @@ export function HomePageContent() {
 
       {/* Final CTA */}
       <section className="container mx-auto px-6">
-        <div className="relative overflow-hidden bg-blue-600 rounded-[3rem] p-12 md:p-24 text-center text-white">
+        <div className="relative overflow-hidden bg-[#1a2050] rounded-[3rem] p-12 md:p-24 text-center text-white">
           <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.1),transparent)]" />
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
@@ -274,12 +270,12 @@ export function HomePageContent() {
             className="relative z-10 space-y-8"
           >
             <h2 className="text-4xl md:text-6xl font-bold tracking-tight">Ready to Build Something <br /> Powerful?</h2>
-            <p className="text-xl text-blue-100 max-w-xl mx-auto">
+            <p className="text-xl text-[#c8efeb] max-w-xl mx-auto">
               Join dozens of industry leaders who have scaled their operations with Skyen Systems.
             </p>
             <Link 
               href="/contact-us" 
-              className="inline-flex items-center gap-2 rounded-full bg-white px-10 py-5 text-blue-600 font-bold transition-all hover:bg-blue-50 hover:scale-105 active:scale-95 shadow-xl"
+              className="inline-flex items-center gap-2 rounded-full bg-white px-10 py-5 text-[#1a2050] font-bold transition-all hover:bg-[#e8f8f6] hover:scale-105 active:scale-95 shadow-xl"
             >
               Start Your Journey Today
               <ArrowRight size={20} />

@@ -21,6 +21,11 @@ export const metadata: Metadata = {
   },
   description:
     "Skyen Systems builds custom software, AI solutions, mobile apps, and scalable digital platforms for modern businesses.",
+  icons: {
+    icon: "/logo.jpeg",
+    shortcut: "/logo.jpeg",
+    apple: "/logo.jpeg",
+  },
 };
 
 export default function RootLayout({

@@ -1,12 +1,11 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Mail, Globe, Code, MessageSquare, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 const mainLinks = [
   { label: "Home", href: "/" },
   { label: "About", href: "/about" },
   { label: "Services", href: "/services" },
-  { label: "Testimonials", href: "/testimonials" },
   { label: "Contact Us", href: "/contact-us" },
 ];
 
@@ -15,13 +14,6 @@ const legalLinks = [
   { label: "Terms of Service", href: "/terms" },
   { label: "Cookie Policy", href: "/cookies" },
   { label: "GDPR Compliance", href: "/gdpr" },
-];
-
-const socialLinks = [
-  { icon: Globe, href: "#", color: "hover:text-blue-400" },
-  { icon: Code, href: "#", color: "hover:text-slate-900" },
-  { icon: MessageSquare, href: "#", color: "hover:text-blue-600" },
-  { icon: Mail, href: "#", color: "hover:text-red-500" },
 ];
 
 export function Footer() {
@@ -42,19 +34,12 @@ export function Footer() {
                 />
               </div>
               <span className="text-xl font-bold tracking-tight text-[#1b2151]">
-                Skyen<span className="text-blue-600">Systems</span>
+                Skyen<span className="text-[#1aaebf]">Systems</span>
               </span>
             </Link>
             <p className="max-w-md text-slate-500 leading-relaxed italic">
               &ldquo;Engineering high-performance digital solutions that turn complex business challenges into competitive advantages.&rdquo;
             </p>
-            <div className="flex gap-5">
-              {socialLinks.map((social, i) => (
-                <Link key={i} href={social.href} className={`text-slate-400 transition-colors ${social.color}`}>
-                  <social.icon size={22} />
-                </Link>
-              ))}
-            </div>
           </div>
 
           {/* Links Column */}
@@ -63,7 +48,7 @@ export function Footer() {
             <ul className="space-y-4">
               {mainLinks.map((link) => (
                 <li key={link.label}>
-                  <Link href={link.href} className="text-sm font-semibold text-slate-600 hover:text-blue-600 transition-colors flex items-center gap-2 group">
+                  <Link href={link.href} className="text-sm font-semibold text-slate-600 hover:text-[#1aaebf] transition-colors flex items-center gap-2 group">
                     <ArrowRight size={14} className="opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 transition-all" />
                     {link.label}
                   </Link>
@@ -78,7 +63,7 @@ export function Footer() {
             <ul className="space-y-4">
               {legalLinks.map((link) => (
                 <li key={link.label}>
-                  <Link href={link.href} className="text-sm font-semibold text-slate-600 hover:text-blue-600 transition-colors">
+                  <Link href={link.href} className="text-sm font-semibold text-slate-600 hover:text-[#1aaebf] transition-colors">
                     {link.label}
                   </Link>
                 </li>
@@ -87,13 +72,11 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-16 pt-8 border-t border-slate-100 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-xs font-bold text-slate-400 uppercase tracking-widest">
-            © {new Date().getFullYear()} Skyen Systems. Engineered with Precision.
+        <div className="mt-16 pt-8 border-t border-slate-100 text-center">
+          <p className="text-xs font-bold text-slate-400 tracking-wide">
+            © 2025 Skyen Systems - a trade name of Qismat Ventures W.L.L. (CR
+            190698-1)
           </p>
-          <div className="flex gap-8">
-            <span className="text-[10px] font-bold text-slate-300 uppercase tracking-[0.2em]">Based in Spain & Global</span>
-          </div>
         </div>
       </div>
     </footer>

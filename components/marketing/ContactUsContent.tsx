@@ -98,7 +98,7 @@ export default function ContactUsContent() {
             <div className="grid gap-6">
               {[
                 { icon: Mail, label: "Email Us", value: "info@skyensolutions.com", color: "bg-[#e8f8f6] text-[#1aaebf]" },
-                { icon: Phone, label: "Call Us", value: "00923316786786", color: "bg-[#e8f8f6] text-[#1aaebf]" },
+                { icon: Phone, label: "Call Us", value: "+92 42 35482980", color: "bg-[#e8f8f6] text-[#1aaebf]" },
                 { icon: MapPin, label: "Office", value: "12/27 AA Commercial Sector D Bahria Town Lahore", color: "bg-[#e8f8f6] text-[#1aaebf]" },
               ].map((item, idx) => (
                 <div key={idx} className="flex items-center gap-6 p-6 rounded-3xl border border-slate-100 bg-white shadow-sm hover:shadow-md transition-shadow">

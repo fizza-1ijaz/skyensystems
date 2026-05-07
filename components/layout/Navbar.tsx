@@ -60,7 +60,7 @@ export function Navbar() {
               className="group relative text-sm font-medium text-slate-700 transition-colors hover:text-[#0F172A]"
             >
               {item.label}
-              <span className="absolute -bottom-1 left-0 h-0.5 w-0 bg-gradient-to-r from-[#6C63FF] to-[#00C2FF] transition-all group-hover:w-full" />
+              <span className="absolute -bottom-1 left-0 h-0.5 w-0 bg-gradient-to-r from-[#6C63FF] to-[#1E3A8A] transition-all group-hover:w-full" />
             </Link>
           ))}
         </nav>
@@ -69,7 +69,7 @@ export function Navbar() {
           <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.98 }}>
             <Link
             href="/services"
-            className="hidden items-center gap-2 rounded-xl bg-gradient-to-r from-[#6C63FF] via-[#8B5CF6] to-[#00C2FF] px-6 py-2.5 text-sm font-semibold text-white shadow-[0_14px_40px_-18px_rgba(108,99,255,0.9)] md:flex"
+            className="hidden items-center gap-2 rounded-xl bg-gradient-to-r from-[#6C63FF] via-[#8B5CF6] to-[#1E3A8A] px-6 py-2.5 text-sm font-semibold text-white shadow-[0_14px_40px_-18px_rgba(108,99,255,0.9)] md:flex"
           >
             Start Project
             <ArrowRight className="h-4 w-4" />

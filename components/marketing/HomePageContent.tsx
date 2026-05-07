@@ -38,7 +38,7 @@ export function HomePageContent() {
   }, []);
 
   return (
-    <div ref={containerRef} className="pb-24 pt-0">
+    <div ref={containerRef} className="pb-8 pt-0">
       <section className="relative mx-auto flex min-h-[82vh] w-full max-w-[1600px] items-center px-6 py-12 md:px-10">
         <div className="relative w-full overflow-hidden py-14 text-center md:py-20">
           <PremiumHeroBubbles />
@@ -51,7 +51,7 @@ export function HomePageContent() {
             pricing. No agency games.
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
-            <Link href="/pricing" className="rounded-xl bg-gradient-to-r from-[#6C63FF] via-[#8B5CF6] to-[#00C2FF] px-6 py-3 text-sm font-semibold text-white shadow-[0_20px_40px_-24px_rgba(108,99,255,1)]">
+            <Link href="/pricing" className="rounded-xl bg-gradient-to-r from-[#6C63FF] via-[#8B5CF6] to-[#1E3A8A] px-6 py-3 text-sm font-semibold text-white shadow-[0_20px_40px_-24px_rgba(108,99,255,1)]">
               See Our Packages
             </Link>
             <Link href="https://calendly.com/skyensystems/discovery" className="rounded-xl border border-white/50 bg-white/70 px-6 py-3 text-sm font-semibold text-slate-700 backdrop-blur-xl">
@@ -204,7 +204,7 @@ export function HomePageContent() {
           <p className="mx-auto mt-3 max-w-2xl text-slate-600">
             We are offering a Founding Client rate with 20% off in exchange for your honest review.
           </p>
-          <Link href="/contact-us" className="mt-5 inline-block rounded-xl bg-gradient-to-r from-[#6C63FF] to-[#00C2FF] px-6 py-3 text-sm font-semibold text-white">
+          <Link href="/contact-us" className="mt-5 inline-block rounded-xl bg-gradient-to-r from-[#6C63FF] to-[#1E3A8A] px-6 py-3 text-sm font-semibold text-white">
             Claim the Founding Rate
           </Link>
         </div>
@@ -251,8 +251,8 @@ export function HomePageContent() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-6 py-14 md:px-10">
-        <div className="rounded-[2rem] border border-white/50 bg-white/75 px-8 py-12 text-center shadow-[0_20px_60px_-32px_rgba(108,99,255,0.6)]">
+      <section className="px-0 py-14">
+        <div className="w-full rounded-none border-y border-white/50 bg-white/75 px-8 py-12 text-center shadow-[0_20px_60px_-32px_rgba(108,99,255,0.6)] md:px-16">
           <p className="text-sm font-semibold uppercase tracking-[0.14em] text-slate-500">Let us work together</p>
           <h2 className="mt-3 text-4xl font-bold">
             Ready to build something <span className="text-gradient">that actually works?</span>
@@ -261,7 +261,7 @@ export function HomePageContent() {
             No commitment. No pitch. Just a conversation about what your business needs.
           </p>
           <div className="mt-7 flex flex-wrap justify-center gap-3">
-            <Link href="https://calendly.com/skyensystems/discovery" className="rounded-xl bg-gradient-to-r from-[#6C63FF] to-[#00C2FF] px-6 py-3 text-sm font-semibold text-white">
+            <Link href="https://calendly.com/skyensystems/discovery" className="rounded-xl bg-gradient-to-r from-[#6C63FF] to-[#1E3A8A] px-6 py-3 text-sm font-semibold text-white">
               Book a Free Discovery Call
             </Link>
             <Link href="/pricing" className="rounded-xl border border-white/70 bg-white px-6 py-3 text-sm font-semibold">

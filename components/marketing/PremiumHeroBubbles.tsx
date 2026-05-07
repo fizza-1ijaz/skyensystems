@@ -88,7 +88,7 @@ export function PremiumHeroBubbles() {
           ref={(element) => {
             bubbleRefs.current[index] = element;
           }}
-          className="absolute rounded-full border border-white/60 bg-[radial-gradient(circle_at_30%_30%,rgba(255,255,255,0.92),rgba(255,255,255,0.34)_35%,rgba(139,92,246,0.16)_72%,rgba(0,194,255,0.08)_100%)] shadow-[inset_0_2px_14px_rgba(255,255,255,0.65),0_10px_26px_-16px_rgba(108,99,255,0.75)] backdrop-blur-md"
+          className="absolute rounded-full border border-white/60 bg-[radial-gradient(circle_at_30%_30%,rgba(255,255,255,0.92),rgba(255,255,255,0.34)_35%,rgba(139,92,246,0.16)_72%,rgba(30,58,138,0.08)_100%)] shadow-[inset_0_2px_14px_rgba(255,255,255,0.65),0_10px_26px_-16px_rgba(108,99,255,0.75)] backdrop-blur-md"
           style={{
             left: `${bubble.x}%`,
             top: `${bubble.y}%`,
@@ -99,7 +99,7 @@ export function PremiumHeroBubbles() {
           }}
         />
       ))}
-      <div className="absolute left-1/2 top-[44%] h-64 w-[70rem] -translate-x-1/2 rounded-full bg-gradient-to-r from-[#6C63FF1f] via-[#8B5CF621] to-[#00C2FF1c] blur-3xl" />
+      <div className="absolute left-1/2 top-[44%] h-64 w-[70rem] -translate-x-1/2 rounded-full bg-gradient-to-r from-[#6C63FF1f] via-[#8B5CF621] to-[#1E3A8A1c] blur-3xl" />
     </div>
   );
 }

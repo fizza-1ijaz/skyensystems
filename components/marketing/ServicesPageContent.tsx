@@ -1,12 +1,14 @@
 "use client";
 
 import Link from "next/link";
-import { useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
+import { useSearchParams } from "next/navigation";
 
 type ReelService = {
   id: string;
+  slug: string;
   title: string;
   short: string;
   description: string;
@@ -18,6 +20,7 @@ type ReelService = {
 const SERVICES: ReelService[] = [
   {
     id: "web",
+    slug: "web-design-development",
     title: "Web Design & Development",
     short: "Web Experiences",
     description:
@@ -34,24 +37,8 @@ const SERVICES: ReelService[] = [
     href: "/contact-us",
   },
   {
-    id: "mobile",
-    title: "Mobile Apps",
-    short: "iOS + Android",
-    description:
-      "We have built Studiely as a live app on the App Store and Google Play. We build with React Native and Flutter to deliver native performance on both iOS and Android from a single codebase.",
-    highlights: [
-      "React Native or Flutter - your choice or our recommendation",
-      "UI/UX design fully included",
-      "Backend API development (Node.js / Python)",
-      "App Store and Google Play submission handled",
-      "Push notifications, authentication, and in-app purchases",
-      "Post-launch maintenance packages available",
-    ],
-    cta: "Build a Mobile App",
-    href: "/contact-us",
-  },
-  {
     id: "social",
+    slug: "social-media-management",
     title: "Social Media Management",
     short: "Brand Presence",
     description:
@@ -68,7 +55,26 @@ const SERVICES: ReelService[] = [
     href: "/contact-us",
   },
   {
+    id: "mobile",
+    slug: "mobile-apps",
+    title: "Mobile Apps",
+    short: "iOS + Android",
+    description:
+      "We have built Studiely as a live app on the App Store and Google Play. We build with React Native and Flutter to deliver native performance on both iOS and Android from a single codebase.",
+    highlights: [
+      "React Native or Flutter - your choice or our recommendation",
+      "UI/UX design fully included",
+      "Backend API development (Node.js / Python)",
+      "App Store and Google Play submission handled",
+      "Push notifications, authentication, and in-app purchases",
+      "Post-launch maintenance packages available",
+    ],
+    cta: "Build a Mobile App",
+    href: "/contact-us",
+  },
+  {
     id: "marketing",
+    slug: "digital-marketing",
     title: "Digital Marketing",
     short: "Growth Engine",
     description:
@@ -86,6 +92,7 @@ const SERVICES: ReelService[] = [
   },
   {
     id: "brand",
+    slug: "brand-ui-ux-design",
     title: "Brand & UI/UX Design",
     short: "Identity + Product UI",
     description:
@@ -103,6 +110,7 @@ const SERVICES: ReelService[] = [
   },
   {
     id: "webapps",
+    slug: "web-applications-saas",
     title: "Web Applications & SaaS",
     short: "Web Apps / SaaS",
     description:
@@ -120,11 +128,35 @@ const SERVICES: ReelService[] = [
   },
 ];
 
-export function ServicesPageContent() {
+type ServicesPageContentProps = {
+  initialServiceSlug?: string;
+};
+
+export function ServicesPageContent({ initialServiceSlug }: ServicesPageContentProps) {
+  const searchParams = useSearchParams();
   const [activeIndex, setActiveIndex] = useState(0);
   const dragStartX = useRef<number | null>(null);
   const itemCount = SERVICES.length;
   const activeService = SERVICES[activeIndex];
+
+  useEffect(() => {
+    if (initialServiceSlug) {
+      const slugIndex = SERVICES.findIndex(
+        (service) => service.slug === initialServiceSlug,
+      );
+      if (slugIndex >= 0) {
+        setActiveIndex(slugIndex);
+        return;
+      }
+    }
+
+    const serviceId = searchParams.get("service");
+    if (!serviceId) return;
+    const resolvedIndex = SERVICES.findIndex((service) => service.id === serviceId);
+    if (resolvedIndex >= 0) {
+      setActiveIndex(resolvedIndex);
+    }
+  }, [initialServiceSlug, searchParams]);
 
   const ringItems = useMemo(
     () =>
@@ -145,6 +177,23 @@ export function ServicesPageContent() {
         };
       }),
     [activeIndex, itemCount],
+  );
+
+  const mobileStops = useMemo(
+    () => [
+      { label: "Web", idx: SERVICES.findIndex((service) => service.id === "web"), top: true },
+      { label: "App", idx: SERVICES.findIndex((service) => service.id === "mobile"), top: false },
+      { label: "SEO", idx: SERVICES.findIndex((service) => service.id === "marketing"), top: true },
+      { label: "SM", idx: SERVICES.findIndex((service) => service.id === "social"), top: false },
+      { label: "Brand", idx: SERVICES.findIndex((service) => service.id === "brand"), top: true },
+      { label: "Ads", idx: SERVICES.findIndex((service) => service.id === "webapps"), top: false },
+    ],
+    [],
+  );
+
+  const activeMobileStopIndex = Math.max(
+    0,
+    mobileStops.findIndex((stop) => stop.idx === activeIndex),
   );
 
   const onTouchStart = (event: React.TouchEvent<HTMLDivElement>) => {
@@ -175,7 +224,7 @@ export function ServicesPageContent() {
   };
 
   return (
-    <div className="pb-24 pt-24">
+    <div className="pb-8 pt-12">
       <section className="px-6 py-14 md:px-16">
         <div className="mx-auto max-w-6xl text-center">
           <p className="mb-4 text-xs font-semibold uppercase tracking-[0.14em] text-slate-500">
@@ -192,7 +241,7 @@ export function ServicesPageContent() {
         </div>
       </section>
 
-      <section className="px-4 md:px-10 xl:px-16">
+      <section id="service-road" className="px-4 md:px-10 xl:px-16">
         <div
           className="relative mx-auto min-h-[640px] w-full max-w-none overflow-hidden p-2 md:min-h-[700px] md:p-4"
           onTouchStart={onTouchStart}
@@ -200,7 +249,7 @@ export function ServicesPageContent() {
           onPointerDown={onPointerDown}
           onPointerUp={onPointerUp}
         >
-          <div className="pointer-events-none absolute inset-0">
+          <div className="pointer-events-none absolute inset-0 hidden md:block">
             <svg
               className="absolute left-1/2 top-[33%] h-[170px] w-[96%] max-w-[1120px] -translate-x-1/2 -translate-y-1/2 md:top-[36%] md:h-[220px]"
               viewBox="0 0 1120 220"
@@ -210,12 +259,56 @@ export function ServicesPageContent() {
               <path d="M40 180 C 260 20, 860 20, 1080 180" stroke="#274A68" strokeWidth="2" strokeDasharray="10 16" />
             </svg>
             <div className="absolute -left-16 top-16 h-56 w-56 rounded-full bg-[#8B5CF626] blur-3xl" />
-            <div className="absolute -right-16 bottom-20 h-64 w-64 rounded-full bg-[#00C2FF1f] blur-3xl" />
-            <div className="absolute left-1/2 top-[33%] h-24 w-[92%] max-w-[58rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-r from-[#6C63FF16] via-[#8B5CF61a] to-[#00C2FF16] blur-3xl md:top-[36%] md:h-32" />
+            <div className="absolute -right-16 bottom-20 h-64 w-64 rounded-full bg-[#1E3A8A1f] blur-3xl" />
+            <div className="absolute left-1/2 top-[33%] h-24 w-[92%] max-w-[58rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-r from-[#6C63FF16] via-[#8B5CF61a] to-[#1E3A8A16] blur-3xl md:top-[36%] md:h-32" />
           </div>
 
           <div className="relative z-20 mx-auto flex max-w-6xl flex-col items-center">
-            <div className="relative h-[240px] w-full max-w-[1180px] md:h-[300px]">
+            <div className="relative mb-3 block h-[96px] w-full max-w-[440px] md:hidden">
+              <div className="absolute left-6 right-6 top-1/2 h-[2px] -translate-y-1/2 rounded-full bg-gradient-to-r from-[#1E3A8A88] via-[#6C63FF66] to-[#2DD4BF88]" />
+              <motion.div
+                className="pointer-events-none absolute top-1/2 z-20 h-8 w-14 -translate-y-1/2"
+                animate={{
+                  left: `calc(12% + ${activeMobileStopIndex} * 15.2%)`,
+                }}
+                transition={{ duration: 0.45, ease: [0.22, 0.9, 0.25, 1.08] }}
+              >
+                <div className="relative h-8 w-14 rounded-lg border border-[#3D3E8A] bg-gradient-to-b from-[#8FD4FF] via-[#7E8BFF] to-[#7C3AED] shadow-[0_10px_22px_-10px_rgba(0,0,0,0.65)]">
+                  <div className="absolute left-1.5 top-1.5 h-2.5 w-6 rounded bg-[#E6F7FF]" />
+                  <div className="absolute right-1.5 top-1.5 h-2.5 w-4 rounded bg-[#DDD7FF]" />
+                  <div className="absolute -bottom-1.5 left-2 h-3 w-3 rounded-full border border-[#0B1F31] bg-[#0F172A]" />
+                  <div className="absolute -bottom-1.5 right-2 h-3 w-3 rounded-full border border-[#0B1F31] bg-[#0F172A]" />
+                </div>
+              </motion.div>
+              <div className="absolute inset-0 flex items-center justify-between px-2">
+                {mobileStops.map((stop) => (
+                  <button
+                    key={stop.label}
+                    type="button"
+                    onClick={() => setActiveIndex(stop.idx)}
+                    className="relative flex h-11 w-11 items-center justify-center"
+                    aria-label={`Select ${stop.label}`}
+                  >
+                    <span
+                      className={`absolute text-[10px] font-semibold leading-none tracking-tight ${
+                        stop.top ? "top-0" : "bottom-0"
+                      } ${activeIndex === stop.idx ? "text-[#0F2742]" : "text-[#5A728C]"}`}
+                    >
+                      {stop.label}
+                    </span>
+                    <span
+                      className={`h-3 w-3 rounded-full border ${
+                        activeIndex === stop.idx
+                          ? "border-[#1E3A8A] bg-[#1E3A8A] shadow-[0_0_0_5px_rgba(30,58,138,0.16)]"
+                          : "border-[#8FA6BE] bg-[#D6E2F0]"
+                      }`}
+                    />
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <div className="relative hidden h-[240px] w-full max-w-[1180px] md:block md:h-[300px]">
               <motion.div
                 className="pointer-events-none absolute left-1/2 top-1/2 z-30 -translate-x-1/2 -translate-y-1/2"
                 animate={{
@@ -280,8 +373,8 @@ export function ServicesPageContent() {
               transition={{ duration: 0.45, ease: "easeOut" }}
               className="relative mt-4 w-full max-w-3xl rounded-3xl border border-[#2B4A67] bg-[#112B44E8] p-5 text-[#EAF2FF] shadow-[0_35px_75px_-40px_rgba(8,20,34,0.85)] backdrop-blur-xl md:mt-8 md:p-7"
             >
-              <div className="pointer-events-none absolute inset-0 rounded-3xl bg-[radial-gradient(circle_at_15%_20%,rgba(108,99,255,0.22),transparent_48%),radial-gradient(circle_at_85%_35%,rgba(0,194,255,0.16),transparent_40%)]" />
-              <div className="relative">
+              <div className="pointer-events-none absolute inset-0 rounded-3xl bg-[radial-gradient(circle_at_15%_20%,rgba(108,99,255,0.22),transparent_48%),radial-gradient(circle_at_85%_35%,rgba(30,58,138,0.16),transparent_40%)]" />
+              <div className="relative text-center md:text-left">
                 <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#9CB3CF]">
                   {activeService.short}
                 </p>
@@ -289,7 +382,7 @@ export function ServicesPageContent() {
                   {activeService.title}
                 </h2>
                 <p className="mt-3 text-[#C5D4E7]">{activeService.description}</p>
-                <ul className="mt-4 grid gap-2 sm:grid-cols-2">
+                <ul className="mt-4 grid gap-2 text-left sm:grid-cols-2">
                   {activeService.highlights.map((item) => (
                     <li
                       key={item}
@@ -301,7 +394,7 @@ export function ServicesPageContent() {
                 </ul>
                 <Link
                   href={activeService.href}
-                  className="mt-6 inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-[#6C63FF] to-[#00C2FF] px-5 py-2.5 text-sm font-semibold text-white"
+                  className="mt-6 inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-[#6C63FF] to-[#1E3A8A] px-5 py-2.5 text-sm font-semibold text-white"
                 >
                   {activeService.cta}
                   <ArrowUpRight className="h-4 w-4" />
@@ -328,7 +421,7 @@ export function ServicesPageContent() {
           <div className="mt-7 flex flex-wrap justify-center gap-3">
             <Link
               href="https://calendly.com/skyensystems/discovery"
-              className="rounded-lg bg-gradient-to-r from-[#6C63FF] to-[#00C2FF] px-6 py-3 font-semibold text-white"
+              className="rounded-lg bg-gradient-to-r from-[#6C63FF] to-[#1E3A8A] px-6 py-3 font-semibold text-white"
             >
               Book a Free Call
             </Link>

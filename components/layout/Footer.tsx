@@ -20,7 +20,7 @@ const legalLinks = [
 
 export function Footer() {
   return (
-    <footer className="mt-20 border-t border-white/40 bg-gradient-to-b from-white/80 to-[#eef2ff]">
+    <footer className="mt-0 border-t border-white/40 bg-gradient-to-b from-white/80 to-[#eef2ff]">
       <div className="mx-auto max-w-7xl px-6 py-16 md:px-10">
         <div className="grid grid-cols-2 gap-8 md:gap-12 lg:grid-cols-4">
           <div className="col-span-2 lg:col-span-2 space-y-8">
@@ -48,7 +48,7 @@ export function Footer() {
             <ul className="space-y-4">
               {mainLinks.map((link) => (
                 <li key={link.label}>
-                  <Link href={link.href} className="flex items-center gap-2 text-sm font-semibold text-slate-600 transition-colors hover:text-[#0F172A]">
+                  <Link href={link.href} className="tactile-footer-link inline-flex items-center gap-2 text-sm font-semibold text-slate-600 transition-colors hover:text-[#0F172A]">
                     {link.label}
                   </Link>
                 </li>
@@ -61,7 +61,7 @@ export function Footer() {
             <ul className="space-y-4">
               {legalLinks.map((link) => (
                 <li key={link.label}>
-                  <Link href={link.href} className="text-sm font-semibold text-slate-600 transition-colors hover:text-[#0F172A]">
+                  <Link href={link.href} className="tactile-footer-link inline-flex text-sm font-semibold text-slate-600 transition-colors hover:text-[#0F172A]">
                     {link.label}
                   </Link>
                 </li>

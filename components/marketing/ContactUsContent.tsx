@@ -47,12 +47,12 @@ export default function ContactUsContent() {
   };
 
   return (
-    <div className="pb-24 pt-28">
+    <div className="pb-8 pt-12">
       <section className="px-6 py-16 md:px-16">
-        <div className="mx-auto max-w-6xl">
+        <div className="mx-auto max-w-6xl text-center">
           <p className="mb-3 text-xs font-semibold uppercase tracking-[0.14em] text-slate-500">Get in touch</p>
           <h1 className="text-4xl font-extrabold text-[#0F172A] md:text-6xl">Let&apos;s talk. No pitch. No pressure.</h1>
-          <p className="mt-5 max-w-2xl text-lg text-slate-600">
+          <p className="mx-auto mt-5 max-w-2xl text-lg text-slate-600">
             Tell us what you are building and we will recommend the most practical path forward.
           </p>
         </div>
@@ -60,7 +60,7 @@ export default function ContactUsContent() {
 
       <section className="px-6 md:px-16">
         <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-2">
-          <div className="space-y-5 rounded-3xl border border-white/50 bg-white/75 p-8 backdrop-blur-xl">
+          <div className="space-y-5 rounded-3xl border border-white/50 bg-white/75 p-8 text-center backdrop-blur-xl lg:text-left">
             <h2 className="text-2xl font-bold">Book or message</h2>
             <p className="text-slate-600">Book a free discovery call or send your requirements below.</p>
             <p className="text-sm text-slate-600">Email: hello@skyensystems.com</p>
@@ -69,7 +69,7 @@ export default function ContactUsContent() {
               href="https://calendly.com/skyensystems/discovery"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex rounded-lg bg-gradient-to-r from-[#6C63FF] to-[#00C2FF] px-5 py-3 font-semibold text-white"
+              className="inline-flex rounded-lg bg-gradient-to-r from-[#6C63FF] to-[#1E3A8A] px-5 py-3 font-semibold text-white"
             >
               Book Free Call
             </a>

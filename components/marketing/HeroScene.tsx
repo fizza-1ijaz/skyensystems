@@ -70,7 +70,7 @@ export function HeroScene() {
           <Bubble key={seed} seed={seed} pointer={pointer} />
         ))}
       </Canvas>
-      <div className="absolute left-1/2 top-1/2 h-72 w-[70rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-r from-[#6C63FF1f] via-[#8B5CF62a] to-[#00C2FF1c] blur-3xl" />
+      <div className="absolute left-1/2 top-1/2 h-72 w-[70rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-r from-[#6C63FF1f] via-[#8B5CF62a] to-[#1E3A8A1c] blur-3xl" />
     </div>
   );
 }

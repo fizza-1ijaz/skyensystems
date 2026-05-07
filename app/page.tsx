@@ -1,5 +1,11 @@
 import type { Metadata } from "next";
-import { HomePageContent } from "@/components/marketing/HomePageContent";
+import { Hero } from "@/components/home/Hero";
+import { ProblemSection } from "@/components/home/ProblemSection";
+import { ValueProps } from "@/components/home/ValueProps";
+import { ProductsShowcase } from "@/components/home/ProductsShowcase";
+import { ServicesGrid } from "@/components/home/ServicesGrid";
+import { PricingSection } from "@/components/home/PricingSection";
+import { FoundingBanner } from "@/components/home/FoundingBanner";
 
 export const metadata: Metadata = {
   title: "Skyen Systems – Custom Software, AI, Web & Mobile Development",
@@ -8,5 +14,15 @@ export const metadata: Metadata = {
 };
 
 export default function Home() {
-  return <HomePageContent />;
+  return (
+    <>
+      <Hero />
+      <ProblemSection />
+      <ValueProps />
+      <ProductsShowcase />
+      <ServicesGrid />
+      <PricingSection />
+      <FoundingBanner />
+    </>
+  );
 }

@@ -24,10 +24,10 @@
 :root {
   --bg-primary:#1E2240;--bg-secondary:#252A4A;--bg-tertiary:#0F1429;
   --bg-surface:#2A3050;--bg-card:rgba(255,255,255,0.04);--bg-card-hover:rgba(255,255,255,0.07);
-  --cyan:#00C8F0;--teal:#2DD4BF;--gradient:linear-gradient(135deg,#00C8F0,#2DD4BF);
-  --gradient-text:linear-gradient(135deg,#00C8F0 0%,#2DD4BF 100%);
+  --cyan:#1E3A8A;--teal:#2DD4BF;--gradient:linear-gradient(135deg,#1E3A8A,#2DD4BF);
+  --gradient-text:linear-gradient(135deg,#1E3A8A 0%,#2DD4BF 100%);
   --text-primary:#FFFFFF;--text-secondary:#94A3B8;--text-muted:#64748B;--text-accent:#2DD4BF;
-  --border:rgba(255,255,255,0.08);--border-accent:rgba(0,200,240,0.30);--border-card:rgba(255,255,255,0.06);
+  --border:rgba(255,255,255,0.08);--border-accent:rgba(30,58,138,0.30);--border-card:rgba(255,255,255,0.06);
   --green:#10B981;--amber:#F59E0B;
   --font-head:'Plus Jakarta Sans',sans-serif;--font-body:'DM Sans',sans-serif;
   --max-w:1200px;--radius-card:14px;--radius-btn:8px;
@@ -63,7 +63,7 @@ body{background:var(--bg-primary);color:var(--text-primary);font-family:var(--fo
 .nav-actions{display:flex;align-items:center;gap:12px;}
 /* Hero */
 .page-hero{padding:80px 0 70px;background:var(--bg-primary);position:relative;overflow:hidden;}
-.page-hero::before{content:'';position:absolute;top:-200px;right:-100px;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(0,200,240,.07) 0%,transparent 70%);pointer-events:none;}
+.page-hero::before{content:'';position:absolute;top:-200px;right:-100px;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(30,58,138,.07) 0%,transparent 70%);pointer-events:none;}
 /* Service blocks */
 .service-block{padding:80px 0;border-bottom:1px solid var(--border);}
 .service-block:last-child{border-bottom:none;}
@@ -84,11 +84,11 @@ body{background:var(--bg-primary);color:var(--text-primary);font-family:var(--fo
 .detail-row:last-child{border-bottom:none;}
 .detail-label{color:var(--text-secondary);}
 .detail-value{color:var(--teal);font-weight:600;}
-.icon-box{width:48px;height:48px;border-radius:12px;background:rgba(0,200,240,.12);border:1px solid rgba(0,200,240,.20);display:flex;align-items:center;justify-content:center;margin-bottom:20px;}
+.icon-box{width:48px;height:48px;border-radius:12px;background:rgba(30,58,138,.12);border:1px solid rgba(30,58,138,.20);display:flex;align-items:center;justify-content:center;margin-bottom:20px;}
 .icon-box svg{width:22px;height:22px;stroke:var(--cyan);}
 /* CTA */
 .cta-banner{background:var(--bg-tertiary);padding:100px 0;text-align:center;position:relative;overflow:hidden;}
-.cta-banner::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:800px;height:400px;border-radius:50%;background:radial-gradient(ellipse,rgba(0,200,240,.06) 0%,transparent 70%);pointer-events:none;}
+.cta-banner::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:800px;height:400px;border-radius:50%;background:radial-gradient(ellipse,rgba(30,58,138,.06) 0%,transparent 70%);pointer-events:none;}
 .cta-banner-inner{position:relative;z-index:1;}
 .cta-title{font-family:var(--font-head);font-size:clamp(28px,4vw,46px);font-weight:800;color:var(--text-primary);margin-bottom:16px;line-height:1.15;}
 .cta-sub{font-size:16px;color:var(--text-secondary);margin-bottom:36px;max-width:480px;margin-left:auto;margin-right:auto;line-height:1.7;}
@@ -108,10 +108,30 @@ body{background:var(--bg-primary);color:var(--text-primary);font-family:var(--fo
 .footer-legal a{font-size:12px;color:var(--text-muted);text-decoration:none;}
 .footer-legal a:hover{color:var(--teal);}
 @media(max-width:768px){
+  .mobile-journey{display:block;margin:0 0 26px;}
+  .journey-track-wrap{position:relative;padding:14px 2px 10px;}
+  .journey-track{position:relative;height:54px;display:flex;align-items:center;justify-content:space-between;}
+  .journey-line{position:absolute;left:24px;right:24px;top:50%;height:2px;transform:translateY(-50%);background:linear-gradient(90deg,rgba(30,58,138,.42),rgba(45,212,191,.58));border-radius:999px;}
+  .journey-stop{position:relative;z-index:3;width:44px;height:44px;border:none;background:transparent;display:flex;align-items:center;justify-content:center;cursor:pointer;}
+  .journey-stop-dot{width:12px;height:12px;border-radius:999px;background:#6b7698;border:1px solid rgba(255,255,255,.36);transition:transform .28s ease,background-color .28s ease,box-shadow .28s ease;}
+  .journey-stop.active .journey-stop-dot{background:var(--cyan);transform:scale(1.2);box-shadow:0 0 0 6px rgba(30,58,138,.18),0 0 14px rgba(30,58,138,.45);}
+  .journey-stop-text{position:absolute;left:50%;transform:translateX(-50%);font-size:10px;font-weight:600;letter-spacing:.01em;color:var(--text-secondary);white-space:nowrap;line-height:1;}
+  .journey-stop-text.top{top:2px;}
+  .journey-stop-text.bottom{bottom:2px;}
+  .journey-stop.active .journey-stop-text{color:#d8eeff;}
+  .journey-car{position:absolute;left:0;top:50%;z-index:4;transform:translate3d(0,-50%,0);transition:transform .48s cubic-bezier(.22,.9,.25,1.08);will-change:transform;pointer-events:none;}
+  .journey-car-body{position:relative;width:22px;height:12px;border-radius:7px;border:1px solid #3D3E8A;background:linear-gradient(180deg,#8FD4FF 0%,#7E8BFF 55%,#7C3AED 100%);box-shadow:0 8px 18px -10px rgba(0,0,0,.72);}
+  .journey-car-body::before,.journey-car-body::after{content:'';position:absolute;bottom:-4px;width:6px;height:6px;border-radius:999px;border:1px solid #0B1F31;background:#0F172A;}
+  .journey-car-body::before{left:3px;}
+  .journey-car-body::after{right:3px;}
+  .service-block.mobile-hidden{display:none;}
   .service-block-inner{grid-template-columns:1fr;gap:36px;}
   .service-block-inner.reverse{direction:ltr;}
   .footer-main{grid-template-columns:1fr;gap:32px;}
   .nav-links{display:none;}
+}
+@media(min-width:769px){
+  .mobile-journey{display:none;}
 }
 </style>
 </head>
@@ -146,6 +166,20 @@ body{background:var(--bg-primary);color:var(--text-primary);font-family:var(--fo
 
 <div style="background:var(--bg-primary);padding:0 0 80px;">
 <div class="container">
+  <div class="mobile-journey" aria-label="Service journey navigation">
+    <div class="journey-track-wrap">
+      <div class="journey-track">
+        <div class="journey-line"></div>
+        <button class="journey-stop active" type="button" data-service-target="web-design" aria-label="Web Design & Development"><span class="journey-stop-text top">Web</span><span class="journey-stop-dot"></span></button>
+        <button class="journey-stop" type="button" data-service-target="mobile-apps" aria-label="Mobile Apps — iOS & Android"><span class="journey-stop-text bottom">App</span><span class="journey-stop-dot"></span></button>
+        <button class="journey-stop" type="button" data-service-target="digital-marketing" aria-label="Digital Marketing & SEO"><span class="journey-stop-text top">SEO</span><span class="journey-stop-dot"></span></button>
+        <button class="journey-stop" type="button" data-service-target="social-media" aria-label="Social Media Management"><span class="journey-stop-text bottom">SM</span><span class="journey-stop-dot"></span></button>
+        <button class="journey-stop" type="button" data-service-target="brand-design" aria-label="Brand & UI/UX Design"><span class="journey-stop-text top">Brand</span><span class="journey-stop-dot"></span></button>
+        <button class="journey-stop" type="button" data-service-target="web-apps" aria-label="Web Applications & SaaS"><span class="journey-stop-text bottom">Ads</span><span class="journey-stop-dot"></span></button>
+        <div class="journey-car" aria-hidden="true"><div class="journey-car-body"></div></div>
+      </div>
+    </div>
+  </div>
 
 <!-- SERVICE 1: WEB DESIGN -->
 <div class="service-block" id="web-design">
@@ -478,5 +512,76 @@ body{background:var(--bg-primary);color:var(--text-primary);font-family:var(--fo
     </div>
   </div>
 </footer>
+<script>
+(function () {
+  var mq = window.matchMedia("(max-width: 768px)");
+  var stops = Array.prototype.slice.call(document.querySelectorAll(".journey-stop"));
+  var blocks = Array.prototype.slice.call(document.querySelectorAll(".service-block"));
+  var car = document.querySelector(".journey-car");
+  if (!stops.length || !blocks.length || !car) return;
+
+  function setDesktopState() {
+    blocks.forEach(function (block) {
+      block.classList.remove("mobile-hidden");
+    });
+  }
+
+  function moveCarToStop(stop) {
+    var track = stop.parentElement;
+    if (!track) return;
+    var trackRect = track.getBoundingClientRect();
+    var stopRect = stop.getBoundingClientRect();
+    var carRect = car.getBoundingClientRect();
+    var x = stopRect.left - trackRect.left + stopRect.width / 2 - carRect.width / 2;
+    car.style.transform = "translate3d(" + x + "px,-50%,0)";
+  }
+
+  function setActive(index, shouldScroll) {
+    var targetId = stops[index].getAttribute("data-service-target");
+    var targetBlock = document.getElementById(targetId);
+    if (!targetBlock) return;
+
+    stops.forEach(function (stop, i) {
+      if (i === index) stop.classList.add("active");
+      else stop.classList.remove("active");
+    });
+    blocks.forEach(function (block) {
+      if (block.id === targetId) block.classList.remove("mobile-hidden");
+      else block.classList.add("mobile-hidden");
+    });
+    moveCarToStop(stops[index]);
+    if (shouldScroll) {
+      targetBlock.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }
+
+  function initForViewport() {
+    if (!mq.matches) {
+      setDesktopState();
+      return;
+    }
+    setActive(0, false);
+  }
+
+  stops.forEach(function (stop, index) {
+    stop.addEventListener("click", function () {
+      setActive(index, false);
+    });
+  });
+
+  window.addEventListener("resize", function () {
+    if (!mq.matches) {
+      setDesktopState();
+      return;
+    }
+    var activeIndex = stops.findIndex(function (stop) {
+      return stop.classList.contains("active");
+    });
+    setActive(activeIndex >= 0 ? activeIndex : 0, false);
+  });
+
+  initForViewport();
+})();
+</script>
 </body>
 </html>

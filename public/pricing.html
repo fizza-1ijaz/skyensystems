@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pricing | Skyen Systems — Transparent Packages, Retainers & Services</title>
+<meta name="description" content="Clear, published pricing for web design, mobile apps, social media management, and more. No quote requests. No hidden fees. Packages from $750.">
+<meta name="keywords" content="web design pricing, website package cost, social media management pricing, affordable website design, mobile app cost, digital agency pricing">
+<meta property="og:title" content="Pricing | Skyen Systems — Honest, Published Prices">
+<meta property="og:url" content="https://skyensystems.com/pricing">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg-primary:#1E2240;--bg-secondary:#252A4A;--bg-tertiary:#0F1429;--bg-surface:#2A3050;--bg-card:rgba(255,255,255,0.04);--bg-card-hover:rgba(255,255,255,0.07);--cyan:#00C8F0;--teal:#2DD4BF;--gradient:linear-gradient(135deg,#00C8F0,#2DD4BF);--gradient-text:linear-gradient(135deg,#00C8F0 0%,#2DD4BF 100%);--text-primary:#FFFFFF;--text-secondary:#94A3B8;--text-muted:#64748B;--text-accent:#2DD4BF;--border:rgba(255,255,255,0.08);--border-accent:rgba(0,200,240,0.30);--border-card:rgba(255,255,255,0.06);--green:#10B981;--font-head:'Plus Jakarta Sans',sans-serif;--font-body:'DM Sans',sans-serif;--max-w:1200px;--radius-card:14px;--radius-btn:8px;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg-primary);color:var(--text-primary);font-family:var(--font-body);font-weight:400;line-height:1.7;-webkit-font-smoothing:antialiased;}
+.container{max-width:var(--max-w);margin:0 auto;padding:0 24px;}
+.gradient-text{background:var(--gradient-text);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.section-pad{padding:80px 0;}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-body);font-size:12px;font-weight:500;letter-spacing:.10em;text-transform:uppercase;color:var(--teal);margin-bottom:18px;}
+.eyebrow::before{content:'';display:block;width:20px;height:1.5px;background:var(--gradient);border-radius:2px;}
+.section-title{font-family:var(--font-head);font-size:clamp(28px,4vw,42px);font-weight:800;line-height:1.12;color:var(--text-primary);margin-bottom:16px;}
+.section-sub{font-size:16px;color:var(--text-secondary);line-height:1.7;max-width:560px;}
+.btn{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-body);font-size:14px;font-weight:500;padding:13px 26px;border-radius:var(--radius-btn);cursor:pointer;transition:all .2s ease;text-decoration:none;border:none;white-space:nowrap;}
+.btn-primary{background:var(--gradient);color:#0F172A;font-weight:600;}
+.btn-primary:hover{opacity:.88;transform:translateY(-1px);}
+.btn-secondary{background:transparent;color:var(--teal);border:1.5px solid var(--teal);}
+.btn-secondary:hover{background:rgba(45,212,191,.08);}
+.btn-ghost{background:rgba(255,255,255,.06);color:var(--text-primary);border:1px solid var(--border);}
+.btn-sm{font-size:13px;padding:9px 18px;}
+.btn-lg{font-size:16px;padding:16px 32px;}
+.nav{position:sticky;top:0;z-index:100;background:rgba(15,20,41,.97);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);}
+.nav-inner{max-width:var(--max-w);margin:0 auto;padding:0 24px;height:68px;display:flex;align-items:center;justify-content:space-between;}
+.nav-logo{display:flex;flex-direction:column;text-decoration:none;line-height:1;}
+.nav-logo-skyen{font-family:var(--font-head);font-size:20px;font-weight:800;background:var(--gradient-text);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.nav-logo-sub{font-family:var(--font-body);font-size:9px;font-weight:500;letter-spacing:.20em;text-transform:uppercase;color:var(--text-muted);margin-top:2px;}
+.nav-links{display:flex;align-items:center;gap:36px;list-style:none;}
+.nav-links a{font-size:14px;color:var(--text-secondary);text-decoration:none;transition:color .2s;}
+.nav-links a:hover,.nav-links a.active{color:var(--text-primary);}
+.nav-actions{display:flex;align-items:center;gap:12px;}
+.page-hero{padding:80px 0 60px;background:var(--bg-primary);}
+/* Pricing tabs */
+.pricing-tabs{display:flex;gap:4px;margin-bottom:50px;background:var(--bg-tertiary);border-radius:10px;padding:4px;width:fit-content;}
+.pricing-tab{font-family:var(--font-body);font-size:13px;font-weight:500;padding:10px 24px;border-radius:7px;cursor:pointer;color:var(--text-secondary);transition:all .2s;border:none;background:transparent;}
+.pricing-tab.active{background:var(--bg-surface);color:var(--text-primary);}
+/* Cards */
+.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:40px;}
+.price-card{background:var(--bg-card);border:1px solid var(--border-card);border-radius:var(--radius-card);padding:32px;display:flex;flex-direction:column;transition:all .25s ease;}
+.price-card.featured{background:var(--bg-secondary);border:1.5px solid var(--cyan);}
+.price-card:not(.featured):hover{border-color:var(--border-accent);transform:translateY(-3px);}
+.price-name{font-family:var(--font-head);font-size:13px;font-weight:700;letter-spacing:.10em;text-transform:uppercase;color:var(--teal);margin-bottom:8px;}
+.price-amount{font-family:var(--font-head);font-size:44px;font-weight:800;color:var(--text-primary);line-height:1;margin-bottom:8px;}
+.price-amount sup{font-size:22px;vertical-align:top;margin-top:10px;}
+.price-amount small{font-size:16px;font-weight:400;color:var(--text-muted);}
+.price-desc{font-size:13px;color:var(--text-secondary);line-height:1.6;margin-bottom:24px;}
+.price-divider{height:1px;background:var(--border);margin:20px 0;}
+.price-features{list-style:none;flex:1;margin-bottom:28px;}
+.price-features li{font-size:13px;color:var(--text-secondary);padding:8px 0;border-bottom:1px solid var(--border);display:flex;align-items:flex-start;gap:9px;}
+.price-features li:last-child{border-bottom:none;}
+.check{width:16px;height:16px;border-radius:50%;background:rgba(16,185,129,.15);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;}
+.check svg{width:9px;height:9px;}
+.badge-popular{display:inline-block;background:var(--gradient);color:#0F172A;font-size:10px;font-weight:700;letter-spacing:.06em;padding:4px 12px;border-radius:20px;margin-bottom:16px;}
+.us-compare{font-size:11px;color:var(--text-muted);margin-top:14px;padding-top:14px;border-top:1px solid var(--border);}
+.us-compare span{color:var(--teal);font-weight:600;}
+/* Individual services table */
+.services-table{width:100%;border-collapse:collapse;}
+.services-table th{font-family:var(--font-body);font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--text-muted);padding:14px 20px;text-align:left;border-bottom:1px solid var(--border);}
+.services-table td{padding:16px 20px;font-size:14px;color:var(--text-secondary);border-bottom:1px solid var(--border);}
+.services-table tr:hover td{background:var(--bg-card);}
+.services-table td:first-child{color:var(--text-primary);font-weight:500;}
+.price-cell{color:var(--teal);font-weight:600;font-size:15px;}
+.us-cell{color:var(--text-muted);text-decoration:line-through;}
+.save-cell{color:var(--green);font-weight:600;font-size:12px;}
+/* Founding banner */
+.founding-banner{margin-top:50px;padding:32px 40px;background:var(--bg-tertiary);border:1px solid var(--border-accent);border-radius:var(--radius-card);display:flex;align-items:center;justify-content:space-between;gap:30px;flex-wrap:wrap;}
+.founding-title{font-family:var(--font-head);font-size:18px;font-weight:700;color:var(--text-primary);margin-bottom:6px;}
+.founding-desc{font-size:14px;color:var(--text-secondary);}
+/* FAQ */
+.faq-list{display:flex;flex-direction:column;gap:2px;margin-top:40px;}
+.faq-item{background:var(--bg-card);border:1px solid var(--border-card);border-radius:var(--radius-card);overflow:hidden;}
+.faq-q{padding:20px 26px;font-family:var(--font-head);font-size:15px;font-weight:600;color:var(--text-primary);cursor:pointer;display:flex;justify-content:space-between;align-items:center;transition:background .2s;}
+.faq-q:hover{background:var(--bg-card-hover);}
+.faq-icon{width:22px;height:22px;border-radius:50%;background:rgba(0,200,240,.12);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:transform .3s;font-size:14px;color:var(--cyan);}
+.faq-item.open .faq-icon{transform:rotate(45deg);}
+.faq-a{display:none;padding:0 26px 20px;font-size:14px;color:var(--text-secondary);line-height:1.75;}
+.faq-item.open .faq-a{display:block;}
+/* CTA */
+.cta-banner{background:var(--bg-tertiary);padding:80px 0;text-align:center;position:relative;overflow:hidden;}
+.cta-banner::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:700px;height:350px;border-radius:50%;background:radial-gradient(ellipse,rgba(0,200,240,.06) 0%,transparent 70%);pointer-events:none;}
+.cta-banner-inner{position:relative;z-index:1;}
+.cta-title{font-family:var(--font-head);font-size:clamp(26px,4vw,44px);font-weight:800;color:var(--text-primary);margin-bottom:16px;}
+.cta-sub{font-size:16px;color:var(--text-secondary);margin-bottom:32px;max-width:460px;margin-left:auto;margin-right:auto;}
+.cta-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
+/* Footer */
+.footer{background:var(--bg-tertiary);border-top:1px solid var(--border);}
+.footer-main{padding:60px 0 40px;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:60px;}
+.footer-brand-desc{font-size:14px;color:var(--text-secondary);line-height:1.7;margin-top:14px;max-width:280px;}
+.footer-col-title{font-family:var(--font-head);font-size:13px;font-weight:700;color:var(--text-primary);margin-bottom:20px;}
+.footer-links{list-style:none;}
+.footer-links li{margin-bottom:12px;}
+.footer-links a{font-size:14px;color:var(--text-secondary);text-decoration:none;transition:color .2s;}
+.footer-links a:hover{color:var(--teal);}
+.footer-bottom{padding:22px 0;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;}
+.footer-copy{font-size:12px;color:var(--text-muted);}
+.footer-legal{display:flex;gap:24px;}
+.footer-legal a{font-size:12px;color:var(--text-muted);text-decoration:none;}
+.footer-legal a:hover{color:var(--teal);}
+.section-label{font-family:var(--font-head);font-size:22px;font-weight:800;color:var(--text-primary);margin-bottom:8px;margin-top:60px;}
+.section-label-sub{font-size:14px;color:var(--text-secondary);margin-bottom:28px;}
+@media(max-width:768px){.pricing-grid{grid-template-columns:1fr;}.footer-main{grid-template-columns:1fr;gap:32px;}.nav-links{display:none;}.founding-banner{flex-direction:column;}.services-table th,.services-table td{padding:10px 12px;font-size:12px;}}
+</style>
+</head>
+<body>
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="/index.html" class="nav-logo"><span class="nav-logo-skyen">SKYEN</span><span class="nav-logo-sub">Systems</span></a>
+    <ul class="nav-links">
+      <li><a href="/services.html">Services</a></li>
+      <li><a href="/pricing.html" class="active">Pricing</a></li>
+      <li><a href="/products.html">Products</a></li>
+      <li><a href="/about.html">About</a></li>
+      <li><a href="/blog.html">Blog</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="/contact.html" class="btn btn-ghost btn-sm">Contact</a>
+      <a href="https://calendly.com/skyensystems/discovery" class="btn btn-primary btn-sm" target="_blank" rel="noopener">Book a Call ↗</a>
+    </div>
+  </div>
+</nav>
+
+<section class="page-hero">
+  <div class="container">
+    <div class="eyebrow">Transparent pricing</div>
+    <h1 class="section-title">Simple pricing.<br><span class="gradient-text">No agency games.</span></h1>
+    <p class="section-sub">We publish every price because we're confident in our value. No quote requests for standard work. No back-and-forth. No surprises — ever.</p>
+  </div>
+</section>
+
+<div style="background:var(--bg-primary);padding:0 0 80px;">
+<div class="container">
+
+  <div class="pricing-tabs" role="tablist">
+    <button class="pricing-tab active" data-tab="packages">Launch Packages</button>
+    <button class="pricing-tab" data-tab="retainers">Monthly Retainers</button>
+    <button class="pricing-tab" data-tab="individual">Individual Services</button>
+  </div>
+
+  <!-- PACKAGES -->
+  <div id="tab-packages">
+    <div class="section-label">Launch Packages</div>
+    <div class="section-label-sub">One-time, fixed price. Everything scoped upfront. No invoice surprises.</div>
+    <div class="pricing-grid">
+      <div class="price-card">
+        <div class="price-name">Start</div>
+        <div class="price-amount"><sup>$</sup>750</div>
+        <div class="price-desc">Everything you need to show up professionally online — website, social setup, and brand.</div>
+        <div class="price-divider"></div>
+        <ul class="price-features">
+          <li><div class="check"><svg viewBox="0 0 9 9" fill="none"><path d="M1.5 4.5l2 2 4-4" stroke="var(--green)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Professional website — up to 6 pages</li>
+          <li><div class="check"><svg viewBox="0 0 9 9" fill="none"><path d="M1.5 4.5l2 2 4-4" stroke="var(--green)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Mobile responsive + SEO-ready structure</li>
+          <li><div class="check"><svg viewBox="0 0 9 9" fill="none"><path d="M1.5 4.5l2 2 4-4" stroke="var(--green)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Social media profile optimization (3 platforms)</li>
+          <li><div class="check"><svg viewBox="0 0 9 9" fill="none"><path d="M1.5 4.5l2 2 4-4" stroke="var(--green)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Google Business Profile setup or optimization</li>
+          <li><div class="check"><svg viewBox="0 0 9 9" fill="none"><path d="M1.5 4.5l2 2 4-4" stroke="var(--green)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Basic brand kit — logo, colors, fonts</li>
+          <li><div class="check"><svg viewBox="0 0 9 9" fill="none"><path d="M1.5 4.5l2 2 4-4" stroke="var(--green)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Google Analytics setup</li>
+          <li><div class="check"><svg viewBox="0 0 9 9" fill="none"><path d="M1.5 4.5l2 2 4-4" stroke="var(--green)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>30 days post-launch support</li>
+        </ul>
+        <a href="/contact.html?package=start" class="btn btn-secondary" style="width:100%;justify-content:center;">Get started →</a>
+        <div class="us-compare">US agencies charge <span>$3,000–$8,000</span> for this scope.</div>
+      </div>
+
+      <div class="price-card featured">
+        <span class="badge-popular">Most popular</span>
+        <div class="price-name">Grow</div>
+        <div class="price-amount"><sup>$</sup>1,500</div>
+        <div class="price-desc">The full digital foundation to scale with confidence — brand, web, social, and content.</div>
+        <div class="price-divider"></div>
+        <ul class="price-features">
+          <li><div class="check"><svg viewBox="0 0 9 9" fill="none"><path d="M1.5 4.5l2 2 4-4" stroke="var(--green)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Everything in START</li>
+          <li><div class="check"><svg viewBox="0 0 9 9" fill="none"><path d="M1.5 4.5l2 2 4-4" stroke="var(--green)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Website expanded to 10 pages + blog setup</li>
+          <li><div class="check"><svg viewBox="0 0 9 9" fill="none"><path d="M1.5 4.5l2 2 4-4" stroke="var(--green)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Full brand identity + brand guide document</li>
+          <li><div class="check"><svg viewBox="0 0 9 9" fill="none"><path d="M1.5 4.5l2 2 4-4" stroke="var(--green)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>30 branded social post templates</li>
+          <li><div class="check"><svg viewBox="0 0 9 9" fill="none"><path d="M1.5 4.5l2 2 4-4" stroke="var(--green)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>1 month social media management included</li>
+          <li><div class="check"><svg viewBox="0 0 9 9" fill="none"><path d="M1.5 4.5l2 2 4-4" stroke="var(--green)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Email newsletter template design</li>
+          <li><div class="check"><svg viewBox="0 0 9 9" fill="none"><path d="M1.5 4.5l2 2 4-4" stroke="var(--green)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>60 days post-launch support</li>
+        </ul>
+        <a href="/contact.html?package=grow" class="btn btn-primary" style="width:100%;justify-content:center;">Get started →</a>
+        <div class="us-compare">US agencies charge <span>$8,000–$15,000</span> for this scope.</div>
+      </div>
+
+      <div class="price-card">
+        <div class="price-name">Lead</div>
+        <div class="price-amount"><sup>$</sup>4,000<small>+</small></div>
+        <div class="price-desc">Complete digital transformation — web, app, brand, SEO, and marketing. Custom scoped in discovery.</div>
+        <div class="price-divider"></div>
+        <ul class="price-features">
+          <li><div class="check"><svg viewBox="0 0 9 9" fill="none"><path d="M1.5 4.5l2 2 4-4" stroke="var(--green)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Everything in GROW</li>
+          <li><div class="check"><svg viewBox="0 0 9 9" fill="none"><path d="M1.5 4.5l2 2 4-4" stroke="var(--green)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Custom web app or mobile app (iOS + Android)</li>
+          <li><div class="check"><svg viewBox="0 0 9 9" fill="none"><path d="M1.5 4.5l2 2 4-4" stroke="var(--green)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Advanced SEO — keyword research + Search Console</li>
+          <li><div class="check"><svg viewBox="0 0 9 9" fill="none"><path d="M1.5 4.5l2 2 4-4" stroke="var(--green)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Paid ad campaign setup + ad creatives</li>
+          <li><div class="check"><svg viewBox="0 0 9 9" fill="none"><path d="M1.5 4.5l2 2 4-4" stroke="var(--green)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Dedicated project manager</li>
+          <li><div class="check"><svg viewBox="0 0 9 9" fill="none"><path d="M1.5 4.5l2 2 4-4" stroke="var(--green)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Quarterly strategy call</li>
+          <li><div class="check"><svg viewBox="0 0 9 9" fill="none"><path d="M1.5 4.5l2 2 4-4" stroke="var(--green)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>90 days post-launch support</li>
+        </ul>
+        <a href="/contact.html?package=lead" class="btn btn-ghost" style="width:100%;justify-content:center;">Let's talk →</a>
+        <div class="us-compare">US agencies charge <span>$20,000–$50,000+</span> for this scope.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RETAINERS -->
+  <div id="tab-retainers" style="display:none;">
+    <div class="section-label">Monthly Retainers</div>
+    <div class="section-label-sub">Ongoing services billed monthly. Cancel with 30 days notice — no long-term contracts.</div>
+    <div class="pricing-grid">
+      <div class="price-card">
+        <div class="price-name">Steady</div>
+        <div class="price-amount"><sup>$</sup>400<small>/mo</small></div>
+        <div class="price-desc">Consistent social presence across 2 platforms. Ideal for businesses that need to stay visible without the daily stress.</div>
+        <div class="price-divider"></div>
+        <ul class="price-features">
+          <li><div class="check"><svg viewBox="0 0 9 9" fill="none"><path d="M1.5 4.5l2 2 4-4" stroke="var(--green)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>3 posts per week across 2 platforms</li>
+          <li><div class="check"><svg viewBox="0 0 9 9" fill="none"><path d="M1.5 4.5l2 2 4-4" stroke="var(--green)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Custom graphics for every post — no stock templates</li>
+          <li><div class="check"><svg viewBox="0 0 9 9" fill="none"><path d="M1.5 4.5l2 2 4-4" stroke="var(--green)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Caption writing + hashtag strategy</li>
+          <li><div class="check"><svg viewBox="0 0 9 9" fill="none"><path d="M1.5 4.5l2 2 4-4" stroke="var(--green)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Community management — comments and DMs</li>
+          <li><div class="check"><svg viewBox="0 0 9 9" fill="none"><path d="M1.5 4.5l2 2 4-4" stroke="var(--green)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Monthly performance report</li>
+        </ul>
+        <a href="/contact.html?plan=steady" class="btn btn-secondary" style="width:100%;justify-content:center;">Get started →</a>
+        <div class="us-compare">US agencies charge <span>$800–$2,000/mo</span> for this.</div>
+      </div>
+
+      <div class="price-card featured">
+        <span class="badge-popular">Most popular</span>
+        <div class="price-name">Amplify</div>
+        <div class="price-amount"><sup>$</sup>600<small>/mo</small></div>
+        <div class="price-desc">Higher frequency, more platforms, paid ad management. For businesses ready to grow their reach and run campaigns.</div>
+        <div class="price-divider"></div>
+        <ul class="price-features">
+          <li><div class="check"><svg viewBox="0 0 9 9" fill="none"><path d="M1.5 4.5l2 2 4-4" stroke="var(--green)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>5 posts per week across 3 platforms</li>
+          <li><div class="check"><svg viewBox="0 0 9 9" fill="none"><path d="M1.5 4.5l2 2 4-4" stroke="var(--green)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Custom graphics + 1 reel or video per week</li>
+          <li><div class="check"><svg viewBox="0 0 9 9" fill="none"><path d="M1.5 4.5l2 2 4-4" stroke="var(--green)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Bi-weekly strategy call</li>
+          <li><div class="check"><svg viewBox="0 0 9 9" fill="none"><path d="M1.5 4.5l2 2 4-4" stroke="var(--green)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Paid ad campaign management (client pays ad spend)</li>
+          <li><div class="check"><svg viewBox="0 0 9 9" fill="none"><path d="M1.5 4.5l2 2 4-4" stroke="var(--green)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Full community management</li>
+          <li><div class="check"><svg viewBox="0 0 9 9" fill="none"><path d="M1.5 4.5l2 2 4-4" stroke="var(--green)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Bi-weekly performance report</li>
+        </ul>
+        <a href="/contact.html?plan=amplify" class="btn btn-primary" style="width:100%;justify-content:center;">Get started →</a>
+        <div class="us-compare">US agencies charge <span>$2,000–$5,000/mo</span> for this.</div>
+      </div>
+
+      <div class="price-card">
+        <div class="price-name">Shield</div>
+        <div class="price-amount"><sup>$</sup>100<small>/mo</small></div>
+        <div class="price-desc">Monthly website care — updates, security, backups, and performance monitoring. Peace of mind for your site.</div>
+        <div class="price-divider"></div>
+        <ul class="price-features">
+          <li><div class="check"><svg viewBox="0 0 9 9" fill="none"><path d="M1.5 4.5l2 2 4-4" stroke="var(--green)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Up to 5 content updates per month</li>
+          <li><div class="check"><svg viewBox="0 0 9 9" fill="none"><path d="M1.5 4.5l2 2 4-4" stroke="var(--green)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Security monitoring and backups</li>
+          <li><div class="check"><svg viewBox="0 0 9 9" fill="none"><path d="M1.5 4.5l2 2 4-4" stroke="var(--green)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Performance optimization checks</li>
+          <li><div class="check"><svg viewBox="0 0 9 9" fill="none"><path d="M1.5 4.5l2 2 4-4" stroke="var(--green)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Monthly website health report</li>
+        </ul>
+        <a href="/contact.html?plan=shield" class="btn btn-secondary" style="width:100%;justify-content:center;">Get started →</a>
+        <div class="us-compare">US agencies charge <span>$300–$500/mo</span> for this.</div>
+      </div>
+    </div>
+    <p style="font-size:13px;color:var(--text-muted);margin-top:16px;">Ad spend is always paid directly by the client to the platform. We never hold or manage your ad budget.</p>
+  </div>
+
+  <!-- INDIVIDUAL -->
+  <div id="tab-individual" style="display:none;">
+    <div class="section-label">Individual Services</div>
+    <div class="section-label-sub">Not every project needs a full package. Pick exactly what you need.</div>
+    <table class="services-table">
+      <thead>
+        <tr>
+          <th style="width:40%;">Service</th>
+          <th>Our Price</th>
+          <th>US Agency Rate</th>
+          <th>You Save</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Logo Design (3 concepts, 2 revision rounds)</td><td class="price-cell">$125</td><td class="us-cell">$800–$2,500</td><td class="save-cell">~85%</td></tr>
+        <tr><td>Landing Page — single, conversion-focused</td><td class="price-cell">$200</td><td class="us-cell">$1,500–$3,000</td><td class="save-cell">~87%</td></tr>
+        <tr><td>Brand Identity Package — full system</td><td class="price-cell">$300</td><td class="us-cell">$2,000–$6,000</td><td class="save-cell">~90%</td></tr>
+        <tr><td>Social Media Audit + Strategy Document</td><td class="price-cell">$100</td><td class="us-cell">$500–$1,500</td><td class="save-cell">~80%</td></tr>
+        <tr><td>SEO Audit + Full Report</td><td class="price-cell">$150</td><td class="us-cell">$800–$2,000</td><td class="save-cell">~82%</td></tr>
+        <tr><td>Mobile App — iOS or Android</td><td class="price-cell">From $2,000</td><td class="us-cell">$15,000–$40,000</td><td class="save-cell">~87%</td></tr>
+        <tr><td>Mobile App — iOS + Android</td><td class="price-cell">From $3,500</td><td class="us-cell">$25,000–$80,000</td><td class="save-cell">~90%</td></tr>
+        <tr><td>Web Application / SaaS MVP</td><td class="price-cell">From $2,500</td><td class="us-cell">$15,000–$50,000</td><td class="save-cell">~85%</td></tr>
+      </tbody>
+    </table>
+    <p style="font-size:12px;color:var(--text-muted);margin-top:14px;">All prices in USD. Custom quotes available for any project not listed above.</p>
+  </div>
+
+  <!-- Founding offer -->
+  <div class="founding-banner">
+    <div>
+      <div class="founding-title">⭐ Founding Client Rate — 20% off START &amp; GROW</div>
+      <div class="founding-desc">We're building our US portfolio. Get 20% off either package in exchange for a written testimonial and permission to feature your project. One condition. Real savings. Available for a limited time.</div>
+    </div>
+    <a href="/contact.html?offer=founding" class="btn btn-primary" style="flex-shrink:0;">Claim the offer →</a>
+  </div>
+
+  <!-- FAQ -->
+  <div style="margin-top:80px;">
+    <div class="eyebrow">Pricing FAQ</div>
+    <h2 class="section-title" style="font-size:32px;">Common questions<br>about our pricing.</h2>
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-q">Does the price include ad spend?<span class="faq-icon">+</span></div>
+        <div class="faq-a">No — and we will always be explicit about this. Our fee covers the work: strategy, content, design, posting, and reporting. Your ad budget is separate and paid directly by you to the platform (Facebook, Google, Instagram). We never hold or manage your ad spend.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">How do payments work?<span class="faq-icon">+</span></div>
+        <div class="faq-a">For one-time packages: 50% upfront to start, 50% on final delivery before handoff. For monthly retainers: billed at the start of each month. We accept bank transfer and major payment methods. No long-term contracts on retainers — cancel with 30 days notice.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">What is included in "post-launch support"?<span class="faq-icon">+</span></div>
+        <div class="faq-a">Post-launch support means we remain available to fix bugs, answer questions, and make minor adjustments to your website for the stated period (30, 60, or 90 days depending on the package). It does not include new feature development — that would be a separate quote.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">What is the revision policy?<span class="faq-icon">+</span></div>
+        <div class="faq-a">Every package includes two full rounds of feedback after the first draft. We scope this clearly before starting. If a project grows significantly in scope, we discuss it openly and agree before proceeding — you will never be surprised by a change in cost without prior conversation.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Can I upgrade my package later?<span class="faq-icon">+</span></div>
+        <div class="faq-a">Yes. If you start with START and want to upgrade to GROW, you pay the difference. We are not trying to lock you into a decision — we want the relationship to grow with your business.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">I need something not listed. Can you help?<span class="faq-icon">+</span></div>
+        <div class="faq-a">Absolutely. Book a free 30-minute discovery call and tell us what you're trying to build. We'll give you an honest assessment and a clear quote — no pressure.</div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- container -->
+</div>
+
+<section class="cta-banner">
+  <div class="container cta-banner-inner">
+    <div class="eyebrow" style="justify-content:center;">Still have questions?</div>
+    <h2 class="cta-title">Book a free call.<br><span class="gradient-text">Get straight answers.</span></h2>
+    <p class="cta-sub">30 minutes. No pitch. We'll look at your business and tell you exactly what we'd recommend — and what we wouldn't.</p>
+    <div class="cta-btns">
+      <a href="https://calendly.com/skyensystems/discovery" class="btn btn-primary btn-lg" target="_blank" rel="noopener">Book a Free Discovery Call ↗</a>
+      <a href="/contact.html" class="btn btn-secondary btn-lg">Send a Message</a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-main">
+      <div>
+        <a href="/index.html" class="nav-logo" style="display:inline-flex;"><span class="nav-logo-skyen">SKYEN</span></a>
+        <div style="font-family:var(--font-body);font-size:9px;font-weight:500;letter-spacing:.20em;text-transform:uppercase;color:var(--text-muted);margin-top:2px;">Systems</div>
+        <p class="footer-brand-desc">One team. Every digital need. Anywhere.</p>
+      </div>
+      <div><div class="footer-col-title">Services</div><ul class="footer-links"><li><a href="/services.html#web-design">Web Design</a></li><li><a href="/services.html#mobile-apps">Mobile Apps</a></li><li><a href="/services.html#social-media">Social Media</a></li><li><a href="/services.html#digital-marketing">Digital Marketing</a></li><li><a href="/services.html#brand-design">Brand Design</a></li></ul></div>
+      <div><div class="footer-col-title">Company</div><ul class="footer-links"><li><a href="/about.html">About Us</a></li><li><a href="/products.html">Our Products</a></li><li><a href="/pricing.html">Pricing</a></li><li><a href="/blog.html">Blog</a></li><li><a href="/contact.html">Contact</a></li></ul></div>
+      <div><div class="footer-col-title">Get in touch</div><ul class="footer-links"><li><a href="mailto:hello@skyensystems.com">hello@skyensystems.com</a></li><li><a href="https://calendly.com/skyensystems/discovery" target="_blank" rel="noopener">Book a Discovery Call</a></li></ul></div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2025 Skyen Systems. Part of the Skyen Group. Headquartered in Bahrain.</div>
+      <div class="footer-legal"><a href="/privacy-policy.html">Privacy Policy</a><a href="/terms.html">Terms of Service</a></div>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var tabs=document.querySelectorAll('.pricing-tab');
+  var panels={packages:'tab-packages',retainers:'tab-retainers',individual:'tab-individual'};
+  tabs.forEach(function(tab){
+    tab.addEventListener('click',function(){
+      tabs.forEach(function(t){t.classList.remove('active');});
+      tab.classList.add('active');
+      Object.values(panels).forEach(function(id){var el=document.getElementById(id);if(el)el.style.display='none';});
+      var el=document.getElementById(panels[tab.dataset.tab]);
+      if(el)el.style.display='block';
+    });
+  });
+  var items=document.querySelectorAll('.faq-item');
+  items.forEach(function(item){
+    item.querySelector('.faq-q').addEventListener('click',function(){
+      var open=item.classList.contains('open');
+      items.forEach(function(i){i.classList.remove('open');});
+      if(!open)item.classList.add('open');
+    });
+  });
+})();
+</script>
+</body>
+</html>

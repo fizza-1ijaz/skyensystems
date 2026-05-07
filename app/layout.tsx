@@ -1,16 +1,19 @@
 import type { Metadata } from "next";
 import { Footer } from "@/components/layout/Footer";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter, Space_Grotesk } from "next/font/google";
 import { Navbar } from "@/components/layout/Navbar";
+import { CursorGlow } from "@/components/ui/CursorGlow";
+import { ScrollProgress } from "@/components/ui/ScrollProgress";
+import { SmoothScrollProvider } from "@/components/ui/SmoothScrollProvider";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const spaceGrotesk = Space_Grotesk({
+  variable: "--font-space-grotesk",
   subsets: ["latin"],
 });
 
@@ -36,9 +39,13 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      data-scroll-behavior="smooth"
+      className={`${inter.variable} ${spaceGrotesk.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">
+      <body className="min-h-full flex flex-col bg-[#F7F9FC] text-[#0F172A]">
+        <ScrollProgress />
+        <CursorGlow />
+        <SmoothScrollProvider />
         <Navbar />
         <div className="flex-1">{children}</div>
         <Footer />

@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Services | Skyen Systems — Web Design, Mobile Apps, Social Media & More</title>
+<meta name="description" content="Skyen Systems offers web design, mobile app development, social media management, digital marketing, brand design, and web applications — all from one team, at transparent prices.">
+<meta name="keywords" content="web design small business, mobile app development, social media management, digital marketing agency, brand design, web application development, affordable digital services">
+<meta property="og:title" content="Services | Skyen Systems">
+<meta property="og:description" content="Six core digital services. One team. Transparent pricing. No agency overhead.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://skyensystems.com/services">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "provider": { "@type": "Organization", "name": "Skyen Systems", "url": "https://skyensystems.com" },
+  "serviceType": ["Web Design", "Mobile App Development", "Social Media Management", "Digital Marketing", "Brand Design", "Web Application Development"]
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg-primary:#1E2240;--bg-secondary:#252A4A;--bg-tertiary:#0F1429;
+  --bg-surface:#2A3050;--bg-card:rgba(255,255,255,0.04);--bg-card-hover:rgba(255,255,255,0.07);
+  --cyan:#00C8F0;--teal:#2DD4BF;--gradient:linear-gradient(135deg,#00C8F0,#2DD4BF);
+  --gradient-text:linear-gradient(135deg,#00C8F0 0%,#2DD4BF 100%);
+  --text-primary:#FFFFFF;--text-secondary:#94A3B8;--text-muted:#64748B;--text-accent:#2DD4BF;
+  --border:rgba(255,255,255,0.08);--border-accent:rgba(0,200,240,0.30);--border-card:rgba(255,255,255,0.06);
+  --green:#10B981;--amber:#F59E0B;
+  --font-head:'Plus Jakarta Sans',sans-serif;--font-body:'DM Sans',sans-serif;
+  --max-w:1200px;--radius-card:14px;--radius-btn:8px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg-primary);color:var(--text-primary);font-family:var(--font-body);font-weight:400;line-height:1.7;-webkit-font-smoothing:antialiased;}
+.container{max-width:var(--max-w);margin:0 auto;padding:0 24px;}
+.gradient-text{background:var(--gradient-text);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.section-pad{padding:100px 0;}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-body);font-size:12px;font-weight:500;letter-spacing:.10em;text-transform:uppercase;color:var(--teal);margin-bottom:18px;}
+.eyebrow::before{content:'';display:block;width:20px;height:1.5px;background:var(--gradient);border-radius:2px;}
+.section-title{font-family:var(--font-head);font-size:clamp(28px,4vw,42px);font-weight:800;line-height:1.12;color:var(--text-primary);margin-bottom:16px;}
+.section-sub{font-size:16px;color:var(--text-secondary);line-height:1.7;max-width:560px;}
+.btn{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-body);font-size:14px;font-weight:500;padding:13px 26px;border-radius:var(--radius-btn);cursor:pointer;transition:all .2s ease;text-decoration:none;border:none;white-space:nowrap;}
+.btn-primary{background:var(--gradient);color:#0F172A;font-weight:600;}
+.btn-primary:hover{opacity:.88;transform:translateY(-1px);}
+.btn-secondary{background:transparent;color:var(--teal);border:1.5px solid var(--teal);}
+.btn-secondary:hover{background:rgba(45,212,191,.08);transform:translateY(-1px);}
+.btn-ghost{background:rgba(255,255,255,.06);color:var(--text-primary);border:1px solid var(--border);}
+.btn-ghost:hover{background:rgba(255,255,255,.10);}
+.btn-sm{font-size:13px;padding:9px 18px;}
+.btn-lg{font-size:16px;padding:16px 32px;}
+/* Nav */
+.nav{position:sticky;top:0;z-index:100;background:rgba(15,20,41,.97);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);}
+.nav-inner{max-width:var(--max-w);margin:0 auto;padding:0 24px;height:68px;display:flex;align-items:center;justify-content:space-between;}
+.nav-logo{display:flex;flex-direction:column;text-decoration:none;line-height:1;}
+.nav-logo-skyen{font-family:var(--font-head);font-size:20px;font-weight:800;background:var(--gradient-text);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;}
+.nav-logo-sub{font-family:var(--font-body);font-size:9px;font-weight:500;letter-spacing:.20em;text-transform:uppercase;color:var(--text-muted);margin-top:2px;}
+.nav-links{display:flex;align-items:center;gap:36px;list-style:none;}
+.nav-links a{font-family:var(--font-body);font-size:14px;font-weight:400;color:var(--text-secondary);text-decoration:none;transition:color .2s;}
+.nav-links a:hover,.nav-links a.active{color:var(--text-primary);}
+.nav-actions{display:flex;align-items:center;gap:12px;}
+/* Hero */
+.page-hero{padding:80px 0 70px;background:var(--bg-primary);position:relative;overflow:hidden;}
+.page-hero::before{content:'';position:absolute;top:-200px;right:-100px;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(0,200,240,.07) 0%,transparent 70%);pointer-events:none;}
+/* Service blocks */
+.service-block{padding:80px 0;border-bottom:1px solid var(--border);}
+.service-block:last-child{border-bottom:none;}
+.service-block-inner{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;}
+.service-block-inner.reverse{direction:rtl;}
+.service-block-inner.reverse > *{direction:ltr;}
+.service-num{font-family:var(--font-head);font-size:80px;font-weight:800;background:var(--gradient-text);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;opacity:.15;line-height:1;margin-bottom:-20px;}
+.service-block-title{font-family:var(--font-head);font-size:clamp(22px,3vw,32px);font-weight:800;color:var(--text-primary);margin-bottom:14px;line-height:1.2;}
+.service-block-desc{font-size:15px;color:var(--text-secondary);line-height:1.8;margin-bottom:24px;}
+.service-block-desc p{margin-bottom:12px;}
+.feature-list{list-style:none;margin-bottom:28px;}
+.feature-list li{font-size:14px;color:var(--text-secondary);padding:9px 0;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px;}
+.feature-list li:last-child{border-bottom:none;}
+.feature-list li::before{content:'';display:block;width:18px;height:1.5px;background:var(--gradient);border-radius:2px;flex-shrink:0;}
+.service-detail-card{background:var(--bg-secondary);border:1px solid var(--border-accent);border-radius:var(--radius-card);padding:32px;}
+.detail-card-title{font-family:var(--font-head);font-size:16px;font-weight:700;color:var(--text-primary);margin-bottom:20px;}
+.detail-row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--border);font-size:13px;}
+.detail-row:last-child{border-bottom:none;}
+.detail-label{color:var(--text-secondary);}
+.detail-value{color:var(--teal);font-weight:600;}
+.icon-box{width:48px;height:48px;border-radius:12px;background:rgba(0,200,240,.12);border:1px solid rgba(0,200,240,.20);display:flex;align-items:center;justify-content:center;margin-bottom:20px;}
+.icon-box svg{width:22px;height:22px;stroke:var(--cyan);}
+/* CTA */
+.cta-banner{background:var(--bg-tertiary);padding:100px 0;text-align:center;position:relative;overflow:hidden;}
+.cta-banner::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:800px;height:400px;border-radius:50%;background:radial-gradient(ellipse,rgba(0,200,240,.06) 0%,transparent 70%);pointer-events:none;}
+.cta-banner-inner{position:relative;z-index:1;}
+.cta-title{font-family:var(--font-head);font-size:clamp(28px,4vw,46px);font-weight:800;color:var(--text-primary);margin-bottom:16px;line-height:1.15;}
+.cta-sub{font-size:16px;color:var(--text-secondary);margin-bottom:36px;max-width:480px;margin-left:auto;margin-right:auto;line-height:1.7;}
+.cta-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
+/* Footer */
+.footer{background:var(--bg-tertiary);border-top:1px solid var(--border);}
+.footer-main{padding:70px 0 50px;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:60px;}
+.footer-brand-desc{font-size:14px;color:var(--text-secondary);line-height:1.7;margin-top:14px;max-width:280px;}
+.footer-col-title{font-family:var(--font-head);font-size:13px;font-weight:700;color:var(--text-primary);margin-bottom:20px;}
+.footer-links{list-style:none;}
+.footer-links li{margin-bottom:12px;}
+.footer-links a{font-size:14px;color:var(--text-secondary);text-decoration:none;transition:color .2s;}
+.footer-links a:hover{color:var(--teal);}
+.footer-bottom{padding:24px 0;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;}
+.footer-copy{font-size:12px;color:var(--text-muted);}
+.footer-legal{display:flex;gap:24px;}
+.footer-legal a{font-size:12px;color:var(--text-muted);text-decoration:none;}
+.footer-legal a:hover{color:var(--teal);}
+@media(max-width:768px){
+  .service-block-inner{grid-template-columns:1fr;gap:36px;}
+  .service-block-inner.reverse{direction:ltr;}
+  .footer-main{grid-template-columns:1fr;gap:32px;}
+  .nav-links{display:none;}
+}
+</style>
+</head>
+<body>
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="/index.html" class="nav-logo">
+      <span class="nav-logo-skyen">SKYEN</span>
+      <span class="nav-logo-sub">Systems</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="/services.html" class="active">Services</a></li>
+      <li><a href="/pricing.html">Pricing</a></li>
+      <li><a href="/products.html">Products</a></li>
+      <li><a href="/about.html">About</a></li>
+      <li><a href="/blog.html">Blog</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="/contact.html" class="btn btn-ghost btn-sm">Contact</a>
+      <a href="https://calendly.com/skyensystems/discovery" class="btn btn-primary btn-sm" target="_blank" rel="noopener">Book a Call ↗</a>
+    </div>
+  </div>
+</nav>
+
+<section class="page-hero">
+  <div class="container">
+    <div class="eyebrow">What we build</div>
+    <h1 class="section-title" style="max-width:640px;">Six services. One team.<br><span class="gradient-text">Zero runaround.</span></h1>
+    <p class="section-sub">Everything your business needs to compete online — designed, built, and managed by the same team that built Studiely from scratch.</p>
+  </div>
+</section>
+
+<div style="background:var(--bg-primary);padding:0 0 80px;">
+<div class="container">
+
+<!-- SERVICE 1: WEB DESIGN -->
+<div class="service-block" id="web-design">
+  <div class="service-block-inner">
+    <div>
+      <div class="service-num">01</div>
+      <div class="icon-box">
+        <svg viewBox="0 0 22 22" fill="none" stroke-width="1.6"><rect x="1" y="3" width="20" height="15" rx="2" stroke="var(--cyan)"/><path d="M6 19h10M11 18v2" stroke="var(--cyan)" stroke-linecap="round"/></svg>
+      </div>
+      <div class="eyebrow">Web Design &amp; Development</div>
+      <h2 class="service-block-title">Websites that convert.<br>Not just impress.</h2>
+      <div class="service-block-desc">
+        <p>A beautiful website that no one can find — or that no one takes action on — is a decoration, not an asset. We build websites with one goal: turning visitors into customers.</p>
+        <p>Every site we build is custom-designed, mobile-first, SEO-structured, and optimized for speed from day one. No templates sold as custom. No cookie-cutter layouts.</p>
+      </div>
+      <ul class="feature-list">
+        <li>Custom responsive design — mobile first, always</li>
+        <li>SEO-ready HTML structure and meta setup</li>
+        <li>Google PageSpeed score above 90 — guaranteed</li>
+        <li>Contact forms, booking integrations, and CTAs</li>
+        <li>CMS integration — update your own content easily</li>
+        <li>Google Analytics + Search Console setup</li>
+        <li>30–90 days post-launch support included</li>
+      </ul>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;">
+        <a href="/pricing.html" class="btn btn-primary">See Pricing →</a>
+        <a href="/contact.html" class="btn btn-secondary">Get a Quote</a>
+      </div>
+    </div>
+    <div class="service-detail-card">
+      <div class="detail-card-title">At a glance</div>
+      <div class="detail-row"><span class="detail-label">Delivery time</span><span class="detail-value">3–4 weeks</span></div>
+      <div class="detail-row"><span class="detail-label">Included in</span><span class="detail-value">START, GROW, LEAD</span></div>
+      <div class="detail-row"><span class="detail-label">Pages (START)</span><span class="detail-value">Up to 6 pages</span></div>
+      <div class="detail-row"><span class="detail-label">Pages (GROW)</span><span class="detail-value">Up to 10 + blog</span></div>
+      <div class="detail-row"><span class="detail-label">Mobile responsive</span><span class="detail-value">Always included</span></div>
+      <div class="detail-row"><span class="detail-label">SEO setup</span><span class="detail-value">Always included</span></div>
+      <div class="detail-row"><span class="detail-label">Revisions</span><span class="detail-value">2 full rounds</span></div>
+      <div class="detail-row"><span class="detail-label">US agency rate</span><span class="detail-value" style="text-decoration:line-through;color:var(--text-muted);">$3,000–$25,000</span></div>
+      <div style="margin-top:20px;padding-top:20px;border-top:1px solid var(--border);">
+        <a href="/pricing.html#packages" class="btn btn-primary btn-sm" style="width:100%;justify-content:center;">View package pricing →</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SERVICE 2: MOBILE APPS -->
+<div class="service-block" id="mobile-apps">
+  <div class="service-block-inner reverse">
+    <div>
+      <div class="service-num">02</div>
+      <div class="icon-box">
+        <svg viewBox="0 0 22 22" fill="none" stroke-width="1.6"><rect x="6" y="1" width="10" height="20" rx="2" stroke="var(--cyan)"/><circle cx="11" cy="17" r="1.2" fill="var(--cyan)"/></svg>
+      </div>
+      <div class="eyebrow">Mobile Apps — iOS &amp; Android</div>
+      <h2 class="service-block-title">Apps your users actually want to open.</h2>
+      <div class="service-block-desc">
+        <p>We've built Studiely — a live app on the App Store and Google Play. When we say we know mobile app development, we're speaking from experience, not from a portfolio of client screenshots.</p>
+        <p>We build with React Native and Flutter — modern cross-platform frameworks that deliver native performance on both iOS and Android from a single codebase. Faster to build. Less expensive to maintain.</p>
+      </div>
+      <ul class="feature-list">
+        <li>React Native or Flutter — your choice or our recommendation</li>
+        <li>UI/UX design fully included — no separate design fee</li>
+        <li>Backend API development (Node.js / Python)</li>
+        <li>App Store and Google Play submission handled</li>
+        <li>Push notifications, authentication, in-app purchases</li>
+        <li>Database design and cloud infrastructure setup</li>
+        <li>Post-launch maintenance packages available</li>
+      </ul>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;">
+        <a href="/contact.html?service=mobile-app" class="btn btn-primary">Start a Project →</a>
+        <a href="/products.html" class="btn btn-secondary">See Studiely — our own app</a>
+      </div>
+    </div>
+    <div class="service-detail-card">
+      <div class="detail-card-title">At a glance</div>
+      <div class="detail-row"><span class="detail-label">Delivery time</span><span class="detail-value">6–10 weeks</span></div>
+      <div class="detail-row"><span class="detail-label">iOS only</span><span class="detail-value">From $2,000</span></div>
+      <div class="detail-row"><span class="detail-label">iOS + Android</span><span class="detail-value">From $3,500</span></div>
+      <div class="detail-row"><span class="detail-label">UI/UX design</span><span class="detail-value">Included</span></div>
+      <div class="detail-row"><span class="detail-label">App store submission</span><span class="detail-value">Included</span></div>
+      <div class="detail-row"><span class="detail-label">Backend API</span><span class="detail-value">Included</span></div>
+      <div class="detail-row"><span class="detail-label">US agency rate</span><span class="detail-value" style="text-decoration:line-through;color:var(--text-muted);">$25,000–$80,000</span></div>
+      <div style="margin-top:20px;padding-top:20px;border-top:1px solid var(--border);">
+        <a href="/contact.html?service=mobile-app" class="btn btn-primary btn-sm" style="width:100%;justify-content:center;">Get a custom quote →</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SERVICE 3: SOCIAL MEDIA -->
+<div class="service-block" id="social-media">
+  <div class="service-block-inner">
+    <div>
+      <div class="service-num">03</div>
+      <div class="icon-box">
+        <svg viewBox="0 0 22 22" fill="none" stroke-width="1.6"><circle cx="5" cy="11" r="2.5" stroke="var(--cyan)"/><circle cx="17" cy="5" r="2.5" stroke="var(--cyan)"/><circle cx="17" cy="17" r="2.5" stroke="var(--cyan)"/><path d="M7.4 9.8l7.2-3.6M7.4 12.2l7.2 3.6" stroke="var(--cyan)" stroke-linecap="round"/></svg>
+      </div>
+      <div class="eyebrow">Social Media Management</div>
+      <h2 class="service-block-title">Consistent. On-brand.<br>Actually managed.</h2>
+      <div class="service-block-desc">
+        <p>Posting three times a week and hoping for the best is not a social media strategy. We build and manage a social presence that reflects your brand consistently — and we report on what actually matters.</p>
+        <p>Every post is custom-designed, written to match your voice, and scheduled for the times your audience is actually online. No recycled templates. No generic quotes with your logo slapped on them.</p>
+      </div>
+      <ul class="feature-list">
+        <li>Content strategy tailored to your business and audience</li>
+        <li>Custom graphic design for every post — no stock templates</li>
+        <li>Caption writing in your brand voice</li>
+        <li>Hashtag research and platform-specific SEO</li>
+        <li>Community management — comments, DMs, replies</li>
+        <li>Monthly performance report with real metrics</li>
+        <li>Paid ad management available (client pays ad spend)</li>
+      </ul>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;">
+        <a href="/pricing.html#retainers" class="btn btn-primary">See Plan Pricing →</a>
+        <a href="/contact.html?service=social-media" class="btn btn-secondary">Get Started</a>
+      </div>
+    </div>
+    <div class="service-detail-card">
+      <div class="detail-card-title">STEADY plan</div>
+      <div class="detail-row"><span class="detail-label">Monthly price</span><span class="detail-value">$400/month</span></div>
+      <div class="detail-row"><span class="detail-label">Posts per week</span><span class="detail-value">3 posts</span></div>
+      <div class="detail-row"><span class="detail-label">Platforms</span><span class="detail-value">2 platforms</span></div>
+      <div class="detail-row"><span class="detail-label">Custom graphics</span><span class="detail-value">Every post</span></div>
+      <div class="detail-row"><span class="detail-label">Community management</span><span class="detail-value">Included</span></div>
+      <div style="margin-top:16px;padding-top:16px;border-top:1px solid var(--border);">
+        <div class="detail-card-title">AMPLIFY plan</div>
+        <div class="detail-row"><span class="detail-label">Monthly price</span><span class="detail-value">$600/month</span></div>
+        <div class="detail-row"><span class="detail-label">Posts per week</span><span class="detail-value">5 posts + 1 reel</span></div>
+        <div class="detail-row"><span class="detail-label">Platforms</span><span class="detail-value">3 platforms</span></div>
+        <div class="detail-row"><span class="detail-label">Ad management</span><span class="detail-value">Included</span></div>
+      </div>
+      <div style="margin-top:20px;padding-top:20px;border-top:1px solid var(--border);">
+        <a href="/pricing.html#retainers" class="btn btn-primary btn-sm" style="width:100%;justify-content:center;">Compare all plans →</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SERVICE 4: DIGITAL MARKETING -->
+<div class="service-block" id="digital-marketing">
+  <div class="service-block-inner reverse">
+    <div>
+      <div class="service-num">04</div>
+      <div class="icon-box">
+        <svg viewBox="0 0 22 22" fill="none" stroke-width="1.6"><path d="M2 15l4-5 3 3 4-6 5 4" stroke="var(--cyan)" stroke-linecap="round" stroke-linejoin="round"/><rect x="1" y="2" width="20" height="18" rx="2" stroke="var(--cyan)"/></svg>
+      </div>
+      <div class="eyebrow">Digital Marketing &amp; SEO</div>
+      <h2 class="service-block-title">Get found. Get chosen.<br>Get results.</h2>
+      <div class="service-block-desc">
+        <p>SEO is a long game — but it compounds. Businesses that invest in organic search now will own their categories in 12 months. We set up the technical foundation correctly and build the content strategy around your actual customers.</p>
+        <p>For paid ads, we design the creatives, build the campaigns, and optimize them — you control the ad budget directly through the platform. We never touch your ad spend.</p>
+      </div>
+      <ul class="feature-list">
+        <li>Keyword research — based on what your customers search</li>
+        <li>Technical SEO audit and fixes</li>
+        <li>On-page optimization for every key page</li>
+        <li>Google Search Console and Analytics setup</li>
+        <li>Google and Meta (Facebook/Instagram) ad setup</li>
+        <li>Ad creative design — images, copy, formats</li>
+        <li>Campaign monitoring and monthly optimization</li>
+      </ul>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;">
+        <a href="/contact.html?service=seo-marketing" class="btn btn-primary">Start with an SEO Audit →</a>
+        <a href="/pricing.html" class="btn btn-secondary">View Pricing</a>
+      </div>
+    </div>
+    <div class="service-detail-card">
+      <div class="detail-card-title">Individual services</div>
+      <div class="detail-row"><span class="detail-label">SEO Audit + Report</span><span class="detail-value">$150</span></div>
+      <div class="detail-row"><span class="detail-label">On-page SEO setup</span><span class="detail-value">Included in packages</span></div>
+      <div class="detail-row"><span class="detail-label">Advanced SEO</span><span class="detail-value">Included in LEAD</span></div>
+      <div class="detail-row"><span class="detail-label">Ad campaign setup</span><span class="detail-value">Included in LEAD</span></div>
+      <div class="detail-row"><span class="detail-label">Ad creative design</span><span class="detail-value">Included</span></div>
+      <div class="detail-row"><span class="detail-label">Ad spend</span><span class="detail-value">Always client-owned</span></div>
+      <div class="detail-row"><span class="detail-label">US agency rate (SEO)</span><span class="detail-value" style="text-decoration:line-through;color:var(--text-muted);">$800–$2,000/mo</span></div>
+      <div style="margin-top:20px;padding-top:20px;border-top:1px solid var(--border);">
+        <a href="/contact.html?service=seo-audit" class="btn btn-primary btn-sm" style="width:100%;justify-content:center;">Order an SEO audit — $150 →</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SERVICE 5: BRAND DESIGN -->
+<div class="service-block" id="brand-design">
+  <div class="service-block-inner">
+    <div>
+      <div class="service-num">05</div>
+      <div class="icon-box">
+        <svg viewBox="0 0 22 22" fill="none" stroke-width="1.6"><circle cx="11" cy="11" r="9" stroke="var(--cyan)"/><path d="M11 7v4l3 3" stroke="var(--cyan)" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div class="eyebrow">Brand &amp; UI/UX Design</div>
+      <h2 class="service-block-title">Identity your customers remember. Interfaces they enjoy.</h2>
+      <div class="service-block-desc">
+        <p>Your brand is not your logo. It's the sum of every impression a customer has of you — visual, verbal, and experiential. We design brand systems that hold together across every touchpoint: website, app, social, print, and pitch deck.</p>
+        <p>Our UI/UX work starts with how users actually think — not how designers want them to think. We prototype, test, and iterate before a single line of code is written.</p>
+      </div>
+      <ul class="feature-list">
+        <li>Logo design — 3 concepts, 2 revision rounds</li>
+        <li>Color palette and typography system</li>
+        <li>Brand voice and tone guidelines</li>
+        <li>Full brand guide document (PDF + editable)</li>
+        <li>Social media template kit (30 post templates)</li>
+        <li>UI design for web and mobile interfaces</li>
+        <li>Figma source files always handed over</li>
+      </ul>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;">
+        <a href="/pricing.html" class="btn btn-primary">See Pricing →</a>
+        <a href="/contact.html?service=brand-design" class="btn btn-secondary">Get a Quote</a>
+      </div>
+    </div>
+    <div class="service-detail-card">
+      <div class="detail-card-title">At a glance</div>
+      <div class="detail-row"><span class="detail-label">Logo only</span><span class="detail-value">$125</span></div>
+      <div class="detail-row"><span class="detail-label">Full brand identity</span><span class="detail-value">$300</span></div>
+      <div class="detail-row"><span class="detail-label">Brand identity in GROW</span><span class="detail-value">Included</span></div>
+      <div class="detail-row"><span class="detail-label">Logo concepts</span><span class="detail-value">3 directions</span></div>
+      <div class="detail-row"><span class="detail-label">Revision rounds</span><span class="detail-value">2 full rounds</span></div>
+      <div class="detail-row"><span class="detail-label">Figma files</span><span class="detail-value">Always included</span></div>
+      <div class="detail-row"><span class="detail-label">US agency rate</span><span class="detail-value" style="text-decoration:line-through;color:var(--text-muted);">$2,000–$6,000</span></div>
+      <div style="margin-top:20px;padding-top:20px;border-top:1px solid var(--border);">
+        <a href="/contact.html?service=brand-design" class="btn btn-primary btn-sm" style="width:100%;justify-content:center;">Start with a logo — $125 →</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SERVICE 6: WEB APPS -->
+<div class="service-block" id="web-apps">
+  <div class="service-block-inner reverse">
+    <div>
+      <div class="service-num">06</div>
+      <div class="icon-box">
+        <svg viewBox="0 0 22 22" fill="none" stroke-width="1.6"><path d="M8 9l-4 4 4 4M14 9l4 4-4 4M12 5l-2 12" stroke="var(--cyan)" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div class="eyebrow">Web Applications &amp; SaaS</div>
+      <h2 class="service-block-title">Custom tools that run your business smarter.</h2>
+      <div class="service-block-desc">
+        <p>Off-the-shelf software rarely fits exactly. We build custom web applications — dashboards, client portals, internal tools, booking systems, and SaaS MVPs — that are built around how your business actually works.</p>
+        <p>We use modern, scalable technology stacks. Every application we build is documented, tested, and handed over with full source code ownership.</p>
+      </div>
+      <ul class="feature-list">
+        <li>React / Next.js frontend development</li>
+        <li>Node.js or Python backend and REST API</li>
+        <li>Database design — PostgreSQL, MongoDB, or Firebase</li>
+        <li>User authentication and role-based permissions</li>
+        <li>Cloud deployment on AWS, GCP, or Vercel</li>
+        <li>Full documentation and source code handover</li>
+        <li>Ongoing maintenance and feature development available</li>
+      </ul>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;">
+        <a href="/contact.html?service=web-app" class="btn btn-primary">Discuss Your Project →</a>
+        <a href="/pricing.html" class="btn btn-secondary">View Starting Prices</a>
+      </div>
+    </div>
+    <div class="service-detail-card">
+      <div class="detail-card-title">At a glance</div>
+      <div class="detail-row"><span class="detail-label">SaaS MVP</span><span class="detail-value">From $2,500</span></div>
+      <div class="detail-row"><span class="detail-label">Custom dashboard</span><span class="detail-value">From $1,500</span></div>
+      <div class="detail-row"><span class="detail-label">Delivery time</span><span class="detail-value">6–12 weeks</span></div>
+      <div class="detail-row"><span class="detail-label">Tech stack</span><span class="detail-value">React, Node, Cloud</span></div>
+      <div class="detail-row"><span class="detail-label">Source code</span><span class="detail-value">Full ownership</span></div>
+      <div class="detail-row"><span class="detail-label">Documentation</span><span class="detail-value">Always included</span></div>
+      <div class="detail-row"><span class="detail-label">US agency rate</span><span class="detail-value" style="text-decoration:line-through;color:var(--text-muted);">$15,000–$50,000</span></div>
+      <div style="margin-top:20px;padding-top:20px;border-top:1px solid var(--border);">
+        <a href="/contact.html?service=web-app" class="btn btn-primary btn-sm" style="width:100%;justify-content:center;">Book a discovery call →</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div><!-- end container -->
+</div>
+
+<section class="cta-banner">
+  <div class="container cta-banner-inner">
+    <div class="eyebrow" style="justify-content:center;">Not sure which service you need?</div>
+    <h2 class="cta-title">Book a free call.<br><span class="gradient-text">We'll figure it out together.</span></h2>
+    <p class="cta-sub">30 minutes. No pitch. We look at your business, tell you what we think you actually need, and give you an honest answer — even if that means suggesting you don't need us yet.</p>
+    <div class="cta-btns">
+      <a href="https://calendly.com/skyensystems/discovery" class="btn btn-primary btn-lg" target="_blank" rel="noopener">Book a Free Call ↗</a>
+      <a href="/pricing.html" class="btn btn-secondary btn-lg">See All Pricing →</a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-main">
+      <div>
+        <a href="/index.html" class="nav-logo" style="display:inline-flex;margin-bottom:4px;"><span class="nav-logo-skyen">SKYEN</span></a>
+        <div style="font-family:var(--font-body);font-size:9px;font-weight:500;letter-spacing:.20em;text-transform:uppercase;color:var(--text-muted);margin-top:2px;">Systems</div>
+        <p class="footer-brand-desc">One team. Every digital need. Anywhere.</p>
+      </div>
+      <div>
+        <div class="footer-col-title">Services</div>
+        <ul class="footer-links">
+          <li><a href="/services.html#web-design">Web Design</a></li>
+          <li><a href="/services.html#mobile-apps">Mobile Apps</a></li>
+          <li><a href="/services.html#social-media">Social Media</a></li>
+          <li><a href="/services.html#digital-marketing">Digital Marketing</a></li>
+          <li><a href="/services.html#brand-design">Brand Design</a></li>
+          <li><a href="/services.html#web-apps">Web Applications</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Company</div>
+        <ul class="footer-links">
+          <li><a href="/about.html">About Us</a></li>
+          <li><a href="/products.html">Our Products</a></li>
+          <li><a href="/pricing.html">Pricing</a></li>
+          <li><a href="/blog.html">Blog</a></li>
+          <li><a href="/contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Get in touch</div>
+        <ul class="footer-links">
+          <li><a href="mailto:hello@skyensystems.com">hello@skyensystems.com</a></li>
+          <li><a href="https://calendly.com/skyensystems/discovery" target="_blank" rel="noopener">Book a Discovery Call</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2025 Skyen Systems. Part of the Skyen Group. Headquartered in Bahrain.</div>
+      <div class="footer-legal">
+        <a href="/privacy-policy.html">Privacy Policy</a>
+        <a href="/terms.html">Terms of Service</a>
+      </div>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

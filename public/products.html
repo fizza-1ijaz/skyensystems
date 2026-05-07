@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our Products | Skyen Systems — Studiely, Make My Lesson, Linguatude</title>
+<meta name="description" content="Meet the products built entirely by the Skyen team — Studiely (live on iOS, Android & Web), Make My Lesson (AI lesson planning, coming soon), and Linguatude (English test prep, coming soon).">
+<meta property="og:title" content="Our Products | Skyen Systems"><meta property="og:url" content="https://skyensystems.com/products">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg-primary:#1E2240;--bg-secondary:#252A4A;--bg-tertiary:#0F1429;--bg-surface:#2A3050;--bg-card:rgba(255,255,255,0.04);--bg-card-hover:rgba(255,255,255,0.07);--cyan:#00C8F0;--teal:#2DD4BF;--gradient:linear-gradient(135deg,#00C8F0,#2DD4BF);--gradient-text:linear-gradient(135deg,#00C8F0 0%,#2DD4BF 100%);--text-primary:#FFFFFF;--text-secondary:#94A3B8;--text-muted:#64748B;--border:rgba(255,255,255,0.08);--border-accent:rgba(0,200,240,0.30);--border-card:rgba(255,255,255,0.06);--green:#10B981;--font-head:'Plus Jakarta Sans',sans-serif;--font-body:'DM Sans',sans-serif;--max-w:1200px;--radius-card:14px;--radius-btn:8px;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg-primary);color:var(--text-primary);font-family:var(--font-body);line-height:1.7;-webkit-font-smoothing:antialiased;}
+.container{max-width:var(--max-w);margin:0 auto;padding:0 24px;}
+.gradient-text{background:var(--gradient-text);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:500;letter-spacing:.10em;text-transform:uppercase;color:var(--teal);margin-bottom:18px;}
+.eyebrow::before{content:'';display:block;width:20px;height:1.5px;background:var(--gradient);border-radius:2px;}
+.btn{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-body);font-size:14px;font-weight:500;padding:13px 26px;border-radius:var(--radius-btn);cursor:pointer;transition:all .2s ease;text-decoration:none;border:none;white-space:nowrap;}
+.btn-primary{background:var(--gradient);color:#0F172A;font-weight:600;}.btn-primary:hover{opacity:.88;transform:translateY(-1px);}
+.btn-secondary{background:transparent;color:var(--teal);border:1.5px solid var(--teal);}.btn-secondary:hover{background:rgba(45,212,191,.08);}
+.btn-ghost{background:rgba(255,255,255,.06);color:var(--text-primary);border:1px solid var(--border);}
+.btn-sm{font-size:13px;padding:9px 18px;}.btn-lg{font-size:16px;padding:16px 32px;}
+.nav{position:sticky;top:0;z-index:100;background:rgba(15,20,41,.97);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);}
+.nav-inner{max-width:var(--max-w);margin:0 auto;padding:0 24px;height:68px;display:flex;align-items:center;justify-content:space-between;}
+.nav-logo{display:flex;flex-direction:column;text-decoration:none;}
+.nav-logo-skyen{font-family:var(--font-head);font-size:20px;font-weight:800;background:var(--gradient-text);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.nav-logo-sub{font-size:9px;font-weight:500;letter-spacing:.20em;text-transform:uppercase;color:var(--text-muted);margin-top:2px;}
+.nav-links{display:flex;align-items:center;gap:36px;list-style:none;}
+.nav-links a{font-size:14px;color:var(--text-secondary);text-decoration:none;transition:color .2s;}
+.nav-links a:hover,.nav-links a.active{color:var(--text-primary);}
+.nav-actions{display:flex;align-items:center;gap:12px;}
+/* Product sections */
+.product-section{padding:100px 0;border-bottom:1px solid var(--border);}
+.product-section:last-of-type{border-bottom:none;}
+.product-inner{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;}
+.product-inner.reverse{direction:rtl;}.product-inner.reverse>*{direction:ltr;}
+.product-status-bar{display:flex;align-items:center;gap:12px;margin-bottom:24px;}
+.badge{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:600;letter-spacing:.04em;padding:5px 12px;border-radius:20px;}
+.badge-live{background:rgba(16,185,129,.15);color:var(--green);}
+.badge-soon{background:rgba(0,200,240,.12);color:var(--cyan);}
+.badge-coming{background:rgba(255,255,255,.07);color:var(--text-secondary);}
+.product-name{font-family:var(--font-head);font-size:clamp(32px,4vw,52px);font-weight:800;color:var(--text-primary);margin-bottom:8px;line-height:1.1;}
+.product-tagline{font-size:18px;color:var(--teal);font-weight:500;margin-bottom:20px;}
+.product-desc{font-size:15px;color:var(--text-secondary);line-height:1.8;margin-bottom:28px;}
+.product-desc p{margin-bottom:14px;}
+.platform-row{display:flex;gap:8px;margin-bottom:28px;flex-wrap:wrap;}
+.platform-tag{font-size:11px;font-weight:600;padding:5px 12px;border-radius:6px;background:rgba(255,255,255,.06);color:var(--text-secondary);border:1px solid var(--border);}
+.product-cta-row{display:flex;gap:12px;flex-wrap:wrap;}
+.product-visual{background:var(--bg-secondary);border:1px solid var(--border-accent);border-radius:18px;padding:32px;min-height:320px;display:flex;flex-direction:column;justify-content:space-between;}
+.visual-title{font-family:var(--font-head);font-size:14px;font-weight:600;color:var(--teal);margin-bottom:20px;}
+.screen-mockup{background:var(--bg-tertiary);border-radius:10px;padding:20px;flex:1;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:10px;}
+.mock-line{height:8px;border-radius:4px;background:rgba(255,255,255,.08);}
+.mock-line.accent{background:var(--gradient);opacity:.6;}
+.mock-block{height:48px;border-radius:8px;background:rgba(255,255,255,.05);width:100%;}
+.tech-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px;}
+.tech-tag{font-size:10px;padding:3px 8px;border-radius:4px;background:rgba(0,200,240,.08);color:var(--cyan);border:1px solid rgba(0,200,240,.15);}
+/* Waitlist form */
+.waitlist-form{display:flex;gap:8px;margin-top:20px;}
+.waitlist-input{flex:1;background:rgba(255,255,255,.06);border:1px solid var(--border);border-radius:var(--radius-btn);padding:11px 16px;font-family:var(--font-body);font-size:14px;color:var(--text-primary);outline:none;}
+.waitlist-input::placeholder{color:var(--text-muted);}
+.waitlist-input:focus{border-color:var(--teal);}
+/* Bridge quote */
+.bridge-quote{padding:60px 0;text-align:center;background:var(--bg-secondary);}
+.bridge-text{font-family:var(--font-head);font-size:clamp(18px,3vw,26px);font-weight:700;color:var(--text-primary);max-width:700px;margin:0 auto 28px;line-height:1.45;}
+/* CTA & footer same as other pages */
+.cta-banner{background:var(--bg-tertiary);padding:100px 0;text-align:center;position:relative;overflow:hidden;}
+.cta-banner::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:700px;height:350px;border-radius:50%;background:radial-gradient(ellipse,rgba(0,200,240,.06) 0%,transparent 70%);pointer-events:none;}
+.cta-inner{position:relative;z-index:1;}
+.cta-title{font-family:var(--font-head);font-size:clamp(26px,4vw,44px);font-weight:800;color:var(--text-primary);margin-bottom:16px;}
+.cta-sub{font-size:16px;color:var(--text-secondary);margin-bottom:32px;max-width:460px;margin-left:auto;margin-right:auto;}
+.cta-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
+.footer{background:var(--bg-tertiary);border-top:1px solid var(--border);}
+.footer-main{padding:60px 0 40px;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:60px;}
+.footer-brand-desc{font-size:14px;color:var(--text-secondary);line-height:1.7;margin-top:14px;max-width:280px;}
+.footer-col-title{font-family:var(--font-head);font-size:13px;font-weight:700;color:var(--text-primary);margin-bottom:20px;}
+.footer-links{list-style:none;}.footer-links li{margin-bottom:12px;}
+.footer-links a{font-size:14px;color:var(--text-secondary);text-decoration:none;transition:color .2s;}.footer-links a:hover{color:var(--teal);}
+.footer-bottom{padding:22px 0;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;}
+.footer-copy{font-size:12px;color:var(--text-muted);}
+.footer-legal{display:flex;gap:24px;}.footer-legal a{font-size:12px;color:var(--text-muted);text-decoration:none;}.footer-legal a:hover{color:var(--teal);}
+@media(max-width:768px){.product-inner{grid-template-columns:1fr;gap:36px;}.product-inner.reverse{direction:ltr;}.footer-main{grid-template-columns:1fr;gap:32px;}.nav-links{display:none;}.waitlist-form{flex-direction:column;}}
+</style>
+</head>
+<body>
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="/index.html" class="nav-logo"><span class="nav-logo-skyen">SKYEN</span><span class="nav-logo-sub">Systems</span></a>
+    <ul class="nav-links"><li><a href="/services.html">Services</a></li><li><a href="/pricing.html">Pricing</a></li><li><a href="/products.html" class="active">Products</a></li><li><a href="/about.html">About</a></li><li><a href="/blog.html">Blog</a></li></ul>
+    <div class="nav-actions"><a href="/contact.html" class="btn btn-ghost btn-sm">Contact</a><a href="https://calendly.com/skyensystems/discovery" class="btn btn-primary btn-sm" target="_blank" rel="noopener">Book a Call ↗</a></div>
+  </div>
+</nav>
+
+<section style="padding:80px 0 60px;background:var(--bg-primary);">
+  <div class="container">
+    <div class="eyebrow">Built by us, for real users</div>
+    <h1 style="font-family:var(--font-head);font-size:clamp(28px,4vw,52px);font-weight:800;line-height:1.1;margin-bottom:16px;">We don't just build for clients.<br>We build for <span class="gradient-text">ourselves.</span></h1>
+    <p style="font-size:17px;color:var(--text-secondary);max-width:560px;line-height:1.75;">These are the Skyen Group's own products — designed, developed, and maintained by the same team that will work on your project. This is our standard.</p>
+  </div>
+</section>
+
+<!-- STUDIELY -->
+<section class="product-section" id="studiely" style="background:var(--bg-primary);">
+  <div class="container">
+    <div class="product-inner">
+      <div>
+        <div class="product-status-bar">
+          <span class="badge badge-live"><span style="width:7px;height:7px;border-radius:50%;background:var(--green);display:inline-block;"></span>Live</span>
+          <span style="font-size:12px;color:var(--text-muted);">iOS · Android · Web</span>
+        </div>
+        <div class="product-name">Studiely</div>
+        <div class="product-tagline">Learning, made personal.</div>
+        <div class="product-desc">
+          <p>Studiely is a full-stack education platform built entirely in-house — and it is live. Real students. Real educators. Real usage. It runs on iOS, Android, and the web from a single codebase maintained by our team.</p>
+          <p>We designed the product, built the backend, submitted it to the App Store and Google Play, and continue to iterate on it. When we say we know how to build apps, Studiely is the proof.</p>
+        </div>
+        <div class="platform-row">
+          <span class="platform-tag">iOS App</span>
+          <span class="platform-tag">Android App</span>
+          <span class="platform-tag">Web Application</span>
+        </div>
+        <div class="tech-row" style="margin-bottom:28px;">
+          <span class="tech-tag">React Native</span>
+          <span class="tech-tag">Node.js</span>
+          <span class="tech-tag">PostgreSQL</span>
+          <span class="tech-tag">AWS</span>
+        </div>
+        <div class="product-cta-row">
+          <a href="https://studiely.com" class="btn btn-primary" target="_blank" rel="noopener">Visit Studiely ↗</a>
+          <a href="/contact.html?service=mobile-app" class="btn btn-secondary">Build something similar →</a>
+        </div>
+      </div>
+      <div class="product-visual">
+        <div class="visual-title">Studiely — App preview</div>
+        <div class="screen-mockup">
+          <!-- Developer: Replace with real Studiely screenshots using next/image -->
+          <div style="width:100%;margin-bottom:12px;"><div class="mock-line accent" style="width:60%;margin-bottom:6px;"></div><div class="mock-line" style="width:40%;"></div></div>
+          <div class="mock-block"></div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;width:100%;margin-top:8px;">
+            <div class="mock-block" style="height:64px;"></div>
+            <div class="mock-block" style="height:64px;"></div>
+          </div>
+          <div style="width:100%;margin-top:8px;"><div class="mock-line accent" style="width:80%;"></div></div>
+          <p style="font-size:11px;color:var(--text-muted);margin-top:16px;text-align:center;">Replace with real app screenshots</p>
+        </div>
+        <div style="display:flex;gap:10px;margin-top:16px;">
+          <a href="https://apps.apple.com" class="btn btn-ghost btn-sm" target="_blank" rel="noopener" style="flex:1;justify-content:center;">App Store ↗</a>
+          <a href="https://play.google.com" class="btn btn-ghost btn-sm" target="_blank" rel="noopener" style="flex:1;justify-content:center;">Google Play ↗</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Bridge quote -->
+<div class="bridge-quote">
+  <div class="container">
+    <div class="bridge-text">"Studiely isn't a demo. It isn't a portfolio piece. It's a live product with real users — built entirely by our in-house team. When we say we can build your app, <span class="gradient-text">this is what we mean.</span>"</div>
+    <a href="/services.html#mobile-apps" class="btn btn-primary">See our mobile app service →</a>
+  </div>
+</div>
+
+<!-- MAKE MY LESSON -->
+<section class="product-section" id="make-my-lesson" style="background:var(--bg-primary);">
+  <div class="container">
+    <div class="product-inner reverse">
+      <div>
+        <div class="product-status-bar">
+          <span class="badge badge-soon">Arriving soon</span>
+          <span style="font-size:12px;color:var(--text-muted);">iOS · Android · Web</span>
+        </div>
+        <div class="product-name">Make My Lesson</div>
+        <div class="product-tagline">Teaching, reimagined.</div>
+        <div class="product-desc">
+          <p>Educators spend hours creating lesson plans. Make My Lesson changes that. Describe your topic, set your grade level, and get a complete, structured, curriculum-aligned lesson plan — instantly.</p>
+          <p>Built by the same team as Studiely, Make My Lesson is nearly ready. Join the waitlist to be the first to access it when we launch.</p>
+        </div>
+        <div class="platform-row">
+          <span class="platform-tag">iOS App</span><span class="platform-tag">Android App</span><span class="platform-tag">Web App</span>
+        </div>
+        <div class="waitlist-form">
+          <input type="email" class="waitlist-input" placeholder="Your email address">
+          <button class="btn btn-primary">Join waitlist</button>
+        </div>
+        <p style="font-size:12px;color:var(--text-muted);margin-top:8px;">No spam. Launch announcement only.</p>
+      </div>
+      <div class="product-visual">
+        <div class="visual-title">Make My Lesson — UI preview</div>
+        <div class="screen-mockup">
+          <div style="width:100%;padding:16px;background:rgba(0,200,240,.06);border-radius:8px;border:1px solid rgba(0,200,240,.15);margin-bottom:12px;">
+            <div class="mock-line" style="width:70%;margin-bottom:8px;"></div>
+            <div class="mock-line accent" style="width:50%;"></div>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px;width:100%;">
+            <div style="padding:10px;background:rgba(255,255,255,.04);border-radius:6px;text-align:center;font-size:10px;color:var(--text-muted);">Grade</div>
+            <div style="padding:10px;background:rgba(255,255,255,.04);border-radius:6px;text-align:center;font-size:10px;color:var(--text-muted);">Subject</div>
+            <div style="padding:10px;background:rgba(255,255,255,.04);border-radius:6px;text-align:center;font-size:10px;color:var(--text-muted);">Duration</div>
+          </div>
+          <div class="mock-block" style="margin-top:10px;"></div>
+          <div style="width:100%;margin-top:10px;text-align:center;"><div style="display:inline-block;background:var(--gradient);color:#0F172A;font-size:11px;font-weight:600;padding:8px 20px;border-radius:6px;">Generate Lesson Plan</div></div>
+          <p style="font-size:11px;color:var(--text-muted);margin-top:16px;text-align:center;">Concept preview — not final UI</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LINGUATUDE -->
+<section class="product-section" id="linguatude" style="background:var(--bg-secondary);">
+  <div class="container">
+    <div class="product-inner">
+      <div>
+        <div class="product-status-bar">
+          <span class="badge badge-coming">Coming soon</span>
+          <span style="font-size:12px;color:var(--text-muted);">iOS · Android · Web</span>
+        </div>
+        <div class="product-name">Linguatude</div>
+        <div class="product-tagline">English, unlocked.</div>
+        <div class="product-desc">
+          <p>Linguatude is a comprehensive English test preparation platform for learners targeting IELTS, TOEFL, PTE, and professional English certifications. Adaptive practice, real exam simulation, and measurable progress that actually shows you where you're improving.</p>
+          <p>Currently in development. Be the first to know when it launches.</p>
+        </div>
+        <div class="platform-row">
+          <span class="platform-tag">iOS App</span><span class="platform-tag">Android App</span><span class="platform-tag">Web App</span>
+        </div>
+        <div class="waitlist-form">
+          <input type="email" class="waitlist-input" placeholder="Your email address">
+          <button class="btn btn-primary">Notify me</button>
+        </div>
+        <p style="font-size:12px;color:var(--text-muted);margin-top:8px;">Be the first to access Linguatude at launch.</p>
+      </div>
+      <div class="product-visual">
+        <div class="visual-title">Linguatude — Coming soon</div>
+        <div class="screen-mockup">
+          <div style="width:60px;height:60px;border-radius:16px;background:var(--gradient);display:flex;align-items:center;justify-content:center;margin-bottom:16px;">
+            <svg width="28" height="28" viewBox="0 0 22 22" fill="none" stroke="#0F172A" stroke-width="1.8"><circle cx="11" cy="11" r="9"/><path d="M11 2a15.3 15.3 0 0 1 4 9 15.3 15.3 0 0 1-4 9 15.3 15.3 0 0 1-4-9 15.3 15.3 0 0 1 4-9z"/><path d="M2 11h18" stroke-linecap="round"/></svg>
+          </div>
+          <div class="mock-line accent" style="width:60%;margin:0 auto 8px;"></div>
+          <div class="mock-line" style="width:40%;margin:0 auto 20px;"></div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;width:100%;">
+            <div style="padding:12px;background:rgba(255,255,255,.04);border-radius:8px;text-align:center;"><div style="font-size:11px;color:var(--text-muted);">IELTS</div></div>
+            <div style="padding:12px;background:rgba(255,255,255,.04);border-radius:8px;text-align:center;"><div style="font-size:11px;color:var(--text-muted);">TOEFL</div></div>
+            <div style="padding:12px;background:rgba(255,255,255,.04);border-radius:8px;text-align:center;"><div style="font-size:11px;color:var(--text-muted);">PTE</div></div>
+            <div style="padding:12px;background:rgba(255,255,255,.04);border-radius:8px;text-align:center;"><div style="font-size:11px;color:var(--text-muted);">General</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-banner">
+  <div class="container cta-inner">
+    <div class="eyebrow" style="justify-content:center;">Ready to build?</div>
+    <h2 class="cta-title">This is the standard we hold ourselves to.<br><span class="gradient-text">Your project gets the same.</span></h2>
+    <p class="cta-sub">The same team. The same process. The same quality of thinking — applied to your business.</p>
+    <div class="cta-btns">
+      <a href="/services.html" class="btn btn-primary btn-lg">See Our Services →</a>
+      <a href="https://calendly.com/skyensystems/discovery" class="btn btn-secondary btn-lg" target="_blank" rel="noopener">Book a Free Call ↗</a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer"><div class="container">
+  <div class="footer-main">
+    <div><a href="/index.html" class="nav-logo" style="display:inline-flex;"><span class="nav-logo-skyen">SKYEN</span></a><div class="nav-logo-sub" style="margin-top:2px;">Systems</div><p class="footer-brand-desc">One team. Every digital need. Anywhere.</p></div>
+    <div><div class="footer-col-title">Services</div><ul class="footer-links"><li><a href="/services.html#web-design">Web Design</a></li><li><a href="/services.html#mobile-apps">Mobile Apps</a></li><li><a href="/services.html#social-media">Social Media</a></li><li><a href="/services.html#digital-marketing">Digital Marketing</a></li></ul></div>
+    <div><div class="footer-col-title">Company</div><ul class="footer-links"><li><a href="/about.html">About Us</a></li><li><a href="/products.html">Our Products</a></li><li><a href="/pricing.html">Pricing</a></li><li><a href="/blog.html">Blog</a></li><li><a href="/contact.html">Contact</a></li></ul></div>
+    <div><div class="footer-col-title">Get in touch</div><ul class="footer-links"><li><a href="mailto:hello@skyensystems.com">hello@skyensystems.com</a></li><li><a href="https://calendly.com/skyensystems/discovery" target="_blank" rel="noopener">Book a Discovery Call</a></li></ul></div>
+  </div>
+  <div class="footer-bottom"><div class="footer-copy">© 2025 Skyen Systems. Part of the Skyen Group. Headquartered in Bahrain.</div><div class="footer-legal"><a href="/privacy-policy.html">Privacy Policy</a><a href="/terms.html">Terms of Service</a></div></div>
+</div></footer>
+</body>
+</html>

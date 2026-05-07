@@ -1,208 +1,344 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { 
-  Check, 
-  ChevronRight, 
-  ArrowRight,
-  Database,
-  Layers,
-  Sparkles,
-  Zap,
-  TrendingUp,
-  Puzzle,
-  Briefcase,
-  Monitor
-} from "lucide-react";
 import Link from "next/link";
+import { useMemo, useRef, useState } from "react";
+import { motion } from "framer-motion";
+import { ArrowUpRight } from "lucide-react";
 
-interface ServiceItem {
-  name: string;
-  description: string;
-  features: string[];
-}
-
-interface Category {
+type ReelService = {
+  id: string;
   title: string;
-  items: ServiceItem[];
-}
+  short: string;
+  description: string;
+  highlights: string[];
+  cta: string;
+  href: string;
+};
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-    },
+const SERVICES: ReelService[] = [
+  {
+    id: "web",
+    title: "Web Design & Development",
+    short: "Web Experiences",
+    description:
+      "A beautiful website that no one can find - or that no one takes action on - is a decoration, not an asset. We build websites with one goal: turning visitors into customers.",
+    highlights: [
+      "Custom responsive design - mobile first, always",
+      "SEO-ready HTML structure and meta setup",
+      "Google PageSpeed score above 90",
+      "Contact forms, booking integrations, and CTAs",
+      "CMS integration and Google Analytics + Search Console setup",
+      "30-90 days post-launch support included",
+    ],
+    cta: "Explore Web Projects",
+    href: "/contact-us",
   },
-};
+  {
+    id: "mobile",
+    title: "Mobile Apps",
+    short: "iOS + Android",
+    description:
+      "We have built Studiely as a live app on the App Store and Google Play. We build with React Native and Flutter to deliver native performance on both iOS and Android from a single codebase.",
+    highlights: [
+      "React Native or Flutter - your choice or our recommendation",
+      "UI/UX design fully included",
+      "Backend API development (Node.js / Python)",
+      "App Store and Google Play submission handled",
+      "Push notifications, authentication, and in-app purchases",
+      "Post-launch maintenance packages available",
+    ],
+    cta: "Build a Mobile App",
+    href: "/contact-us",
+  },
+  {
+    id: "social",
+    title: "Social Media Management",
+    short: "Brand Presence",
+    description:
+      "Posting three times a week and hoping for the best is not a social media strategy. We build and manage a social presence that reflects your brand consistently and report on what actually matters.",
+    highlights: [
+      "Content strategy tailored to your business and audience",
+      "Custom graphic design for every post",
+      "Caption writing in your brand voice",
+      "Hashtag research and platform-specific SEO",
+      "Community management - comments, DMs, replies",
+      "Monthly performance reports with real metrics",
+    ],
+    cta: "Scale Social Presence",
+    href: "/contact-us",
+  },
+  {
+    id: "marketing",
+    title: "Digital Marketing",
+    short: "Growth Engine",
+    description:
+      "SEO is a long game that compounds, and paid campaigns need clear execution. We set technical foundations correctly, build keyword strategy around real customer intent, and optimize campaigns transparently.",
+    highlights: [
+      "Keyword research based on actual customer search behavior",
+      "Technical SEO audit and fixes",
+      "On-page optimization for key pages",
+      "Google Search Console and Analytics setup",
+      "Google and Meta ads setup with creative design",
+      "Campaign monitoring and monthly optimization",
+    ],
+    cta: "Launch Growth Engine",
+    href: "/contact-us",
+  },
+  {
+    id: "brand",
+    title: "Brand & UI/UX Design",
+    short: "Identity + Product UI",
+    description:
+      "Your brand is not your logo. We design systems that hold together across website, app, social, and sales materials, then shape interfaces around how users actually think.",
+    highlights: [
+      "Logo design - 3 concepts, 2 revision rounds",
+      "Color palette and typography system",
+      "Brand voice and tone guidelines",
+      "Full brand guide document",
+      "Social media template kit",
+      "UI design for web and mobile with Figma handover",
+    ],
+    cta: "Design Your Brand System",
+    href: "/contact-us",
+  },
+  {
+    id: "webapps",
+    title: "Web Applications & SaaS",
+    short: "Web Apps / SaaS",
+    description:
+      "Off-the-shelf software rarely fits exactly. We build custom web applications, client portals, internal tools, and SaaS MVPs around the way your business actually operates.",
+    highlights: [
+      "React / Next.js frontend development",
+      "Node.js or Python backend and REST APIs",
+      "Database design for PostgreSQL, MongoDB, or Firebase",
+      "Authentication and role-based permissions",
+      "Cloud deployment on AWS, GCP, or Vercel",
+      "Full documentation and source code handover",
+    ],
+    cta: "Discuss Your Project",
+    href: "/contact-us",
+  },
+];
 
-const itemVariants = {
-  hidden: { y: 20, opacity: 0 },
-  visible: { y: 0, opacity: 1 },
-};
+export function ServicesPageContent() {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const dragStartX = useRef<number | null>(null);
+  const itemCount = SERVICES.length;
+  const activeService = SERVICES[activeIndex];
 
-const toSlug = (value: string) => value.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+  const ringItems = useMemo(
+    () =>
+      SERVICES.map((service, idx) => {
+        const progress = idx / (itemCount - 1 || 1);
+        const x = -420 + progress * 840;
+        const y = Math.sin(progress * Math.PI) * -86;
+        const roadY = 68 - Math.sin(progress * Math.PI) * 52;
+        const nearFocal = idx === activeIndex;
+        return {
+          ...service,
+          idx,
+          progress,
+          x,
+          y,
+          roadY,
+          nearFocal,
+        };
+      }),
+    [activeIndex, itemCount],
+  );
 
-const categoryIcons: Record<string, any> = {
-  "Enterprise Systems & Operations": Database,
-  "Custom Application Development": Layers,
-  "AI & Data Integration": Sparkles,
-  "Digital Experience & Design": Monitor,
-  "Growth & Marketing": TrendingUp,
-  "Consulting & Strategy": Puzzle,
-  "Virtual Administrative Support": Briefcase,
-};
+  const onTouchStart = (event: React.TouchEvent<HTMLDivElement>) => {
+    dragStartX.current = event.touches[0].clientX;
+  };
 
-export function ServicesPageContent({ categories }: { categories: Category[] }) {
+  const onTouchEnd = (event: React.TouchEvent<HTMLDivElement>) => {
+    if (dragStartX.current === null) return;
+    const delta = event.changedTouches[0].clientX - dragStartX.current;
+    if (Math.abs(delta) > 30) {
+      if (delta < 0) setActiveIndex((prev) => (prev + 1) % itemCount);
+      else setActiveIndex((prev) => (prev - 1 + itemCount) % itemCount);
+    }
+    dragStartX.current = null;
+  };
+
+  const onPointerDown = (event: React.PointerEvent<HTMLDivElement>) => {
+    dragStartX.current = event.clientX;
+  };
+  const onPointerUp = (event: React.PointerEvent<HTMLDivElement>) => {
+    if (dragStartX.current === null) return;
+    const delta = event.clientX - dragStartX.current;
+    if (Math.abs(delta) > 36) {
+      if (delta < 0) setActiveIndex((prev) => (prev + 1) % itemCount);
+      else setActiveIndex((prev) => (prev - 1 + itemCount) % itemCount);
+    }
+    dragStartX.current = null;
+  };
+
   return (
-    <div className="flex flex-col gap-20 pb-24">
-      {/* Services Hero */}
-      <section className="relative pt-32 pb-20 overflow-hidden">
-        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-[#e8f8f6]/70 to-transparent -z-10" />
-        <div className="container mx-auto px-6 relative z-10">
-          <motion.div 
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="max-w-4xl mx-auto text-center space-y-6"
-          >
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#e8f8f6] text-[#1aaebf] text-xs font-bold uppercase tracking-widest">
-              Our Capabilities
-            </div>
-            <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight text-slate-900">
-              Tailored Software Services to <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#1fc7cf] via-[#56d3c9] to-[#2cb9cf]">
-                Transform Your Organization
-              </span>
-            </h1>
-            <p className="text-xl text-slate-600 max-w-2xl mx-auto leading-relaxed">
-              Elevate your organization with end-to-end software development services. From custom engineering to AI enhancements, we are your one-stop technology partner.
-            </p>
-          </motion.div>
+    <div className="pb-24 pt-24">
+      <section className="px-6 py-14 md:px-16">
+        <div className="mx-auto max-w-6xl text-center">
+          <p className="mb-4 text-xs font-semibold uppercase tracking-[0.14em] text-slate-500">
+            Service Roadmap
+          </p>
+          <h1 className="text-4xl font-extrabold text-[#0F172A] md:text-6xl">
+            Six services. One team.
+            <br />
+            <span className="text-gradient">Zero runaround.</span>
+          </h1>
+          <p className="mx-auto mt-5 max-w-3xl text-lg text-slate-600">
+            Everything your business needs to compete online — designed, built, and managed by the same team that built Studiely from scratch.
+          </p>
         </div>
       </section>
 
-      {/* Main Services Navigation */}
-      <section className="container mx-auto px-6">
-        <div className="flex flex-wrap gap-3">
-          {categories.map((cat) => (
-            <a 
-              key={cat.title}
-              href={`#${cat.title.replace(/\s+/g, '-').toLowerCase()}`}
-              className="px-4 py-2 rounded-full glass border border-slate-200 text-sm font-semibold text-slate-600 hover:bg-[#1aaebf] hover:text-white hover:border-[#1aaebf] transition-all"
+      <section className="px-4 md:px-10 xl:px-16">
+        <div
+          className="relative mx-auto min-h-[640px] w-full max-w-none overflow-hidden p-2 md:min-h-[700px] md:p-4"
+          onTouchStart={onTouchStart}
+          onTouchEnd={onTouchEnd}
+          onPointerDown={onPointerDown}
+          onPointerUp={onPointerUp}
+        >
+          <div className="pointer-events-none absolute inset-0">
+            <svg
+              className="absolute left-1/2 top-[33%] h-[170px] w-[96%] max-w-[1120px] -translate-x-1/2 -translate-y-1/2 md:top-[36%] md:h-[220px]"
+              viewBox="0 0 1120 220"
+              fill="none"
             >
-              {cat.title}
-            </a>
-          ))}
-        </div>
-      </section>
+              <path d="M40 180 C 260 20, 860 20, 1080 180" stroke="#112B44" strokeWidth="28" strokeLinecap="round" />
+              <path d="M40 180 C 260 20, 860 20, 1080 180" stroke="#274A68" strokeWidth="2" strokeDasharray="10 16" />
+            </svg>
+            <div className="absolute -left-16 top-16 h-56 w-56 rounded-full bg-[#8B5CF626] blur-3xl" />
+            <div className="absolute -right-16 bottom-20 h-64 w-64 rounded-full bg-[#00C2FF1f] blur-3xl" />
+            <div className="absolute left-1/2 top-[33%] h-24 w-[92%] max-w-[58rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-r from-[#6C63FF16] via-[#8B5CF61a] to-[#00C2FF16] blur-3xl md:top-[36%] md:h-32" />
+          </div>
 
-      {/* Categories Content */}
-      <div className="space-y-32">
-        {categories.map((category, categoryIndex) => {
-          const Icon = categoryIcons[category.title] || Zap;
-          return (
-            <section 
-              key={category.title} 
-              id={category.title.replace(/\s+/g, '-').toLowerCase()}
-              className="container mx-auto px-6 scroll-mt-32"
-            >
+          <div className="relative z-20 mx-auto flex max-w-6xl flex-col items-center">
+            <div className="relative h-[240px] w-full max-w-[1180px] md:h-[300px]">
               <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                className="flex items-center gap-4 mb-12"
+                className="pointer-events-none absolute left-1/2 top-1/2 z-30 -translate-x-1/2 -translate-y-1/2"
+                animate={{
+                  x: ringItems[activeIndex]?.x ?? 0,
+                  y: ringItems[activeIndex]?.roadY ?? 0,
+                }}
+                transition={{ duration: 0.68, ease: [0.16, 1, 0.3, 1] }}
               >
-                <div className="p-4 rounded-2xl bg-slate-900 text-[#67d8cf] shadow-xl">
-                  <Icon size={32} />
-                </div>
-                <div>
-                  <h2 className="text-3xl md:text-4xl font-bold text-slate-900">{category.title}</h2>
-                  <div className="h-1 w-20 bg-[#1aaebf] mt-2 rounded-full" />
+                <div className="relative h-8 w-14 rounded-lg border border-[#3D3E8A] bg-gradient-to-b from-[#8FD4FF] via-[#7E8BFF] to-[#7C3AED] shadow-[0_10px_22px_-10px_rgba(0,0,0,0.65)]">
+                  <div className="absolute left-1.5 top-1.5 h-2.5 w-6 rounded bg-[#E6F7FF]" />
+                  <div className="absolute right-1.5 top-1.5 h-2.5 w-4 rounded bg-[#DDD7FF]" />
+                  <div className="absolute -bottom-1.5 left-2 h-3 w-3 rounded-full border border-[#0B1F31] bg-[#0F172A]" />
+                  <div className="absolute -bottom-1.5 right-2 h-3 w-3 rounded-full border border-[#0B1F31] bg-[#0F172A]" />
                 </div>
               </motion.div>
 
-              <motion.div 
-                variants={containerVariants}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                className="grid gap-8 md:grid-cols-2"
-              >
-                {category.items.map((item, itemIndex) => (
-                  <motion.article
-                    key={item.name}
-                    id={toSlug(item.name)}
-                    variants={itemVariants}
-                    className="group relative flex flex-col p-8 rounded-3xl border border-slate-200 bg-white shadow-sm hover:shadow-xl hover:border-[#8ce2d9] transition-all overflow-hidden scroll-mt-32"
-                  >
-                    {/* Decorative Background Blob */}
-                    <div className="absolute -top-12 -right-12 w-32 h-32 bg-[#e8f8f6] rounded-full opacity-50 group-hover:scale-150 transition-transform duration-700" />
-                    
-                    <h3 className="text-2xl font-bold text-slate-900 mb-4 pr-12 relative z-10 text-center">{item.name}</h3>
-                    <p className="text-slate-600 leading-relaxed mb-8 relative z-10">{item.description}</p>
-                    
-                    <div className="mt-auto space-y-4 relative z-10">
-                      <div className="text-xs font-bold uppercase tracking-wider text-[#1aaebf]">Key Features</div>
-                      <ul className="grid grid-cols-1 gap-3">
-                        {item.features.slice(0, 4).map((feature) => (
-                          <li key={feature} className="flex items-start gap-2 text-sm text-slate-500">
-                            <div className="mt-1 p-0.5 rounded-full bg-[#e8f8f6] text-[#1aaebf]">
-                              <Check size={12} />
-                            </div>
-                            {feature}
-                          </li>
-                        ))}
-                        {item.features.length > 4 && (
-                          <li className="text-xs font-semibold text-slate-400 pl-6">
-                            + {item.features.length - 4} more specialized features
-                          </li>
-                        )}
-                      </ul>
-                    </div>
-
-                    <div className="mt-8 pt-6 border-t border-slate-50 flex items-center justify-center relative z-10">
-                      <Link href="/contact-us" className="text-sm font-bold text-slate-900 flex items-center gap-2 group/btn">
-                        Get Started <ArrowRight size={16} className="transition-transform group-hover/btn:translate-x-1" />
-                      </Link>
-                    </div>
-                  </motion.article>
-                ))}
-              </motion.div>
-            </section>
-          );
-        })}
-      </div>
-
-      {/* Global Call to Action */}
-      <section className="container mx-auto px-6">
-        <div className="relative overflow-hidden bg-slate-900 rounded-[3rem] p-12 md:p-24 text-center text-white shadow-2xl">
-          <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-[#1fc7cf]/15 to-transparent" />
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            className="relative z-10 space-y-8"
-          >
-            <h2 className="text-4xl md:text-5xl font-bold">Ready to Innovate Together?</h2>
-            <p className="text-lg text-slate-400 max-w-2xl mx-auto">
-              Our experts are ready to turn your complex challenges into competitive advantages. Let&apos;s build something that scales.
-            </p>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
-              <Link 
-                href="/contact-us" 
-                className="px-10 py-5 rounded-full bg-[#1aaebf] text-white font-bold text-lg hover:bg-[#1699a8] hover:scale-105 transition-all shadow-xl shadow-[#1aaebf]/20"
-              >
-                Contact Our Team
-              </Link>
-              <Link 
-                href="/about" 
-                className="px-10 py-5 rounded-full glass border border-white/20 text-white font-bold text-lg hover:bg-white hover:text-slate-900 transition-all"
-              >
-                Learn About Us
-              </Link>
+              {ringItems.map((item) => (
+                <motion.button
+                  key={item.id}
+                  type="button"
+                  onClick={() => setActiveIndex(item.idx)}
+                  className="absolute left-1/2 top-1/2 flex h-[96px] w-[190px] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full whitespace-nowrap bg-transparent text-center outline-none ring-0 select-none focus:outline-none focus:ring-0 focus-visible:outline-none focus-visible:ring-0 md:h-[112px] md:w-[230px]"
+                  animate={{
+                    x: item.x,
+                    y: item.y,
+                    scale: item.nearFocal ? 1.1 : 0.92,
+                    opacity: item.nearFocal ? 1 : 0.82,
+                    filter: item.nearFocal ? "blur(0px)" : "blur(0.2px)",
+                    textShadow: item.nearFocal
+                      ? "0 0 18px rgba(108,99,255,0.35)"
+                      : "0 0 0 rgba(0,0,0,0)",
+                  }}
+                  transition={{ duration: 0.74, ease: [0.16, 1, 0.3, 1] }}
+                  aria-label={`Select ${item.title}`}
+                >
+                  <div className="pointer-events-none">
+                    <span
+                      className={`mx-auto mb-2 block h-5 w-5 rounded-full border ${
+                      item.nearFocal
+                        ? "border-[#38BDF8] bg-[#38BDF8]"
+                        : "border-[#5C7FA1] bg-[#2C4B68]"
+                      }`}
+                    />
+                    <span
+                      className={`block max-w-[140px] rounded-md border px-1.5 py-0.5 text-center text-xs font-semibold leading-tight tracking-[0.01em] sm:max-w-[180px] sm:text-sm md:max-w-[220px] md:text-lg ${
+                      item.nearFocal
+                        ? "border-[#CFE5FF] bg-[#F4FAFF] text-[#0F2742] shadow-[0_6px_16px_-10px_rgba(15,39,66,0.5)]"
+                        : "border-[#DCE8F5] bg-[#F4F8FD] text-[#264766]"
+                      }`}
+                    >
+                      {item.title}
+                    </span>
+                  </div>
+                </motion.button>
+              ))}
             </div>
-          </motion.div>
+
+            <motion.div
+              key={activeService.id}
+              initial={{ opacity: 0, y: 16, scale: 0.98 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{ duration: 0.45, ease: "easeOut" }}
+              className="relative mt-4 w-full max-w-3xl rounded-3xl border border-[#2B4A67] bg-[#112B44E8] p-5 text-[#EAF2FF] shadow-[0_35px_75px_-40px_rgba(8,20,34,0.85)] backdrop-blur-xl md:mt-8 md:p-7"
+            >
+              <div className="pointer-events-none absolute inset-0 rounded-3xl bg-[radial-gradient(circle_at_15%_20%,rgba(108,99,255,0.22),transparent_48%),radial-gradient(circle_at_85%_35%,rgba(0,194,255,0.16),transparent_40%)]" />
+              <div className="relative">
+                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#9CB3CF]">
+                  {activeService.short}
+                </p>
+                <h2 className="mt-2 text-2xl font-bold text-[#F6FAFF] md:text-4xl">
+                  {activeService.title}
+                </h2>
+                <p className="mt-3 text-[#C5D4E7]">{activeService.description}</p>
+                <ul className="mt-4 grid gap-2 sm:grid-cols-2">
+                  {activeService.highlights.map((item) => (
+                    <li
+                      key={item}
+                      className="rounded-xl border border-[#2D4E6D] bg-[#0F253AE6] px-3 py-2 text-sm text-[#C9D9ED]"
+                    >
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+                <Link
+                  href={activeService.href}
+                  className="mt-6 inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-[#6C63FF] to-[#00C2FF] px-5 py-2.5 text-sm font-semibold text-white"
+                >
+                  {activeService.cta}
+                  <ArrowUpRight className="h-4 w-4" />
+                </Link>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      <section className="px-0 py-16">
+        <div className="w-full rounded-none border-y border-[#2B4A67] bg-[#112B44E8] px-6 py-10 text-center text-[#EAF2FF] backdrop-blur-xl md:px-16">
+          <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[#9CB3CF]">
+            Not sure which service you need?
+          </p>
+          <h2 className="mt-3 text-3xl font-bold md:text-4xl">
+            Book a free call. <span className="text-gradient">We will figure it out together.</span>
+          </h2>
+          <p className="mx-auto mt-4 max-w-3xl text-[#C5D4E7]">
+            30 minutes. No pitch. We look at your business, tell you what we think
+            you actually need, and give you an honest answer - even if that means
+            suggesting you do not need us yet.
+          </p>
+          <div className="mt-7 flex flex-wrap justify-center gap-3">
+            <Link
+              href="https://calendly.com/skyensystems/discovery"
+              className="rounded-lg bg-gradient-to-r from-[#6C63FF] to-[#00C2FF] px-6 py-3 font-semibold text-white"
+            >
+              Book a Free Call
+            </Link>
+            <Link
+              href="/pricing"
+              className="rounded-lg border border-[#3A5C7A] bg-[#0F253AE6] px-6 py-3 font-semibold text-[#EAF2FF]"
+            >
+              See All Pricing
+            </Link>
+          </div>
         </div>
       </section>
     </div>

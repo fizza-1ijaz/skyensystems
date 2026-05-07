@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact | Skyen Systems — Let's Talk</title>
+<meta name="description" content="Get in touch with Skyen Systems. Book a free 30-minute discovery call, send us a message, or email hello@skyensystems.com. We respond within 24 hours.">
+<meta property="og:title" content="Contact Skyen Systems"><meta property="og:url" content="https://skyensystems.com/contact">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg-primary:#1E2240;--bg-secondary:#252A4A;--bg-tertiary:#0F1429;--bg-card:rgba(255,255,255,0.04);--bg-card-hover:rgba(255,255,255,0.07);--cyan:#00C8F0;--teal:#2DD4BF;--gradient:linear-gradient(135deg,#00C8F0,#2DD4BF);--gradient-text:linear-gradient(135deg,#00C8F0 0%,#2DD4BF 100%);--text-primary:#FFFFFF;--text-secondary:#94A3B8;--text-muted:#64748B;--border:rgba(255,255,255,0.08);--border-accent:rgba(0,200,240,0.30);--border-card:rgba(255,255,255,0.06);--green:#10B981;--font-head:'Plus Jakarta Sans',sans-serif;--font-body:'DM Sans',sans-serif;--max-w:1200px;--radius-card:14px;--radius-btn:8px;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}html{scroll-behavior:smooth;}
+body{background:var(--bg-primary);color:var(--text-primary);font-family:var(--font-body);line-height:1.7;-webkit-font-smoothing:antialiased;}
+.container{max-width:var(--max-w);margin:0 auto;padding:0 24px;}
+.gradient-text{background:var(--gradient-text);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:500;letter-spacing:.10em;text-transform:uppercase;color:var(--teal);margin-bottom:18px;}
+.eyebrow::before{content:'';display:block;width:20px;height:1.5px;background:var(--gradient);border-radius:2px;}
+.btn{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-body);font-size:14px;font-weight:500;padding:13px 26px;border-radius:var(--radius-btn);cursor:pointer;transition:all .2s ease;text-decoration:none;border:none;white-space:nowrap;}
+.btn-primary{background:var(--gradient);color:#0F172A;font-weight:600;}.btn-primary:hover{opacity:.88;transform:translateY(-1px);}
+.btn-secondary{background:transparent;color:var(--teal);border:1.5px solid var(--teal);}
+.btn-ghost{background:rgba(255,255,255,.06);color:var(--text-primary);border:1px solid var(--border);}
+.btn-sm{font-size:13px;padding:9px 18px;}
+.nav{position:sticky;top:0;z-index:100;background:rgba(15,20,41,.97);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);}
+.nav-inner{max-width:var(--max-w);margin:0 auto;padding:0 24px;height:68px;display:flex;align-items:center;justify-content:space-between;}
+.nav-logo{display:flex;flex-direction:column;text-decoration:none;}
+.nav-logo-skyen{font-family:var(--font-head);font-size:20px;font-weight:800;background:var(--gradient-text);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.nav-logo-sub{font-size:9px;font-weight:500;letter-spacing:.20em;text-transform:uppercase;color:var(--text-muted);margin-top:2px;}
+.nav-links{display:flex;align-items:center;gap:36px;list-style:none;}
+.nav-links a{font-size:14px;color:var(--text-secondary);text-decoration:none;transition:color .2s;}
+.nav-links a:hover{color:var(--text-primary);}
+.nav-actions{display:flex;align-items:center;gap:12px;}
+/* Contact layout */
+.contact-section{padding:80px 0 100px;}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;margin-top:60px;}
+/* Form */
+.form-group{margin-bottom:20px;}
+.form-label{display:block;font-size:13px;font-weight:500;color:var(--text-secondary);margin-bottom:7px;}
+.form-input,.form-select,.form-textarea{width:100%;background:rgba(255,255,255,.05);border:1px solid var(--border);border-radius:var(--radius-btn);padding:13px 16px;font-family:var(--font-body);font-size:14px;color:var(--text-primary);outline:none;transition:border-color .2s;}
+.form-input::placeholder,.form-textarea::placeholder{color:var(--text-muted);}
+.form-input:focus,.form-select:focus,.form-textarea:focus{border-color:var(--teal);}
+.form-select{appearance:none;cursor:pointer;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%2364748B' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 16px center;}
+.form-select option{background:var(--bg-primary);color:var(--text-primary);}
+.form-textarea{resize:vertical;min-height:130px;line-height:1.6;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.form-submit{width:100%;justify-content:center;font-size:15px;padding:16px;}
+/* Right side info */
+.contact-info{display:flex;flex-direction:column;gap:24px;}
+.info-card{background:var(--bg-card);border:1px solid var(--border-card);border-radius:var(--radius-card);padding:24px;}
+.info-card-title{font-family:var(--font-head);font-size:15px;font-weight:700;color:var(--text-primary);margin-bottom:8px;}
+.info-card-desc{font-size:13px;color:var(--text-secondary);line-height:1.7;margin-bottom:14px;}
+.info-card-detail{font-size:13px;color:var(--teal);font-weight:500;}
+.calendly-card{background:var(--bg-secondary);border:1.5px solid var(--border-accent);border-radius:var(--radius-card);padding:28px;text-align:center;}
+.calendly-title{font-family:var(--font-head);font-size:18px;font-weight:700;color:var(--text-primary);margin-bottom:8px;}
+.calendly-desc{font-size:13px;color:var(--text-secondary);margin-bottom:20px;line-height:1.6;}
+/* Founding offer */
+.founding-banner{background:rgba(0,200,240,.06);border:1px solid var(--border-accent);border-radius:var(--radius-card);padding:22px 24px;margin-top:8px;}
+.founding-title{font-family:var(--font-head);font-size:14px;font-weight:700;color:var(--text-primary);margin-bottom:4px;}
+.founding-desc{font-size:12px;color:var(--text-secondary);}
+/* FAQ */
+.faq-list{margin-top:40px;display:flex;flex-direction:column;gap:2px;}
+.faq-item{background:var(--bg-card);border:1px solid var(--border-card);border-radius:10px;overflow:hidden;}
+.faq-q{padding:18px 22px;font-family:var(--font-head);font-size:14px;font-weight:600;color:var(--text-primary);cursor:pointer;display:flex;justify-content:space-between;align-items:center;transition:background .2s;}
+.faq-q:hover{background:var(--bg-card-hover);}
+.faq-icon{width:20px;height:20px;border-radius:50%;background:rgba(0,200,240,.12);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:transform .3s;font-size:13px;color:var(--cyan);}
+.faq-item.open .faq-icon{transform:rotate(45deg);}
+.faq-a{display:none;padding:0 22px 18px;font-size:13px;color:var(--text-secondary);line-height:1.75;}
+.faq-item.open .faq-a{display:block;}
+.footer{background:var(--bg-tertiary);border-top:1px solid var(--border);}
+.footer-main{padding:60px 0 40px;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:60px;}
+.footer-brand-desc{font-size:14px;color:var(--text-secondary);line-height:1.7;margin-top:14px;max-width:280px;}
+.footer-col-title{font-family:var(--font-head);font-size:13px;font-weight:700;color:var(--text-primary);margin-bottom:20px;}
+.footer-links{list-style:none;}.footer-links li{margin-bottom:12px;}.footer-links a{font-size:14px;color:var(--text-secondary);text-decoration:none;transition:color .2s;}.footer-links a:hover{color:var(--teal);}
+.footer-bottom{padding:22px 0;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;}
+.footer-copy{font-size:12px;color:var(--text-muted);}.footer-legal{display:flex;gap:24px;}.footer-legal a{font-size:12px;color:var(--text-muted);text-decoration:none;}.footer-legal a:hover{color:var(--teal);}
+@media(max-width:768px){.contact-grid{grid-template-columns:1fr;gap:40px;}.form-row{grid-template-columns:1fr;}.footer-main{grid-template-columns:1fr;gap:32px;}.nav-links{display:none;}}
+</style>
+</head>
+<body>
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="/index.html" class="nav-logo"><span class="nav-logo-skyen">SKYEN</span><span class="nav-logo-sub">Systems</span></a>
+    <ul class="nav-links"><li><a href="/services.html">Services</a></li><li><a href="/pricing.html">Pricing</a></li><li><a href="/products.html">Products</a></li><li><a href="/about.html">About</a></li><li><a href="/blog.html">Blog</a></li></ul>
+    <div class="nav-actions"><a href="/contact.html" class="btn btn-primary btn-sm">Contact</a></div>
+  </div>
+</nav>
+
+<section class="contact-section">
+  <div class="container">
+    <div class="eyebrow">Get in touch</div>
+    <h1 style="font-family:var(--font-head);font-size:clamp(28px,4vw,52px);font-weight:800;line-height:1.1;margin-bottom:14px;">Let's talk.<br><span class="gradient-text">No pitch. No pressure.</span></h1>
+    <p style="font-size:16px;color:var(--text-secondary);max-width:500px;line-height:1.75;">Tell us what you're working on. We'll tell you what we think you need — honestly. Even if that means telling you we're not the right fit.</p>
+
+    <div class="contact-grid">
+      <!-- Contact form -->
+      <div>
+        <form id="contact-form" novalidate>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="name">Your name</label>
+              <input type="text" id="name" class="form-input" placeholder="Jane Smith" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="business">Business name</label>
+              <input type="text" id="business" class="form-input" placeholder="Acme Co.">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="email">Email address</label>
+            <input type="email" id="email" class="form-input" placeholder="jane@yourcompany.com" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="service">What are you looking for?</label>
+            <select id="service" class="form-select form-input">
+              <option value="">Select a service...</option>
+              <option value="website">Website — new or overhaul</option>
+              <option value="mobile-app">Mobile App (iOS / Android)</option>
+              <option value="social-media">Social Media Management</option>
+              <option value="full-package">Full Package (START, GROW, or LEAD)</option>
+              <option value="digital-marketing">Digital Marketing / SEO</option>
+              <option value="brand-design">Brand &amp; Logo Design</option>
+              <option value="web-app">Web Application / SaaS</option>
+              <option value="founding">Founding Client Offer (20% off)</option>
+              <option value="not-sure">Not sure yet — I want to talk first</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="budget">Budget range (optional)</label>
+            <select id="budget" class="form-select form-input">
+              <option value="">Prefer not to say</option>
+              <option value="under-750">Under $750</option>
+              <option value="750-1500">$750 – $1,500</option>
+              <option value="1500-4000">$1,500 – $4,000</option>
+              <option value="4000-plus">$4,000+</option>
+              <option value="monthly">Monthly retainer — let's discuss</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="message">Tell us about your project</label>
+            <textarea id="message" class="form-textarea" placeholder="What does your business do? What's working or not working right now? What would success look like? The more context, the better our first conversation will be." required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary form-submit">Send message →</button>
+          <p style="font-size:12px;color:var(--text-muted);margin-top:12px;text-align:center;">We respond to every inquiry within 24 hours. Usually much faster.</p>
+        </form>
+      </div>
+
+      <!-- Right side -->
+      <div class="contact-info">
+        <!-- Calendly card -->
+        <div class="calendly-card">
+          <div style="width:48px;height:48px;border-radius:12px;background:var(--gradient);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;">
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><rect x="2" y="4" width="18" height="16" rx="2" stroke="#0F172A" stroke-width="1.6"/><path d="M7 2v4M15 2v4M2 9h18" stroke="#0F172A" stroke-width="1.6" stroke-linecap="round"/></svg>
+          </div>
+          <div class="calendly-title">Book a Discovery Call</div>
+          <div class="calendly-desc">30 minutes. Free. We review your current digital presence, discuss your goals, and give you an honest assessment — no commitment required.</div>
+          <a href="https://calendly.com/skyensystems/discovery" class="btn btn-primary" style="width:100%;justify-content:center;" target="_blank" rel="noopener">Book a Free Call ↗</a>
+        </div>
+
+        <!-- Email -->
+        <div class="info-card">
+          <div class="info-card-title">Email us directly</div>
+          <div class="info-card-desc">For quick questions, project briefs, or anything else. We read and respond to every email personally.</div>
+          <a href="mailto:hello@skyensystems.com" class="info-card-detail">hello@skyensystems.com →</a>
+        </div>
+
+        <!-- Response time -->
+        <div class="info-card">
+          <div class="info-card-title">Response time</div>
+          <div class="info-card-desc">We respond to every inquiry within 24 hours. For messages sent during business hours (GMT+3), usually within a few hours.</div>
+          <div class="info-card-detail">Available Mon–Fri, 9am–6pm GMT+3</div>
+        </div>
+
+        <!-- Founding offer -->
+        <div class="founding-banner">
+          <div class="founding-title">⭐ Founding Client Rate available</div>
+          <div class="founding-desc">Select "Founding Client Offer" above and get 20% off any START or GROW package. In exchange, we ask for a written testimonial and permission to feature your project.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ -->
+    <div style="max-width:680px;margin:80px auto 0;">
+      <div class="eyebrow">Before you reach out</div>
+      <h2 style="font-family:var(--font-head);font-size:28px;font-weight:800;margin-bottom:0;">Quick answers.</h2>
+      <div class="faq-list">
+        <div class="faq-item"><div class="faq-q">How quickly can you start?<span class="faq-icon">+</span></div><div class="faq-a">Once a project is scoped and the deposit is paid, we typically start within 3–5 business days. For urgent projects, reach out and we'll let you know our current availability honestly.</div></div>
+        <div class="faq-item"><div class="faq-q">Do you work with businesses outside the US?<span class="faq-icon">+</span></div><div class="faq-a">Yes. While our primary focus is the US market, we work with businesses globally. Our team operates internationally and all communication is in English.</div></div>
+        <div class="faq-item"><div class="faq-q">What information should I have ready before the call?<span class="faq-icon">+</span></div><div class="faq-a">Your business name, what you do, who your customers are, what you currently have online (website, social accounts), and what you're hoping to achieve. That's enough to have a great first conversation.</div></div>
+        <div class="faq-item"><div class="faq-q">What happens after I submit this form?<span class="faq-icon">+</span></div><div class="faq-a">We read it, and one of our team members replies directly — not an automated sequence. We'll either answer your question directly or suggest booking a call if the project needs more discussion.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer"><div class="container">
+  <div class="footer-main">
+    <div><a href="/index.html" class="nav-logo" style="display:inline-flex;"><span class="nav-logo-skyen">SKYEN</span></a><div class="nav-logo-sub" style="margin-top:2px;">Systems</div><p class="footer-brand-desc">One team. Every digital need. Anywhere.</p></div>
+    <div><div class="footer-col-title">Services</div><ul class="footer-links"><li><a href="/services.html#web-design">Web Design</a></li><li><a href="/services.html#mobile-apps">Mobile Apps</a></li><li><a href="/services.html#social-media">Social Media</a></li><li><a href="/services.html#digital-marketing">Digital Marketing</a></li></ul></div>
+    <div><div class="footer-col-title">Company</div><ul class="footer-links"><li><a href="/about.html">About Us</a></li><li><a href="/products.html">Our Products</a></li><li><a href="/pricing.html">Pricing</a></li><li><a href="/blog.html">Blog</a></li></ul></div>
+    <div><div class="footer-col-title">Get in touch</div><ul class="footer-links"><li><a href="mailto:hello@skyensystems.com">hello@skyensystems.com</a></li><li><a href="https://calendly.com/skyensystems/discovery" target="_blank" rel="noopener">Book a Discovery Call</a></li></ul></div>
+  </div>
+  <div class="footer-bottom"><div class="footer-copy">© 2025 Skyen Systems. Part of the Skyen Group. Headquartered in Bahrain.</div><div class="footer-legal"><a href="/privacy-policy.html">Privacy Policy</a><a href="/terms.html">Terms of Service</a></div></div>
+</div></footer>
+
+<script>
+(function(){
+  var items=document.querySelectorAll('.faq-item');
+  items.forEach(function(item){item.querySelector('.faq-q').addEventListener('click',function(){var open=item.classList.contains('open');items.forEach(function(i){i.classList.remove('open');});if(!open)item.classList.add('open');});});
+  // Pre-fill service from URL param
+  var params=new URLSearchParams(window.location.search);
+  var pkg=params.get('package')||params.get('plan')||params.get('service')||params.get('offer');
+  if(pkg){
+    var sel=document.getElementById('service');
+    var map={start:'website',grow:'full-package',lead:'full-package','mobile-app':'mobile-app','social-media':'social-media',founding:'founding','seo-marketing':'digital-marketing','seo-audit':'digital-marketing','web-app':'web-app','brand-design':'brand-design',steady:'social-media',amplify:'social-media',shield:'website'};
+    if(map[pkg]){sel.value=map[pkg];}
+  }
+  document.getElementById('contact-form').addEventListener('submit',function(e){
+    e.preventDefault();
+    this.innerHTML='<div style="text-align:center;padding:40px 0;"><div style="font-family:var(--font-head);font-size:22px;font-weight:700;color:var(--text-primary);margin-bottom:10px;">Message sent ✓</div><div style="font-size:14px;color:var(--text-secondary);">We\'ll be in touch within 24 hours.</div></div>';
+  });
+})();
+</script>
+</body>
+</html>

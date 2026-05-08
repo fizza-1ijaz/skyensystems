@@ -144,9 +144,10 @@ function toSeo(site: SiteBlogPageRow | null): BlogIndexSeo {
 export const getSiteIdForConfiguredSite = cache(async (): Promise<string | null> => {
   if (SITE_ID_OVERRIDE) return SITE_ID_OVERRIDE;
   if (!supabase) return null;
+  const client = supabase;
 
   const data = await execPostgrestWithRetries("resolve site_id", () =>
-    supabase
+    client
       .from("sites")
       .select("id")
       .eq("site_key", SITE_KEY)
@@ -162,10 +163,11 @@ export const getSiteIdForConfiguredSite = cache(async (): Promise<string | null>
 
 async function loadBlogPageSeo(siteId: string): Promise<SiteBlogPageRow | null> {
   if (!supabase) return null;
+  const client = supabase;
 
   try {
     return await execPostgrestWithRetries("load blog page seo", () =>
-      supabase
+      client
         .from("sites")
         .select(
           "id, blog_page_meta_title, blog_page_meta_description, blog_page_headline, blog_page_subheadline, blog_page_empty_state_message",
@@ -185,7 +187,7 @@ async function loadBlogPageSeo(siteId: string): Promise<SiteBlogPageRow | null> 
     if (!missingColumn) throw error;
 
     return await execPostgrestWithRetries("load blog page seo (legacy schema)", () =>
-      supabase
+      client
         .from("sites")
         .select(
           "id, blog_page_meta_title, blog_page_meta_description, blog_page_headline, blog_page_subheadline",
@@ -211,11 +213,12 @@ export async function getBlogIndexDataForConfiguredSite(): Promise<BlogIndexData
       posts: [],
     };
   }
+  const client = supabase;
 
   const [siteRow, categoriesData, postsData] = await Promise.all([
     loadBlogPageSeo(siteId),
     execPostgrestWithRetries("load blog categories", () =>
-      supabase
+      client
         .from("blog_categories")
         .select("id, name, slug, sort_order")
         .eq("site_id", siteId)
@@ -223,7 +226,7 @@ export async function getBlogIndexDataForConfiguredSite(): Promise<BlogIndexData
         .order("name", { ascending: true }),
     ),
     execPostgrestWithRetries("load blogs", () =>
-      supabase
+      client
         .from("blogs")
         .select(
           `id, ${BLOG_SEO_FIELDS}, category:blog_categories(id, name, slug)`,
@@ -266,9 +269,10 @@ export async function getBlogBySlugForConfiguredSite(
 ): Promise<BlogPostRow | null> {
   const siteId = await getSiteIdForConfiguredSite();
   if (!siteId || !supabase) return null;
+  const client = supabase;
 
   const row = await execPostgrestWithRetries(`fetch blog "${slug}"`, () =>
-    supabase
+    client
       .from("blogs")
       .select(
         `id, content, ${BLOG_SEO_FIELDS}, category:blog_categories(id, name, slug)`,
@@ -289,9 +293,10 @@ export async function getBlogSlugsForConfiguredSite(): Promise<
 > {
   const siteId = await getSiteIdForConfiguredSite();
   if (!siteId || !supabase) return [];
+  const client = supabase;
 
   const data = await execPostgrestWithRetries("fetch blog slugs", () =>
-    supabase
+    client
       .from("blogs")
       .select("slug, display_date")
       .eq("site_id", siteId)

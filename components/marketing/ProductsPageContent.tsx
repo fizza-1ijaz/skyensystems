@@ -1,20 +1,22 @@
 "use client";
 
 import Link from "next/link";
-import { motion } from "framer-motion";
+import Image from "next/image";
 import { useEffect } from "react";
 
 type ProductScene = {
   id: string;
   name: string;
+  eyebrow: string;
   status: string;
-  statusMeta: string;
+  statusMeta?: string;
   tagline: string;
   paragraphs: string[];
   platforms: string[];
   tech: string[];
   mockupLabel: string;
   mockupNote: string;
+  logoSrc: string;
   primaryCtaLabel: string;
   primaryCtaHref: string;
   primaryExternal?: boolean;
@@ -24,44 +26,61 @@ type ProductScene = {
   waitlistButtonLabel?: string;
   waitlistNote?: string;
   showStoreButtons?: boolean;
+  appStoreHref?: string;
+  playStoreHref?: string;
 };
 
 const PRODUCTS: ProductScene[] = [
   {
     id: "studiely",
     name: "Studiely",
-    status: "Live",
-    statusMeta: "iOS · Android · Web",
-    tagline: "Learning, made personal.",
+    eyebrow: "AI STUDY TOOL",
+    status: "LIVE — Available on App Store and Play Store",
+    tagline: "Study smarter. Not harder.",
     paragraphs: [
-      "Studiely is a full-stack education platform built entirely in-house - and it is live. Real students. Real educators. Real usage. It runs on iOS, Android, and the web from a single codebase maintained by our team.",
-      "We designed the product, built the backend, submitted it to the App Store and Google Play, and continue to iterate on it. When we say we know how to build apps, Studiely is the proof.",
+      "Studiely uses AI to turn your notes and textbooks into smart flashcards, adaptive quizzes, and personalised revision plans. Designed for students who want to make every study hour count.",
     ],
-    platforms: ["iOS App", "Android App", "Web Application"],
-    tech: ["React Native", "Node.js", "PostgreSQL", "AWS"],
+    platforms: ["Core Features"],
+    tech: [
+      "Smart Flashcard Generation: Upload your notes — Studiely AI extracts key concepts and builds flashcard decks automatically.",
+      "Adaptive Quizzes: Questions adjust to your performance in real time. Harder on what you struggle with, lighter on what you know.",
+      "Personalised Revision Plans: Tell Studiely your exam date. It builds a revision schedule covering everything, prioritised by difficulty.",
+      "Progress Tracking: See what you've mastered and what needs more work — at a glance.",
+      "Study Groups: Share decks and compete with classmates on quiz leaderboards.",
+    ],
     mockupLabel: "Studiely - App preview",
     mockupNote: "Replace with real app screenshots",
+    logoSrc: "/logo-studiely.jpeg",
     primaryCtaLabel: "Visit Studiely",
     primaryCtaHref: "https://studiely.com",
     primaryExternal: true,
     secondaryCtaLabel: "Build something similar",
     secondaryCtaHref: "/contact-us?service=mobile-app",
     showStoreButtons: true,
+    appStoreHref: "https://apps.apple.com/us/app/studiely-your-daily-study-app/id6758246110",
+    playStoreHref:
+      "https://play.google.com/store/apps/details?id=com.skyensolutions.eduplayce.eduplayce",
   },
   {
     id: "make-my-lesson",
     name: "Make My Lesson",
-    status: "Arriving soon",
-    statusMeta: "iOS · Android · Web",
-    tagline: "Teaching, reimagined.",
+    eyebrow: "AI LESSON PLANNER",
+    status: "In Development",
+    tagline: "Great lessons. Half the planning time.",
     paragraphs: [
-      "Educators spend hours creating lesson plans. Make My Lesson changes that. Describe your topic, set your grade level, and get a complete, structured, curriculum-aligned lesson plan - instantly.",
-      "Built by the same team as Studiely, Make My Lesson is nearly ready. Join the waitlist to be the first to access it when we launch.",
+      "An AI-powered lesson plan generator built for teachers. Input your topic, grade level, curriculum standard, and available time — get a complete, editable lesson plan in seconds.",
     ],
-    platforms: ["iOS App", "Android App", "Web App"],
-    tech: ["Grade", "Subject", "Duration"],
+    platforms: ["Core Features (Planned)"],
+    tech: [
+      "Curriculum-Aligned Plans: Compatible with Common Core, UK National Curriculum, and other major frameworks.",
+      "Full Lesson Structure: Objectives, warm-up, main activity, differentiation notes, exit ticket — complete.",
+      "One-Click Editable: Every generated plan is fully editable. Your plan, your voice — just faster.",
+      "Resource Suggestions: Linked worksheets, videos, and discussion prompts relevant to your topic.",
+      "Lesson Bank: Save and reuse past plans. Build your own library over time.",
+    ],
     mockupLabel: "Make My Lesson - UI preview",
     mockupNote: "Concept preview - not final UI",
+    logoSrc: "/logo-makemylesson.png",
     primaryCtaLabel: "Visit",
     primaryCtaHref: "https://makemylesson.ai",
     primaryExternal: true,
@@ -72,17 +91,23 @@ const PRODUCTS: ProductScene[] = [
   {
     id: "linguatude",
     name: "Linguatude",
-    status: "Coming soon",
-    statusMeta: "iOS · Android · Web",
-    tagline: "English, unlocked.",
+    eyebrow: "AI LANGUAGE LEARNING",
+    status: "In Development",
+    tagline: "Finally become fluent. Not just functional.",
     paragraphs: [
-      "Linguatude is a comprehensive English test preparation platform for learners targeting IELTS, TOEFL, PTE, and professional English certifications. Adaptive practice, real exam simulation, and measurable progress that actually shows you where you're improving.",
-      "Currently in development. Be the first to know when it launches.",
+      "Linguatude combines AI conversation practice, spaced repetition vocabulary, and real-world context to take you from beginner to confident speaker — at your own pace.",
     ],
-    platforms: ["iOS App", "Android App", "Web App"],
-    tech: ["IELTS", "TOEFL", "PTE", "General English"],
+    platforms: ["Core Features (Planned)"],
+    tech: [
+      "AI Conversation Partner: Practice speaking with an AI tutor that responds naturally, corrects gently, and adjusts to your level.",
+      "Spaced Repetition Vocabulary: Words surface at the scientifically optimal moment for long-term retention.",
+      "Real-World Scenarios: Restaurant conversations. Business meetings. Travel situations. Practical language from day one.",
+      "Pronunciation Feedback: Real-time analysis with specific, actionable improvement cues.",
+      "Progress Milestones: Clear levels and achievements to keep you motivated.",
+    ],
     mockupLabel: "Linguatude - Coming soon",
     mockupNote: "Be the first to access Linguatude at launch.",
+    logoSrc: "/logo-linguatude.jpg",
     primaryCtaLabel: "Visit",
     primaryCtaHref: "https://linguatude.com",
     primaryExternal: true,
@@ -126,13 +151,9 @@ export function ProductsPageContent({ initialProductId }: ProductsPageContentPro
       <section id="product-showcase" className="px-4 md:px-10">
         <div className="mx-auto space-y-8">
           {PRODUCTS.map((product, idx) => (
-            <motion.article
+            <article
               key={product.id}
               id={`product-${product.id}`}
-              initial={{ opacity: 0, y: 22 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.25 }}
-              transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1], delay: idx * 0.05 }}
               className={`relative overflow-hidden rounded-[2.2rem] border bg-gradient-to-br from-[#f6f9ff] via-white to-[#eef8ff] p-6 shadow-[0_30px_90px_-55px_rgba(108,99,255,0.65)] md:p-8 ${
                 initialProductId === product.id
                   ? "border-[#6C63FF88] ring-2 ring-[#6C63FF33]"
@@ -146,13 +167,13 @@ export function ProductsPageContent({ initialProductId }: ProductsPageContentPro
               <div className={`relative z-10 grid gap-8 ${idx % 2 === 1 ? "md:grid-cols-[1.05fr_1fr]" : "md:grid-cols-2"}`}>
                 <div className={`${idx % 2 === 1 ? "md:order-2" : ""} text-center md:text-left`}>
                   <p className="text-xs font-semibold uppercase tracking-[0.13em] text-slate-500">
-                    {product.status}
-                    <span className="ml-2 text-[11px] normal-case tracking-normal text-slate-400">
-                      {product.statusMeta}
-                    </span>
+                    {product.eyebrow}
                   </p>
-                  <h2 className="mt-2 text-4xl font-bold text-[#0F172A]">{product.name}</h2>
-                  <p className="mt-1 text-lg font-semibold text-gradient">{product.tagline}</p>
+                  <h2 className="mt-2 text-4xl font-bold text-[#0F172A]">{product.tagline}</h2>
+                  <p className="mt-1 text-sm font-semibold uppercase tracking-[0.08em] text-slate-500">
+                    {product.status}
+                  </p>
+                  <p className="mt-1 text-lg font-semibold text-gradient">{product.name}</p>
                   <div className="mt-4 space-y-3 text-slate-600">
                     {product.paragraphs.map((paragraph) => (
                       <p key={paragraph}>{paragraph}</p>
@@ -205,11 +226,20 @@ export function ProductsPageContent({ initialProductId }: ProductsPageContentPro
                   ) : null}
                   </div>
 
-                <motion.div
-                  animate={{ y: [0, -6, 0] }}
-                  transition={{ repeat: Infinity, duration: 4.2, ease: "easeInOut" }}
+                <div
                   className={`rounded-2xl border border-[#dbe8ff] bg-[#f5f8ff] p-5 ${idx % 2 === 1 ? "md:order-1" : ""}`}
                 >
+                  <div className="mb-3 flex items-center justify-center md:justify-start">
+                    <div className="relative h-14 w-14 overflow-hidden rounded-xl border border-[#d3e2ff] bg-white p-1">
+                      <Image
+                        src={product.logoSrc}
+                        alt={`${product.name} logo`}
+                        fill
+                        sizes="56px"
+                        className="object-contain"
+                      />
+                    </div>
+                  </div>
                   <p className="text-sm font-semibold text-slate-600">{product.mockupLabel}</p>
                   <div className="mt-4 rounded-xl border border-[#d3e2ff] bg-white p-4">
                     <div className="h-2 w-2/3 rounded-full bg-gradient-to-r from-[#6C63FF66] to-[#1E3A8A66]" />
@@ -234,17 +264,17 @@ export function ProductsPageContent({ initialProductId }: ProductsPageContentPro
                   <p className="mt-4 text-xs text-slate-500">{product.mockupNote}</p>
                   {product.showStoreButtons ? (
                     <div className="mt-4 flex gap-2">
-                      <a href="https://apps.apple.com" target="_blank" rel="noopener noreferrer" className="rounded-lg border border-slate-300 bg-white px-3 py-2 text-xs font-semibold text-slate-700">
+                      <a href={product.appStoreHref} target="_blank" rel="noopener noreferrer" className="rounded-lg border border-slate-300 bg-white px-3 py-2 text-xs font-semibold text-slate-700">
                         App Store
                       </a>
-                      <a href="https://play.google.com" target="_blank" rel="noopener noreferrer" className="rounded-lg border border-slate-300 bg-white px-3 py-2 text-xs font-semibold text-slate-700">
+                      <a href={product.playStoreHref} target="_blank" rel="noopener noreferrer" className="rounded-lg border border-slate-300 bg-white px-3 py-2 text-xs font-semibold text-slate-700">
                         Google Play
                       </a>
                     </div>
                   ) : null}
-                </motion.div>
+                </div>
               </div>
-            </motion.article>
+            </article>
           ))}
         </div>
       </section>

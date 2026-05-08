@@ -1,31 +1,55 @@
 "use client";
 
-import Link from "next/link";
 import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
+
+const stats = [
+  { target: 50, suffix: "+", title: "Projects Delivered" },
+  { target: 4, suffix: " hrs", title: "Response Guarantee" },
+  { target: 3, suffix: "", title: "Products Live/Dev" },
+  { target: 2, suffix: "", title: "Offices PK + BH" },
+];
 
 export function ProblemSection() {
+  const [counts, setCounts] = useState(stats.map(() => 0));
+
+  useEffect(() => {
+    let frameId = 0;
+    const start = performance.now();
+    const duration = 1100;
+
+    const tick = (time: number) => {
+      const progress = Math.min(1, (time - start) / duration);
+      setCounts(stats.map((item) => Math.floor(item.target * progress)));
+      if (progress < 1) frameId = requestAnimationFrame(tick);
+    };
+
+    frameId = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(frameId);
+  }, []);
+
   return (
-    <section className="bg-white px-6 py-20 md:px-10">
+    <section className="bg-white px-6 py-14 md:px-10">
       <motion.div
         initial={{ opacity: 0, y: 30, filter: "blur(10px)" }}
         whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
         viewport={{ once: true, amount: 0.25 }}
         transition={{ duration: 0.65 }}
-        className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-2 lg:items-start"
+        className="mx-auto max-w-7xl"
       >
-        <div>
-          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.1em] text-slate-500">The reality</p>
-          <h2 className="text-3xl font-bold leading-tight text-[#0F172A] md:text-4xl">
-            Most businesses are either <span className="text-gradient">invisible online</span> - or paying too much to fix it.
-          </h2>
-        </div>
-        <div className="space-y-4 text-slate-600">
-          <p>You have seen the quotes. $5,000 for a five-page website. $2,000 a month to post three times a week on Instagram. And still no guarantee it actually brings in customers.</p>
-          <p>US agencies charge what they charge because of rent, staff overhead, and sales teams - not because the work is worth more. We removed all of that.</p>
-          <p>What is left is a capable, fast, and genuinely honest team that builds the same standard of work for a fraction of the price. Not because we cut corners. Because we built our own products - and learned to do more with less.</p>
-          <Link href="/about" className="inline-block rounded-xl border border-white/80 bg-white px-5 py-2.5 text-sm font-semibold text-slate-700 shadow-sm">
-            How we work
-          </Link>
+        <div className="grid gap-4 text-center sm:grid-cols-2 lg:grid-cols-4">
+          {stats.map((stat, index) => (
+            <div
+              key={stat.title}
+              className="rounded-2xl border border-slate-200 bg-[#FBFDFF] px-5 py-6 shadow-[0_16px_35px_-30px_rgba(15,23,42,0.6)]"
+            >
+              <p className="text-4xl font-extrabold text-[#0F172A]">
+                {counts[index]}
+                {stat.suffix}
+              </p>
+              <p className="mt-2 text-sm font-semibold text-slate-600">{stat.title}</p>
+            </div>
+          ))}
         </div>
       </motion.div>
     </section>

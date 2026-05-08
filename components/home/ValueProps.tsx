@@ -5,34 +5,49 @@ import { motion } from "framer-motion";
 const points = [
   {
     id: "01",
-    title: "Founder-level execution",
-    body: "We do not outsource random freelancers. You work with a focused product team that ships real systems, fast.",
+    title: "Discovery Call",
+    body: "A 30-minute conversation to understand your goals, timeline, and budget. No sales pitch. Just listening and asking the right questions.",
   },
   {
     id: "02",
-    title: "Everything under one roof",
-    body: "Web, mobile, design, content, marketing - all handled by one coordinated team. No communication gaps.",
+    title: "Proposal & Quote",
+    body: "A clear, itemised proposal within 24 hours. Exactly what we'll build, when it'll be ready, and what it will cost. No surprises.",
   },
   {
     id: "03",
-    title: "Built on outcomes, not vanity",
-    body: "Our process is designed to increase inquiries, improve conversion, and make your brand feel premium from day one.",
+    title: "Design & Prototype",
+    body: "We show you before we build. Figma prototypes and design reviews so you approve the look before a line of code is written.",
+  },
+  {
+    id: "04",
+    title: "Build & Iterate",
+    body: "Agile sprints. Weekly updates. You see progress every week — not a surprise reveal at the end.",
+  },
+  {
+    id: "05",
+    title: "Launch & Support",
+    body: "We don't disappear at launch. Ongoing support, maintenance, and growth are part of how we work.",
   },
 ];
 
 export function ValueProps() {
   return (
     <section className="px-6 py-20 md:px-10">
-      <div className="mx-auto max-w-7xl">
+      <div className="mx-auto max-w-7xl text-center">
         <motion.div
           initial={{ opacity: 0, y: 30, filter: "blur(10px)" }}
           whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
           viewport={{ once: true, amount: 0.3 }}
           className="mb-10"
         >
-          <h2 className="text-3xl font-bold text-[#0F172A] md:text-4xl">What makes Skyen Systems different</h2>
+          <p className="mb-2 text-xs font-semibold uppercase tracking-[0.14em] text-slate-500">
+            OUR PROCESS
+          </p>
+          <h2 className="text-3xl font-bold text-[#0F172A] md:text-4xl">
+            From idea to launch — and everything after.
+          </h2>
         </motion.div>
-        <div className="grid gap-6 md:grid-cols-3">
+        <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-5">
           {points.map((point, index) => (
             <motion.article
               key={point.id}

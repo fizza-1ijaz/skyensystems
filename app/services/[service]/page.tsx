@@ -13,25 +13,35 @@ const SERVICE_META: Record<string, { title: string; description: string }> = {
     description:
       "iOS and Android app development services from Skyen Systems with product-grade UX, scalable architecture, and launch support.",
   },
-  "social-media-management": {
-    title: "Social Media Management Services | Skyen Systems",
+  "brand-ui-ux-design": {
+    title: "UI/UX Design Services | Skyen Systems",
     description:
-      "Brand-led social media management services by Skyen Systems with strategy, design, and measurable monthly reporting.",
+      "Research-driven UI/UX design services by Skyen Systems for websites, apps, and product experiences that users love.",
+  },
+  "ai-solutions": {
+    title: "AI Solutions Services | Skyen Systems",
+    description:
+      "Practical AI services by Skyen Systems including chatbots, automation, LLM integration, and tailored AI workflows.",
   },
   "digital-marketing": {
     title: "Digital Marketing Services | Skyen Systems",
     description:
       "SEO and paid campaign services by Skyen Systems focused on technical foundations, customer intent, and sustainable growth.",
   },
-  "brand-ui-ux-design": {
-    title: "Brand & UI/UX Design Services | Skyen Systems",
+  "dedicated-teams": {
+    title: "Dedicated Teams Services | Skyen Systems",
     description:
-      "Brand identity and UI/UX design services by Skyen Systems to create consistent digital experiences across web, app, and social.",
+      "Dedicated development and design teams from Skyen Systems with US timezone overlap and flexible scaling.",
+  },
+  "social-media-management": {
+    title: "Digital Marketing Services | Skyen Systems",
+    description:
+      "Growth-focused digital marketing services from Skyen Systems covering SEO, Google Ads, Meta Ads, and conversion tracking.",
   },
   "web-applications-saas": {
-    title: "Web Applications & SaaS Services | Skyen Systems",
+    title: "Web Development Services | Skyen Systems",
     description:
-      "Custom web app and SaaS development services by Skyen Systems for client portals, internal tools, and scalable product MVPs.",
+      "Custom web development services by Skyen Systems for websites, web applications, and scalable product platforms.",
   },
 };
 
@@ -51,7 +61,12 @@ export async function generateMetadata({
         "Explore web, mobile, social, branding, marketing, and custom product services from Skyen Systems.",
     };
   }
-  return meta;
+  return {
+    ...meta,
+    alternates: {
+      canonical: `/services/${service}`,
+    },
+  };
 }
 
 export default async function ServiceDetailPage({ params }: ServicePageProps) {
@@ -59,5 +74,26 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
   if (!SERVICE_META[service]) {
     notFound();
   }
-  return <ServicesPageContent initialServiceSlug={service} />;
+  const serviceSchema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: SERVICE_META[service].title.replace(" | Skyen Systems", ""),
+    description: SERVICE_META[service].description,
+    provider: {
+      "@type": "Organization",
+      name: "Skyen Systems",
+      url: "https://skyensystems.com",
+    },
+    areaServed: "US",
+  };
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
+      />
+      <ServicesPageContent initialServiceSlug={service} />
+    </>
+  );
 }

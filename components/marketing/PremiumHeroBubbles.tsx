@@ -12,6 +12,9 @@ type BubbleMeta = {
   opacity: number;
 };
 
+const round = (value: number, digits = 4) =>
+  Number(value.toFixed(digits));
+
 const seeded = (seed: number) => {
   const value = Math.sin(seed * 999) * 10000;
   return value - Math.floor(value);
@@ -25,13 +28,13 @@ export function PremiumHeroBubbles() {
   const bubbles = useMemo<BubbleMeta[]>(
     () =>
       Array.from({ length: 16 }, (_, i) => ({
-        x: 6 + seeded(i + 1) * 88,
-        y: 10 + seeded(i + 11) * 72,
-        size: 56 + seeded(i + 21) * 134,
-        depth: 0.35 + seeded(i + 31) * 0.9,
-        drift: 0.15 + seeded(i + 41) * 0.45,
-        phase: seeded(i + 51) * Math.PI * 2,
-        opacity: 0.16 + seeded(i + 61) * 0.3,
+        x: round(6 + seeded(i + 1) * 88),
+        y: round(10 + seeded(i + 11) * 72),
+        size: round(56 + seeded(i + 21) * 134, 3),
+        depth: round(0.35 + seeded(i + 31) * 0.9, 4),
+        drift: round(0.15 + seeded(i + 41) * 0.45, 4),
+        phase: round(seeded(i + 51) * Math.PI * 2, 5),
+        opacity: round(0.16 + seeded(i + 61) * 0.3, 5),
       })),
     [],
   );

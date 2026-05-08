@@ -2,13 +2,36 @@ import type { Metadata } from "next";
 import { ServicesPageContent } from "@/components/marketing/ServicesPageContent";
 
 export const metadata: Metadata = {
-  title: "Services | Skyen Systems",
+  title: "Web Development Services for Small Business | Skyen Systems",
   description:
-    "Explore web, mobile, social, branding, marketing, and custom product services from Skyen Systems.",
+    "Every digital service your business needs: web development, mobile apps, UI/UX, AI solutions, digital marketing, and dedicated teams.",
+  alternates: {
+    canonical: "/services",
+  },
 };
 
 export default function ServicesPage() {
-  return <ServicesPageContent />;
+  const serviceSchema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    serviceType: "Digital product and growth services for small businesses",
+    provider: {
+      "@type": "Organization",
+      name: "Skyen Systems",
+      url: "https://skyensystems.com",
+    },
+    areaServed: "US",
+  };
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
+      />
+      <ServicesPageContent />
+    </>
+  );
 }
 
 

@@ -11,8 +11,13 @@ type ReelService = {
   slug: string;
   title: string;
   short: string;
+  sectionHeadline: string;
   description: string;
+  listLabel?: string;
   highlights: string[];
+  approach?: string;
+  stackLabel?: string;
+  stack?: string;
   cta: string;
   href: string;
 };
@@ -21,109 +26,137 @@ const SERVICES: ReelService[] = [
   {
     id: "web",
     slug: "web-design-development",
-    title: "Web Design & Development",
-    short: "Web Experiences",
+    title: "Web Development",
+    short: "Web",
+    sectionHeadline: "Websites & Web Applications That Work",
+    listLabel: "What we build",
     description:
-      "A beautiful website that no one can find - or that no one takes action on - is a decoration, not an asset. We build websites with one goal: turning visitors into customers.",
+      "Your website is working 24/7, representing your business to every potential customer who looks you up. It needs to be fast, professional, and built to convert — not just look good in a pitch deck.",
     highlights: [
-      "Custom responsive design - mobile first, always",
-      "SEO-ready HTML structure and meta setup",
-      "Google PageSpeed score above 90",
-      "Contact forms, booking integrations, and CTAs",
-      "CMS integration and Google Analytics + Search Console setup",
-      "30-90 days post-launch support included",
+      "Marketing websites and landing pages",
+      "Full web applications and SaaS products",
+      "E-commerce stores (Shopify, WooCommerce, custom)",
+      "Content management systems (WordPress, Sanity, Contentful)",
+      "Web portals and client dashboards",
+      "API integrations and third-party connections",
     ],
+    approach:
+      "Every project starts with understanding what success looks like for you — not just aesthetically, but commercially. Page speed, conversion rate, SEO structure — these aren't afterthoughts, they're built in from day one.",
+    stackLabel: "Technology",
+    stack:
+      "Next.js · React · TypeScript · Node.js · PostgreSQL · Tailwind CSS · Stripe · Shopify · WordPress",
     cta: "Explore Web Projects",
-    href: "/contact-us",
-  },
-  {
-    id: "social",
-    slug: "social-media-management",
-    title: "Social Media Management",
-    short: "Brand Presence",
-    description:
-      "Posting three times a week and hoping for the best is not a social media strategy. We build and manage a social presence that reflects your brand consistently and report on what actually matters.",
-    highlights: [
-      "Content strategy tailored to your business and audience",
-      "Custom graphic design for every post",
-      "Caption writing in your brand voice",
-      "Hashtag research and platform-specific SEO",
-      "Community management - comments, DMs, replies",
-      "Monthly performance reports with real metrics",
-    ],
-    cta: "Scale Social Presence",
     href: "/contact-us",
   },
   {
     id: "mobile",
     slug: "mobile-apps",
-    title: "Mobile Apps",
-    short: "iOS + Android",
+    title: "Mobile App Development",
+    short: "App",
+    sectionHeadline: "iOS & Android Apps Your Users Will Actually Love",
+    listLabel: "What we build",
     description:
-      "We have built Studiely as a live app on the App Store and Google Play. We build with React Native and Flutter to deliver native performance on both iOS and Android from a single codebase.",
+      "A bad app doesn't get a second chance. Users delete within 30 seconds if it's slow, confusing, or unreliable. We build apps that users keep — and come back to.",
     highlights: [
-      "React Native or Flutter - your choice or our recommendation",
-      "UI/UX design fully included",
-      "Backend API development (Node.js / Python)",
-      "App Store and Google Play submission handled",
-      "Push notifications, authentication, and in-app purchases",
-      "Post-launch maintenance packages available",
+      "Consumer-facing iOS and Android apps",
+      "Business productivity tools",
+      "Marketplace and platform apps",
+      "App Store and Play Store launch and optimisation",
+      "MVP development for funded startups",
     ],
+    approach:
+      "We begin with user flows before writing code. Every screen is prototyped and approved. We build for performance first — your app will load fast and feel native.",
+    stackLabel: "Technology",
+    stack: "React Native · Swift · Kotlin · Expo · Firebase · REST APIs · Redux",
     cta: "Build a Mobile App",
+    href: "/contact-us",
+  },
+  {
+    id: "uiux",
+    slug: "brand-ui-ux-design",
+    title: "UI/UX Design",
+    short: "UI",
+    sectionHeadline: "Design That Does More Than Look Good",
+    listLabel: "What we design",
+    description:
+      "Great design isn't decoration — it's what determines whether your user finds what they need or gives up and leaves. We design for human behaviour, then make it beautiful.",
+    highlights: [
+      "Product UI from wireframe to final design",
+      "User experience research and journey mapping",
+      "Design systems and component libraries",
+      "Website and landing page design",
+      "App UI for iOS and Android",
+      "Brand identity and visual language",
+    ],
+    approach:
+      "We research before we design. User interviews, competitive analysis, and behavioural data inform every decision. Then we build prototypes you can actually click through.",
+    stackLabel: "Tools",
+    stack: "Figma · Prototyping · InVision · Maze · Hotjar",
+    cta: "Design Your Product Experience",
+    href: "/contact-us",
+  },
+  {
+    id: "ai",
+    slug: "ai-solutions",
+    title: "AI Solutions",
+    short: "AI",
+    sectionHeadline: "Practical AI. Real Business Value.",
+    listLabel: "What we build",
+    description:
+      "AI is not a feature — it's a business decision. We help you identify where AI creates genuine value in your operation, then build it properly, not as a gimmick.",
+    highlights: [
+      "Customer service chatbots trained on your content",
+      "Internal knowledge base assistants",
+      "AI-powered content generation tools",
+      "Intelligent workflow automation",
+      "LLM integration into existing products",
+      "Custom model fine-tuning for specific use cases",
+    ],
+    stackLabel: "Technology",
+    stack:
+      "OpenAI · Claude API (Anthropic) · LangChain · Python · FastAPI · Vector Databases",
+    cta: "Discuss AI for Your Business",
     href: "/contact-us",
   },
   {
     id: "marketing",
     slug: "digital-marketing",
     title: "Digital Marketing",
-    short: "Growth Engine",
+    short: "SEO",
+    sectionHeadline: "Marketing That Actually Fills Your Pipeline",
+    listLabel: "What we do",
     description:
-      "SEO is a long game that compounds, and paid campaigns need clear execution. We set technical foundations correctly, build keyword strategy around real customer intent, and optimize campaigns transparently.",
+      "We don't run campaigns that just get impressions. We run campaigns that get customers — with every dollar tracked to business outcomes.",
     highlights: [
-      "Keyword research based on actual customer search behavior",
-      "Technical SEO audit and fixes",
-      "On-page optimization for key pages",
-      "Google Search Console and Analytics setup",
-      "Google and Meta ads setup with creative design",
-      "Campaign monitoring and monthly optimization",
+      "Search Engine Optimisation (technical + content)",
+      "Google Ads — Search, Display, and Shopping",
+      "Meta Ads — Facebook and Instagram",
+      "LinkedIn Ads (B2B campaigns)",
+      "Content marketing and blog strategy",
+      "Email marketing and automation",
+      "Analytics setup and conversion tracking",
     ],
-    cta: "Launch Growth Engine",
+    cta: "Launch Growth Campaigns",
     href: "/contact-us",
   },
   {
-    id: "brand",
-    slug: "brand-ui-ux-design",
-    title: "Brand & UI/UX Design",
-    short: "Identity + Product UI",
+    id: "teams",
+    slug: "dedicated-teams",
+    title: "Dedicated Teams",
+    short: "Team",
+    sectionHeadline: "Your Team. Our People.",
+    listLabel: "What you get",
     description:
-      "Your brand is not your logo. We design systems that hold together across website, app, social, and sales materials, then shape interfaces around how users actually think.",
+      "Hiring is slow, expensive, and risky. Dedicated teams give you experienced developers and designers working exclusively on your projects — without the overhead of employment.",
     highlights: [
-      "Logo design - 3 concepts, 2 revision rounds",
-      "Color palette and typography system",
-      "Brand voice and tone guidelines",
-      "Full brand guide document",
-      "Social media template kit",
-      "UI design for web and mobile with Figma handover",
+      "1–5 developers dedicated full-time to your company",
+      "A project manager who oversees delivery and communication",
+      "US timezone overlap (4+ hours) guaranteed",
+      "Weekly video syncs and daily Slack/Teams updates",
+      "Month-to-month flexibility — scale up or down",
+      "Ideal for: Growth-stage companies that need consistent development output but aren't ready to hire full in-house. Popular with US startups wanting senior development talent.",
     ],
-    cta: "Design Your Brand System",
-    href: "/contact-us",
-  },
-  {
-    id: "webapps",
-    slug: "web-applications-saas",
-    title: "Web Applications & SaaS",
-    short: "Web Apps / SaaS",
-    description:
-      "Off-the-shelf software rarely fits exactly. We build custom web applications, client portals, internal tools, and SaaS MVPs around the way your business actually operates.",
-    highlights: [
-      "React / Next.js frontend development",
-      "Node.js or Python backend and REST APIs",
-      "Database design for PostgreSQL, MongoDB, or Firebase",
-      "Authentication and role-based permissions",
-      "Cloud deployment on AWS, GCP, or Vercel",
-      "Full documentation and source code handover",
-    ],
-    cta: "Discuss Your Project",
+    cta: "Build Your Dedicated Team",
     href: "/contact-us",
   },
 ];
@@ -164,7 +197,7 @@ export function ServicesPageContent({ initialServiceSlug }: ServicesPageContentP
         const progress = idx / (itemCount - 1 || 1);
         const x = -420 + progress * 840;
         const y = Math.sin(progress * Math.PI) * -86;
-        const roadY = 68 - Math.sin(progress * Math.PI) * 52;
+        const roadY = 82 - Math.sin(progress * Math.PI) * 52;
         const nearFocal = idx === activeIndex;
         return {
           ...service,
@@ -183,10 +216,10 @@ export function ServicesPageContent({ initialServiceSlug }: ServicesPageContentP
     () => [
       { label: "Web", idx: SERVICES.findIndex((service) => service.id === "web"), top: true },
       { label: "App", idx: SERVICES.findIndex((service) => service.id === "mobile"), top: false },
+      { label: "UI", idx: SERVICES.findIndex((service) => service.id === "uiux"), top: true },
+      { label: "AI", idx: SERVICES.findIndex((service) => service.id === "ai"), top: false },
       { label: "SEO", idx: SERVICES.findIndex((service) => service.id === "marketing"), top: true },
-      { label: "SM", idx: SERVICES.findIndex((service) => service.id === "social"), top: false },
-      { label: "Brand", idx: SERVICES.findIndex((service) => service.id === "brand"), top: true },
-      { label: "Ads", idx: SERVICES.findIndex((service) => service.id === "webapps"), top: false },
+      { label: "Team", idx: SERVICES.findIndex((service) => service.id === "teams"), top: false },
     ],
     [],
   );
@@ -228,15 +261,13 @@ export function ServicesPageContent({ initialServiceSlug }: ServicesPageContentP
       <section className="px-6 py-14 md:px-16">
         <div className="mx-auto max-w-6xl text-center">
           <p className="mb-4 text-xs font-semibold uppercase tracking-[0.14em] text-slate-500">
-            Service Roadmap
+            WHAT WE OFFER
           </p>
           <h1 className="text-4xl font-extrabold text-[#0F172A] md:text-6xl">
-            Six services. One team.
-            <br />
-            <span className="text-gradient">Zero runaround.</span>
+            Every digital service your business needs.
           </h1>
           <p className="mx-auto mt-5 max-w-3xl text-lg text-slate-600">
-            Everything your business needs to compete online — designed, built, and managed by the same team that built Studiely from scratch.
+            Six specialisms. One team. No coordination overhead.
           </p>
         </div>
       </section>
@@ -267,7 +298,7 @@ export function ServicesPageContent({ initialServiceSlug }: ServicesPageContentP
             <div className="relative mb-3 block h-[96px] w-full max-w-[440px] md:hidden">
               <div className="absolute left-6 right-6 top-1/2 h-[2px] -translate-y-1/2 rounded-full bg-gradient-to-r from-[#1E3A8A88] via-[#6C63FF66] to-[#2DD4BF88]" />
               <motion.div
-                className="pointer-events-none absolute top-1/2 z-20 h-8 w-14 -translate-y-1/2"
+                className="pointer-events-none absolute top-[56%] z-20 h-8 w-14 -translate-y-1/2"
                 animate={{
                   left: `calc(12% + ${activeMobileStopIndex} * 15.2%)`,
                 }}
@@ -353,10 +384,8 @@ export function ServicesPageContent({ initialServiceSlug }: ServicesPageContentP
                       }`}
                     />
                     <span
-                      className={`block max-w-[140px] rounded-md border px-1.5 py-0.5 text-center text-xs font-semibold leading-tight tracking-[0.01em] sm:max-w-[180px] sm:text-sm md:max-w-[220px] md:text-lg ${
-                      item.nearFocal
-                        ? "border-[#CFE5FF] bg-[#F4FAFF] text-[#0F2742] shadow-[0_6px_16px_-10px_rgba(15,39,66,0.5)]"
-                        : "border-[#DCE8F5] bg-[#F4F8FD] text-[#264766]"
+                      className={`block max-w-[140px] px-1.5 py-0.5 text-center text-xs font-semibold leading-tight tracking-[0.01em] sm:max-w-[180px] sm:text-sm md:max-w-[220px] md:text-lg ${
+                        item.nearFocal ? "text-[#0F2742]" : "text-[#264766]"
                       }`}
                     >
                       {item.title}
@@ -379,9 +408,12 @@ export function ServicesPageContent({ initialServiceSlug }: ServicesPageContentP
                   {activeService.short}
                 </p>
                 <h2 className="mt-2 text-2xl font-bold text-[#F6FAFF] md:text-4xl">
-                  {activeService.title}
+                  {activeService.sectionHeadline}
                 </h2>
                 <p className="mt-3 text-[#C5D4E7]">{activeService.description}</p>
+                <p className="mt-4 text-sm font-semibold uppercase tracking-[0.12em] text-[#9CB3CF]">
+                  {activeService.listLabel ?? "What we build"}
+                </p>
                 <ul className="mt-4 grid gap-2 text-left sm:grid-cols-2">
                   {activeService.highlights.map((item) => (
                     <li
@@ -392,6 +424,20 @@ export function ServicesPageContent({ initialServiceSlug }: ServicesPageContentP
                     </li>
                   ))}
                 </ul>
+                {activeService.approach ? (
+                  <p className="mt-4 text-sm text-[#C5D4E7]">
+                    <span className="font-semibold text-[#EAF2FF]">Our approach: </span>
+                    {activeService.approach}
+                  </p>
+                ) : null}
+                {activeService.stack ? (
+                  <p className="mt-3 text-sm text-[#C5D4E7]">
+                    <span className="font-semibold text-[#EAF2FF]">
+                      {activeService.stackLabel ?? "Technology"}:{" "}
+                    </span>
+                    {activeService.stack}
+                  </p>
+                ) : null}
                 <Link
                   href={activeService.href}
                   className="mt-6 inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-[#6C63FF] to-[#1E3A8A] px-5 py-2.5 text-sm font-semibold text-white"

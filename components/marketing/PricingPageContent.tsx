@@ -4,359 +4,168 @@ import { useState } from "react";
 import Link from "next/link";
 import { Check } from "lucide-react";
 
-type TabKey = "packages" | "retainers" | "individual";
-
 type Plan = {
   name: string;
   price: string;
-  suffix?: string;
+  badge?: string;
   description: string;
   features: string[];
-  ctaLabel: string;
-  ctaHref: string;
-  compare: string;
   featured?: boolean;
 };
 
-const PACKAGES: Plan[] = [
+const PLANS: Plan[] = [
   {
-    name: "Start",
-    price: "$750",
+    name: "Starter",
+    price: "From $1,500",
     description:
-      "Everything you need to show up professionally online — website, social setup, and brand.",
+      "For small businesses needing a professional digital presence.",
     features: [
-      "Professional website — up to 6 pages",
-      "Mobile responsive + SEO-ready structure",
-      "Social media profile optimization (3 platforms)",
-      "Google Business Profile setup or optimization",
-      "Basic brand kit — logo, colors, fonts",
-      "Google Analytics setup",
-      "30 days post-launch support",
+      "Up to 8-page website",
+      "Mobile responsive",
+      "Basic SEO setup",
+      "Contact form",
+      "1 revision round",
+      "30-day support",
     ],
-    ctaLabel: "Get started →",
-    ctaHref: "/contact-us?package=start",
-    compare: "US agencies charge $3,000–$8,000 for this scope.",
   },
   {
-    name: "Grow",
-    price: "$1,500",
+    name: "Growth",
+    badge: "MOST POPULAR",
+    price: "From $4,000",
     description:
-      "The full digital foundation to scale with confidence — brand, web, social, and content.",
+      "For businesses ready to grow with a full digital strategy.",
     features: [
-      "Everything in START",
-      "Website expanded to 10 pages + blog setup",
-      "Full brand identity + brand guide document",
-      "30 branded social post templates",
-      "1 month social media management included",
-      "Email newsletter template design",
-      "60 days post-launch support",
+      "Up to 20 pages or web app",
+      "CMS integration",
+      "Full SEO setup",
+      "Analytics tracking",
+      "3 revision rounds",
+      "90-day support",
+      "Priority response",
     ],
-    ctaLabel: "Get started →",
-    ctaHref: "/contact-us?package=grow",
-    compare: "US agencies charge $8,000–$15,000 for this scope.",
     featured: true,
   },
   {
-    name: "Lead",
-    price: "$4,000",
-    suffix: "+",
+    name: "Scale",
+    price: "From $8,000",
     description:
-      "Complete digital transformation — web, app, brand, SEO, and marketing. Custom scoped in discovery.",
+      "For established businesses with complex multi-platform needs.",
     features: [
-      "Everything in GROW",
-      "Custom web app or mobile app (iOS + Android)",
-      "Advanced SEO — keyword research + Search Console",
-      "Paid ad campaign setup + ad creatives",
-      "Dedicated project manager",
-      "Quarterly strategy call",
-      "90 days post-launch support",
+      "Unlimited scope",
+      "Custom integrations",
+      "API connections",
+      "Performance optimization",
+      "Unlimited revisions",
+      "6-month support",
+      "Dedicated PM",
+      "Monthly reviews",
     ],
-    ctaLabel: "Let's talk →",
-    ctaHref: "/contact-us?package=lead",
-    compare: "US agencies charge $20,000–$50,000+ for this scope.",
-  },
-];
-
-const RETAINERS: Plan[] = [
-  {
-    name: "Steady",
-    price: "$400",
-    suffix: "/mo",
-    description:
-      "Consistent social presence across 2 platforms. Ideal for businesses that need to stay visible without the daily stress.",
-    features: [
-      "3 posts per week across 2 platforms",
-      "Custom graphics for every post — no stock templates",
-      "Caption writing + hashtag strategy",
-      "Community management — comments and DMs",
-      "Monthly performance report",
-    ],
-    ctaLabel: "Get started →",
-    ctaHref: "/contact-us?plan=steady",
-    compare: "US agencies charge $800–$2,000/mo for this.",
-  },
-  {
-    name: "Amplify",
-    price: "$600",
-    suffix: "/mo",
-    description:
-      "Higher frequency, more platforms, paid ad management. For businesses ready to grow their reach and run campaigns.",
-    features: [
-      "5 posts per week across 3 platforms",
-      "Custom graphics + 1 reel or video per week",
-      "Bi-weekly strategy call",
-      "Paid ad campaign management (client pays ad spend)",
-      "Full community management",
-      "Bi-weekly performance report",
-    ],
-    ctaLabel: "Get started →",
-    ctaHref: "/contact-us?plan=amplify",
-    compare: "US agencies charge $2,000–$5,000/mo for this.",
-    featured: true,
-  },
-  {
-    name: "Shield",
-    price: "$100",
-    suffix: "/mo",
-    description:
-      "Monthly website care — updates, security, backups, and performance monitoring. Peace of mind for your site.",
-    features: [
-      "Up to 5 content updates per month",
-      "Security monitoring and backups",
-      "Performance optimization checks",
-      "Monthly website health report",
-    ],
-    ctaLabel: "Get started →",
-    ctaHref: "/contact-us?plan=shield",
-    compare: "US agencies charge $300–$500/mo for this.",
   },
 ];
 
 const FAQ = [
   {
-    q: "Does the price include ad spend?",
-    a: "No — and we will always be explicit about this. Our fee covers the work: strategy, content, design, posting, and reporting. Your ad budget is separate and paid directly by you to the platform (Facebook, Google, Instagram). We never hold or manage your ad spend.",
+    q: "Do you offer payment plans?",
+    a: "Yes. For projects over $2,000: 50% deposit / 50% on completion. Larger projects have phased milestone payments.",
   },
   {
-    q: "How do payments work?",
-    a: "For one-time packages: 50% upfront to start, 50% on final delivery before handoff. For monthly retainers: billed at the start of each month. We accept bank transfer and major payment methods. No long-term contracts on retainers — cancel with 30 days notice.",
+    q: "What is included in the support period?",
+    a: "Bug fixes, minor content updates, performance monitoring. Feature additions quoted separately.",
   },
   {
-    q: 'What is included in "post-launch support"?',
-    a: "Post-launch support means we remain available to fix bugs, answer questions, and make minor adjustments to your website for the stated period (30, 60, or 90 days depending on the package). It does not include new feature development — that would be a separate quote.",
+    q: "Can I start Starter and upgrade later?",
+    a: "Absolutely. All projects built with scalability in mind. Moving from Starter to Growth is straightforward.",
   },
   {
-    q: "What is the revision policy?",
-    a: "Every package includes two full rounds of feedback after the first draft. We scope this clearly before starting. If a project grows significantly in scope, we discuss it openly and agree before proceeding — you will never be surprised by a change in cost without prior conversation.",
-  },
-  {
-    q: "Can I upgrade my package later?",
-    a: "Yes. If you start with START and want to upgrade to GROW, you pay the difference. We are not trying to lock you into a decision — we want the relationship to grow with your business.",
-  },
-  {
-    q: "I need something not listed. Can you help?",
-    a: "Absolutely. Book a free 30-minute discovery call and tell us what you're trying to build. We'll give you an honest assessment and a clear quote — no pressure.",
+    q: "How does Dedicated Teams pricing work?",
+    a: "Monthly rate per team member based on seniority. Minimum 3-month engagement. Scale up/down with 30 days' notice.",
   },
 ];
 
 export function PricingPageContent() {
-  const [activeTab, setActiveTab] = useState<TabKey>("packages");
   const [openFaq, setOpenFaq] = useState<number | null>(null);
-
-  const plans = activeTab === "packages" ? PACKAGES : RETAINERS;
 
   return (
     <div className="pb-8 pt-12 text-[#0F172A]">
       <section className="px-6 py-16 md:px-16">
         <div className="mx-auto max-w-6xl text-center">
-          <p className="mb-4 text-xs font-semibold uppercase tracking-[0.14em] text-[#2DD4BF]">
-            Transparent pricing
+          <p className="mb-4 text-xs font-semibold uppercase tracking-[0.14em] text-slate-500">
+            TRANSPARENT PRICING
           </p>
           <h1 className="text-4xl font-extrabold md:text-6xl">
-            Simple pricing.
-            <br />
-            <span className="text-gradient">No agency games.</span>
+            No mystery. No hourly surprises.
           </h1>
           <p className="mt-5 max-w-3xl text-lg text-slate-600">
-            We publish every price because we&apos;re confident in our value. No
-            quote requests for standard work. No back-and-forth. No surprises —
-            ever.
+            Three tiers for most projects. Custom quotes for everything else.
+            Every tier includes the same quality — the difference is scope.
           </p>
         </div>
       </section>
 
       <section className="px-6 pb-14 md:px-16">
         <div className="mx-auto max-w-6xl">
-          <div className="mb-10 inline-flex flex-wrap gap-2 rounded-xl border border-white/70 bg-white/80 p-1 backdrop-blur-xl">
-            {(["packages", "retainers", "individual"] as TabKey[]).map((tab) => (
-              <button
-                key={tab}
-                onClick={() => setActiveTab(tab)}
-                className={`rounded-lg px-4 py-2 text-sm font-semibold capitalize transition ${
-                  activeTab === tab
-                    ? "bg-gradient-to-r from-[#6C63FF] to-[#1E3A8A] text-white shadow-[0_14px_24px_-16px_rgba(108,99,255,0.9)]"
-                    : "text-slate-500 hover:text-slate-800"
-                }`}
+          <div className="grid gap-6 md:grid-cols-3">
+            {PLANS.map((plan) => (
+              <article
+                key={plan.name}
+                className={`flex flex-col rounded-2xl border p-6 ${
+                  plan.featured
+                    ? "border-[#1E3A8A66] bg-gradient-to-br from-[#f4f8ff] via-white to-[#eef9ff] shadow-[0_22px_44px_-26px_rgba(30,58,138,0.6)]"
+                    : "border-white/80 bg-white/80 shadow-[0_18px_40px_-30px_rgba(15,23,42,0.45)]"
+                } text-center md:text-left`}
               >
-                {tab === "packages"
-                  ? "Launch Packages"
-                  : tab === "retainers"
-                    ? "Monthly Retainers"
-                    : "Individual Services"}
-              </button>
+                {plan.badge ? (
+                  <span className="mb-4 inline-block w-fit rounded-full bg-gradient-to-r from-[#1E3A8A] to-[#6C63FF] px-3 py-1 text-[10px] font-bold uppercase tracking-[0.08em] text-white">
+                    {plan.badge}
+                  </span>
+                ) : null}
+                <p className="text-center text-xs font-bold uppercase tracking-[0.1em] text-slate-500">
+                  {plan.name}
+                </p>
+                <p className="mt-2 text-center text-5xl font-extrabold text-[#0F172A]">
+                  {plan.price}
+                </p>
+                <p className="mt-3 text-center text-sm leading-6 text-slate-600">
+                  {plan.description}
+                </p>
+                <div className="my-5 h-px bg-slate-200" />
+                <ul className="mb-6 space-y-3 text-sm text-slate-600">
+                  {plan.features.map((feature) => (
+                    <li key={feature} className="flex gap-2">
+                      <span className="mt-0.5 inline-flex h-4 w-4 items-center justify-center rounded-full bg-[#1E3A8A22]">
+                        <Check className="h-3 w-3 text-[#1E3A8A]" />
+                      </span>
+                      <span>{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+                <Link
+                  href="/contact-us"
+                  className={`mt-auto inline-flex justify-center rounded-lg px-4 py-2.5 text-sm font-semibold ${
+                    plan.featured
+                      ? "bg-gradient-to-r from-[#6C63FF] to-[#1E3A8A] text-white"
+                      : "border border-slate-300 bg-white text-slate-700"
+                  }`}
+                >
+                  Start Your Project →
+                </Link>
+              </article>
             ))}
           </div>
-
-          {activeTab !== "individual" ? (
-            <div>
-              <h2 className="mb-1 text-center text-2xl font-extrabold">
-                {activeTab === "packages"
-                  ? "Launch Packages"
-                  : "Monthly Retainers"}
-              </h2>
-              <p className="mb-8 text-center text-sm text-slate-600">
-                {activeTab === "packages"
-                  ? "One-time, fixed price. Everything scoped upfront. No invoice surprises."
-                  : "Ongoing services billed monthly. Cancel with 30 days notice — no long-term contracts."}
-              </p>
-              <div className="grid gap-6 md:grid-cols-3">
-                {plans.map((plan) => (
-                  <article
-                    key={plan.name}
-                    className={`flex flex-col rounded-2xl border p-6 ${
-                      plan.featured
-                        ? "border-[#1E3A8A66] bg-gradient-to-br from-[#f4f8ff] via-white to-[#eef9ff] shadow-[0_22px_44px_-26px_rgba(30,58,138,0.6)]"
-                        : "border-white/80 bg-white/80 shadow-[0_18px_40px_-30px_rgba(15,23,42,0.45)]"
-                    } text-center md:text-left`}
-                  >
-                    {plan.featured ? (
-                      <span className="mb-4 inline-block w-fit rounded-full bg-gradient-to-r from-[#1E3A8A] to-[#2DD4BF] px-3 py-1 text-[10px] font-bold uppercase tracking-[0.08em] text-white">
-                        Most popular
-                      </span>
-                    ) : null}
-                    <p className="text-center text-xs font-bold uppercase tracking-[0.1em] text-[#2DD4BF]">
-                      {plan.name}
-                    </p>
-                    <p className="mt-2 text-center text-5xl font-extrabold text-[#0F172A]">
-                      {plan.price}
-                      {plan.suffix ? (
-                        <span className="text-2xl font-semibold text-slate-500">
-                          {plan.suffix}
-                        </span>
-                      ) : null}
-                    </p>
-                    <p className="mt-3 text-center text-sm leading-6 text-slate-600">
-                      {plan.description}
-                    </p>
-                    <div className="my-5 h-px bg-slate-200" />
-                    <ul className="mb-6 space-y-3 text-sm text-slate-600">
-                      {plan.features.map((feature) => (
-                        <li key={feature} className="flex gap-2">
-                          <span className="mt-0.5 inline-flex h-4 w-4 items-center justify-center rounded-full bg-[#10B98122]">
-                            <Check className="h-3 w-3 text-[#10B981]" />
-                          </span>
-                          <span>{feature}</span>
-                        </li>
-                      ))}
-                    </ul>
-                    <Link
-                      href={plan.ctaHref}
-                      className={`mt-auto inline-flex justify-center rounded-lg px-4 py-2.5 text-sm font-semibold ${
-                        plan.featured
-                          ? "bg-gradient-to-r from-[#1E3A8A] to-[#2DD4BF] text-white"
-                          : plan.name === "Lead"
-                            ? "border border-slate-300 bg-white text-slate-700"
-                            : "border border-[#2DD4BF] text-[#2DD4BF]"
-                      }`}
-                    >
-                      {plan.ctaLabel}
-                    </Link>
-                    <p className="mt-4 border-t border-slate-200 pt-3 text-center text-xs text-slate-500 md:text-left">
-                      {plan.compare}
-                    </p>
-                  </article>
-                ))}
-              </div>
-              {activeTab === "retainers" ? (
-                <p className="mt-5 text-sm text-slate-500">
-                  Ad spend is always paid directly by the client to the platform.
-                  We never hold or manage your ad budget.
-                </p>
-              ) : null}
-            </div>
-          ) : (
-            <div>
-              <h2 className="mb-1 text-center text-2xl font-extrabold">Individual Services</h2>
-              <p className="mb-8 text-center text-sm text-slate-600">
-                Not every project needs a full package. Pick exactly what you need.
-              </p>
-              <div className="overflow-hidden rounded-2xl border border-white/80 bg-white/85 shadow-[0_18px_40px_-30px_rgba(15,23,42,0.45)]">
-                <table className="w-full text-left text-sm">
-                  <thead className="bg-slate-100 text-slate-500">
-                    <tr>
-                      <th className="px-4 py-3">Service</th>
-                      <th className="px-4 py-3">Our Price</th>
-                      <th className="px-4 py-3">US Agency Rate</th>
-                      <th className="px-4 py-3">You Save</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {[
-                      ["Logo Design (3 concepts, 2 revision rounds)", "$125", "$800–$2,500", "~85%"],
-                      ["Landing Page — single, conversion-focused", "$200", "$1,500–$3,000", "~87%"],
-                      ["Brand Identity Package — full system", "$300", "$2,000–$6,000", "~90%"],
-                      ["Social Media Audit + Strategy Document", "$100", "$500–$1,500", "~80%"],
-                      ["SEO Audit + Full Report", "$150", "$800–$2,000", "~82%"],
-                      ["Mobile App — iOS or Android", "From $2,000", "$15,000–$40,000", "~87%"],
-                      ["Mobile App — iOS + Android", "From $3,500", "$25,000–$80,000", "~90%"],
-                      ["Web Application / SaaS MVP", "From $2,500", "$15,000–$50,000", "~85%"],
-                    ].map(([service, ourPrice, usRate, save]) => (
-                      <tr key={service} className="border-t border-slate-200">
-                        <td className="px-4 py-3 text-slate-800">{service}</td>
-                        <td className="px-4 py-3 font-semibold text-[#2DD4BF]">{ourPrice}</td>
-                        <td className="px-4 py-3 text-slate-400 line-through">{usRate}</td>
-                        <td className="px-4 py-3 font-semibold text-[#10B981]">{save}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-              <p className="mt-4 text-xs text-slate-500">
-                All prices in USD. Custom quotes available for any project not listed above.
-              </p>
-            </div>
-          )}
-
-          <div className="mt-12 flex flex-wrap items-center justify-between gap-5 rounded-2xl border border-[#1E3A8A44] bg-gradient-to-r from-[#eef5ff] via-white to-[#ecf9ff] p-7 shadow-[0_20px_48px_-30px_rgba(15,23,42,0.35)]">
-            <div>
-              <p className="text-lg font-bold">
-                ⭐ Founding Client Rate — 20% off START &amp; GROW
-              </p>
-              <p className="mt-1 text-sm text-slate-600">
-                We&apos;re building our US portfolio. Get 20% off either package in
-                exchange for a written testimonial and permission to feature your
-                project. One condition. Real savings. Available for a limited time.
-              </p>
-            </div>
-            <Link
-              href="/contact-us?offer=founding"
-              className="rounded-lg bg-gradient-to-r from-[#1E3A8A] to-[#2DD4BF] px-5 py-2.5 text-sm font-semibold text-white"
-            >
-              Claim the offer →
-            </Link>
-          </div>
+          <p className="mt-6 rounded-xl border border-[#1E3A8A33] bg-[#eff5ff] px-4 py-3 text-sm text-[#264766]">
+            ⚠ Prices are starting points. All quotes are fixed-price — no hourly
+            billing surprises. Payment plans available for projects over $2,000.
+          </p>
         </div>
       </section>
 
       <section className="px-6 py-16 md:px-16">
         <div className="mx-auto max-w-6xl text-center">
-          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.14em] text-[#2DD4BF]">
+          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.14em] text-slate-500">
             Pricing FAQ
           </p>
           <h2 className="text-3xl font-extrabold md:text-4xl">
-            Common questions
-            <br />
-            about our pricing.
+            Common questions about our pricing.
           </h2>
           <div className="mt-8 space-y-3">
             {FAQ.map((item, index) => (
@@ -380,37 +189,6 @@ export function PricingPageContent() {
                 ) : null}
               </div>
             ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="border-y border-white/70 bg-white/75 px-6 py-16 text-center md:px-16">
-        <div className="mx-auto max-w-4xl">
-          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.14em] text-[#2DD4BF]">
-            Still have questions?
-          </p>
-          <h2 className="text-3xl font-extrabold md:text-5xl">
-            Book a free call.
-            <br />
-            <span className="text-gradient">Get straight answers.</span>
-          </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-slate-600">
-            30 minutes. No pitch. We&apos;ll look at your business and tell you exactly
-            what we&apos;d recommend — and what we wouldn&apos;t.
-          </p>
-          <div className="mt-7 flex flex-wrap justify-center gap-3">
-            <Link
-              href="https://calendly.com/skyensystems/discovery"
-              className="rounded-lg bg-gradient-to-r from-[#1E3A8A] to-[#2DD4BF] px-6 py-3 text-sm font-semibold text-white"
-            >
-              Book a Free Discovery Call ↗
-            </Link>
-            <Link
-              href="/contact-us"
-              className="rounded-lg border border-[#2DD4BF66] bg-white px-6 py-3 text-sm font-semibold text-[#158a77]"
-            >
-              Send a Message
-            </Link>
           </div>
         </div>
       </section>

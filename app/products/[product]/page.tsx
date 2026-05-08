@@ -19,6 +19,20 @@ const PRODUCT_META: Record<string, { title: string; description: string }> = {
       "Learn about Linguatude, Skyen Systems' upcoming exam-focused English learning product.",
   },
 };
+const PRODUCT_SCHEMA: Record<string, { name: string; description: string }> = {
+  studiely: {
+    name: "Studiely",
+    description: "AI study app with flashcards, quizzes, and personalized revision plans.",
+  },
+  "make-my-lesson": {
+    name: "Make My Lesson",
+    description: "AI lesson planning product for teachers.",
+  },
+  linguatude: {
+    name: "Linguatude",
+    description: "AI-powered language learning platform in development.",
+  },
+};
 
 type ProductPageProps = {
   params: Promise<{ product: string }>;
@@ -36,7 +50,12 @@ export async function generateMetadata({
         "Explore Skyen products: Studiely, Make My Lesson, and Linguatude.",
     };
   }
-  return meta;
+  return {
+    ...meta,
+    alternates: {
+      canonical: `/products/${product}`,
+    },
+  };
 }
 
 export default async function ProductDetailPage({ params }: ProductPageProps) {
@@ -44,5 +63,24 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
   if (!PRODUCT_META[product]) {
     notFound();
   }
-  return <ProductsPageContent initialProductId={product} />;
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: PRODUCT_SCHEMA[product].name,
+    description: PRODUCT_SCHEMA[product].description,
+    brand: {
+      "@type": "Organization",
+      name: "Skyen Systems",
+    },
+  };
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+      />
+      <ProductsPageContent initialProductId={product} />
+    </>
+  );
 }

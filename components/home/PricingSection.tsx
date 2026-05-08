@@ -1,78 +1,65 @@
 "use client";
 
-import Link from "next/link";
 import { motion } from "framer-motion";
 
-const plans = [
+const pillars = [
   {
-    name: "Start",
-    price: "$750",
+    name: "PSEB Registered",
     description:
-      "Professional website, social setup, Google business profile, and basic brand kit.",
-    featured: false,
+      "We are a formally registered software house under Pakistan's Software Export Board — meaning quality, accountability, and a structured operation, not a freelancer.",
   },
   {
-    name: "Grow",
-    price: "$1,500",
+    name: "US Market Focused",
     description:
-      "Everything in Start plus 10-page site, full brand identity, and one month social management.",
-    featured: true,
+      "We understand American business culture, customer expectations, and market dynamics. Our work is built for US users, not adapted for them as an afterthought.",
   },
   {
-    name: "Lead",
-    price: "$4,000+",
+    name: "Full Stack",
     description:
-      "Full transformation: web, app, SEO, ad setup, and dedicated project management.",
-    featured: false,
+      "Website. App. Design. AI. Marketing. One team handles everything. No briefing seven different vendors and hoping they work together.",
+  },
+  {
+    name: "Long-Term Partners",
+    description:
+      "We measure success in client relationships that last years, not projects that close and move on. Your growth is how we grow.",
   },
 ];
 
 export function PricingSection() {
   return (
     <section id="pricing" className="px-6 py-20 md:px-10">
-      <div className="mx-auto max-w-7xl">
+      <div className="mx-auto max-w-7xl text-center">
         <motion.div
           initial={{ opacity: 0, y: 30, filter: "blur(10px)" }}
           whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
           viewport={{ once: true, amount: 0.3 }}
           className="mb-10"
         >
-          <h2 className="text-3xl font-bold text-[#0F172A] md:text-4xl">Simple pricing. No agency games.</h2>
+          <p className="mb-2 text-xs font-semibold uppercase tracking-[0.14em] text-slate-500">
+            WHY CHOOSE US
+          </p>
+          <h2 className="text-3xl font-bold text-[#0F172A] md:text-4xl">
+            The agency that works like part of your team.
+          </h2>
           <p className="mt-4 max-w-3xl text-slate-600">
-            Most agencies hide cost behind calls and custom quotes. We do not. Clear packages, clear deliverables, and clear ownership.
+            Built for outcomes, accountability, and long-term growth.
           </p>
         </motion.div>
-        <div className="grid gap-5 md:grid-cols-3">
-          {plans.map((plan, index) => (
+        <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+          {pillars.map((pillar, index) => (
             <motion.article
-              key={plan.name}
+              key={pillar.name}
               initial={{ opacity: 0, y: 30, filter: "blur(10px)" }}
               whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
               viewport={{ once: true, amount: 0.2 }}
               transition={{ delay: index * 0.08 }}
               whileHover={{ y: -6, scale: 1.02 }}
-              className={`rounded-3xl p-6 ${
-                plan.featured
-                  ? "border border-[#20344a] bg-[#111827] text-white shadow-[0_30px_70px_-40px_rgba(17,24,39,1)]"
-                  : "border border-white/80 bg-white/80 text-[#0F172A]"
-              }`}
+              className="rounded-3xl border border-white/80 bg-white/80 p-6 text-center text-[#0F172A]"
             >
-              <h3 className="text-xl font-bold">{plan.name}</h3>
-              <p className="mt-1 text-3xl font-bold">{plan.price}</p>
-              <p className={`mt-3 text-sm ${plan.featured ? "text-slate-200" : "text-slate-600"}`}>
-                {plan.description}
-              </p>
-              <Link href="/pricing" className={`mt-4 inline-block text-sm font-semibold ${plan.featured ? "text-[#9adfff]" : "text-[#6C63FF]"}`}>
-                Get started -&gt;
-              </Link>
+              <h3 className="text-xl font-bold">{pillar.name}</h3>
+              <p className="mt-3 text-sm text-slate-600">{pillar.description}</p>
             </motion.article>
           ))}
-        </div>
-
-        <div className="mt-8">
-          <Link href="/pricing" className="inline-flex rounded-xl bg-[#0F172A] px-6 py-3 text-sm font-semibold text-white">
-            See full pricing details
-          </Link>
         </div>
       </div>
     </section>

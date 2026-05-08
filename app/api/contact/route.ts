@@ -2,14 +2,14 @@ import { NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 
 type ContactPayload = {
-  name: string;
-  organization?: string;
+  fullName: string;
+  company?: string;
   service: string;
   email: string;
-  phone: string;
-  message: string;
-  agreeTerms?: boolean;
-  agreePrivacy?: boolean;
+  phone?: string;
+  budget: string;
+  projectDescription: string;
+  source: string;
 };
 
 const requiredEnvVars = [
@@ -25,10 +25,10 @@ function validatePayload(data: unknown): data is ContactPayload {
   if (!data || typeof data !== "object") return false;
   const payload = data as Record<string, unknown>;
 
-  const requiredFields = ["name", "service", "email", "phone", "message"] as const;
+  const requiredFields = ["fullName", "service", "email", "budget", "projectDescription", "source"] as const;
   return requiredFields.every(
     (field) => typeof payload[field] === "string" && payload[field].trim().length > 0,
-  );
+  ) && (payload.projectDescription as string).trim().length >= 50;
 }
 
 export async function POST(request: Request) {
@@ -72,16 +72,16 @@ export async function POST(request: Request) {
       text: [
         "New inquiry from skyensolutions.com",
         "",
-        `Name: ${data.name}`,
-        `Organization: ${data.organization?.trim() || "N/A"}`,
+        `Name: ${data.fullName}`,
+        `Company: ${data.company?.trim() || "N/A"}`,
         `Email: ${data.email}`,
-        `Phone: ${data.phone}`,
+        `Phone: ${data.phone?.trim() || "N/A"}`,
         `Service: ${data.service}`,
-        `Agreed Terms: ${data.agreeTerms ? "Yes" : "No"}`,
-        `Agreed Privacy: ${data.agreePrivacy ? "Yes" : "No"}`,
+        `Budget: ${data.budget}`,
+        `How did you find us?: ${data.source}`,
         "",
-        "Message:",
-        data.message,
+        "Project Description:",
+        data.projectDescription,
       ].join("\n"),
     });
 

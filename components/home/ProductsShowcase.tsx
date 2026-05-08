@@ -1,48 +1,58 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
 
 const products = [
   {
     name: "Studiely",
-    status: "Live",
-    tag: "Learning, made personal.",
-    blurb: "A full-stack education platform live on iOS, Android, and Web.",
-    href: "/products/studiely#product-showcase",
-    cta: "Visit Studiely",
+    status: "Live on App Store and Play Store",
+    tag: "AI-powered study tool.",
+    blurb:
+      "Smart flashcards, adaptive quizzes, personalised revision. For students who want to study smarter.",
+    logo: "/logo-studiely.jpeg",
+    href: "https://studiely.com",
+    cta: "Visit me",
   },
   {
     name: "Make My Lesson",
-    status: "Arriving soon",
-    tag: "Teaching, reimagined.",
-    blurb: "AI-powered lesson planning with instant structured plans.",
-    href: "/products/make-my-lesson#product-showcase",
-    cta: "Join waitlist",
+    status: "In development",
+    tag: "AI lesson plan generator for teachers.",
+    blurb:
+      "Curriculum-aligned, time-saving, editable. For educators who have enough on their plate.",
+    logo: "/logo-makemylesson.png",
+    href: "https://makemylesson.ai",
+    cta: "Visit me",
   },
   {
     name: "Linguatude",
-    tag: "English, unlocked.",
-    status: "Coming soon",
-    blurb: "Adaptive English test prep with real exam simulations.",
-    href: "/products/linguatude#product-showcase",
-    cta: "Notify me",
+    tag: "In development.",
+    status: "Language learning that's actually effective",
+    blurb:
+      "AI conversation practice + spaced repetition + gamification. For anyone ready to actually become fluent.",
+    logo: "/logo-linguatude.jpg",
+    href: "https://linguatude.com",
+    cta: "Visit me",
   },
 ];
 
 export function ProductsShowcase() {
   return (
     <section className="bg-[#0B1220] px-6 py-20 text-white md:px-10">
-      <div className="mx-auto max-w-7xl">
+      <div className="mx-auto max-w-7xl text-center">
         <motion.div
           initial={{ opacity: 0, y: 30, filter: "blur(10px)" }}
           whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
           viewport={{ once: true, amount: 0.25 }}
           className="mb-10"
         >
-          <h2 className="text-3xl font-bold md:text-4xl">We do not just build for clients. We build for <span className="text-gradient">ourselves.</span></h2>
+          <p className="mb-2 text-xs font-semibold uppercase tracking-[0.14em] text-slate-300">
+            OUR PRODUCTS
+          </p>
+          <h2 className="text-3xl font-bold md:text-4xl">We don't just build for clients. We build for users.</h2>
           <p className="mt-4 max-w-3xl text-slate-300">
-            Meet the Skyen Group products built by the same team and standards we bring to client projects.
+            Products built and tested by the same team that builds your projects.
           </p>
         </motion.div>
 
@@ -55,22 +65,31 @@ export function ProductsShowcase() {
               viewport={{ once: true, amount: 0.2 }}
               transition={{ delay: index * 0.08 }}
               whileHover={{ y: -6, scale: 1.02 }}
-              className="group min-w-[18rem] snap-start rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur xl:min-w-[22rem]"
+              className="group min-w-[18rem] snap-start rounded-2xl border border-white/10 bg-white/5 p-6 text-center backdrop-blur xl:min-w-[22rem]"
             >
-              <div className="mb-4 flex items-center justify-between">
+              <div className="mb-4 flex justify-center">
+                <div className="relative h-14 w-14 overflow-hidden rounded-xl border border-white/15 bg-white/10 p-1">
+                  <Image
+                    src={product.logo}
+                    alt={`${product.name} logo`}
+                    fill
+                    sizes="56px"
+                    className="object-contain"
+                  />
+                </div>
+              </div>
+              <div className="mb-4 flex flex-col items-center justify-center gap-1">
                 <h3 className="text-xl font-semibold">{product.name}</h3>
-                {product.name === "Studiely" ? (
-                  <span className="inline-flex items-center gap-2 text-xs text-[#7efeb0]">
-                    <span className="h-2 w-2 animate-pulse rounded-full bg-[#7efeb0]" />
-                    Live
-                  </span>
-                ) : (
-                  <span className="text-xs text-slate-400">{product.status}</span>
-                )}
+                <span className="text-xs text-slate-400">{product.status}</span>
               </div>
               <p className="text-sm font-semibold text-gradient">{product.tag}</p>
               <p className="mt-3 text-sm leading-7 text-slate-300">{product.blurb}</p>
-              <Link href={product.href} className="mt-6 inline-block rounded-lg border border-[#1E3A8A66] px-4 py-2 text-sm font-semibold text-[#1E3A8A] transition-colors group-hover:bg-white/10">
+              <Link
+                href={product.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-6 inline-block rounded-lg bg-gradient-to-r from-[#6C63FF] to-[#1E3A8A] px-4 py-2 text-sm font-semibold text-white shadow-[0_14px_30px_-18px_rgba(30,58,138,0.95)] transition-all duration-300 hover:brightness-110 hover:shadow-[0_18px_36px_-18px_rgba(30,58,138,1)]"
+              >
                 {product.cta}
               </Link>
             </motion.article>

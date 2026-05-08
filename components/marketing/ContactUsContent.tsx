@@ -5,25 +5,35 @@ import Link from "next/link";
 
 export default function ContactUsContent() {
   const [formData, setFormData] = useState({
-    name: "",
-    business: "",
+    fullName: "",
     service: "",
     email: "",
+    phone: "",
+    company: "",
     budget: "",
-    message: "",
+    projectDescription: "",
+    source: "",
   });
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
 
   const services = [
-    "Website",
+    "Web Development",
     "Mobile App",
-    "Social Media Management",
-    "Digital Marketing / SEO",
-    "Brand Design",
-    "Web Application / SaaS",
-    "Founding Client Offer",
+    "UI/UX Design",
+    "AI Solutions",
+    "Digital Marketing",
+    "Dedicated Teams",
+    "Products",
+    "Other",
+  ];
+  const budgetRanges = [
+    "Under $2,000",
+    "$2,000–$5,000",
+    "$5,000–$15,000",
+    "$15,000+",
     "Not sure yet",
   ];
+  const sourceOptions = ["Google", "LinkedIn", "Referral", "Social Media", "Other"];
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -37,6 +47,17 @@ export default function ContactUsContent() {
       });
 
       if (response.ok) {
+        if (typeof window !== "undefined") {
+          const withDataLayer = window as Window & {
+            dataLayer?: Array<Record<string, string>>;
+          };
+          withDataLayer.dataLayer = withDataLayer.dataLayer || [];
+          withDataLayer.dataLayer.push({
+            event: "contact_form_submit",
+            service_interest: formData.service,
+            budget_range: formData.budget,
+          });
+        }
         setStatus("success");
       } else {
         setStatus("error");
@@ -64,7 +85,9 @@ export default function ContactUsContent() {
             <h2 className="text-2xl font-bold">Book or message</h2>
             <p className="text-slate-600">Book a free discovery call or send your requirements below.</p>
             <p className="text-sm text-slate-600">Email: hello@skyensystems.com</p>
-            <p className="text-sm text-slate-600">Response time: within 24 hours</p>
+            <p className="text-sm text-slate-600">
+              We respond to all enquiries within 4 business hours during US Eastern business hours (Mon–Fri 9am–6pm ET). WhatsApp: [Insert number].
+            </p>
             <a
               href="https://calendly.com/skyensystems/discovery"
               target="_blank"
@@ -91,43 +114,55 @@ export default function ContactUsContent() {
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid gap-4 md:grid-cols-2">
                   <div>
-                    <label className="mb-1 block text-sm font-semibold text-slate-700">Name</label>
+                    <label className="mb-1 block text-sm font-semibold text-slate-700">Full Name</label>
                     <input 
                       required
                       type="text" 
-                      value={formData.name}
-                      onChange={(e) => setFormData({...formData, name: e.target.value})}
-                      placeholder="Your Name"
+                      value={formData.fullName}
+                      onChange={(e) => setFormData({...formData, fullName: e.target.value})}
+                      placeholder="Your full name"
                       className="w-full rounded-lg border border-slate-300 px-4 py-3 outline-none focus:border-[#6D5DF6]"
                     />
                   </div>
                   <div>
-                    <label className="mb-1 block text-sm font-semibold text-slate-700">Business</label>
-                    <input 
-                      type="text" 
-                      value={formData.business}
-                      onChange={(e) => setFormData({...formData, business: e.target.value})}
-                      placeholder="Business Name"
+                    <label className="mb-1 block text-sm font-semibold text-slate-700">Email Address</label>
+                    <input
+                      required
+                      type="email"
+                      value={formData.email}
+                      onChange={(e) => setFormData({...formData, email: e.target.value})}
+                      placeholder="email@example.com"
                       className="w-full rounded-lg border border-slate-300 px-4 py-3 outline-none focus:border-[#6D5DF6]"
                     />
                   </div>
-                </div>
-
-                <div>
-                  <label className="mb-1 block text-sm font-semibold text-slate-700">Email</label>
-                  <input
-                    required
-                    type="email"
-                    value={formData.email}
-                    onChange={(e) => setFormData({...formData, email: e.target.value})}
-                    placeholder="email@example.com"
-                    className="w-full rounded-lg border border-slate-300 px-4 py-3 outline-none focus:border-[#6D5DF6]"
-                  />
                 </div>
 
                 <div className="grid gap-4 md:grid-cols-2">
                   <div>
-                    <label className="mb-1 block text-sm font-semibold text-slate-700">Service</label>
+                    <label className="mb-1 block text-sm font-semibold text-slate-700">Phone Number with country code</label>
+                    <input 
+                      type="tel" 
+                      value={formData.phone}
+                      onChange={(e) => setFormData({...formData, phone: e.target.value})}
+                      placeholder="+1 555 000 1234"
+                      className="w-full rounded-lg border border-slate-300 px-4 py-3 outline-none focus:border-[#6D5DF6]"
+                    />
+                  </div>
+                  <div>
+                    <label className="mb-1 block text-sm font-semibold text-slate-700">Company Name</label>
+                    <input 
+                      type="text" 
+                      value={formData.company}
+                      onChange={(e) => setFormData({...formData, company: e.target.value})}
+                      placeholder="Your company"
+                      className="w-full rounded-lg border border-slate-300 px-4 py-3 outline-none focus:border-[#6D5DF6]"
+                    />
+                  </div>
+                </div>
+
+                <div className="grid gap-4 md:grid-cols-2">
+                  <div>
+                    <label className="mb-1 block text-sm font-semibold text-slate-700">Service of Interest</label>
                     <select
                       required
                       value={formData.service}
@@ -139,27 +174,43 @@ export default function ContactUsContent() {
                     </select>
                   </div>
                   <div>
-                    <label className="mb-1 block text-sm font-semibold text-slate-700">Budget</label>
-                    <input 
-                      type="text"
+                    <label className="mb-1 block text-sm font-semibold text-slate-700">Budget Range</label>
+                    <select
+                      required
                       value={formData.budget}
                       onChange={(e) => setFormData({...formData, budget: e.target.value})}
-                      placeholder="$750 - $1,500"
                       className="w-full rounded-lg border border-slate-300 px-4 py-3 outline-none focus:border-[#6D5DF6]"
-                    />
+                    >
+                      <option value="">Select budget range</option>
+                      {budgetRanges.map((range) => <option key={range} value={range}>{range}</option>)}
+                    </select>
                   </div>
                 </div>
 
                 <div>
-                  <label className="mb-1 block text-sm font-semibold text-slate-700">Message</label>
+                  <label className="mb-1 block text-sm font-semibold text-slate-700">Project Description</label>
                   <textarea 
                     required
+                    minLength={50}
                     rows={4} 
-                    value={formData.message}
-                    onChange={(e) => setFormData({...formData, message: e.target.value})}
-                    placeholder="Tell us about your project"
+                    value={formData.projectDescription}
+                    onChange={(e) => setFormData({...formData, projectDescription: e.target.value})}
+                    placeholder="Tell us about your project (minimum 50 characters)"
                     className="w-full rounded-lg border border-slate-300 px-4 py-3 outline-none focus:border-[#6D5DF6]"
                   />
+                </div>
+
+                <div>
+                  <label className="mb-1 block text-sm font-semibold text-slate-700">How did you find us?</label>
+                  <select
+                    required
+                    value={formData.source}
+                    onChange={(e) => setFormData({...formData, source: e.target.value})}
+                    className="w-full rounded-lg border border-slate-300 px-4 py-3 outline-none focus:border-[#6D5DF6]"
+                  >
+                    <option value="">Select one</option>
+                    {sourceOptions.map((option) => <option key={option} value={option}>{option}</option>)}
+                  </select>
                 </div>
 
                 <div className="text-xs text-slate-500">

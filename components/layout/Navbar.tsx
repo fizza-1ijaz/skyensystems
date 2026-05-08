@@ -32,7 +32,7 @@ export function Navbar() {
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
           ? "mx-3 mt-3 rounded-2xl border border-white/40 bg-white/70 py-3 shadow-[0_20px_60px_-26px_rgba(108,99,255,0.6)] backdrop-blur-xl"
-          : "py-5"
+          : "mx-3 mt-3 rounded-2xl border border-white/55 bg-white/82 py-3 shadow-[0_14px_44px_-28px_rgba(15,23,42,0.45)] backdrop-blur-xl"
       }`}
     >
       <div className="mx-auto flex w-full max-w-7xl items-center justify-between px-6 md:px-10">

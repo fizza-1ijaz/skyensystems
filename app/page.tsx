@@ -8,7 +8,7 @@ import { PricingSection } from "@/components/home/PricingSection";
 import { FoundingBanner } from "@/components/home/FoundingBanner";
 
 export const metadata: Metadata = {
-  title: "Web Development Company for Small Business | Skyen Systems",
+  title: "Custom Software Development & AI Solutions | Skyen Systems",
   description:
     "Affordable web development, mobile apps, AI solutions, and digital marketing for small businesses. Start your project with Skyen Systems.",
   alternates: {

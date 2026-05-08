@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
 const stats = [
   { target: 50, suffix: "+", title: "Projects Delivered" },
@@ -12,43 +12,93 @@ const stats = [
 
 export function ProblemSection() {
   const [counts, setCounts] = useState(stats.map(() => 0));
+  const [isVisible, setIsVisible] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !isVisible) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.25 }
+    );
+
+    if (ref.current) observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, [isVisible]);
+
+  useEffect(() => {
+    if (!isVisible) return;
+
     let frameId = 0;
     const start = performance.now();
-    const duration = 1100;
+    const duration = 2000; // Increased duration for smoother animation
 
     const tick = (time: number) => {
-      const progress = Math.min(1, (time - start) / duration);
-      setCounts(stats.map((item) => Math.floor(item.target * progress)));
+      const elapsed = time - start;
+      const progress = Math.min(1, elapsed / duration);
+      
+      // Easing function for more natural feel
+      const easeOutQuad = 1 - Math.pow(1 - progress, 2);
+      
+      setCounts(
+        stats.map((item) => Math.floor(item.target * easeOutQuad))
+      );
+      
       if (progress < 1) frameId = requestAnimationFrame(tick);
     };
 
     frameId = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(frameId);
-  }, []);
+  }, [isVisible]);
+
+  const containerVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.65,
+        staggerChildren: 0.1,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, scale: 0.8, y: 20 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      y: 0,
+      transition: { duration: 0.5 },
+    },
+  };
 
   return (
-    <section className="bg-white px-6 py-14 md:px-10">
+    <section className="bg-white px-6 py-14 md:px-10" ref={ref}>
       <motion.div
-        initial={{ opacity: 0, y: 30, filter: "blur(10px)" }}
-        whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+        initial="hidden"
+        whileInView="visible"
         viewport={{ once: true, amount: 0.25 }}
-        transition={{ duration: 0.65 }}
+        variants={containerVariants}
         className="mx-auto max-w-7xl"
       >
         <div className="grid gap-4 text-center sm:grid-cols-2 lg:grid-cols-4">
           {stats.map((stat, index) => (
-            <div
+            <motion.div
               key={stat.title}
-              className="rounded-2xl border border-[#274A68] bg-[#112B44] px-5 py-6 shadow-[0_16px_35px_-24px_rgba(17,43,68,0.72)]"
+              variants={itemVariants}
+              whileHover={{ scale: 1.05, y: -8 }}
+              className="rounded-2xl border border-[#274A68] bg-[#112B44] px-5 py-6 shadow-[0_16px_35px_-24px_rgba(17,43,68,0.72)] transition-all duration-300 hover:border-[#1fc7cf] hover:shadow-[0_16px_35px_-24px_rgba(31,199,207,0.3)]"
             >
-              <p className="text-4xl font-extrabold text-[#EAF2FF]">
+              <p className="text-4xl md:text-5xl font-extrabold text-[#EAF2FF] transition-colors">
                 {counts[index]}
-                {stat.suffix}
+                <span className="text-[#1fc7cf]">{stat.suffix}</span>
               </p>
               <p className="mt-2 text-sm font-semibold text-[#C5D4E7]">{stat.title}</p>
-            </div>
+            </motion.div>
           ))}
         </div>
       </motion.div>

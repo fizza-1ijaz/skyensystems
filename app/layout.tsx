@@ -24,7 +24,7 @@ const spaceGrotesk = Space_Grotesk({
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Skyen Systems",
+    default: "Skyen Systems | Custom Software Development & AI Solutions",
     template: "%s | Skyen Systems",
   },
   description:
@@ -36,14 +36,14 @@ export const metadata: Metadata = {
     type: "website",
     url: siteUrl,
     siteName: "Skyen Systems",
-    title: "Skyen Systems",
+    title: "Skyen Systems | Custom Software Development & AI Solutions",
     description:
       "Skyen Systems builds custom software, AI solutions, mobile apps, and scalable digital platforms for modern businesses.",
     images: [{ url: "/logo-png.png", width: 512, height: 512, alt: "Skyen Systems" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Skyen Systems",
+    title: "Skyen Systems | Custom Software Development & AI Solutions",
     description:
       "Skyen Systems builds custom software, AI solutions, mobile apps, and scalable digital platforms for modern businesses.",
     images: ["/logo-png.png"],

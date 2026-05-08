@@ -4,16 +4,23 @@ export const metadata: Metadata = {
   title: "GDPR COMPLIANCE NOTICE | Skyen Solutions",
   description:
     "Review the GDPR Compliance Notice from Skyen Solutions to understand EU/EEA data rights, legal bases for processing, and international transfer safeguards.",
+  alternates: {
+    canonical: "/gdpr",
+  },
 };
 
 export default function GdprPage() {
   return (
     <div className="text-[#1a2050]">
-      <main className="mx-auto flex w-full max-w-4xl flex-col gap-8 px-6 py-14 md:px-10">
+      <main className="mx-auto flex w-full max-w-4xl flex-col gap-8 px-6 pb-14 pt-28 md:px-10 md:pt-32">
         <header className="space-y-3">
           <h1 className="text-4xl font-bold tracking-tight">
             GDPR Compliance Notice
           </h1>
+          <p className="text-[#4d5f99]">
+            <span className="font-semibold text-[#2b3c7e]">Effective Date:</span>{" "}
+            6 May 2026
+          </p>
           <p className="text-[#4d5f99]">
             <span className="font-semibold text-[#2b3c7e]">Last Updated:</span>{" "}
             12/4/2025
@@ -84,10 +91,10 @@ export default function GdprPage() {
           <p className="text-[#4d5f99]">
             Email:{" "}
             <a
-              href="mailto:info@skyensolutions.com"
+              href="mailto:info@skyensystem.com"
               className="font-medium text-[#3150bf] hover:text-[#25357d]"
             >
-              info@skyensolutions.com
+              Info@skyensystem.com
             </a>
           </p>
           <p className="text-[#4d5f99]">

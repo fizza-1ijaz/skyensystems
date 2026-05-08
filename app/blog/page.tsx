@@ -10,11 +10,24 @@ export const metadata: Metadata = {
   },
 };
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 export default async function BlogPage() {
   try {
     const blogData = await getBlogIndexDataForConfiguredSite();
-    return <BlogPageContent posts={blogData.posts} />;
+    return (
+      <BlogPageContent
+        posts={blogData.posts}
+        emptyStateMessage={blogData.seo.empty_state_message}
+      />
+    );
   } catch {
-    return <BlogPageContent />;
+    return (
+      <BlogPageContent
+        posts={[]}
+        emptyStateMessage="Blogs will be visible here once they are posted."
+      />
+    );
   }
 }

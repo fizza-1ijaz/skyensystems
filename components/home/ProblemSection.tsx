@@ -41,13 +41,13 @@ export function ProblemSection() {
           {stats.map((stat, index) => (
             <div
               key={stat.title}
-              className="rounded-2xl border border-slate-200 bg-[#FBFDFF] px-5 py-6 shadow-[0_16px_35px_-30px_rgba(15,23,42,0.6)]"
+              className="rounded-2xl border border-[#274A68] bg-[#112B44] px-5 py-6 shadow-[0_16px_35px_-24px_rgba(17,43,68,0.72)]"
             >
-              <p className="text-4xl font-extrabold text-[#0F172A]">
+              <p className="text-4xl font-extrabold text-[#EAF2FF]">
                 {counts[index]}
                 {stat.suffix}
               </p>
-              <p className="mt-2 text-sm font-semibold text-slate-600">{stat.title}</p>
+              <p className="mt-2 text-sm font-semibold text-[#C5D4E7]">{stat.title}</p>
             </div>
           ))}
         </div>

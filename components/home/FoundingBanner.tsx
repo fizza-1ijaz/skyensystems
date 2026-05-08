@@ -5,14 +5,14 @@ import { motion } from "framer-motion";
 
 export function FoundingBanner() {
   return (
-    <section className="w-full overflow-hidden bg-gradient-to-r from-[#EEF3FF] via-[#F7F8FC] to-[#E8F8FF] px-6 py-20 md:px-10">
+    <section className="w-full overflow-hidden bg-gradient-to-r from-[#EEF3FF] via-[#F7F8FC] to-[#E8F8FF] px-0 py-16">
       <motion.div
         initial={{ opacity: 0, y: 30, filter: "blur(10px)" }}
         whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
         viewport={{ once: true, amount: 0.3 }}
-        className="relative mx-auto max-w-7xl rounded-3xl border border-white/80 bg-white/70 p-10 text-center shadow-[0_26px_70px_-42px_rgba(15,23,42,0.6)]"
+        className="relative w-full border-y border-white/70 bg-white/66 px-6 py-12 text-center shadow-[0_26px_70px_-42px_rgba(15,23,42,0.35)] md:px-10"
       >
-        <div className="pointer-events-none absolute inset-y-0 -left-20 w-28 bg-gradient-to-r from-transparent via-white/60 to-transparent opacity-70" />
+        <div className="pointer-events-none absolute inset-y-0 left-0 w-28 bg-gradient-to-r from-transparent via-white/60 to-transparent opacity-70" />
         <p className="text-xs font-semibold uppercase tracking-[0.1em] text-slate-500">FINAL STEP</p>
         <h2 className="mx-auto mt-3 max-w-3xl text-3xl font-bold leading-tight text-[#0F172A] md:text-4xl">
           Ready to build something great?
@@ -21,7 +21,7 @@ export function FoundingBanner() {
           Let's start with a conversation. No commitment. No sales pressure. Just an honest look at what's possible for your business.
         </p>
         <div className="mt-7 flex flex-wrap justify-center gap-3">
-          <Link href="/contact" className="rounded-xl bg-gradient-to-r from-[#6C63FF] to-[#1E3A8A] px-6 py-3 text-sm font-semibold text-white">
+          <Link href="/contact" className="rounded-xl bg-[#112B44] px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-[#1B3E5E]">
             Start Your Project →
           </Link>
           <Link href="/services" className="rounded-xl border border-slate-300 bg-white px-6 py-3 text-sm font-semibold text-slate-700">

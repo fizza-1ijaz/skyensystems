@@ -4,16 +4,23 @@ export const metadata: Metadata = {
   title: "GENERAL LEGAL DISCLAIMERS | Skyen Solutions",
   description:
     "Read the General Legal Disclaimers for Skyen Solutions regarding informational use, third-party links, liability, and technology performance.",
+  alternates: {
+    canonical: "/disclaimer",
+  },
 };
 
 export default function DisclaimerPage() {
   return (
     <div className="text-[#1a2050]">
-      <main className="mx-auto flex w-full max-w-4xl flex-col gap-8 px-6 py-14 md:px-10">
+      <main className="mx-auto flex w-full max-w-4xl flex-col gap-8 px-6 pb-14 pt-28 md:px-10 md:pt-32">
         <header className="space-y-3">
           <h1 className="text-4xl font-bold tracking-tight">
             General Legal Disclaimers
           </h1>
+          <p className="text-[#4d5f99]">
+            <span className="font-semibold text-[#2b3c7e]">Effective Date:</span>{" "}
+            6 May 2026
+          </p>
         </header>
 
         <section className="space-y-4 rounded-2xl border border-[#c9d8ff] bg-white/90 p-6 shadow-md shadow-[#5678f8]/10">

@@ -23,7 +23,7 @@ export default function Home() {
     name: "Skyen Systems",
     url: "https://skyensystems.com",
     logo: "https://skyensystems.com/logo-png.png",
-    email: "contact@skyensystems.com",
+    email: "info@skyensystem.com",
     areaServed: ["US", "Pakistan", "Bahrain"],
     sameAs: [
       "https://apps.apple.com/us/app/studiely-your-daily-study-app/id6758246110",

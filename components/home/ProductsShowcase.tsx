@@ -27,8 +27,8 @@ const products = [
   },
   {
     name: "Linguatude",
-    tag: "In development.",
-    status: "Language learning that's actually effective",
+    status: "In development",
+    tag: "Language learning that's actually effective.",
     blurb:
       "AI conversation practice + spaced repetition + gamification. For anyone ready to actually become fluent.",
     logo: "/logo-linguatude.jpg",
@@ -51,7 +51,7 @@ export function ProductsShowcase() {
             OUR PRODUCTS
           </p>
           <h2 className="text-3xl font-bold md:text-4xl">We don't just build for clients. We build for users.</h2>
-          <p className="mt-4 max-w-3xl text-slate-300">
+          <p className="mx-auto mt-4 max-w-3xl text-center text-slate-300">
             Products built and tested by the same team that builds your projects.
           </p>
         </motion.div>
@@ -88,7 +88,7 @@ export function ProductsShowcase() {
                 href={product.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-6 inline-block rounded-lg bg-gradient-to-r from-[#6C63FF] to-[#1E3A8A] px-4 py-2 text-sm font-semibold text-white shadow-[0_14px_30px_-18px_rgba(30,58,138,0.95)] transition-all duration-300 hover:brightness-110 hover:shadow-[0_18px_36px_-18px_rgba(30,58,138,1)]"
+                className="mt-6 inline-block rounded-lg bg-[#112B44] px-4 py-2 text-sm font-semibold text-white shadow-[0_14px_30px_-18px_rgba(17,43,68,0.75)] transition-all duration-300 hover:bg-[#1B3E5E] hover:shadow-[0_18px_36px_-18px_rgba(17,43,68,0.95)]"
               >
                 {product.cta}
               </Link>

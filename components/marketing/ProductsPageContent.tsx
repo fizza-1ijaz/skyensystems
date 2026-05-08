@@ -189,21 +189,6 @@ export function ProductsPageContent({ initialProductId }: ProductsPageContentPro
                       </span>
                     ))}
                   </div>
-                  <div className="mt-6 flex flex-wrap justify-center gap-3 md:justify-start">
-                    <a
-                      href={product.primaryCtaHref}
-                      target={product.primaryExternal ? "_blank" : undefined}
-                      rel={product.primaryExternal ? "noopener noreferrer" : undefined}
-                      className="rounded-xl bg-gradient-to-r from-[#6C63FF] to-[#1E3A8A] px-5 py-2.5 text-sm font-semibold text-white"
-                    >
-                      {product.primaryCtaLabel}
-                    </a>
-                    {product.secondaryCtaLabel && product.secondaryCtaHref ? (
-                      <Link href={product.secondaryCtaHref} className="rounded-xl border border-white/80 bg-white px-5 py-2.5 text-sm font-semibold text-slate-700">
-                        {product.secondaryCtaLabel}
-                      </Link>
-                    ) : null}
-                  </div>
                   <div className="mt-5 rounded-2xl border border-white/80 bg-white/75 p-4">
                     <p className="text-xs font-semibold uppercase tracking-[0.11em] text-slate-500">
                       {product.platforms[0] ?? "Core Features"}
@@ -244,6 +229,24 @@ export function ProductsPageContent({ initialProductId }: ProductsPageContentPro
                     </div>
                     <div className="mt-3 h-2 w-4/5 rounded-full bg-gradient-to-r from-[#6C63FF55] to-[#1E3A8A55]" />
                   </div>
+                  <div className="mt-4 flex flex-wrap justify-center gap-3 md:justify-start">
+                    <a
+                      href={product.primaryCtaHref}
+                      target={product.primaryExternal ? "_blank" : undefined}
+                      rel={product.primaryExternal ? "noopener noreferrer" : undefined}
+                      className="rounded-xl bg-[#112B44] px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#1B3E5E]"
+                    >
+                      {product.primaryCtaLabel}
+                    </a>
+                    {product.secondaryCtaLabel && product.secondaryCtaHref ? (
+                      <Link
+                        href={product.secondaryCtaHref}
+                        className="rounded-xl border border-slate-300 bg-white px-5 py-2.5 text-sm font-semibold text-slate-700"
+                      >
+                        {product.secondaryCtaLabel}
+                      </Link>
+                    ) : null}
+                  </div>
                   <p className="mt-4 text-xs text-slate-500">{product.mockupNote}</p>
                   {product.showStoreButtons ? (
                     <div className="mt-4 flex gap-2">
@@ -269,7 +272,7 @@ export function ProductsPageContent({ initialProductId }: ProductsPageContentPro
             a live product with real users - built entirely by our in-house team.
             When we say we can build your app, this is what we mean.&rdquo;
           </p>
-          <Link href="/services" className="mt-6 inline-block rounded-xl bg-gradient-to-r from-[#6C63FF] to-[#1E3A8A] px-6 py-3 text-sm font-semibold text-white">
+          <Link href="/services" className="mt-6 inline-block rounded-xl bg-[#112B44] px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-[#1B3E5E]">
             See our mobile app service
           </Link>
         </div>
@@ -289,7 +292,7 @@ export function ProductsPageContent({ initialProductId }: ProductsPageContentPro
             to your business.
           </p>
           <div className="mt-7 flex flex-wrap justify-center gap-3">
-            <Link href="/services" className="rounded-lg bg-gradient-to-r from-[#6C63FF] to-[#1E3A8A] px-6 py-3 font-semibold text-white">
+            <Link href="/services" className="rounded-lg bg-[#112B44] px-6 py-3 font-semibold text-white transition-colors hover:bg-[#1B3E5E]">
               See Our Services
             </Link>
             <Link href="https://calendly.com/skyensystems/discovery" className="rounded-lg border border-[#3A5C7A] bg-[#0F253AE6] px-6 py-3 font-semibold text-[#EAF2FF]">

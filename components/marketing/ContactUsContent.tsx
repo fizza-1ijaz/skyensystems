@@ -8,7 +8,6 @@ export default function ContactUsContent() {
     fullName: "",
     service: "",
     email: "",
-    phone: "",
     company: "",
     budget: "",
     projectDescription: "",
@@ -50,6 +49,7 @@ export default function ContactUsContent() {
         if (typeof window !== "undefined") {
           const withDataLayer = window as Window & {
             dataLayer?: Array<Record<string, string>>;
+            gtag?: (...args: unknown[]) => void;
           };
           withDataLayer.dataLayer = withDataLayer.dataLayer || [];
           withDataLayer.dataLayer.push({
@@ -57,6 +57,12 @@ export default function ContactUsContent() {
             service_interest: formData.service,
             budget_range: formData.budget,
           });
+          if (typeof withDataLayer.gtag === "function") {
+            withDataLayer.gtag("event", "contact_form_submit", {
+              service_interest: formData.service,
+              budget_range: formData.budget,
+            });
+          }
         }
         setStatus("success");
       } else {
@@ -82,22 +88,14 @@ export default function ContactUsContent() {
       <section className="px-6 md:px-16">
         <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-2">
           <div className="space-y-5 rounded-3xl border border-white/50 bg-white/75 p-8 text-center backdrop-blur-xl lg:text-left">
-            <h2 className="text-2xl font-bold">Book or message</h2>
-            <p className="text-slate-600">Book a free discovery call or send your requirements below.</p>
-            <p className="text-sm text-slate-600">Email: hello@skyensystems.com</p>
+            <h2 className="text-2xl font-bold">Send us a message</h2>
+            <p className="text-slate-600">Share your requirements below and our team will reply by email.</p>
+            <p className="text-sm text-slate-600">Email: Info@skyensystem.com</p>
             <p className="text-sm text-slate-600">
-              We respond to all enquiries within 4 business hours during US Eastern business hours (Mon–Fri 9am–6pm ET). WhatsApp: [Insert number].
+              We respond to all enquiries within 4 business hours during US Eastern business hours (Mon–Fri 9am–6pm ET).
             </p>
-            <a
-              href="https://calendly.com/skyensystems/discovery"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex rounded-lg bg-gradient-to-r from-[#6C63FF] to-[#1E3A8A] px-5 py-3 font-semibold text-white"
-            >
-              Book Free Call
-            </a>
             <div className="rounded-2xl border border-white/70 bg-white/80 px-4 py-6 text-sm text-slate-500">
-              Calendly embed placeholder: connect your scheduling widget here.
+              We only handle enquiries via email form submissions.
             </div>
           </div>
 
@@ -131,24 +129,14 @@ export default function ContactUsContent() {
                       type="email"
                       value={formData.email}
                       onChange={(e) => setFormData({...formData, email: e.target.value})}
-                      placeholder="email@example.com"
+                      placeholder="Info@skyensystem.com"
                       className="w-full rounded-lg border border-slate-300 px-4 py-3 outline-none focus:border-[#6D5DF6]"
                     />
                   </div>
                 </div>
 
                 <div className="grid gap-4 md:grid-cols-2">
-                  <div>
-                    <label className="mb-1 block text-sm font-semibold text-slate-700">Phone Number with country code</label>
-                    <input 
-                      type="tel" 
-                      value={formData.phone}
-                      onChange={(e) => setFormData({...formData, phone: e.target.value})}
-                      placeholder="+1 555 000 1234"
-                      className="w-full rounded-lg border border-slate-300 px-4 py-3 outline-none focus:border-[#6D5DF6]"
-                    />
-                  </div>
-                  <div>
+                  <div className="md:col-span-2">
                     <label className="mb-1 block text-sm font-semibold text-slate-700">Company Name</label>
                     <input 
                       type="text" 
@@ -214,13 +202,13 @@ export default function ContactUsContent() {
                 </div>
 
                 <div className="text-xs text-slate-500">
-                  By sending this form, you agree to our <Link href="/terms" className="text-[#6D5DF6]">Terms</Link> and <Link href="/privacy-policy" className="text-[#6D5DF6]">Privacy Policy</Link>.
+                  By sending this form, you agree to our <Link href="/terms-of-service" className="text-[#6D5DF6]">Terms</Link> and <Link href="/privacy-policy" className="text-[#6D5DF6]">Privacy Policy</Link>.
                 </div>
 
                 <button 
                   type="submit"
                   disabled={status === "submitting"}
-                  className="w-full rounded-lg bg-gradient-to-r from-[#112B44] to-[#6D5DF6] py-3 font-semibold text-white transition-all hover:scale-[1.01] disabled:opacity-50"
+                  className="w-full rounded-lg bg-[#112B44] py-3 font-semibold text-white transition-all hover:scale-[1.01] hover:bg-[#1B3E5E] disabled:opacity-50"
                 >
                   {status === "submitting" ? "Sending..." : "Send Message"}
                 </button>

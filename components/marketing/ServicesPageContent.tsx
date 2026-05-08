@@ -264,7 +264,7 @@ export function ServicesPageContent({ initialServiceSlug }: ServicesPageContentP
 
   return (
     <div className="min-h-screen bg-[#F7F9FC] pt-[90px] md:pt-24">
-      <section className="px-6 pb-3 md:px-16 md:pb-3">
+      <section className="px-6 pb-4 md:px-16 md:pb-5">
         <div className="mx-auto max-w-6xl text-center">
           <p className="mb-4 text-xs font-semibold uppercase tracking-[0.14em] text-slate-500">
             WHAT WE OFFER
@@ -280,7 +280,7 @@ export function ServicesPageContent({ initialServiceSlug }: ServicesPageContentP
 
       <section
         id="service-road"
-        className="mt-4 flex items-start px-3 pb-6 md:mt-6 md:px-8 md:pb-8 xl:px-12"
+        className="mt-10 flex items-start px-3 pb-6 md:mt-[120px] md:px-8 md:pb-8 xl:px-12"
       >
         <div
           className="mx-auto w-full max-w-none"
@@ -465,7 +465,7 @@ export function ServicesPageContent({ initialServiceSlug }: ServicesPageContentP
                 ) : null}
                 <Link
                   href={activeService.href}
-                  className="mt-6 inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-[#6C63FF] to-[#1E3A8A] px-5 py-2.5 text-sm font-semibold text-white"
+                  className="mt-6 inline-flex items-center gap-2 rounded-xl bg-[#112B44] px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#1B3E5E]"
                 >
                   {activeService.cta}
                   <ArrowUpRight className="h-4 w-4" />

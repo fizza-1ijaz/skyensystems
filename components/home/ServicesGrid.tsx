@@ -72,7 +72,7 @@ export function ServicesGrid() {
           <h2 className="text-3xl font-bold text-[#0F172A] md:text-4xl">
             Everything your business needs to win online.
           </h2>
-          <p className="mt-4 max-w-3xl text-slate-600">
+          <p className="mx-auto mt-4 max-w-3xl text-center text-slate-600">
             From the website your customers find to the app they use daily — we
             design, build, and grow it all.
           </p>

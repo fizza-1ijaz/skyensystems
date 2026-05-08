@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
@@ -8,15 +9,6 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 export function HomePageContent() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const heroRef = useRef<HTMLDivElement>(null);
-  const pointerX = useMotionValue(0);
-  const pointerY = useMotionValue(0);
-  const smoothX = useSpring(pointerX, { stiffness: 150, damping: 24, mass: 0.8 });
-  const smoothY = useSpring(pointerY, { stiffness: 150, damping: 24, mass: 0.8 });
-  const panelRotateX = useTransform(smoothY, [-1, 1], [4, -4]);
-  const panelRotateY = useTransform(smoothX, [-1, 1], [-6, 6]);
-  const panelShiftX = useTransform(smoothX, [-1, 1], [-14, 14]);
-  const panelShiftY = useTransform(smoothY, [-1, 1], [-10, 10]);
   const whyRef = useRef<HTMLDivElement>(null);
   const [activeWhyNode, setActiveWhyNode] = useState("pseb");
   const whyX = useMotionValue(0);
@@ -82,20 +74,6 @@ export function HomePageContent() {
     };
   }, []);
 
-  const onHeroPointerMove = (event: React.PointerEvent<HTMLDivElement>) => {
-    const bounds = heroRef.current?.getBoundingClientRect();
-    if (!bounds) return;
-    const x = ((event.clientX - bounds.left) / bounds.width) * 2 - 1;
-    const y = ((event.clientY - bounds.top) / bounds.height) * 2 - 1;
-    pointerX.set(Math.max(-1, Math.min(1, x)));
-    pointerY.set(Math.max(-1, Math.min(1, y)));
-  };
-
-  const onHeroPointerLeave = () => {
-    pointerX.set(0);
-    pointerY.set(0);
-  };
-
   const onWhyPointerMove = (event: React.PointerEvent<HTMLDivElement>) => {
     const bounds = whyRef.current?.getBoundingClientRect();
     if (!bounds) return;
@@ -121,13 +99,8 @@ export function HomePageContent() {
           <div className="absolute inset-0 opacity-40 [background-size:38px_38px] [background-image:linear-gradient(to_right,rgba(123,140,175,0.12)_1px,transparent_1px),linear-gradient(to_bottom,rgba(123,140,175,0.12)_1px,transparent_1px)]" />
         </div>
 
-        <div
-          ref={heroRef}
-          onPointerMove={onHeroPointerMove}
-          onPointerLeave={onHeroPointerLeave}
-          className="relative z-10 mx-auto grid w-full max-w-7xl gap-10 lg:grid-cols-[1.06fr_0.94fr] lg:items-center"
-        >
-          <div className="text-center lg:text-left">
+        <div className="relative z-10 mx-auto w-full max-w-none">
+          <div className="w-full text-center lg:text-left">
             <motion.p
               initial={{ opacity: 0, y: 14 }}
               animate={{ opacity: 1, y: 0 }}
@@ -168,7 +141,7 @@ export function HomePageContent() {
               initial={{ opacity: 0, y: 14 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2, duration: 0.65, ease: "easeOut" }}
-              className="mx-auto mt-6 max-w-2xl text-balance text-base leading-relaxed text-[#4a6388] md:text-lg lg:mx-0 lg:max-w-3xl"
+              className="mt-6 w-full text-balance text-base leading-relaxed text-[#4a6388] md:text-lg"
             >
               We build websites, mobile apps, AI-powered products, and run the digital marketing that fills them with customers. PSEB-registered. US-market focused. One team that becomes part of yours.
             </motion.p>
@@ -181,7 +154,7 @@ export function HomePageContent() {
             >
               <Link
                 href="/contact-us"
-                className="group inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-[#5d62ff] via-[#7f75ff] to-[#45b8ff] px-6 py-3 text-sm font-semibold text-white shadow-[0_20px_45px_-24px_rgba(93,98,255,0.85)] transition duration-300 hover:-translate-y-0.5"
+                className="group inline-flex items-center gap-2 rounded-xl bg-[#112B44] px-6 py-3 text-sm font-semibold text-white shadow-[0_20px_45px_-24px_rgba(17,43,68,0.65)] transition duration-300 hover:-translate-y-0.5 hover:bg-[#1B3E5E]"
               >
                 Start Your Project
                 <motion.span
@@ -221,89 +194,6 @@ export function HomePageContent() {
                 </div>
               ))}
             </motion.div>
-          </div>
-
-          <motion.div
-            style={{ rotateX: panelRotateX, rotateY: panelRotateY, transformPerspective: 1600 }}
-            className="relative mx-auto w-full max-w-[620px]"
-          >
-            <motion.div
-              style={{ x: panelShiftX, y: panelShiftY }}
-              className="absolute -left-4 top-10 hidden h-24 w-24 rounded-3xl border border-[#d6e6ff] bg-white/70 backdrop-blur-xl shadow-[0_24px_45px_-30px_rgba(78,110,194,0.85)] md:block"
-            />
-            <motion.div
-              style={{ x: panelShiftX, y: panelShiftY }}
-              className="absolute -right-6 top-4 hidden h-20 w-20 rounded-full border border-[#dce7ff] bg-[radial-gradient(circle_at_30%_30%,#ffffff,rgba(188,219,255,0.7))] shadow-[0_24px_45px_-30px_rgba(90,128,212,0.9)] md:block"
-              animate={{ rotate: [0, 360] }}
-              transition={{ duration: 28, ease: "linear", repeat: Infinity }}
-            />
-
-            <div className="relative rounded-[2rem] border border-[#dce8ff] bg-white/70 p-5 shadow-[0_35px_80px_-40px_rgba(80,114,196,0.85)] backdrop-blur-2xl">
-              <div className="grid gap-4 sm:grid-cols-2">
-                <motion.div
-                  className="rounded-2xl border border-[#dce8ff] bg-white/80 p-4"
-                  animate={{ y: [-2, 4, -2] }}
-                  transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
-                >
-                  <p className="text-xs font-semibold uppercase tracking-[0.15em] text-[#6b82a8]">
-                    Live Pipeline
-                  </p>
-                  <div className="mt-3 space-y-2">
-                    {[72, 58, 84].map((w) => (
-                      <div key={w} className="h-2 rounded-full bg-[#edf3ff]">
-                        <div
-                          className="h-full rounded-full bg-gradient-to-r from-[#5c68ff] to-[#37beff]"
-                          style={{ width: `${w}%` }}
-                        />
-                      </div>
-                    ))}
-                  </div>
-                </motion.div>
-
-                <motion.div
-                  className="rounded-2xl border border-[#dce8ff] bg-white/80 p-4"
-                  animate={{ y: [3, -3, 3] }}
-                  transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-                >
-                  <p className="text-xs font-semibold uppercase tracking-[0.15em] text-[#6b82a8]">
-                    AI Nodes
-                  </p>
-                  <div className="relative mt-3 h-16">
-                    {[10, 40, 72].map((x, idx) => (
-                      <span
-                        key={x}
-                        className="absolute top-1/2 h-3 w-3 -translate-y-1/2 rounded-full bg-[#4f91ff] shadow-[0_0_12px_rgba(79,145,255,0.9)]"
-                        style={{ left: `${x}%`, opacity: 0.75 + idx * 0.1 }}
-                      />
-                    ))}
-                    <div className="absolute left-[12%] right-[18%] top-1/2 h-px -translate-y-1/2 bg-gradient-to-r from-[#7ba0ff] via-[#69c5ff] to-[#8e9fff]" />
-                  </div>
-                </motion.div>
-
-                <motion.div
-                  className="rounded-2xl border border-[#dce8ff] bg-white/80 p-4 sm:col-span-2"
-                  animate={{ y: [-1, 3, -1] }}
-                  transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
-                >
-                  <p className="text-xs font-semibold uppercase tracking-[0.15em] text-[#6b82a8]">
-                    Deployment Command Center
-                  </p>
-                  <div className="mt-3 grid grid-cols-3 gap-2">
-                    <div className="rounded-xl border border-[#e5eeff] bg-[#f6f9ff] p-2 text-center text-[11px] font-semibold text-[#55729f]">
-                      Web
-                    </div>
-                    <div className="rounded-xl border border-[#e5eeff] bg-[#f6f9ff] p-2 text-center text-[11px] font-semibold text-[#55729f]">
-                      App
-                    </div>
-                    <div className="rounded-xl border border-[#e5eeff] bg-[#f6f9ff] p-2 text-center text-[11px] font-semibold text-[#55729f]">
-                      AI
-                    </div>
-                  </div>
-                </motion.div>
-              </div>
-            </div>
-
-            <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_70%_20%,rgba(124,106,255,0.24),transparent_45%),radial-gradient(circle_at_20%_80%,rgba(55,190,255,0.24),transparent_45%)]" />
           </div>
         </div>
       </section>
@@ -378,6 +268,15 @@ export function HomePageContent() {
               transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut" }}
             >
               <div className="absolute inset-4 rounded-2xl border border-[#d9e9ff] bg-[radial-gradient(circle_at_30%_30%,#f4f8ff,rgba(223,236,255,0.8))]" />
+              <div className="absolute inset-0 z-10 flex items-center justify-center">
+                <Image
+                  src="/logo.jpeg"
+                  alt="Skyen Systems logo"
+                  width={72}
+                  height={72}
+                  className="rounded-xl object-cover shadow-[0_10px_22px_-14px_rgba(40,68,118,0.9)]"
+                />
+              </div>
             </motion.div>
             <motion.div
               className="absolute -inset-6 rounded-full border border-[#7c8fff55]"
@@ -539,7 +438,7 @@ export function HomePageContent() {
           <p className="mx-auto mt-3 max-w-2xl text-slate-600">
             We are offering a Founding Client rate with 20% off in exchange for your honest review.
           </p>
-          <Link href="/contact-us" className="mt-5 inline-block rounded-xl bg-gradient-to-r from-[#6C63FF] to-[#1E3A8A] px-6 py-3 text-sm font-semibold text-white">
+          <Link href="/contact-us" className="mt-5 inline-block rounded-xl bg-[#112B44] px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-[#1B3E5E]">
             Claim the Founding Rate
           </Link>
         </div>
@@ -596,7 +495,7 @@ export function HomePageContent() {
             No commitment. No pitch. Just a conversation about what your business needs.
           </p>
           <div className="mt-7 flex flex-wrap justify-center gap-3">
-            <Link href="https://calendly.com/skyensystems/discovery" className="rounded-xl bg-gradient-to-r from-[#6C63FF] to-[#1E3A8A] px-6 py-3 text-sm font-semibold text-white">
+            <Link href="https://calendly.com/skyensystems/discovery" className="rounded-xl bg-[#112B44] px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-[#1B3E5E]">
               Book a Free Discovery Call
             </Link>
             <Link href="/pricing" className="rounded-xl border border-white/70 bg-white px-6 py-3 text-sm font-semibold">

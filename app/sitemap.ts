@@ -13,7 +13,10 @@ const staticRoutes = [
   "/contact-us",
   "/privacy-policy",
   "/terms",
+  "/terms-of-service",
   "/cookies",
+  "/cookies-policy",
+  "/refund-policy",
   "/gdpr",
   "/disclaimer",
 ];

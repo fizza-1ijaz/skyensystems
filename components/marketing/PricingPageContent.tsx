@@ -115,7 +115,7 @@ export function PricingPageContent() {
                 } text-center md:text-left`}
               >
                 {plan.badge ? (
-                  <span className="mb-4 inline-block w-fit rounded-full bg-gradient-to-r from-[#1E3A8A] to-[#6C63FF] px-3 py-1 text-[10px] font-bold uppercase tracking-[0.08em] text-white">
+                  <span className="mb-4 inline-block w-fit rounded-full bg-[#112B44] px-3 py-1 text-[10px] font-bold uppercase tracking-[0.08em] text-white">
                     {plan.badge}
                   </span>
                 ) : null}
@@ -143,7 +143,7 @@ export function PricingPageContent() {
                   href="/contact-us"
                   className={`mt-auto inline-flex justify-center rounded-lg px-4 py-2.5 text-sm font-semibold ${
                     plan.featured
-                      ? "bg-gradient-to-r from-[#6C63FF] to-[#1E3A8A] text-white"
+                      ? "bg-[#112B44] text-white hover:bg-[#1B3E5E]"
                       : "border border-slate-300 bg-white text-slate-700"
                   }`}
                 >

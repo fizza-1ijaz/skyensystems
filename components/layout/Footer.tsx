@@ -13,8 +13,9 @@ const mainLinks = [
 
 const legalLinks = [
   { label: "Privacy Policy", href: "/privacy-policy" },
-  { label: "Terms of Service", href: "/terms" },
-  { label: "Cookie Policy", href: "/cookies" },
+  { label: "Terms of Service", href: "/terms-of-service" },
+  { label: "Cookie Policy", href: "/cookies-policy" },
+  { label: "Refund Policy", href: "/refund-policy" },
   { label: "GDPR Compliance", href: "/gdpr" },
 ];
 

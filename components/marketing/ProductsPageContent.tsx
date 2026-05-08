@@ -121,6 +121,84 @@ type ProductsPageContentProps = {
   initialProductId?: string;
 };
 
+function ProductPreview({ product }: { product: ProductScene }) {
+  if (product.id === "studiely") {
+    return (
+      <>
+        <div className="mt-4 rounded-xl border border-[#d3e2ff] bg-white p-4">
+          <div className="mb-3">
+            <div className="h-2 w-3/5 rounded-full bg-gradient-to-r from-[#6C63FF66] to-[#1E3A8A66]" />
+            <div className="mt-2 h-2 w-2/5 rounded-full bg-slate-200" />
+          </div>
+          <div className="h-12 rounded-lg bg-[#eef4ff]" />
+          <div className="mt-3 grid grid-cols-2 gap-2">
+            <div className="h-16 rounded-lg bg-[#f2f6ff]" />
+            <div className="h-16 rounded-lg bg-[#f2f6ff]" />
+          </div>
+          <div className="mt-3 h-2 w-4/5 rounded-full bg-gradient-to-r from-[#6C63FF55] to-[#1E3A8A55]" />
+        </div>
+        <p className="mt-4 text-xs text-slate-500">{product.mockupNote}</p>
+      </>
+    );
+  }
+
+  if (product.id === "make-my-lesson") {
+    return (
+      <>
+        <div className="mt-4 rounded-xl border border-[#d3e2ff] bg-white p-4">
+          <div className="rounded-lg border border-[#d7e5ff] bg-[#f3f8ff] p-3">
+            <div className="h-2 w-[70%] rounded-full bg-slate-300" />
+            <div className="mt-2 h-2 w-[50%] rounded-full bg-gradient-to-r from-[#6C63FF66] to-[#1E3A8A66]" />
+          </div>
+          <div className="mt-3 grid grid-cols-3 gap-2">
+            <div className="rounded-md bg-[#f6f9ff] py-2 text-center text-[10px] font-medium text-slate-500">
+              Grade
+            </div>
+            <div className="rounded-md bg-[#f6f9ff] py-2 text-center text-[10px] font-medium text-slate-500">
+              Subject
+            </div>
+            <div className="rounded-md bg-[#f6f9ff] py-2 text-center text-[10px] font-medium text-slate-500">
+              Duration
+            </div>
+          </div>
+          <div className="mt-3 h-12 rounded-lg bg-[#eef4ff]" />
+          <div className="mt-3 flex justify-center">
+            <span className="rounded-md bg-gradient-to-r from-[#6C63FF] to-[#1E3A8A] px-4 py-2 text-[11px] font-semibold text-white">
+              Generate Lesson Plan
+            </span>
+          </div>
+        </div>
+        <p className="mt-4 text-xs text-slate-500">{product.mockupNote}</p>
+      </>
+    );
+  }
+
+  return (
+    <>
+      <div className="mt-4 rounded-xl border border-[#d3e2ff] bg-white p-4">
+        <div className="mb-4 flex justify-center">
+          <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-[#6C63FF] to-[#1E3A8A] text-xl font-black text-white">
+            A
+          </div>
+        </div>
+        <div className="mx-auto h-2 w-3/5 rounded-full bg-gradient-to-r from-[#6C63FF66] to-[#1E3A8A66]" />
+        <div className="mx-auto mt-2 h-2 w-2/5 rounded-full bg-slate-200" />
+        <div className="mt-4 grid grid-cols-2 gap-2">
+          {["IELTS", "TOEFL", "PTE", "General"].map((item) => (
+            <div
+              key={item}
+              className="rounded-md bg-[#f6f9ff] py-2 text-center text-[10px] font-medium text-slate-500"
+            >
+              {item}
+            </div>
+          ))}
+        </div>
+      </div>
+      <p className="mt-4 text-xs text-slate-500">{product.mockupNote}</p>
+    </>
+  );
+}
+
 export function ProductsPageContent({ initialProductId }: ProductsPageContentProps) {
   useEffect(() => {
     if (!initialProductId) return;
@@ -219,16 +297,7 @@ export function ProductsPageContent({ initialProductId }: ProductsPageContentPro
                     </div>
                   </div>
                   <p className="text-sm font-semibold text-slate-600">{product.mockupLabel}</p>
-                  <div className="mt-4 rounded-xl border border-[#d3e2ff] bg-white p-4">
-                    <div className="h-2 w-2/3 rounded-full bg-gradient-to-r from-[#6C63FF66] to-[#1E3A8A66]" />
-                    <div className="mt-2 h-2 w-1/2 rounded-full bg-slate-200" />
-                    <div className="mt-3 h-24 rounded-lg bg-[#eef4ff]" />
-                    <div className="mt-3 grid grid-cols-2 gap-2">
-                      <div className="h-10 rounded-lg bg-[#f2f6ff]" />
-                      <div className="h-10 rounded-lg bg-[#f2f6ff]" />
-                    </div>
-                    <div className="mt-3 h-2 w-4/5 rounded-full bg-gradient-to-r from-[#6C63FF55] to-[#1E3A8A55]" />
-                  </div>
+                  <ProductPreview product={product} />
                   <div className="mt-4 flex flex-wrap justify-center gap-3 md:justify-start">
                     <a
                       href={product.primaryCtaHref}
@@ -247,7 +316,6 @@ export function ProductsPageContent({ initialProductId }: ProductsPageContentPro
                       </Link>
                     ) : null}
                   </div>
-                  <p className="mt-4 text-xs text-slate-500">{product.mockupNote}</p>
                   {product.showStoreButtons ? (
                     <div className="mt-4 flex gap-2">
                       <a href={product.appStoreHref} target="_blank" rel="noopener noreferrer" className="rounded-lg border border-slate-300 bg-white px-3 py-2 text-xs font-semibold text-slate-700">

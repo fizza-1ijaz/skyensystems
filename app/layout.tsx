@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Footer } from "@/components/layout/Footer";
 import { Inter, Space_Grotesk } from "next/font/google";
 import { Navbar } from "@/components/layout/Navbar";
+import { GlobalCursorGlow } from "@/components/ui/GlobalCursorGlow";
 import { ScrollProgress } from "@/components/ui/ScrollProgress";
 import { SmoothScrollProvider } from "@/components/ui/SmoothScrollProvider";
 import "./globals.css";
@@ -65,6 +66,7 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col bg-[#F7F9FC] text-[#0F172A]">
         <ScrollProgress />
+        <GlobalCursorGlow />
         <SmoothScrollProvider />
         <Navbar />
         <div className="flex-1">{children}</div>

@@ -204,26 +204,19 @@ export function ProductsPageContent({ initialProductId }: ProductsPageContentPro
                       </Link>
                     ) : null}
                   </div>
-                  {product.waitlistButtonLabel && product.waitlistPlaceholder ? (
-                    <div className="mt-5">
-                      <div className="flex flex-col gap-2 sm:flex-row sm:justify-center md:justify-start">
-                        <input
-                          type="email"
-                          placeholder={product.waitlistPlaceholder}
-                          className="w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm text-slate-700 outline-none"
-                        />
-                        <button
-                          type="button"
-                          className="rounded-xl bg-gradient-to-r from-[#6C63FF] to-[#1E3A8A] px-5 py-2.5 text-sm font-semibold text-white"
-                        >
-                          {product.waitlistButtonLabel}
-                        </button>
-                      </div>
-                      {product.waitlistNote ? (
-                        <p className="mt-2 text-xs text-slate-500">{product.waitlistNote}</p>
-                      ) : null}
-                    </div>
-                  ) : null}
+                  <div className="mt-5 rounded-2xl border border-white/80 bg-white/75 p-4">
+                    <p className="text-xs font-semibold uppercase tracking-[0.11em] text-slate-500">
+                      {product.platforms[0] ?? "Core Features"}
+                    </p>
+                    <ul className="mt-3 space-y-2 text-sm leading-relaxed text-slate-700">
+                      {product.tech.map((item) => (
+                        <li key={item} className="flex gap-2">
+                          <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[#4267f9]" />
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                   </div>
 
                 <div
@@ -250,16 +243,6 @@ export function ProductsPageContent({ initialProductId }: ProductsPageContentPro
                       <div className="h-10 rounded-lg bg-[#f2f6ff]" />
                     </div>
                     <div className="mt-3 h-2 w-4/5 rounded-full bg-gradient-to-r from-[#6C63FF55] to-[#1E3A8A55]" />
-                  </div>
-                  <div className="mt-4 flex flex-wrap gap-2">
-                    {product.tech.map((item) => (
-                      <span
-                        key={item}
-                        className="rounded-md border border-[#cce4ff] bg-white px-2 py-1 text-[11px] font-semibold text-[#2f5d85]"
-                      >
-                        {item}
-                      </span>
-                    ))}
                   </div>
                   <p className="mt-4 text-xs text-slate-500">{product.mockupNote}</p>
                   {product.showStoreButtons ? (

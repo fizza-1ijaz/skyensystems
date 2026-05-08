@@ -95,7 +95,7 @@ export function PricingPageContent() {
           <h1 className="text-4xl font-extrabold md:text-6xl">
             No mystery. No hourly surprises.
           </h1>
-          <p className="mt-5 max-w-3xl text-lg text-slate-600">
+          <p className="mt-5 max-w-3xl mx-auto text-center text-lg text-slate-600">
             Three tiers for most projects. Custom quotes for everything else.
             Every tier includes the same quality — the difference is scope.
           </p>

@@ -342,11 +342,13 @@ export function HomePageContent() {
       </section>
 
       <section className="mx-auto max-w-7xl px-6 py-14 md:px-10">
-        <p className="mb-3 text-sm font-semibold uppercase tracking-[0.14em] text-slate-500">Built by us, for real users</p>
-        <h2 className="text-3xl font-bold md:text-4xl">
-          We do not just build for clients. We build for <span className="text-gradient">ourselves.</span>
-        </h2>
-        <p className="mt-4 max-w-3xl text-slate-600">Meet the Skyen Group products built by the same team and standards we bring to client projects.</p>
+        <div className="text-center">
+          <p className="mb-3 text-sm font-semibold uppercase tracking-[0.14em] text-slate-500">Built by us, for real users</p>
+          <h2 className="text-3xl font-bold md:text-4xl">
+            We do not just build for clients. We build for <span className="text-gradient">ourselves.</span>
+          </h2>
+          <p className="mx-auto mt-4 max-w-3xl text-slate-600">Meet the Skyen Group products built by the same team and standards we bring to client projects.</p>
+        </div>
         <div className="mt-8 grid gap-7 md:grid-cols-3 lg:gap-8">
           {[
             ["Studiely", "Live", "Learning, made personal.", "A full-stack education platform live on iOS, Android, and Web.", "Visit Studiely", "https://studiely.com"],
@@ -370,9 +372,11 @@ export function HomePageContent() {
       </section>
 
       <section className="mx-auto max-w-7xl px-6 py-14 md:px-10">
-        <p className="mb-3 text-sm font-semibold uppercase tracking-[0.14em] text-slate-500">What we build</p>
-        <h2 className="text-3xl font-bold md:text-4xl">Everything your business needs. Nothing you do not.</h2>
-        <p className="mt-4 max-w-3xl text-slate-600">Six core services, one team.</p>
+        <div className="text-center">
+          <p className="mb-3 text-sm font-semibold uppercase tracking-[0.14em] text-slate-500">What we build</p>
+          <h2 className="text-3xl font-bold md:text-4xl">Everything your business needs. Nothing you do not.</h2>
+          <p className="mx-auto mt-4 max-w-3xl text-slate-600">Six core services, one team.</p>
+        </div>
         <div className="mt-8 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
           {[
             ["Web Design & Development", "Fast, beautiful websites built to convert visitors into customers."],
@@ -391,8 +395,10 @@ export function HomePageContent() {
       </section>
 
       <section className="mx-auto max-w-7xl px-6 py-14 md:px-10">
-        <p className="mb-3 text-sm font-semibold uppercase tracking-[0.14em] text-slate-500">Honest pricing</p>
-        <h2 className="text-3xl font-bold md:text-4xl">Simple pricing. No agency games.</h2>
+        <div className="text-center">
+          <p className="mb-3 text-sm font-semibold uppercase tracking-[0.14em] text-slate-500">Honest pricing</p>
+          <h2 className="text-3xl font-bold md:text-4xl">Simple pricing. No agency games.</h2>
+        </div>
         <div className="mt-8 grid gap-5 md:grid-cols-3">
           {[
             ["Start", "$750", "Professional website, social setup, Google business profile, and basic brand kit."],
@@ -410,11 +416,13 @@ export function HomePageContent() {
       </section>
 
       <section className="mx-auto max-w-7xl px-6 py-14 md:px-10">
-        <p className="mb-3 text-sm font-semibold uppercase tracking-[0.14em] text-slate-500">Who we are</p>
-        <h2 className="text-3xl font-bold md:text-4xl">Built by builders. Backed by experience.</h2>
-        <p className="mt-4 max-w-3xl text-slate-600">
-          Skyen Systems is the digital services arm of the Skyen Group. We built Studiely in-house and bring that same product thinking to client work.
-        </p>
+        <div className="text-center">
+          <p className="mb-3 text-sm font-semibold uppercase tracking-[0.14em] text-slate-500">Who we are</p>
+          <h2 className="text-3xl font-bold md:text-4xl">Built by builders. Backed by experience.</h2>
+          <p className="mx-auto mt-4 max-w-3xl text-slate-600">
+            Skyen Systems is the digital services arm of the Skyen Group. We built Studiely in-house and bring that same product thinking to client work.
+          </p>
+        </div>
         <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {[
             ["3+", "Live products built in-house"],
@@ -431,8 +439,10 @@ export function HomePageContent() {
       </section>
 
       <section className="mx-auto max-w-7xl px-6 py-14 md:px-10">
-        <p className="mb-3 text-sm font-semibold uppercase tracking-[0.14em] text-slate-500">What clients say</p>
-        <h2 className="text-3xl font-bold md:text-4xl">Early results. Real businesses.</h2>
+        <div className="text-center">
+          <p className="mb-3 text-sm font-semibold uppercase tracking-[0.14em] text-slate-500">What clients say</p>
+          <h2 className="text-3xl font-bold md:text-4xl">Early results. Real businesses.</h2>
+        </div>
         <div className="mt-6 rounded-3xl border border-dashed border-[#6C63FF55] bg-white/70 p-8 text-center">
           <h3 className="text-2xl font-bold">Be one of our first US clients.</h3>
           <p className="mx-auto mt-3 max-w-2xl text-slate-600">
@@ -445,8 +455,10 @@ export function HomePageContent() {
       </section>
 
       <section className="mx-auto max-w-7xl px-6 py-14 md:px-10">
-        <p className="mb-3 text-sm font-semibold uppercase tracking-[0.14em] text-slate-500">Common questions</p>
-        <h2 className="text-3xl font-bold md:text-4xl">Things people ask before they reach out.</h2>
+        <div className="text-center">
+          <p className="mb-3 text-sm font-semibold uppercase tracking-[0.14em] text-slate-500">Common questions</p>
+          <h2 className="text-3xl font-bold md:text-4xl">Things people ask before they reach out.</h2>
+        </div>
         <div className="mt-6 grid gap-4 md:grid-cols-2">
           {[
             ["Do your prices include ad spend?", "No. Management fee covers work; ad spend is paid directly by the client to platforms."],
@@ -463,12 +475,12 @@ export function HomePageContent() {
       </section>
 
       <section className="mx-auto max-w-7xl px-6 py-14 md:px-10">
-        <div className="mb-6 flex items-end justify-between gap-3">
-          <div>
+        <div className="mb-6 flex flex-col md:flex-row items-center justify-between gap-3">
+          <div className="text-center md:text-left">
             <p className="mb-3 text-sm font-semibold uppercase tracking-[0.14em] text-slate-500">From our team</p>
             <h2 className="text-3xl font-bold md:text-4xl">Thinking out loud.</h2>
           </div>
-          <Link href="/blog" className="text-sm font-semibold text-[#6C63FF]">All posts -&gt;</Link>
+          <Link href="/blog" className="text-sm font-semibold text-[#6C63FF] whitespace-nowrap">All posts -&gt;</Link>
         </div>
         <div className="grid gap-5 md:grid-cols-3">
           {[

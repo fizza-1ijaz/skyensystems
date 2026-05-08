@@ -167,10 +167,10 @@ export function AboutPageContent() {
             <div className="absolute right-8 top-10 h-36 w-36 rounded-full bg-[#e2dcff7a] blur-2xl" />
           </div>
           <div className="relative">
-            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-[#6b82a8]">
+            <p className="mb-4 text-center text-xs font-semibold uppercase tracking-[0.2em] text-[#6b82a8]">
               PSEB Registration
             </p>
-            <p className="text-lg leading-8 text-slate-600">
+            <p className="text-center text-lg leading-8 text-slate-600">
               <span className="font-semibold text-[#0F172A]">What PSEB means for you:</span>{" "}
               Pakistan&apos;s Software Export Board (PSEB) certifies and regulates Pakistani software houses operating in international markets. PSEB registration means verified technical capability, business legitimacy, and professional conduct standards. When you work with Skyen Systems, you&apos;re working with a formally registered, government-recognised technology company.
             </p>
@@ -189,7 +189,7 @@ export function AboutPageContent() {
 
       <section className="relative mx-auto w-full max-w-7xl px-6 py-12 md:px-10">
         <div className="relative overflow-hidden rounded-[2rem] border border-[#dbe8ff] bg-white/80 p-7 shadow-[0_35px_80px_-45px_rgba(84,113,182,0.78)] backdrop-blur-2xl md:p-10">
-          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-[#6b82a8]">
+          <p className="mb-3 text-center text-xs font-semibold uppercase tracking-[0.2em] text-[#6b82a8]">
             Our Offices
           </p>
 

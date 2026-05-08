@@ -218,7 +218,7 @@ export function ProductsPageContent({ initialProductId }: ProductsPageContentPro
             We do not just build for clients.
             <span className="text-gradient"> We build for ourselves.</span>
           </h1>
-          <p className="mt-5 max-w-3xl text-lg text-slate-600">
+          <p className="mx-auto mt-5 max-w-3xl text-lg text-slate-600">
             These are the Skyen Group&apos;s own products - designed, developed,
             and maintained by the same team that will work on your project. This
             is our standard.

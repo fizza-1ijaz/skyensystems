@@ -23,14 +23,14 @@ export function BlogPageContent({
   return (
     <div className="pb-12 pt-14">
       <section className="px-6 pb-12 pt-16 md:px-16">
-        <div className="mx-auto max-w-6xl">
+        <div className="mx-auto max-w-6xl text-center">
           <p className="mb-4 text-xs font-semibold uppercase tracking-[0.14em] text-slate-500">
             From our team
           </p>
           <h1 className="text-4xl font-extrabold tracking-tight text-[#0F172A] md:text-6xl">
             Insights that help you make better digital decisions.
           </h1>
-          <p className="mt-5 max-w-3xl text-lg text-slate-600">
+          <p className="mx-auto mt-5 max-w-3xl text-lg text-slate-600">
             Actionable guides on web, apps, AI, and growth - written for small
             businesses that need clarity, not jargon.
           </p>

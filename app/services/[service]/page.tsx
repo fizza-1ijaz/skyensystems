@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { notFound } from "next/navigation";
 import { ServicesPageContent } from "@/components/marketing/ServicesPageContent";
 
@@ -93,7 +94,9 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
       />
-      <ServicesPageContent initialServiceSlug={service} />
+      <Suspense fallback={null}>
+        <ServicesPageContent initialServiceSlug={service} />
+      </Suspense>
     </>
   );
 }

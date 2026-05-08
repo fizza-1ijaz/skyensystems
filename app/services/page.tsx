@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { ServicesPageContent } from "@/components/marketing/ServicesPageContent";
 
 export const metadata: Metadata = {
@@ -29,7 +30,9 @@ export default function ServicesPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
       />
-      <ServicesPageContent />
+      <Suspense fallback={null}>
+        <ServicesPageContent />
+      </Suspense>
     </>
   );
 }

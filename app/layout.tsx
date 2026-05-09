@@ -5,6 +5,7 @@ import { Navbar } from "@/components/layout/Navbar";
 import { GlobalCursorGlow } from "@/components/ui/GlobalCursorGlow";
 import { ScrollProgress } from "@/components/ui/ScrollProgress";
 import { SmoothScrollProvider } from "@/components/ui/SmoothScrollProvider";
+import { CookieConsent } from "@/components/CookieConsent";
 import Script from "next/script";
 import "./globals.css";
 
@@ -88,6 +89,7 @@ gtag('config', '${gaMeasurementId}', { anonymize_ip: true });`}
         <Navbar />
         <div className="flex-1">{children}</div>
         <Footer />
+        <CookieConsent />
       </body>
     </html>
   );

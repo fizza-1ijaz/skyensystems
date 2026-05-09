@@ -42,9 +42,10 @@ export function ProductsShowcase() {
     <section className="bg-[#0B1220] px-6 py-20 text-white md:px-10">
       <div className="mx-auto max-w-7xl text-center">
         <motion.div
-          initial={{ opacity: 0, y: 30, filter: "blur(10px)" }}
-          whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.25 }}
+          transition={{ duration: 0.45, ease: "easeOut" }}
           className="mb-10"
         >
           <p className="mb-2 text-xs font-semibold uppercase tracking-[0.14em] text-slate-300">
@@ -60,12 +61,12 @@ export function ProductsShowcase() {
           {products.map((product, index) => (
             <motion.article
               key={product.name}
-              initial={{ opacity: 0, y: 30, filter: "blur(10px)" }}
-              whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.2 }}
-              transition={{ delay: index * 0.08 }}
+              transition={{ delay: index * 0.08, duration: 0.42, ease: "easeOut" }}
               whileHover={{ y: -6, scale: 1.02 }}
-              className="group min-w-[18rem] snap-start rounded-2xl border border-white/10 bg-white/5 p-6 text-center backdrop-blur xl:min-w-[22rem]"
+              className="group flex min-w-[18rem] flex-col snap-start rounded-2xl border border-white/10 bg-white/5 p-6 text-center backdrop-blur xl:min-w-[22rem]"
             >
               <div className="mb-4 flex justify-center">
                 <div className="relative h-14 w-14 overflow-hidden rounded-xl border border-white/15 bg-white/10 p-1">
@@ -83,7 +84,7 @@ export function ProductsShowcase() {
                 <span className="text-xs text-slate-400">{product.status}</span>
               </div>
               <p className="text-sm font-semibold text-gradient">{product.tag}</p>
-              <p className="mt-3 text-sm leading-7 text-slate-300">{product.blurb}</p>
+              <p className="mt-3 flex-grow text-sm leading-7 text-slate-300">{product.blurb}</p>
               <Link
                 href={product.href}
                 target="_blank"

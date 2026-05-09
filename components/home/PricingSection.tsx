@@ -30,14 +30,21 @@ const pillars = [
 export function PricingSection() {
   const [activePillar, setActivePillar] = useState(pillars[0].name);
   const selectedPillar = pillars.find((pillar) => pillar.name === activePillar) ?? pillars[0];
+  const nodes = [
+    { name: "PSEB Registered", xPct: 18.8, yPct: 18 },
+    { name: "US Market Focused", xPct: 81.2, yPct: 18 },
+    { name: "Full Stack", xPct: 18.8, yPct: 77 },
+    { name: "Long-Term Partners", xPct: 81.2, yPct: 77 },
+  ] as const;
 
   return (
     <section id="pricing" className="px-6 pb-10 pt-16 md:px-10 md:py-20">
       <div className="mx-auto max-w-7xl">
         <motion.div
-          initial={{ opacity: 0, y: 30, filter: "blur(10px)" }}
-          whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.45, ease: "easeOut" }}
           className="mb-10 text-center"
         >
           <p className="mb-2 text-xs font-semibold uppercase tracking-[0.14em] text-slate-500">
@@ -51,33 +58,44 @@ export function PricingSection() {
           </p>
         </motion.div>
 
-        <div className="relative hidden min-h-[620px] overflow-hidden rounded-[2.2rem] border border-[#dce7ff] bg-[linear-gradient(160deg,rgba(255,255,255,0.9),rgba(241,247,255,0.84))] md:block">
+        <div className="relative hidden min-h-[640px] overflow-hidden rounded-[2.2rem] border border-[#dce7ff] bg-[#f7f9fc] md:block" style={{ transform: "translateY(-15px)" }}>
+          <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(160deg,rgba(255,255,255,0.94),rgba(241,247,255,0.9))]" />
           <div className="pointer-events-none absolute inset-0">
             <div className="absolute left-8 top-10 h-56 w-56 rounded-full bg-[#dce9ff88] blur-3xl" />
             <div className="absolute right-10 top-12 h-64 w-64 rounded-full bg-[#e0d9ff85] blur-3xl" />
           </div>
 
-          <svg className="pointer-events-none absolute inset-0 h-full w-full" viewBox="0 0 1200 700" fill="none">
-            {[
-              { toX: 230, toY: 210, id: "PSEB Registered" },
-              { toX: 970, toY: 210, id: "US Market Focused" },
-              { toX: 250, toY: 430, id: "Full Stack" },
-              { toX: 950, toY: 430, id: "Long-Term Partners" },
-            ].map((line) => (
-              <motion.path
-                key={line.id}
-                initial={false}
-                d={`M600 350 Q 600 350 ${line.toX} ${line.toY}`}
-                stroke={activePillar === line.id ? "rgba(92,104,255,0.85)" : "rgba(114,138,180,0.38)"}
-                strokeWidth={activePillar === line.id ? 2.8 : 1.8}
-                strokeLinecap="round"
-                strokeDasharray="6 8"
-                animate={{ opacity: activePillar === line.id ? 1 : 0.58 }}
-              />
+          <svg className="absolute inset-0 z-10 h-full w-full -translate-y-2.5" viewBox="0 0 1200 700" fill="none">
+            {nodes.map((line) => (
+              <g key={line.name}>
+                <motion.path
+                  initial={false}
+                  d={`M600 350 Q 600 350 ${line.xPct * 12} ${line.yPct * 7}`}
+                  stroke="transparent"
+                  strokeWidth={28}
+                  strokeLinecap="round"
+                  style={{ pointerEvents: "stroke", cursor: "pointer" }}
+                  tabIndex={0}
+                  role="button"
+                  aria-label={`Highlight ${line.name}`}
+                  onPointerEnter={() => setActivePillar(line.name)}
+                  onFocus={() => setActivePillar(line.name)}
+                />
+                <motion.path
+                  initial={false}
+                  d={`M600 350 Q 600 350 ${line.xPct * 12} ${line.yPct * 7}`}
+                  stroke={activePillar === line.name ? "rgba(92,104,255,0.85)" : "rgba(114,138,180,0.38)"}
+                  strokeWidth={activePillar === line.name ? 2.8 : 1.8}
+                  strokeLinecap="round"
+                  strokeDasharray="6 8"
+                  style={{ pointerEvents: "none" }}
+                  animate={{ opacity: activePillar === line.name ? 1 : 0.58 }}
+                />
+              </g>
             ))}
           </svg>
 
-          <div className="absolute left-1/2 top-[43%] z-20 h-36 w-36 -translate-x-1/2 -translate-y-1/2 rounded-[1.8rem] border border-[#d8e6ff] bg-white/75 shadow-[0_25px_70px_-30px_rgba(74,111,192,0.8)] backdrop-blur-2xl">
+          <div className="absolute left-1/2 top-1/2 z-20 h-36 w-36 -translate-x-1/2 -translate-y-[calc(50%+10px)] rounded-[1.8rem] border border-[#d8e6ff] bg-white/75 shadow-[0_25px_70px_-30px_rgba(74,111,192,0.8)] backdrop-blur-2xl">
             <motion.div
               className="absolute inset-4 rounded-2xl border border-[#d9e9ff] bg-[radial-gradient(circle_at_30%_30%,#f4f8ff,rgba(223,236,255,0.8))]"
               animate={{ scale: [1, 1.05, 1] }}
@@ -95,36 +113,38 @@ export function PricingSection() {
             </motion.div>
           </div>
 
-          {[
-            { name: "PSEB Registered", pos: "left-[12%] top-[28%]" },
-            { name: "US Market Focused", pos: "right-[12%] top-[28%]" },
-            { name: "Full Stack", pos: "left-[16%] bottom-[30%]" },
-            { name: "Long-Term Partners", pos: "right-[14%] bottom-[30%]" },
-          ].map((node) => {
-            const isActive = node.name === activePillar;
-            return (
-              <motion.button
-                key={node.name}
-                type="button"
-                onMouseEnter={() => setActivePillar(node.name)}
-                onFocus={() => setActivePillar(node.name)}
-                className={`absolute z-30 ${node.pos} rounded-full border px-4 py-2.5 text-sm font-bold text-[#2a4d86] shadow-[0_24px_50px_-34px_rgba(88,117,193,0.9)] backdrop-blur-xl transition-all ${
-                  isActive
-                    ? "border-[#b8cdff] bg-white/92 scale-105"
-                    : "border-[#d9e7ff] bg-white/72"
-                }`}
-              >
-                {node.name}
-              </motion.button>
-            );
-          })}
+          <div className="absolute inset-0 z-20 grid h-full w-full grid-cols-2 grid-rows-2 px-10 py-10 -translate-y-2.5">
+            {nodes.map((node) => {
+              const isActive = node.name === activePillar;
+              return (
+                <motion.button
+                  key={node.name}
+                  type="button"
+                  onMouseEnter={() => setActivePillar(node.name)}
+                  onFocus={() => setActivePillar(node.name)}
+                  className="absolute -translate-x-1/2 -translate-y-1/2 rounded-full px-4 py-2.5 text-sm font-bold text-[#2a4d86] shadow-[0_24px_50px_-34px_rgba(88,117,193,0.9)] backdrop-blur-xl transition-all"
+                    style={{ left: `${node.xPct}%`, top: `${node.yPct}%` }}
+                >
+                  <span
+                    className={`rounded-full px-4 py-2.5 transition-all ${
+                      isActive
+                        ? "bg-[#112B44] text-[#F4F8FF] scale-105"
+                        : "bg-[#112B44] text-[#EAF2FF]"
+                    }`}
+                  >
+                    {node.name}
+                  </span>
+                </motion.button>
+              );
+            })}
+          </div>
 
           <motion.div
             key={`pillar-detail-${selectedPillar.name}`}
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.22, ease: "easeOut" }}
-            className="absolute bottom-8 left-1/2 z-30 w-[min(88%,720px)] -translate-x-1/2 rounded-2xl border border-[#cfdeff] bg-white/86 p-5 text-center shadow-[0_24px_56px_-36px_rgba(88,117,193,0.95)] backdrop-blur-xl"
+            className="absolute bottom-[4px] left-1/2 z-30 w-[min(88%,720px)] -translate-x-1/2 rounded-2xl border border-[#cfdeff] bg-white/86 p-5 text-center shadow-[0_24px_56px_-36px_rgba(88,117,193,0.95)] backdrop-blur-xl"
           >
             <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#6d84ab]">
               {selectedPillar.name}

@@ -2,10 +2,17 @@
 
 import Link from "next/link";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export function Hero() {
   const heroRef = useRef<HTMLDivElement>(null);
+  const trustMessages = [
+    "PSEB Registered Software House · Pakistan & Bahrain",
+    "Trusted by 50+ US small businesses",
+    "Free project consultation — 30 minutes, no obligation",
+    "Response within 4 business hours, guaranteed",
+  ];
+  const [trustIndex, setTrustIndex] = useState(0);
   const pointerX = useMotionValue(0);
   const pointerY = useMotionValue(0);
   const smoothX = useSpring(pointerX, { stiffness: 150, damping: 24, mass: 0.8 });
@@ -29,6 +36,16 @@ export function Hero() {
     pointerY.set(0);
   };
 
+  useEffect(() => {
+    const timer = window.setInterval(() => {
+      setTrustIndex((current) => (current + 1) % trustMessages.length);
+    }, 3200);
+
+    return () => {
+      window.clearInterval(timer);
+    };
+  }, []);
+
   return (
     <section className="relative mx-auto min-h-[72vh] w-full max-w-[1700px] overflow-hidden px-6 pb-8 pt-28 md:min-h-[66vh] md:px-10 md:pb-6 md:pt-[120px] lg:min-h-[70vh] lg:pb-8 lg:pt-[120px] xl:min-h-[88vh] xl:pb-16 xl:pt-36">
       <div className="pointer-events-none absolute inset-0">
@@ -44,24 +61,26 @@ export function Hero() {
         onPointerMove={onHeroPointerMove}
         onPointerLeave={onHeroPointerLeave}
         className="relative z-10 mx-auto w-full max-w-7xl text-center"
+        style={{ transform: "translateY(-20px)" }}
       >
         <div>
           <motion.p
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
-            className="mx-auto inline-flex items-center rounded-full border border-[#d8e5ff] bg-white/80 px-4 py-2 text-xs font-semibold tracking-[0.08em] text-[#4a6490] shadow-[0_15px_40px_-30px_rgba(64,95,175,0.5)] lg:mx-0"
+            className="mx-auto inline-flex min-h-10 items-center rounded-full border border-[#d8e5ff] bg-white/80 px-4 py-2 text-xs font-semibold tracking-[0.08em] text-[#4a6490] shadow-[0_15px_40px_-30px_rgba(64,95,175,0.5)] lg:mx-0"
+            aria-live="polite"
           >
-            PSEB Registered Software House · Pakistan & Bahrain
-          </motion.p>
-
-          <motion.p
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.05, duration: 0.6, ease: "easeOut" }}
-            className="mt-7 text-xs font-semibold uppercase tracking-[0.22em] text-[#637da4]"
-          >
-            YOUR GROWTH-FOCUSED DIGITAL PARTNER
+            <motion.span
+              key={trustMessages[trustIndex]}
+              initial={{ opacity: 0, y: 4 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -4 }}
+              transition={{ duration: 0.28, ease: "easeOut" }}
+              className="text-center"
+            >
+              {trustMessages[trustIndex]}
+            </motion.span>
           </motion.p>
 
           <motion.h1

@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useEffect } from "react";
+import { BookOpen } from "lucide-react";
 
 type ProductScene = {
   id: string;
@@ -49,7 +50,7 @@ const PRODUCTS: ProductScene[] = [
       "Study Groups: Share decks and compete with classmates on quiz leaderboards.",
     ],
     mockupLabel: "Studiely - App preview",
-    mockupNote: "Replace with real app screenshots",
+    mockupNote: "",
     logoSrc: "/logo-studiely.jpeg",
     primaryCtaLabel: "Visit Studiely",
     primaryCtaHref: "https://studiely.com",
@@ -81,7 +82,7 @@ const PRODUCTS: ProductScene[] = [
     mockupLabel: "Make My Lesson - UI preview",
     mockupNote: "Concept preview - not final UI",
     logoSrc: "/logo-makemylesson.png",
-    primaryCtaLabel: "Visit",
+    primaryCtaLabel: "Visit Make My Lesson",
     primaryCtaHref: "https://makemylesson.ai",
     primaryExternal: true,
     waitlistPlaceholder: "Your email address",
@@ -108,7 +109,7 @@ const PRODUCTS: ProductScene[] = [
     mockupLabel: "Linguatude - Coming soon",
     mockupNote: "Be the first to access Linguatude at launch.",
     logoSrc: "/logo-linguatude.jpg",
-    primaryCtaLabel: "Visit",
+    primaryCtaLabel: "Visit Linguatude",
     primaryCtaHref: "https://linguatude.com",
     primaryExternal: true,
     waitlistPlaceholder: "Your email address",
@@ -177,8 +178,8 @@ function ProductPreview({ product }: { product: ProductScene }) {
     <>
       <div className="mt-4 rounded-xl border border-[#d3e2ff] bg-white p-4">
         <div className="mb-4 flex justify-center">
-          <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-[#6C63FF] to-[#1E3A8A] text-xl font-black text-white">
-            A
+          <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-[#6C63FF] to-[#1E3A8A] text-white">
+            <BookOpen size={24} strokeWidth={2} />
           </div>
         </div>
         <div className="mx-auto h-2 w-3/5 rounded-full bg-gradient-to-r from-[#6C63FF66] to-[#1E3A8A66]" />
@@ -243,7 +244,7 @@ export function ProductsPageContent({ initialProductId }: ProductsPageContentPro
                 <div className="absolute right-10 top-14 h-48 w-48 rounded-full bg-[#1E3A8A1c] blur-3xl" />
               </div>
               <div className={`relative z-10 grid gap-8 ${idx % 2 === 1 ? "md:grid-cols-[1.05fr_1fr]" : "md:grid-cols-2"}`}>
-                <div className={`${idx % 2 === 1 ? "md:order-2" : ""} text-center md:text-left`}>
+                <div className={`${idx % 2 === 1 ? "md:order-2" : ""} text-center`}>
                   <p className="text-xs font-semibold uppercase tracking-[0.13em] text-slate-500">
                     {product.eyebrow}
                   </p>
@@ -257,7 +258,7 @@ export function ProductsPageContent({ initialProductId }: ProductsPageContentPro
                       <p key={paragraph}>{paragraph}</p>
                     ))}
                   </div>
-                  <div className="mt-5 flex flex-wrap justify-center gap-2 md:justify-start">
+                  <div className="mt-5 flex flex-wrap justify-center gap-2">
                     {product.platforms.map((platform) => (
                       <span
                         key={platform}
@@ -285,7 +286,7 @@ export function ProductsPageContent({ initialProductId }: ProductsPageContentPro
                 <div
                   className={`rounded-2xl border border-[#dbe8ff] bg-[#f5f8ff] p-5 ${idx % 2 === 1 ? "md:order-1" : ""}`}
                 >
-                  <div className="mb-3 flex items-center justify-center md:justify-start">
+                  <div className="mb-3 flex items-center justify-center">
                     <div className="relative h-14 w-14 overflow-hidden rounded-xl border border-[#d3e2ff] bg-white p-1">
                       <Image
                         src={product.logoSrc}
@@ -296,34 +297,55 @@ export function ProductsPageContent({ initialProductId }: ProductsPageContentPro
                       />
                     </div>
                   </div>
-                  <p className="text-sm font-semibold text-slate-600">{product.mockupLabel}</p>
+                  <p className="text-center text-sm font-semibold text-slate-600">{product.mockupLabel}</p>
                   <ProductPreview product={product} />
-                  <div className="mt-4 flex flex-wrap justify-center gap-3 md:justify-start">
+                  <div className="mt-6 flex flex-wrap justify-center gap-3">
                     <a
                       href={product.primaryCtaHref}
                       target={product.primaryExternal ? "_blank" : undefined}
                       rel={product.primaryExternal ? "noopener noreferrer" : undefined}
-                      className="rounded-xl bg-[#112B44] px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#1B3E5E]"
+                      className="group rounded-xl bg-[#112B44] px-6 py-2.5 text-sm font-semibold text-white shadow-[0_8px_20px_-8px_rgba(17,43,68,0.6)] transition-all duration-300 hover:bg-[#1B3E5E] hover:shadow-[0_12px_28px_-10px_rgba(17,43,68,0.8)] active:scale-95"
                     >
                       {product.primaryCtaLabel}
                     </a>
                     {product.secondaryCtaLabel && product.secondaryCtaHref ? (
                       <Link
                         href={product.secondaryCtaHref}
-                        className="rounded-xl border border-slate-300 bg-white px-5 py-2.5 text-sm font-semibold text-slate-700"
+                        className="group rounded-xl border border-slate-300 bg-white px-6 py-2.5 text-sm font-semibold text-slate-700 transition-all duration-300 hover:bg-slate-50 hover:border-slate-400 active:scale-95"
                       >
                         {product.secondaryCtaLabel}
                       </Link>
                     ) : null}
                   </div>
                   {product.showStoreButtons ? (
-                    <div className="mt-4 flex gap-2">
-                      <a href={product.appStoreHref} target="_blank" rel="noopener noreferrer" className="rounded-lg border border-slate-300 bg-white px-3 py-2 text-xs font-semibold text-slate-700">
-                        App Store
-                      </a>
-                      <a href={product.playStoreHref} target="_blank" rel="noopener noreferrer" className="rounded-lg border border-slate-300 bg-white px-3 py-2 text-xs font-semibold text-slate-700">
-                        Google Play
-                      </a>
+                    <div className="mt-8 border-t border-slate-200 pt-6">
+                      <p className="mb-4 text-center text-xs font-semibold uppercase tracking-[0.12em] text-slate-500">
+                        Download and see it now
+                      </p>
+                      <div className="flex justify-center gap-3">
+                        <a 
+                          href={product.appStoreHref} 
+                          target="_blank" 
+                          rel="noopener noreferrer" 
+                          className="flex items-center gap-2 rounded-lg bg-[#112B44] px-4 py-2.5 text-xs font-semibold text-white shadow-[0_6px_16px_-6px_rgba(17,43,68,0.5)] transition-all duration-300 hover:bg-[#1B3E5E] hover:shadow-[0_8px_20px_-8px_rgba(17,43,68,0.7)] active:scale-95"
+                        >
+                          <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M17.05 13.5c-.91 0-1.64.75-1.64 1.67s.73 1.67 1.64 1.67 1.64-.75 1.64-1.67-.73-1.67-1.64-1.67zM16.56 5.44h4.92s.5 0 .5.5v10.2c0 .3-.2.5-.5.5h-4.92m-11.6 1.62V5.94s0-.5.5-.5h10.25l-4.5 8.68z"/>
+                          </svg>
+                          App Store
+                        </a>
+                        <a 
+                          href={product.playStoreHref} 
+                          target="_blank" 
+                          rel="noopener noreferrer" 
+                          className="flex items-center gap-2 rounded-lg bg-[#112B44] px-4 py-2.5 text-xs font-semibold text-white shadow-[0_6px_16px_-6px_rgba(17,43,68,0.5)] transition-all duration-300 hover:bg-[#1B3E5E] hover:shadow-[0_8px_20px_-8px_rgba(17,43,68,0.7)] active:scale-95"
+                        >
+                          <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M3.609 1.814L13.798 12 3.609 22.186A1.5 1.5 0 0 1 1.5 20.879V3.12a1.5 1.5 0 0 1 2.109-1.306zm15.974 9.186L7.157 2.311a1.5 1.5 0 0 1 2.386 1.227v17.924a1.5 1.5 0 0 1-2.386 1.227l12.426-8.689a1.5 1.5 0 0 0 0-2.454z"/>
+                          </svg>
+                          Google Play
+                        </a>
+                      </div>
                     </div>
                   ) : null}
                 </div>
@@ -360,11 +382,11 @@ export function ProductsPageContent({ initialProductId }: ProductsPageContentPro
             to your business.
           </p>
           <div className="mt-7 flex flex-wrap justify-center gap-3">
-            <Link href="/services" className="rounded-lg bg-[#112B44] px-6 py-3 font-semibold text-white transition-colors hover:bg-[#1B3E5E]">
-              See Our Services
+            <Link href="/services" className="group relative rounded-lg bg-[#112B44] px-6 py-3 font-semibold text-white shadow-[0_0_30px_rgba(108,99,255,0.5)] transition-all duration-300 hover:shadow-[0_0_50px_rgba(108,99,255,0.8),0_12px_40px_-12px_rgba(108,99,255,0.6)] hover:scale-105 active:scale-95">
+              <span className="relative z-10">See Our Services</span>
             </Link>
-            <Link href="https://calendly.com/skyensystems/discovery" className="rounded-lg border border-[#3A5C7A] bg-[#0F253AE6] px-6 py-3 font-semibold text-[#EAF2FF]">
-              Book a Free Call
+            <Link href="/contact-us" className="group relative rounded-lg border border-[#3A5C7A] bg-[#0F253AE6] px-6 py-3 font-semibold text-[#EAF2FF] shadow-[0_0_30px_rgba(100,200,255,0.5)] transition-all duration-300 hover:shadow-[0_0_50px_rgba(100,200,255,0.8),0_12px_40px_-12px_rgba(100,200,255,0.6)] hover:border-[#5A8CBA] hover:scale-105 active:scale-95">
+              <span className="relative z-10">Contact Us</span>
             </Link>
           </div>
         </div>

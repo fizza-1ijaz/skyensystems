@@ -192,16 +192,17 @@ export function ValueProps() {
   return (
     <section
       ref={sectionRef}
-      className="relative overflow-hidden bg-[radial-gradient(circle_at_20%_0%,rgba(76,99,255,0.24),transparent_40%),radial-gradient(circle_at_80%_10%,rgba(56,189,248,0.2),transparent_35%),linear-gradient(180deg,#040812_0%,#050d1f_45%,#071428_100%)] px-4 py-12 text-[#E6EEFF] md:px-0 md:py-0"
+      className="relative overflow-hidden bg-[#050d1f] px-4 py-12 text-[#E6EEFF] md:px-0 md:py-0"
     >
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_20%_0%,rgba(76,99,255,0.24),transparent_40%),radial-gradient(circle_at_80%_10%,rgba(56,189,248,0.2),transparent_35%),linear-gradient(180deg,#040812_0%,#050d1f_45%,#071428_100%)]" />
       <div
         ref={desktopStageRef}
-        className="relative hidden h-[62svh] min-h-[420px] w-full overflow-hidden [--assembly-top:43%] [--track-top:43%] lg:h-[68svh] lg:min-h-[470px] lg:[--assembly-top:46%] lg:[--track-top:46%] xl:h-[92svh] xl:min-h-[700px] xl:[--assembly-top:60%] xl:[--track-top:60%] md:block"
+        className="relative z-10 hidden h-[62svh] min-h-[420px] w-full overflow-hidden [--assembly-top:43%] [--track-top:43%] lg:h-[68svh] lg:min-h-[470px] lg:[--assembly-top:46%] lg:[--track-top:46%] xl:h-[92svh] xl:min-h-[700px] xl:[--assembly-top:60%] xl:[--track-top:60%] md:block"
         onPointerMove={onPointerMove}
         onPointerLeave={onPointerLeave}
       >
         <motion.div
-          className="absolute inset-0"
+          className="absolute inset-0 z-10"
           style={{
             rotateX: stageRotateX,
             rotateY: stageRotateY,
@@ -316,7 +317,7 @@ export function ValueProps() {
         </motion.div>
       </div>
 
-      <div className="mx-auto max-w-3xl md:hidden">
+      <div className="relative z-10 mx-auto max-w-3xl md:hidden">
         <div className="mb-5 pt-4 text-center">
           <p className="mb-2 text-xs font-semibold uppercase tracking-[0.2em] text-[#9BB5D8]">
             OUR PROCESS

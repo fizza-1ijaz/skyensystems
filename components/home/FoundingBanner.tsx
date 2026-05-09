@@ -7,9 +7,10 @@ export function FoundingBanner() {
   return (
     <section className="w-full overflow-hidden bg-gradient-to-r from-[#EEF3FF] via-[#F7F8FC] to-[#E8F8FF] px-0 py-16">
       <motion.div
-        initial={{ opacity: 0, y: 30, filter: "blur(10px)" }}
-        whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+        initial={{ opacity: 0, y: 24 }}
+        whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.3 }}
+        transition={{ duration: 0.45, ease: "easeOut" }}
         className="relative w-full border-y border-white/70 bg-white/66 px-6 py-12 text-center shadow-[0_26px_70px_-42px_rgba(15,23,42,0.35)] md:px-10"
       >
         <div className="pointer-events-none absolute inset-y-0 left-0 w-28 bg-gradient-to-r from-transparent via-white/60 to-transparent opacity-70" />

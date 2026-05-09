@@ -132,7 +132,7 @@ export function AboutPageContent() {
               viewport={{ once: true, amount: 0.35 }}
               className="rounded-3xl border border-[#dbe8ff] bg-white/78 p-6 text-lg leading-8 text-slate-600 shadow-[0_30px_70px_-45px_rgba(84,113,182,0.72)] backdrop-blur-xl"
             >
-              Skyen Systems is a PSEB-registered software house based in Pakistan with a regional office in Bahrain. We work with small and medium businesses across the United States - and increasingly across the world - building websites, apps, AI tools, and running the digital marketing that makes them matter.
+              Skyen Systems is a registered software house based in Bahrain with a regional office in Pakistan. We work with small and medium businesses across the United States - and increasingly across the world - building websites, apps, AI tools, and running the digital marketing that makes them matter.
             </motion.p>
 
             <motion.p

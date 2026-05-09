@@ -299,13 +299,37 @@ export function ValueProps() {
             <div className="absolute inset-[18px] rounded-md bg-white/60" />
           </motion.div>
 
-          <div className="absolute bottom-36 left-1/2 z-30 w-[min(92%,920px)] -translate-x-1/2 rounded-3xl border border-[#b9d0ff38] bg-[#081327d6] p-6 backdrop-blur-2xl lg:bottom-28 xl:bottom-10">
+          <div className="absolute bottom-36 left-1/2 z-30 w-[min(94%,1080px)] -translate-x-1/2 rounded-3xl border border-[#b9d0ff38] bg-[#081327d6] p-6 backdrop-blur-2xl lg:bottom-28 lg:p-7 xl:bottom-10">
+            <div className="pointer-events-none absolute inset-y-0 left-0 hidden w-28 lg:block">
+              <motion.span
+                className="absolute left-4 top-8 h-2 w-2 rounded-full bg-[#9BE7FF] shadow-[0_0_16px_rgba(155,231,255,0.95)]"
+                animate={{ opacity: [0.45, 1, 0.45], scale: [0.85, 1.15, 0.85] }}
+                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+              />
+              <motion.span
+                className="absolute left-10 top-16 h-1.5 w-1.5 rounded-full bg-[#7C6CFF] shadow-[0_0_14px_rgba(124,108,255,0.9)]"
+                animate={{ opacity: [0.35, 0.95, 0.35], scale: [0.75, 1.2, 0.75] }}
+                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: 0.4 }}
+              />
+            </div>
+            <div className="pointer-events-none absolute inset-y-0 right-0 hidden w-28 lg:block">
+              <motion.span
+                className="absolute right-5 top-10 h-2 w-2 rounded-full bg-[#5FD5FF] shadow-[0_0_16px_rgba(95,213,255,0.95)]"
+                animate={{ opacity: [0.45, 1, 0.45], scale: [0.85, 1.15, 0.85] }}
+                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: 0.2 }}
+              />
+              <motion.span
+                className="absolute right-12 top-20 h-1.5 w-1.5 rounded-full bg-[#D4C8FF] shadow-[0_0_14px_rgba(212,200,255,0.9)]"
+                animate={{ opacity: [0.35, 0.95, 0.35], scale: [0.75, 1.2, 0.75] }}
+                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: 0.6 }}
+              />
+            </div>
             <div className="flex items-end justify-between gap-5">
               <div>
-                <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-[#84A5DA]">
+                <p className="text-sm font-semibold uppercase tracking-[0.24em] text-[#A7C3F4] lg:text-[15px]">
                   {activePoint.id} - {activePoint.title}
                 </p>
-                <p className="mt-3 max-w-4xl text-sm leading-7 text-[#D4E3FB] lg:text-[15px]">
+                <p className="mt-3 max-w-4xl text-sm leading-7 text-[#D4E3FB] lg:text-[14px]">
                   {activePoint.body}
                 </p>
               </div>
@@ -315,6 +339,60 @@ export function ValueProps() {
             </div>
           </div>
         </motion.div>
+        
+        <div className="pointer-events-none absolute bottom-36 left-0 z-20 hidden h-96 w-[15%] lg:bottom-28 lg:block xl:bottom-10">
+          <div className="absolute inset-0 rounded-full bg-[radial-gradient(circle_at_30%_40%,rgba(124,108,255,0.15),transparent_50%)] blur-3xl" />
+          <div className="absolute bottom-20 left-8 h-32 w-32 rounded-full bg-[radial-gradient(circle_at_50%_50%,rgba(95,213,255,0.08),transparent_60%)] blur-2xl" />
+          {[...Array(12)].map((_, i) => (
+            <motion.div
+              key={`left-glitter-${i}`}
+              className="absolute h-1 w-1 rounded-full bg-[#9BE7FF]"
+              style={{
+                left: `${(i * 6.67) % 80}%`,
+                top: `${(i * 8.33) % 100}%`,
+                boxShadow: `0 0 ${4 + (i % 3) * 2}px rgba(155, 231, 255, 0.8)`,
+              }}
+              animate={{
+                opacity: [0, 1, 0.5, 1, 0],
+                scale: [0.5, 1.2, 0.8, 1, 0.5],
+                y: [0, -12, -6, -18, 0],
+              }}
+              transition={{
+                duration: 3.5,
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: (i * 0.125) % 1.5,
+              }}
+            />
+          ))}
+        </div>
+
+        <div className="pointer-events-none absolute bottom-36 right-0 z-20 hidden h-96 w-[15%] lg:bottom-28 lg:block xl:bottom-10">
+          <div className="absolute inset-0 rounded-full bg-[radial-gradient(circle_at_70%_40%,rgba(167,195,244,0.15),transparent_50%)] blur-3xl" />
+          <div className="absolute top-24 right-8 h-40 w-40 rounded-full bg-[radial-gradient(circle_at_50%_50%,rgba(95,213,255,0.06),transparent_60%)] blur-2xl" />
+          {[...Array(12)].map((_, i) => (
+            <motion.div
+              key={`right-glitter-${i}`}
+              className="absolute h-1 w-1 rounded-full bg-[#7C9CFF]"
+              style={{
+                right: `${(i * 6.67) % 80}%`,
+                top: `${(i * 8.33) % 100}%`,
+                boxShadow: `0 0 ${4 + (i % 3) * 2}px rgba(124, 156, 255, 0.75)`,
+              }}
+              animate={{
+                opacity: [0, 0.8, 0.5, 1, 0],
+                scale: [0.5, 1.1, 0.9, 1.2, 0.5],
+                y: [0, -15, -8, -20, 0],
+              }}
+              transition={{
+                duration: 3.5,
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: (i * 0.125) % 1.5,
+              }}
+            />
+          ))}
+        </div>
       </div>
 
       <div className="relative z-10 mx-auto max-w-3xl md:hidden">

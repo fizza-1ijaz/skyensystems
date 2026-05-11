@@ -9,6 +9,7 @@ import {
   Users,
   Globe,
   Megaphone,
+  ArrowUpRight,
 } from "lucide-react";
 
 const services = [
@@ -125,6 +126,10 @@ export function ServicesGrid() {
                 </p>
                 <div className="mt-4 border-t border-dashed border-[#D7E4FF] pt-4">
                   <p className="text-center text-xs font-semibold text-[#355173]">{features}</p>
+                </div>
+                <div className="mt-6 flex items-center justify-center gap-2 text-[#6C63FF] opacity-0 transition-all duration-300 group-hover:opacity-100">
+                  <span className="text-xs font-semibold uppercase tracking-wider">See more</span>
+                  <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
                 </div>
               </Link>
             </motion.article>

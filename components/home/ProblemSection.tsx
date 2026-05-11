@@ -34,13 +34,11 @@ export function ProblemSection() {
 
     let frameId = 0;
     const start = performance.now();
-    const duration = 2000; // Increased duration for smoother animation
+    const duration = 2000;
 
     const tick = (time: number) => {
       const elapsed = time - start;
       const progress = Math.min(1, elapsed / duration);
-      
-      // Easing function for more natural feel
       const easeOutQuad = 1 - Math.pow(1 - progress, 2);
       
       setCounts(
@@ -77,7 +75,7 @@ export function ProblemSection() {
   };
 
   return (
-    <section className="bg-white px-6 py-14 md:px-10" ref={ref}>
+    <section className="relative bg-white px-6 py-14 md:px-10" ref={ref}>
       <motion.div
         initial="hidden"
         whileInView="visible"

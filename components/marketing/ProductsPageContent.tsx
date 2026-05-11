@@ -17,6 +17,8 @@ type ProductScene = {
   tech: string[];
   mockupLabel: string;
   mockupNote: string;
+  mockup1Src?: string;
+  mockup2Src?: string;
   logoSrc: string;
   primaryCtaLabel: string;
   primaryCtaHref: string;
@@ -49,8 +51,10 @@ const PRODUCTS: ProductScene[] = [
       "Progress Tracking: See what you've mastered and what needs more work — at a glance.",
       "Study Groups: Share decks and compete with classmates on quiz leaderboards.",
     ],
-    mockupLabel: "Studiely - App preview",
-    mockupNote: "",
+    mockupLabel: "Studiely - Mobile App",
+    mockupNote: "Live previews from our latest release.",
+    mockup1Src: "/studiely-mockup.jpeg",
+    mockup2Src: "/studiely-mockup2.jpeg",
     logoSrc: "/logo-studiely.jpeg",
     primaryCtaLabel: "Visit Studiely",
     primaryCtaHref: "https://studiely.com",
@@ -79,8 +83,10 @@ const PRODUCTS: ProductScene[] = [
       "Resource Suggestions: Linked worksheets, videos, and discussion prompts relevant to your topic.",
       "Lesson Bank: Save and reuse past plans. Build your own library over time.",
     ],
-    mockupLabel: "Make My Lesson - UI preview",
-    mockupNote: "Concept preview - not final UI",
+    mockupLabel: "Make My Lesson - AI Platform",
+    mockupNote: "Concept preview of our teacher dashboard.",
+    mockup1Src: "/makemylesson-mockup.jpeg",
+    mockup2Src: "/makemylesson-mockup2.jpeg",
     logoSrc: "/logo-makemylesson.png",
     primaryCtaLabel: "Visit Make My Lesson",
     primaryCtaHref: "https://makemylesson.ai",
@@ -122,81 +128,58 @@ type ProductsPageContentProps = {
   initialProductId?: string;
 };
 
-function ProductPreview({ product }: { product: ProductScene }) {
-  if (product.id === "studiely") {
-    return (
-      <>
-        <div className="mt-4 rounded-xl border border-[#d3e2ff] bg-white p-4">
-          <div className="mb-3">
-            <div className="h-2 w-3/5 rounded-full bg-gradient-to-r from-[#6C63FF66] to-[#1E3A8A66]" />
-            <div className="mt-2 h-2 w-2/5 rounded-full bg-slate-200" />
-          </div>
-          <div className="h-12 rounded-lg bg-[#eef4ff]" />
-          <div className="mt-3 grid grid-cols-2 gap-2">
-            <div className="h-16 rounded-lg bg-[#f2f6ff]" />
-            <div className="h-16 rounded-lg bg-[#f2f6ff]" />
-          </div>
-          <div className="mt-3 h-2 w-4/5 rounded-full bg-gradient-to-r from-[#6C63FF55] to-[#1E3A8A55]" />
-        </div>
-        <p className="mt-4 text-xs text-slate-500">{product.mockupNote}</p>
-      </>
-    );
-  }
+function ProductPreview({ product, priority = false }: { product: ProductScene; priority?: boolean }) {
+  const mockups = [product.mockup1Src, product.mockup2Src].filter(Boolean);
 
-  if (product.id === "make-my-lesson") {
+  if (mockups.length > 0) {
     return (
-      <>
-        <div className="mt-4 rounded-xl border border-[#d3e2ff] bg-white p-4">
-          <div className="rounded-lg border border-[#d7e5ff] bg-[#f3f8ff] p-3">
-            <div className="h-2 w-[70%] rounded-full bg-slate-300" />
-            <div className="mt-2 h-2 w-[50%] rounded-full bg-gradient-to-r from-[#6C63FF66] to-[#1E3A8A66]" />
+      <div className="relative h-full min-h-[400px] flex items-center justify-center py-10">
+        <div className="relative flex items-center gap-4 md:gap-8">
+          {/* Main Mobile Frame */}
+          <div className="relative w-[180px] md:w-[220px] aspect-[9/19] rounded-[2.5rem] border-[6px] border-slate-900 bg-slate-900 shadow-2xl overflow-hidden z-10">
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-20 h-5 bg-slate-900 rounded-b-xl z-20" />
+              <div className="relative h-full w-full">
+                <Image
+                  src={mockups[0]!}
+                  alt={`${product.name} mockup 1`}
+                  fill
+                  sizes="(max-width: 768px) 180px, 220px"
+                  quality={80}
+                  className="object-cover"
+                  priority={priority}
+                />
+              </div>
           </div>
-          <div className="mt-3 grid grid-cols-3 gap-2">
-            <div className="rounded-md bg-[#f6f9ff] py-2 text-center text-[10px] font-medium text-slate-500">
-              Grade
+
+          {/* Secondary Offset Frame */}
+          {mockups[1] && (
+            <div className="relative w-[160px] md:w-[200px] aspect-[9/19] rounded-[2.5rem] border-[6px] border-slate-800 bg-slate-800 shadow-xl overflow-hidden -ml-12 md:-ml-16 mt-12 opacity-90 transition-all hover:opacity-100 hover:-translate-y-2">
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-16 h-4 bg-slate-800 rounded-b-xl z-20" />
+                <div className="relative h-full w-full">
+                    <Image
+                    src={mockups[1]}
+                    alt={`${product.name} mockup 2`}
+                    fill
+                    sizes="(max-width: 768px) 160px, 200px"
+                    quality={80}
+                    className="object-cover"
+                    priority={priority}
+                    />
+                </div>
             </div>
-            <div className="rounded-md bg-[#f6f9ff] py-2 text-center text-[10px] font-medium text-slate-500">
-              Subject
-            </div>
-            <div className="rounded-md bg-[#f6f9ff] py-2 text-center text-[10px] font-medium text-slate-500">
-              Duration
-            </div>
-          </div>
-          <div className="mt-3 h-12 rounded-lg bg-[#eef4ff]" />
-          <div className="mt-3 flex justify-center">
-            <span className="rounded-md bg-gradient-to-r from-[#6C63FF] to-[#1E3A8A] px-4 py-2 text-[11px] font-semibold text-white">
-              Generate Lesson Plan
-            </span>
-          </div>
+          )}
         </div>
-        <p className="mt-4 text-xs text-slate-500">{product.mockupNote}</p>
-      </>
+      </div>
     );
   }
 
   return (
-    <>
-      <div className="mt-4 rounded-xl border border-[#d3e2ff] bg-white p-4">
-        <div className="mb-4 flex justify-center">
-          <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-[#6C63FF] to-[#1E3A8A] text-white">
-            <BookOpen size={24} strokeWidth={2} />
-          </div>
-        </div>
-        <div className="mx-auto h-2 w-3/5 rounded-full bg-gradient-to-r from-[#6C63FF66] to-[#1E3A8A66]" />
-        <div className="mx-auto mt-2 h-2 w-2/5 rounded-full bg-slate-200" />
-        <div className="mt-4 grid grid-cols-2 gap-2">
-          {["IELTS", "TOEFL", "PTE", "General"].map((item) => (
-            <div
-              key={item}
-              className="rounded-md bg-[#f6f9ff] py-2 text-center text-[10px] font-medium text-slate-500"
-            >
-              {item}
-            </div>
-          ))}
-        </div>
-      </div>
-      <p className="mt-4 text-xs text-slate-500">{product.mockupNote}</p>
-    </>
+    <div className="relative h-full min-h-[400px] flex items-center justify-center py-10">
+       <div className="w-full max-w-[280px] aspect-[9/16] rounded-[2.5rem] border-4 border-dashed border-slate-200 flex flex-col items-center justify-center text-slate-300 gap-4">
+            <BookOpen size={48} strokeWidth={1} />
+            <p className="text-xs font-bold uppercase tracking-widest">Prototype Stage</p>
+       </div>
+    </div>
   );
 }
 
@@ -243,40 +226,46 @@ export function ProductsPageContent({ initialProductId }: ProductsPageContentPro
                 <div className="absolute -left-8 top-8 h-44 w-44 rounded-full bg-[#6C63FF1a] blur-3xl" />
                 <div className="absolute right-10 top-14 h-48 w-48 rounded-full bg-[#1E3A8A1c] blur-3xl" />
               </div>
-              <div className={`relative z-10 grid gap-8 ${idx % 2 === 1 ? "md:grid-cols-[1.05fr_1fr]" : "md:grid-cols-2"}`}>
-                <div className={`${idx % 2 === 1 ? "md:order-2" : ""} text-center`}>
-                  <p className="text-xs font-semibold uppercase tracking-[0.13em] text-slate-500">
-                    {product.eyebrow}
-                  </p>
-                  <h2 className="mt-2 text-4xl font-bold text-[#0F172A]">{product.tagline}</h2>
-                  <p className="mt-1 text-sm font-semibold uppercase tracking-[0.08em] text-slate-500">
+              <div className={`relative z-10 grid gap-12 ${idx % 2 === 1 ? "md:grid-cols-[1.1fr_1fr]" : "md:grid-cols-[1fr_1.1fr]"}`}>
+                <div className={`${idx % 2 === 1 ? "md:order-2" : ""} text-center md:text-left`}>
+                  <div className="mb-6 flex flex-col md:flex-row items-center md:items-end gap-4">
+                    <div className="relative h-20 w-20 overflow-hidden rounded-2xl border border-[#d3e2ff] bg-white p-1.5 shadow-lg">
+                      <Image
+                        src={product.logoSrc}
+                        alt={`${product.name} logo`}
+                        fill
+                        sizes="80px"
+                        quality={80}
+                        className="object-contain p-2"
+                      />
+                    </div>
+                    <div className="flex flex-col">
+                        <p className="text-xs font-bold uppercase tracking-[0.2em] text-slate-400">
+                            {product.eyebrow}
+                        </p>
+                        <h2 className="text-4xl font-black tracking-tight text-slate-900">{product.name}</h2>
+                    </div>
+                  </div>
+
+                  <p className="text-xl font-bold text-slate-700 leading-tight mb-2">{product.tagline}</p>
+                  <p className="text-sm font-bold uppercase tracking-wider text-violet-500 mb-6">
                     {product.status}
                   </p>
-                  <p className="mt-1 text-lg font-semibold text-gradient">{product.name}</p>
-                  <div className="mt-4 space-y-3 text-slate-600">
+                  
+                  <div className="space-y-4 text-lg text-slate-600 leading-relaxed">
                     {product.paragraphs.map((paragraph) => (
                       <p key={paragraph}>{paragraph}</p>
                     ))}
                   </div>
-                  <div className="mt-5 flex flex-wrap justify-center gap-2">
-                    {product.platforms.map((platform) => (
-                      <span
-                        key={platform}
-                        className="rounded-md border border-white/80 bg-white/80 px-3 py-1 text-xs font-semibold text-slate-600"
-                      >
-                        {platform}
-                      </span>
-                    ))}
-                  </div>
-                  <div className="mt-5 rounded-2xl border border-white/80 bg-white/75 p-4">
-                    <p className="text-xs font-semibold uppercase tracking-[0.11em] text-slate-500">
-                      {product.platforms[0] ?? "Core Features"}
+                  <div className="mt-8 rounded-[2rem] border border-slate-100 bg-slate-50/50 p-8">
+                    <p className="text-xs font-black uppercase tracking-[0.2em] text-slate-400 mb-6">
+                      {product.platforms[0] ?? "Core Capabilities"}
                     </p>
-                    <ul className="mt-3 space-y-2 text-sm leading-relaxed text-slate-700">
+                    <ul className="grid gap-4 text-base text-slate-600">
                       {product.tech.map((item) => (
-                        <li key={item} className="flex gap-2">
-                          <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[#4267f9]" />
-                          <span>{item}</span>
+                        <li key={item} className="flex gap-4">
+                          <div className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-violet-500" />
+                          <span className="font-medium">{item}</span>
                         </li>
                       ))}
                     </ul>
@@ -284,34 +273,23 @@ export function ProductsPageContent({ initialProductId }: ProductsPageContentPro
                   </div>
 
                 <div
-                  className={`rounded-2xl border border-[#dbe8ff] bg-[#f5f8ff] p-5 ${idx % 2 === 1 ? "md:order-1" : ""}`}
+                  className={`relative flex flex-col justify-center ${idx % 2 === 1 ? "md:order-1" : ""}`}
                 >
-                  <div className="mb-3 flex items-center justify-center">
-                    <div className="relative h-14 w-14 overflow-hidden rounded-xl border border-[#d3e2ff] bg-white p-1">
-                      <Image
-                        src={product.logoSrc}
-                        alt={`${product.name} logo`}
-                        fill
-                        sizes="56px"
-                        className="object-contain"
-                      />
-                    </div>
-                  </div>
-                  <p className="text-center text-sm font-semibold text-slate-600">{product.mockupLabel}</p>
-                  <ProductPreview product={product} />
-                  <div className="mt-6 flex flex-wrap justify-center gap-3">
+                  <ProductPreview product={product} priority={idx === 0} />
+                  
+                  <div className="mt-10 flex flex-wrap justify-center gap-4">
                     <a
                       href={product.primaryCtaHref}
                       target={product.primaryExternal ? "_blank" : undefined}
                       rel={product.primaryExternal ? "noopener noreferrer" : undefined}
-                      className="group rounded-xl bg-[#112B44] px-6 py-2.5 text-sm font-semibold text-white shadow-[0_8px_20px_-8px_rgba(17,43,68,0.6)] transition-all duration-300 hover:bg-[#1B3E5E] hover:shadow-[0_12px_28px_-10px_rgba(17,43,68,0.8)] active:scale-95"
+                      className="group relative rounded-2xl bg-slate-900 px-8 py-4 text-sm font-bold text-white shadow-xl transition-all hover:bg-slate-800 hover:scale-105 active:scale-95"
                     >
                       {product.primaryCtaLabel}
                     </a>
                     {product.secondaryCtaLabel && product.secondaryCtaHref ? (
                       <Link
                         href={product.secondaryCtaHref}
-                        className="group rounded-xl border border-slate-300 bg-white px-6 py-2.5 text-sm font-semibold text-slate-700 transition-all duration-300 hover:bg-slate-50 hover:border-slate-400 active:scale-95"
+                        className="group rounded-2xl border border-slate-200 bg-white px-8 py-4 text-sm font-bold text-slate-700 transition-all hover:bg-slate-50 hover:border-slate-300 active:scale-95 shadow-lg shadow-slate-100"
                       >
                         {product.secondaryCtaLabel}
                       </Link>

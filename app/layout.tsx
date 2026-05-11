@@ -54,6 +54,16 @@ export const metadata: Metadata = {
     shortcut: ["/logo-png.png"],
     apple: [{ url: "/logo-png.png", type: "image/png" }],
   },
+  other: {
+    "x-ua-compatible": "IE=edge",
+  },
+};
+
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
+  themeColor: "#0F172A",
 };
 
 export default function RootLayout({
@@ -67,6 +77,15 @@ export default function RootLayout({
       data-scroll-behavior="smooth"
       className={`${inter.variable} ${spaceGrotesk.variable} h-full antialiased`}
     >
+      <head>
+        {/* Preload critical resources */}
+        <link rel="preload" as="image" href="/logo-png.png" />
+        <link rel="preload" as="font" href="/_next/static/fonts/Inter-Regular.woff2" type="font/woff2" crossOrigin="anonymous" />
+        <link rel="preload" as="font" href="/_next/static/fonts/SpaceGrotesk-Regular.woff2" type="font/woff2" crossOrigin="anonymous" />
+        {/* Preconnect to external services */}
+        <link rel="preconnect" href="https://www.googletagmanager.com" />
+        <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+      </head>
       <body className="min-h-full flex flex-col bg-[#F7F9FC] text-[#0F172A]">
         {gaMeasurementId ? (
           <>
@@ -85,10 +104,11 @@ gtag('config', '${gaMeasurementId}', { anonymize_ip: true });`}
         ) : null}
         <ScrollProgress />
         <GlobalCursorGlow />
-        <SmoothScrollProvider />
-        <Navbar />
-        <div className="flex-1">{children}</div>
-        <Footer />
+        <SmoothScrollProvider>
+          <Navbar />
+          <div className="flex-1">{children}</div>
+          <Footer />
+        </SmoothScrollProvider>
         <CookieConsent />
       </body>
     </html>

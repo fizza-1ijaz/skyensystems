@@ -3,7 +3,6 @@ import { Hero } from "@/components/home/Hero";
 import { ProblemSection } from "@/components/home/ProblemSection";
 import { ValueProps } from "@/components/home/ValueProps";
 import { ProductsShowcase } from "@/components/home/ProductsShowcase";
-import { ServicesGrid } from "@/components/home/ServicesGrid";
 import { PricingSection } from "@/components/home/PricingSection";
 import { FoundingBanner } from "@/components/home/FoundingBanner";
 
@@ -39,7 +38,6 @@ export default function Home() {
       />
       <Hero />
       <ProblemSection />
-      <ServicesGrid />
       <ValueProps />
       <ProductsShowcase />
       <PricingSection />

@@ -76,6 +76,7 @@ export function ProductsShowcase() {
                     fill
                     sizes="56px"
                     className="object-contain"
+                    priority={index === 0}
                   />
                 </div>
               </div>

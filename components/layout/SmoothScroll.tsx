@@ -3,7 +3,7 @@
 import { ReactLenis } from "lenis/react";
 import { ReactNode } from "react";
 
-export function SmoothScrollProvider({ children }: { children: ReactNode }) {
+export function SmoothScroll({ children }: { children: ReactNode }) {
   return (
     <ReactLenis
       root
@@ -22,4 +22,3 @@ export function SmoothScrollProvider({ children }: { children: ReactNode }) {
     </ReactLenis>
   );
 }
-

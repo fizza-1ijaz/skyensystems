@@ -311,10 +311,12 @@ function ServiceCard({ service, index }: { service: any; index: number }) {
                              <Image 
                                 src={service.previewImage} 
                                 alt={service.title}
-                                fill
-                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                                width={350}
+                                height={288}
                                 quality={80}
-                                className="object-cover transition-transform duration-1000 group-hover:scale-110"
+                                priority={index < 2}
+                                unoptimized={service.previewImage.endsWith('.jfif')}
+                                className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
                              />
                              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
                         </div>
@@ -359,10 +361,12 @@ function ServiceCard({ service, index }: { service: any; index: number }) {
                         <Image 
                             src={service.previewImage} 
                             alt={service.title}
-                            fill
-                            sizes="100vw"
+                            width={400}
+                            height={256}
                             quality={80}
-                            className="object-cover transition-transform duration-1000 group-hover:scale-110"
+                            priority={index < 2}
+                            unoptimized={service.previewImage.endsWith('.jfif')}
+                            className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
                     </div>

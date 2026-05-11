@@ -260,10 +260,11 @@ function DataFlowLine({ start, end }: { start: THREE.Vector3, end: THREE.Vector3
   }, [start, end]);
 
   useFrame((state) => {
-    if (ref.current) {
+    if (ref.current && ref.current.material) {
       // Pulse animation
       const t = state.clock.getElapsedTime();
-      ref.current.material.opacity = 0.2 + Math.sin(t * 3 + curve.getLength()) * 0.1;
+      const material = ref.current.material as THREE.MeshStandardMaterial;
+      material.opacity = 0.2 + Math.sin(t * 3 + curve.getLength()) * 0.1;
     }
   });
 

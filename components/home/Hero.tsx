@@ -336,6 +336,37 @@ function ServiceCard({ service, index }: { service: any; index: number }) {
                     <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover/link:translate-x-1 group-hover/link:-translate-y-1" />
                 </Link>
             </div>
+
+            {/* Mobile "See More" Button */}
+            <div className="md:hidden w-full flex justify-center mt-12">
+                <Link 
+                    href={`/services/${service.slug}`}
+                    className="inline-flex items-center gap-3 px-8 py-4 rounded-2xl bg-gradient-to-r from-[#6C63FF] to-[#8B5CF6] text-white font-bold text-base shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300"
+                >
+                    <span>View Service</span>
+                    <ArrowUpRight className="h-5 w-5 transition-transform duration-300" />
+                </Link>
+            </div>
+
+            {/* Mobile Service Image */}
+            <div className="md:hidden w-full flex justify-center mt-8">
+                <div className="relative group w-full max-w-sm">
+                    <div className="absolute inset-0 bg-[#6C63FF] blur-[80px] opacity-15 group-hover:opacity-25 transition-opacity duration-700 rounded-2xl" />
+                    <div className="relative border border-slate-200/50 rounded-2xl p-2 bg-white/10 backdrop-blur-md transition-all duration-700">
+                        <div className="h-64 w-full rounded-xl border border-slate-200/60 overflow-hidden relative shadow-lg">
+                            <Image 
+                                src={service.previewImage} 
+                                alt={service.title}
+                                fill
+                                sizes="100vw"
+                                quality={80}
+                                className="object-cover transition-transform duration-1000 group-hover:scale-110"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                        </div>
+                    </div>
+                </div>
+            </div>
         </motion.div>
     );
 }

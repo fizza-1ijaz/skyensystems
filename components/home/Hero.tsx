@@ -273,11 +273,12 @@ function ServiceCard({ service, index }: { service: any; index: number }) {
     });
 
     const x = useTransform(scrollYProgress, [0, 0.4], [index % 2 === 0 ? -100 : 100, 0]);
-    const opacity = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0, 1, 1, 0]);
+    const opacity = useTransform(scrollYProgress, [0, 0.7, 1], [1, 1, 0]);
     const scale = useTransform(scrollYProgress, [0, 0.3], [0.8, 1]);
     const rotate = useTransform(scrollYProgress, [0, 0.4], [index % 2 === 0 ? -10 : 10, 0]);
 
     return (
+        <>
         <motion.div
             ref={cardRef}
             style={{ x, opacity, scale, rotate }}
@@ -347,26 +348,27 @@ function ServiceCard({ service, index }: { service: any; index: number }) {
                     <ArrowUpRight className="h-5 w-5 transition-transform duration-300" />
                 </Link>
             </div>
+        </motion.div>
 
-            {/* Mobile Service Image */}
-            <div className="md:hidden w-full flex justify-center mt-8">
-                <div className="relative group w-full max-w-sm">
-                    <div className="absolute inset-0 bg-[#6C63FF] blur-[80px] opacity-15 group-hover:opacity-25 transition-opacity duration-700 rounded-2xl" />
-                    <div className="relative border border-slate-200/50 rounded-2xl p-2 bg-white/10 backdrop-blur-md transition-all duration-700">
-                        <div className="h-64 w-full rounded-xl border border-slate-200/60 overflow-hidden relative shadow-lg">
-                            <Image 
-                                src={service.previewImage} 
-                                alt={service.title}
-                                fill
-                                sizes="100vw"
-                                quality={80}
-                                className="object-cover transition-transform duration-1000 group-hover:scale-110"
-                            />
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-                        </div>
+        {/* Mobile Service Image - Outside motion.div to avoid scroll animations */}
+        <div className="md:hidden w-full flex justify-center mt-8 pb-[20vh]">
+            <div className="relative group w-full max-w-sm px-6">
+                <div className="absolute inset-0 bg-[#6C63FF] blur-[80px] opacity-15 group-hover:opacity-25 transition-opacity duration-700 rounded-2xl" />
+                <div className="relative border border-slate-200/50 rounded-2xl p-2 bg-white/10 backdrop-blur-md transition-all duration-700">
+                    <div className="h-64 w-full rounded-xl border border-slate-200/60 overflow-hidden relative shadow-lg">
+                        <Image 
+                            src={service.previewImage} 
+                            alt={service.title}
+                            fill
+                            sizes="100vw"
+                            quality={80}
+                            className="object-cover transition-transform duration-1000 group-hover:scale-110"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
                     </div>
                 </div>
             </div>
-        </motion.div>
+        </div>
+        </>
     );
 }

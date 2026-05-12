@@ -5,6 +5,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { useSearchParams } from "next/navigation";
+import Image from "next/image";
 
 type ReelService = {
   id: string;
@@ -20,6 +21,7 @@ type ReelService = {
   stack?: string;
   cta: string;
   href: string;
+  previewImage?: string;
 };
 
 const SERVICES: ReelService[] = [
@@ -47,6 +49,7 @@ const SERVICES: ReelService[] = [
       "Next.js · React · TypeScript · Node.js · PostgreSQL · Tailwind CSS · Stripe · Shopify · WordPress",
     cta: "Explore Web Projects",
     href: "/contact-us",
+    previewImage: "/webdevelop.jfif",
   },
   {
     id: "mobile",
@@ -70,6 +73,7 @@ const SERVICES: ReelService[] = [
     stack: "React Native · Swift · Kotlin · Expo · Firebase · REST APIs · Redux",
     cta: "Build a Mobile App",
     href: "/contact-us",
+    previewImage: "/mobapp.jfif",
   },
   {
     id: "uiux",
@@ -94,6 +98,7 @@ const SERVICES: ReelService[] = [
     stack: "Figma · Prototyping · InVision · Maze · Hotjar",
     cta: "Design Your Product Experience",
     href: "/contact-us",
+    previewImage: "/UIUX.png",
   },
   {
     id: "ai",
@@ -117,6 +122,7 @@ const SERVICES: ReelService[] = [
       "OpenAI · Claude API (Anthropic) · LangChain · Python · FastAPI · Vector Databases",
     cta: "Discuss AI for Your Business",
     href: "/contact-us",
+    previewImage: "/AI.jfif",
   },
   {
     id: "marketing",
@@ -138,6 +144,7 @@ const SERVICES: ReelService[] = [
     ],
     cta: "Launch Growth Campaigns",
     href: "/contact-us",
+    previewImage: "/digitalmarketing.jfif",
   },
   {
     id: "teams",
@@ -158,6 +165,7 @@ const SERVICES: ReelService[] = [
     ],
     cta: "Build Your Dedicated Team",
     href: "/contact-us",
+    previewImage: "/teams.jfif",
   },
 ];
 
@@ -433,44 +441,61 @@ export function ServicesPageContent({ initialServiceSlug }: ServicesPageContentP
             >
               <div className="pointer-events-none absolute inset-0 rounded-3xl bg-[radial-gradient(circle_at_15%_20%,rgba(108,99,255,0.22),transparent_48%),radial-gradient(circle_at_85%_35%,rgba(30,58,138,0.16),transparent_40%)]" />
               <div className="relative text-center md:text-left">
-                <h2 className="mt-2 text-2xl font-bold text-[#F6FAFF] md:text-4xl">
-                  {activeService.sectionHeadline}
-                </h2>
-                <p className="mt-3 text-[#C5D4E7]">{activeService.description}</p>
-                <p className="mt-4 text-sm font-semibold uppercase tracking-[0.12em] text-[#9CB3CF]">
-                  {activeService.listLabel ?? "What we build"}
-                </p>
-                <ul className="mt-4 grid gap-2 text-left sm:grid-cols-2">
-                  {activeService.highlights.map((item) => (
-                    <li
-                      key={item}
-                      className="rounded-xl border border-[#2D4E6D] bg-[#0F253AE6] px-3 py-2 text-sm text-[#C9D9ED]"
+                <div className="flex flex-col md:flex-row gap-8 items-center md:items-start">
+                  <div className="flex-1">
+                    <h2 className="mt-2 text-2xl font-bold text-[#F6FAFF] md:text-4xl">
+                      {activeService.sectionHeadline}
+                    </h2>
+                    <p className="mt-3 text-[#C5D4E7]">{activeService.description}</p>
+                    <p className="mt-4 text-sm font-semibold uppercase tracking-[0.12em] text-[#9CB3CF]">
+                      {activeService.listLabel ?? "What we build"}
+                    </p>
+                    <ul className="mt-4 grid gap-2 text-left sm:grid-cols-2">
+                      {activeService.highlights.map((item) => (
+                        <li
+                          key={item}
+                          className="rounded-xl border border-[#2D4E6D] bg-[#0F253AE6] px-3 py-2 text-sm text-[#C9D9ED]"
+                        >
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                    {activeService.approach ? (
+                      <p className="mt-4 text-sm text-[#C5D4E7]">
+                        <span className="font-semibold text-[#EAF2FF]">Our approach: </span>
+                        {activeService.approach}
+                      </p>
+                    ) : null}
+                    {activeService.stack ? (
+                      <p className="mt-3 text-sm text-[#C5D4E7]">
+                        <span className="font-semibold text-[#EAF2FF]">
+                          {activeService.stackLabel ?? "Technology"}:{" "}
+                        </span>
+                        {activeService.stack}
+                      </p>
+                    ) : null}
+                    <Link
+                      href={activeService.href}
+                      className="mt-6 inline-flex items-center gap-2 rounded-xl bg-[#112B44] px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#1B3E5E]"
                     >
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-                {activeService.approach ? (
-                  <p className="mt-4 text-sm text-[#C5D4E7]">
-                    <span className="font-semibold text-[#EAF2FF]">Our approach: </span>
-                    {activeService.approach}
-                  </p>
-                ) : null}
-                {activeService.stack ? (
-                  <p className="mt-3 text-sm text-[#C5D4E7]">
-                    <span className="font-semibold text-[#EAF2FF]">
-                      {activeService.stackLabel ?? "Technology"}:{" "}
-                    </span>
-                    {activeService.stack}
-                  </p>
-                ) : null}
-                <Link
-                  href={activeService.href}
-                  className="mt-6 inline-flex items-center gap-2 rounded-xl bg-[#112B44] px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#1B3E5E]"
-                >
-                  {activeService.cta}
-                  <ArrowUpRight className="h-4 w-4" />
-                </Link>
+                      {activeService.cta}
+                      <ArrowUpRight className="h-4 w-4" />
+                    </Link>
+                  </div>
+                  {activeService.previewImage && (
+                    <div className="w-full md:w-[320px] flex-shrink-0 mt-6 md:mt-0">
+                      <div className="relative w-full aspect-[4/3] md:aspect-square rounded-2xl overflow-hidden shadow-2xl border border-[#2D4E6D]">
+                        <Image
+                          src={activeService.previewImage}
+                          alt={activeService.title}
+                          fill
+                          className="object-cover"
+                          unoptimized={activeService.previewImage.endsWith('.jfif')}
+                        />
+                      </div>
+                    </div>
+                  )}
+                </div>
               </div>
             </motion.div>
           </div>

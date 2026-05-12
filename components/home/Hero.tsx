@@ -1,11 +1,16 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import Link from "next/link";
-import Image from "next/image";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
-import { HeroScene } from "./hero/HeroScene";
+import Image from "next/image";
 import { ArrowRight, ArrowUpRight, Globe, ShieldCheck, Zap, Clock, Terminal, Cpu, Database, Layout } from "lucide-react";
+
+const HeroScene = dynamic(() => import("./hero/HeroScene").then((module) => module.HeroScene), {
+  ssr: false,
+  loading: () => <div className="absolute inset-0 z-0 h-full w-full pointer-events-none" />,
+});
 
 const rotatingTexts = [
   "Response within 4 business hours, guaranteed",
@@ -16,6 +21,7 @@ const rotatingTexts = [
 
 const services = [
     {
+        id: "web",
         title: "Web Development",
         slug: "web-design-development",
         desc: "Custom websites, web applications, and e-commerce stores built to convert visitors into customers. Fast, secure, and built to grow with you.",
@@ -25,6 +31,7 @@ const services = [
         previewImage: "/webdevelop.jfif"
     },
     {
+        id: "mobile",
         title: "Mobile Apps",
         slug: "mobile-apps",
         desc: "iOS and Android apps that your users will actually use. From MVP to full launch — we handle everything including App Store submission.",
@@ -34,6 +41,7 @@ const services = [
         previewImage: "/mobapp.jfif"
     },
     {
+        id: "uiux",
         title: "UI/UX Design",
         slug: "brand-ui-ux-design",
         desc: "Beautiful, intuitive interfaces that make your product a joy to use. Research-backed design that reduces churn and drives engagement.",
@@ -43,6 +51,7 @@ const services = [
         previewImage: "/UIUX.png"
     },
     {
+        id: "ai",
         title: "AI Solutions",
         slug: "ai-solutions",
         desc: "Practical AI that solves real business problems. Chatbots, automation, intelligent features — without the complexity.",
@@ -52,6 +61,7 @@ const services = [
         previewImage: "/AI.jfif"
     },
     {
+        id: "marketing",
         title: "Digital Marketing",
         slug: "digital-marketing",
         desc: "More of the right customers finding your business. SEO, paid ads, content — all tied to measurable results.",
@@ -61,6 +71,7 @@ const services = [
         previewImage: "/digitalmarketing.jfif"
     },
     {
+        id: "teams",
         title: "Dedicated Teams",
         slug: "dedicated-teams",
         desc: "Your own extended team of developers and designers — working exclusively on your projects, in your timezone.",
@@ -72,15 +83,16 @@ const services = [
 ];
 
 export function Hero() {
-  const containerRef = useRef<HTMLDivElement>(null);
   const [textIndex, setTextIndex] = useState(0);
-  
+
   useEffect(() => {
     const interval = setInterval(() => {
       setTextIndex((prev) => (prev + 1) % rotatingTexts.length);
     }, 3000);
     return () => clearInterval(interval);
   }, []);
+  
+  const containerRef = useRef<HTMLDivElement>(null);
   
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -177,20 +189,20 @@ export function Hero() {
         </div>
 
         {/* Hero Content */}
-        <div className="relative z-10 flex h-full items-start justify-center px-6 pt-[103px] md:pt-[135px]">
+        <div className="relative z-20 flex h-full items-center justify-center px-4 pt-20 pb-8 sm:px-6 sm:pt-24 sm:pb-10 md:px-8 md:pt-32 md:pb-14 lg:pt-40">
           <motion.div 
             style={{ opacity: heroOpacity, scale: heroScale, y: heroY }}
-            className="max-w-6xl text-center"
+            className="w-full max-w-6xl text-center space-y-2 sm:space-y-3 md:space-y-4"
           >
             <motion.div
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-              className="inline-flex items-center gap-3 rounded-full border border-slate-200 bg-white/40 px-5 py-2 text-[10px] font-bold tracking-[0.2em] text-slate-500 backdrop-blur-xl shadow-sm mb-10 uppercase"
+              className="inline-flex items-center gap-1.5 sm:gap-2 rounded-full border border-slate-200 bg-white/40 px-2.5 sm:px-3 py-1 sm:py-1.5 text-[6px] sm:text-[7px] md:text-xs font-bold tracking-[0.15em] text-slate-500 shadow-sm backdrop-blur-xl uppercase"
             >
-              <span className="relative flex h-2 w-2">
+              <span className="relative flex h-1.5 w-1.5">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#6C63FF] opacity-75"></span>
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-[#6C63FF]"></span>
+                <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-[#6C63FF]"></span>
               </span>
               <motion.span
                 key={textIndex}
@@ -207,7 +219,7 @@ export function Hero() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1, duration: 1, ease: [0.16, 1, 0.3, 1] }}
-              className="text-balance text-5xl font-black tracking-tighter text-slate-900 md:text-7xl lg:text-8xl leading-[0.95]"
+              className="text-balance text-3xl font-black leading-tight tracking-tighter text-slate-900 sm:text-4xl md:text-6xl lg:text-7xl"
             >
               One Team. <br />
               Every Digital Need. <br />
@@ -220,7 +232,7 @@ export function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.8, ease: "easeOut" }}
-              className="mx-auto mt-10 max-w-4xl text-lg leading-relaxed text-slate-600 md:text-xl font-medium"
+              className="mx-auto max-w-3xl text-xs sm:text-sm md:text-base lg:text-lg font-medium leading-relaxed text-slate-600 px-2 sm:px-0"
             >
               We build websites, mobile apps, AI-powered products, and run the digital marketing that fills them with customers. <span className="text-slate-900 font-bold">PSEB-registered. US-market focused.</span> One team that becomes part of yours.
             </motion.p>
@@ -229,22 +241,22 @@ export function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4, duration: 0.8, ease: "easeOut" }}
-              className="mt-12 flex flex-wrap justify-center gap-5"
+              className="flex flex-wrap justify-center gap-2.5 sm:gap-3 md:gap-5"
             >
               <Link
                 href="/contact-us"
-                className="group relative inline-flex items-center gap-3 overflow-hidden rounded-2xl bg-slate-900 px-10 py-5 text-base md:text-lg font-bold text-white transition-all hover:bg-slate-800 shadow-2xl shadow-slate-300"
+                className="group relative inline-flex items-center gap-2 sm:gap-3 overflow-hidden rounded-lg sm:rounded-xl bg-slate-900 px-4 sm:px-7 md:px-9 py-2.5 sm:py-3 md:py-4 text-sm sm:text-base md:text-lg lg:text-xl font-bold text-white shadow-lg sm:shadow-xl shadow-slate-300 transition-all hover:bg-slate-800 whitespace-nowrap"
               >
                 Start Your Project
-                <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1.5" />
+                <ArrowRight className="h-3.5 w-3.5 sm:h-4 sm:w-4 md:h-5 md:w-5 transition-transform group-hover:translate-x-1" />
                 <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/10 to-transparent transition-transform duration-1000 group-hover:translate-x-full" />
               </Link>
               <Link
                 href="/products"
-                className="group inline-flex items-center gap-3 rounded-2xl border border-slate-200 bg-white/60 px-10 py-5 text-base md:text-lg font-bold text-slate-700 backdrop-blur-2xl transition-all hover:bg-white hover:border-slate-300"
+                className="group inline-flex items-center gap-2 sm:gap-3 rounded-lg sm:rounded-xl border border-slate-200 bg-white/60 px-4 sm:px-7 md:px-9 py-2.5 sm:py-3 md:py-4 text-sm sm:text-base md:text-lg lg:text-xl font-bold text-slate-700 backdrop-blur-2xl transition-all hover:bg-white hover:border-slate-300 whitespace-nowrap"
               >
                 View Our Work
-                <ArrowUpRight className="h-5 w-5 transition-transform group-hover:translate-y-1 group-hover:-translate-x-0.5" />
+                <ArrowUpRight className="h-3.5 w-3.5 sm:h-4 sm:w-4 md:h-5 md:w-5 transition-transform group-hover:translate-y-0.5 group-hover:-translate-x-0.5" />
               </Link>
             </motion.div>
           </motion.div>
@@ -252,7 +264,7 @@ export function Hero() {
       </div>
 
       {/* Spatially Integrated Services */}
-      <div className="relative z-20 w-full">
+      <div className="relative z-20 w-full overflow-hidden">
         <div className="max-w-7xl mx-auto px-6">
             <div className="space-y-[30vh] py-[20vh]">
                 {services.map((service, idx) => (

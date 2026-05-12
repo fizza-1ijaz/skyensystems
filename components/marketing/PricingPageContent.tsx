@@ -1,16 +1,49 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
-import { Check } from "lucide-react";
+import { 
+  Layout, 
+  Smartphone, 
+  Search, 
+  Mail, 
+  RefreshCw, 
+  LifeBuoy,
+  Monitor,
+  Database,
+  Globe,
+  BarChart,
+  History,
+  Shield,
+  Zap,
+  Infinity as InfinityIcon,
+  Puzzle,
+  Link as LinkIcon,
+  FastForward,
+  Repeat,
+  Headphones,
+  Users,
+  Calendar,
+  LucideIcon
+} from "lucide-react";
 import { motion } from "framer-motion";
+import { PricingStickers } from "./PricingStickers";
+import Lottie from "lottie-react";
+import girlAnimation from "../../public/girl say hi.json";
+import cardAnimation from "../../public/card.json";
+import onlinePaymentAnimation from "../../public/Online Payment.json";
+
+type Feature = {
+  text: string;
+  icon: LucideIcon;
+};
 
 type Plan = {
   name: string;
   price: string;
   badge?: string;
   description: string;
-  features: string[];
+  features: Feature[];
   featured?: boolean;
 };
 
@@ -21,12 +54,12 @@ const PLANS: Plan[] = [
     description:
       "For small businesses needing a professional digital presence.",
     features: [
-      "Up to 8-page website",
-      "Mobile responsive",
-      "Basic SEO setup",
-      "Contact form",
-      "1 revision round",
-      "30-day support",
+      { text: "Up to 8-page website", icon: Layout },
+      { text: "Mobile responsive", icon: Smartphone },
+      { text: "Basic SEO setup", icon: Search },
+      { text: "Contact form", icon: Mail },
+      { text: "1 revision round", icon: RefreshCw },
+      { text: "30-day support", icon: LifeBuoy },
     ],
   },
   {
@@ -36,13 +69,13 @@ const PLANS: Plan[] = [
     description:
       "For businesses ready to grow with a full digital strategy.",
     features: [
-      "Up to 20 pages or web app",
-      "CMS integration",
-      "Full SEO setup",
-      "Analytics tracking",
-      "3 revision rounds",
-      "90-day support",
-      "Priority response",
+      { text: "Up to 20 pages or web app", icon: Monitor },
+      { text: "CMS integration", icon: Database },
+      { text: "Full SEO setup", icon: Globe },
+      { text: "Analytics tracking", icon: BarChart },
+      { text: "3 revision rounds", icon: History },
+      { text: "90-day support", icon: Shield },
+      { text: "Priority response", icon: Zap },
     ],
     featured: true,
   },
@@ -52,14 +85,14 @@ const PLANS: Plan[] = [
     description:
       "For established businesses with complex multi-platform needs.",
     features: [
-      "Unlimited scope",
-      "Custom integrations",
-      "API connections",
-      "Performance optimization",
-      "Unlimited revisions",
-      "6-month support",
-      "Dedicated PM",
-      "Monthly reviews",
+      { text: "Unlimited scope", icon: InfinityIcon },
+      { text: "Custom integrations", icon: Puzzle },
+      { text: "API connections", icon: LinkIcon },
+      { text: "Performance optimization", icon: FastForward },
+      { text: "Unlimited revisions", icon: Repeat },
+      { text: "6-month support", icon: Headphones },
+      { text: "Dedicated PM", icon: Users },
+      { text: "Monthly reviews", icon: Calendar },
     ],
   },
 ];
@@ -83,6 +116,7 @@ const FAQ = [
   },
 ];
 
+
 function PricingCard({
   plan,
   isFeatured,
@@ -95,6 +129,11 @@ function PricingCard({
   isCentered?: boolean;
 }) {
   const [isHovered, setIsHovered] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   return (
     <motion.article
@@ -102,6 +141,13 @@ function PricingCard({
       whileHover={!isMobile && !isFeatured ? { y: -8 } : undefined}
       transition={{ duration: 0.3 }}
     >
+      {/* Sticker for Scale Plan */}
+      {mounted && plan.name === "Scale" && !isMobile && (
+        <div className="absolute top-0 right-[-35%] -translate-y-[80%] w-28 h-28 z-20 pointer-events-none opacity-0">
+          {/* Moved to FAQ section */}
+        </div>
+      )}
+
       {/* Premium card container */}
       <div
         className={`relative h-full rounded-3xl border backdrop-blur-xl overflow-hidden transition-all duration-300 ${
@@ -142,9 +188,9 @@ function PricingCard({
         </div>
 
         {/* Content */}
-        <div className="relative flex flex-col p-6 md:p-8 h-full">
+        <div className="relative flex flex-col p-5 md:p-7 h-full">
           {/* Header section */}
-          <div className="mb-4 md:mb-6">
+          <div className="mb-3 md:mb-5">
             {plan.badge && (
               <motion.span
                 className="inline-block rounded-full bg-gradient-to-r from-[#1E3A8A] to-[#112B44] px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.12em] text-white mb-4 shadow-[0_8px_16px_-4px_rgba(30,58,138,0.3)]"
@@ -158,7 +204,7 @@ function PricingCard({
             )}
 
             <motion.p
-              className="text-xs font-bold uppercase tracking-[0.2em] text-[#1E3A8A] opacity-70"
+              className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#1E3A8A] opacity-70"
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 0.7, y: 0 }}
               viewport={{ once: true }}
@@ -168,8 +214,8 @@ function PricingCard({
             </motion.p>
 
             <motion.p
-              className={`mt-3 font-black leading-tight ${
-                isFeatured ? "text-6xl md:text-7xl" : "text-5xl md:text-6xl"
+              className={`mt-2 font-black leading-tight ${
+                isFeatured ? "text-4xl md:text-5xl" : "text-3xl md:text-4xl"
               } bg-gradient-to-br from-[#0F172A] to-[#1E3A8A] bg-clip-text text-transparent`}
               initial={{ opacity: 0, y: 15 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -180,7 +226,7 @@ function PricingCard({
             </motion.p>
 
             <motion.p
-              className="mt-4 text-sm leading-relaxed text-slate-600 md:text-base"
+              className="mt-3 text-[13px] leading-relaxed text-slate-600 md:text-sm"
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -192,7 +238,7 @@ function PricingCard({
 
           {/* Divider with gradient */}
           <motion.div
-            className="my-6 md:my-8 h-px bg-gradient-to-r from-transparent via-[#1E3A8A] to-transparent opacity-30"
+            className="my-4 md:my-6 h-px bg-gradient-to-r from-transparent via-[#1E3A8A] to-transparent opacity-30"
             initial={{ scaleX: 0 }}
             whileInView={{ scaleX: 1 }}
             viewport={{ once: true }}
@@ -200,11 +246,11 @@ function PricingCard({
           />
 
           {/* Features list with stagger animation */}
-          <motion.ul className="mb-8 md:mb-10 flex-1 space-y-3">
+          <motion.ul className="mb-6 md:mb-8 flex-1 space-y-2">
             {plan.features.map((feature, featureIdx) => (
               <motion.li
-                key={feature}
-                className="flex gap-3 text-sm text-slate-600 md:text-[15px]"
+                key={feature.text}
+                className="flex gap-2.5 text-xs text-slate-600 md:text-[13px]"
                 initial={{ opacity: 0, x: -10 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
@@ -214,12 +260,12 @@ function PricingCard({
                 }}
               >
                 <motion.span
-                  className="mt-1 inline-flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-[#1E3A8A] to-[#112B44] shadow-[0_4px_12px_-4px_rgba(30,58,138,0.4)]"
-                  whileHover={{ scale: 1.2 }}
+                  className="mt-0.5 inline-flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-lg bg-[#1E3A8A08]"
+                  whileHover={{ scale: 1.1, backgroundColor: "#1E3A8A12" }}
                 >
-                  <Check className="h-3 w-3 text-white" />
+                  <feature.icon className="h-3 w-3 text-[#1E3A8A]" />
                 </motion.span>
-                <span>{feature}</span>
+                <span className="font-medium text-slate-700">{feature.text}</span>
               </motion.li>
             ))}
           </motion.ul>
@@ -233,7 +279,7 @@ function PricingCard({
           >
             <Link
               href="/contact-us"
-              className={`group/cta relative inline-flex w-full items-center justify-center rounded-xl px-4 py-3 text-sm font-semibold uppercase tracking-[0.1em] transition-all duration-300 overflow-hidden ${
+              className={`group/cta relative inline-flex w-full items-center justify-center rounded-xl px-4 py-2.5 text-[11px] font-bold uppercase tracking-[0.1em] transition-all duration-300 overflow-hidden ${
                 isFeatured
                   ? "bg-gradient-to-r from-[#1E3A8A] to-[#112B44] text-white shadow-[0_12px_28px_-8px_rgba(30,58,138,0.4)] hover:shadow-[0_16px_40px_-8px_rgba(30,58,138,0.6)]"
                   : "border-2 border-[#1E3A8A] bg-white/50 text-[#1E3A8A] hover:bg-[#1E3A8A] hover:text-white"
@@ -270,27 +316,37 @@ function PricingCard({
   );
 }
 
+
 export function PricingPageContent() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   return (
-    <div className="pb-8 pt-12 text-[#0F172A]">
-      <section className="px-6 py-16 md:px-16">
-        <div className="mx-auto max-w-6xl text-center">
-          <p className="mb-4 text-xs font-semibold uppercase tracking-[0.14em] text-slate-500">
-            TRANSPARENT PRICING
-          </p>
-          <h1 className="text-4xl font-extrabold md:text-6xl">
-            No mystery. No hourly surprises.
-          </h1>
-          <p className="mt-5 max-w-3xl mx-auto text-center text-lg text-slate-600">
-            Three tiers for most projects. Custom quotes for everything else.
-            Every tier includes the same quality — the difference is scope.
-          </p>
+    <div className="pb-0 pt-12 text-[#0F172A] bg-white">
+      <section className="px-6 py-12 md:px-16 overflow-hidden">
+        <div className="mx-auto max-w-5xl">
+          <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-8">
+            {/* Animation on the left */}
+            <div className="w-32 h-32 md:w-48 md:h-48 flex-shrink-0">
+              <Lottie animationData={onlinePaymentAnimation} loop={true} />
+            </div>
+
+            <div className="text-center">
+              <p className="mb-3 text-[10px] font-bold uppercase tracking-[0.2em] text-[#1E3A8A] opacity-60">
+                TRANSPARENT PRICING
+              </p>
+              <p className="max-w-2xl text-lg md:text-xl font-medium leading-relaxed text-slate-600">
+                Three tiers for most projects. Custom quotes for everything else.
+                Every tier includes the same quality — <span className="text-[#1E3A8A] font-bold">the difference is scope.</span>
+              </p>
+            </div>
+          </div>
         </div>
       </section>
 
-      <section className="relative overflow-hidden px-6 pb-20 md:px-16 md:pb-32">
+      <section 
+        className="relative overflow-hidden px-6 pb-12 md:px-16 md:pb-16 bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: "url('/bgs/aqua.jfif')" }}
+      >
         {/* Ambient background graphics */}
         <div className="pointer-events-none absolute inset-0 overflow-hidden">
           {/* Radial gradients for depth */}
@@ -369,7 +425,7 @@ export function PricingPageContent() {
 
               {/* Center card - elevated with negative margin */}
               <motion.div
-                className="md:-mb-6 md:z-10"
+                className="md:-mb-4 md:z-10"
                 initial={{ opacity: 0, y: 40, scale: 0.95 }}
                 whileInView={{ opacity: 1, y: 0, scale: 1 }}
                 viewport={{ once: true }}
@@ -441,14 +497,28 @@ export function PricingPageContent() {
         </div>
       </section>
 
-      <section className="px-6 py-16 md:px-16">
+      <section className="px-6 pt-8 pb-16 md:px-16 md:pt-10 md:pb-24">
         <div className="mx-auto max-w-6xl text-center">
-          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.14em] text-slate-500">
-            Pricing FAQ
-          </p>
-          <h2 className="text-3xl font-extrabold md:text-4xl">
-            Common questions about our pricing.
-          </h2>
+          <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-12">
+            {/* Girl on the left */}
+            <div className="w-32 h-32 md:w-56 md:h-56 flex-shrink-0">
+              <Lottie animationData={girlAnimation} loop={true} />
+            </div>
+
+            <div className="text-center">
+              <p className="mb-3 text-xs font-semibold uppercase tracking-[0.14em] text-slate-500">
+                Pricing FAQ
+              </p>
+              <h2 className="text-3xl font-extrabold md:text-4xl text-balance">
+                Common questions about our pricing.
+              </h2>
+            </div>
+
+            {/* Card guy on the right */}
+            <div className="hidden xl:block w-32 h-32 md:w-48 md:h-48 flex-shrink-0 opacity-80">
+              <Lottie animationData={cardAnimation} loop={true} />
+            </div>
+          </div>
           <div className="mt-8 space-y-3">
             {FAQ.map((item, index) => (
               <div
@@ -474,6 +544,8 @@ export function PricingPageContent() {
           </div>
         </div>
       </section>
+
+      <PricingStickers />
     </div>
   );
 }

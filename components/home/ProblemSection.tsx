@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 
 const stats = [
   { target: 50, suffix: "+", title: "Projects Delivered" },
@@ -12,26 +12,8 @@ const stats = [
 
 export function ProblemSection() {
   const [counts, setCounts] = useState(stats.map(() => 0));
-  const [isVisible, setIsVisible] = useState(false);
-  const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting && !isVisible) {
-          setIsVisible(true);
-        }
-      },
-      { threshold: 0.25 }
-    );
-
-    if (ref.current) observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, [isVisible]);
-
-  useEffect(() => {
-    if (!isVisible) return;
-
     let frameId = 0;
     const start = performance.now();
     const duration = 2000;
@@ -50,7 +32,7 @@ export function ProblemSection() {
 
     frameId = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(frameId);
-  }, [isVisible]);
+  }, []);
 
   const containerVariants = {
     hidden: { opacity: 0, y: 30 },
@@ -75,7 +57,7 @@ export function ProblemSection() {
   };
 
   return (
-    <section className="relative bg-white px-6 py-14 md:px-10" ref={ref}>
+    <section className="relative bg-white px-6 py-14 md:px-10">
       <motion.div
         initial="hidden"
         whileInView="visible"

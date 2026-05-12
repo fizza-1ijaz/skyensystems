@@ -69,7 +69,7 @@ export function Navbar() {
         <div className="flex items-center gap-2 lg:gap-3">
           <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.98 }}>
             <Link
-            href="/services"
+            href="/contact-us"
             className="hidden items-center gap-2 whitespace-nowrap rounded-xl bg-[#112B44] px-4 py-2.5 text-[13px] font-semibold text-white shadow-[0_14px_40px_-18px_rgba(17,43,68,0.65)] transition-colors hover:bg-[#1B3E5E] lg:flex xl:px-6 xl:text-sm"
           >
             Start Project
@@ -101,7 +101,7 @@ export function Navbar() {
               </Link>
             ))}
             <Link
-              href="/services"
+              href="/contact-us"
               className="mt-2 flex items-center justify-center gap-2 rounded-lg bg-[#112B44] py-3 text-white transition-all duration-300 ease-in-out hover:scale-[1.02] hover:bg-[#1B3E5E]"
               onClick={() => setIsMobileMenuOpen(false)}
             >

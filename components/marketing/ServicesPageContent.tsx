@@ -188,6 +188,11 @@ export function ServicesPageContent({ initialServiceSlug }: ServicesPageContentP
     const resolvedIndex = SERVICES.findIndex((service) => service.id === serviceId);
     if (resolvedIndex >= 0) {
       setActiveIndex(resolvedIndex);
+      // Scroll to the service road section to ensure content is in view
+      const element = document.getElementById("service-road");
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
     }
   }, [initialServiceSlug, searchParams]);
 
@@ -306,47 +311,45 @@ export function ServicesPageContent({ initialServiceSlug }: ServicesPageContentP
 
             <div className="relative z-20 mx-auto flex w-full flex-col items-center">
               <div className="relative mb-3 block h-[112px] w-full max-w-[440px] md:hidden">
-              <div className="absolute left-6 right-6 top-[56px] h-[2px] rounded-full bg-gradient-to-r from-[#1E3A8A88] via-[#6C63FF66] to-[#2DD4BF88]" />
-              <motion.div
-                className="pointer-events-none absolute top-[76px] z-20 h-8 w-14 -translate-x-1/2 -translate-y-1/2"
-                animate={{
-                  left: `${mobileCarLeftPercent}%`,
-                }}
-                transition={{ duration: 0.45, ease: [0.22, 0.9, 0.25, 1.08] }}
-              >
-                <div className="relative h-8 w-14 rounded-lg border border-[#3D3E8A] bg-gradient-to-b from-[#8FD4FF] via-[#7E8BFF] to-[#7C3AED] shadow-[0_10px_22px_-10px_rgba(0,0,0,0.65)]">
-                  <div className="absolute left-1.5 top-1.5 h-2.5 w-6 rounded bg-[#E6F7FF]" />
-                  <div className="absolute right-1.5 top-1.5 h-2.5 w-4 rounded bg-[#DDD7FF]" />
-                  <div className="absolute -bottom-1.5 left-2 h-3 w-3 rounded-full border border-[#0B1F31] bg-[#0F172A]" />
-                  <div className="absolute -bottom-1.5 right-2 h-3 w-3 rounded-full border border-[#0B1F31] bg-[#0F172A]" />
-                </div>
-              </motion.div>
-              <div className="absolute left-0 right-0 top-[56px] grid -translate-y-1/2 grid-cols-6 items-center">
-                {mobileStops.map((stop) => (
-                  <button
-                    key={stop.label}
-                    type="button"
-                    onClick={() => setActiveIndex(stop.idx)}
-                    className="relative mx-auto flex h-11 w-11 items-center justify-center"
-                    aria-label={`Select ${stop.label}`}
-                  >
-                    <span
-                      className={`absolute -top-5 text-[10px] font-semibold leading-none tracking-tight ${
-                        activeIndex === stop.idx ? "text-[#0F2742]" : "text-[#5A728C]"
-                      }`}
+                <div className="absolute left-6 right-6 top-[56px] h-[2px] rounded-full bg-gradient-to-r from-[#1E3A8A88] via-[#6C63FF66] to-[#2DD4BF88]" />
+                <motion.div
+                  className="pointer-events-none absolute top-[76px] z-20 h-8 w-14 -translate-x-1/2 -translate-y-1/2"
+                  animate={{
+                    left: `${mobileCarLeftPercent}%`,
+                  }}
+                  transition={{ duration: 0.45, ease: [0.22, 0.9, 0.25, 1.08] }}
+                >
+                  <div className="relative h-8 w-14 rounded-lg border border-[#3D3E8A] bg-gradient-to-b from-[#8FD4FF] via-[#7E8BFF] to-[#7C3AED] shadow-[0_10px_22px_-10px_rgba(0,0,0,0.65)]">
+                    <div className="absolute left-1.5 top-1.5 h-2.5 w-6 rounded bg-[#E6F7FF]" />
+                    <div className="absolute right-1.5 top-1.5 h-2.5 w-4 rounded bg-[#DDD7FF]" />
+                    <div className="absolute -bottom-1.5 left-2 h-3 w-3 rounded-full border border-[#0B1F31] bg-[#0F172A]" />
+                    <div className="absolute -bottom-1.5 right-2 h-3 w-3 rounded-full border border-[#0B1F31] bg-[#0F172A]" />
+                  </div>
+                </motion.div>
+                <div className="absolute left-0 right-0 top-[56px] grid -translate-y-1/2 grid-cols-6 items-center">
+                  {mobileStops.map((stop) => (
+                    <button
+                      key={stop.label}
+                      type="button"
+                      onClick={() => setActiveIndex(stop.idx)}
+                      className="relative mx-auto flex h-11 w-11 items-center justify-center"
+                      aria-label={`Select ${stop.label}`}
                     >
-                      {stop.label}
-                    </span>
-                    <span
-                      className={`h-3 w-3 rounded-full border ${
-                        activeIndex === stop.idx
-                          ? "border-[#1E3A8A] bg-[#1E3A8A] shadow-[0_0_0_5px_rgba(30,58,138,0.16)]"
-                          : "border-[#8FA6BE] bg-[#D6E2F0]"
-                      }`}
-                    />
-                  </button>
-                ))}
-              </div>
+                      <span
+                        className={`absolute -top-5 text-[10px] font-semibold leading-none tracking-tight ${activeIndex === stop.idx ? "text-[#0F2742]" : "text-[#5A728C]"
+                          }`}
+                      >
+                        {stop.label}
+                      </span>
+                      <span
+                        className={`h-3 w-3 rounded-full border ${activeIndex === stop.idx
+                            ? "border-[#1E3A8A] bg-[#1E3A8A] shadow-[0_0_0_5px_rgba(30,58,138,0.16)]"
+                            : "border-[#8FA6BE] bg-[#D6E2F0]"
+                          }`}
+                      />
+                    </button>
+                  ))}
+                </div>
               </div>
 
               <div className="relative hidden h-[210px] w-full max-w-[1180px] md:block">
@@ -354,7 +357,7 @@ export function ServicesPageContent({ initialServiceSlug }: ServicesPageContentP
                   className="pointer-events-none absolute left-1/2 top-1/2 z-30 -translate-x-1/2 -translate-y-1/2"
                   animate={{
                     x: ringItems[activeIndex]?.x ?? 0,
-                  y: ringItems[activeIndex]?.carY ?? 36,
+                    y: ringItems[activeIndex]?.carY ?? 36,
                   }}
                   transition={{ duration: 0.68, ease: [0.16, 1, 0.3, 1] }}
                 >
@@ -387,16 +390,14 @@ export function ServicesPageContent({ initialServiceSlug }: ServicesPageContentP
                   >
                     <div className="pointer-events-none">
                       <span
-                        className={`mx-auto mb-2 block h-5 w-5 rounded-full border ${
-                        item.nearFocal
-                          ? "border-[#38BDF8] bg-[#38BDF8]"
-                          : "border-[#5C7FA1] bg-[#2C4B68]"
-                        }`}
+                        className={`mx-auto mb-2 block h-5 w-5 rounded-full border ${item.nearFocal
+                            ? "border-[#38BDF8] bg-[#38BDF8]"
+                            : "border-[#5C7FA1] bg-[#2C4B68]"
+                          }`}
                       />
                       <span
-                        className={`block max-w-[140px] px-1.5 py-0.5 text-center text-xs font-semibold leading-tight tracking-[0.01em] sm:max-w-[180px] sm:text-sm md:max-w-[220px] md:text-lg ${
-                          item.nearFocal ? "text-[#0F2742]" : "text-[#264766]"
-                        }`}
+                        className={`block max-w-[140px] px-1.5 py-0.5 text-center text-xs font-semibold leading-tight tracking-[0.01em] sm:max-w-[180px] sm:text-sm md:max-w-[220px] md:text-lg ${item.nearFocal ? "text-[#0F2742]" : "text-[#264766]"
+                          }`}
                       >
                         {item.title}
                       </span>

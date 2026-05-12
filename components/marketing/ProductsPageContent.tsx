@@ -114,6 +114,8 @@ const PRODUCTS: ProductScene[] = [
     ],
     mockupLabel: "Linguatude - Coming soon",
     mockupNote: "Be the first to access Linguatude at launch.",
+    mockup1Src: "/linguatude-mockup1.jpeg",
+    mockup2Src: "/linguatude-mockup2.jpeg",
     logoSrc: "/logo-linguatude.jpg",
     primaryCtaLabel: "Visit Linguatude",
     primaryCtaHref: "https://linguatude.com",
@@ -132,38 +134,46 @@ function ProductPreview({ product, priority = false }: { product: ProductScene; 
   const mockups = [product.mockup1Src, product.mockup2Src].filter(Boolean);
 
   if (mockups.length > 0) {
+    const isLinguatude = product.id === "linguatude";
+    const mainWidthClass = isLinguatude ? "w-[200px] md:w-[240px]" : "w-[180px] md:w-[220px]";
+    const secondaryWidthClass = isLinguatude ? "w-[180px] md:w-[220px]" : "w-[160px] md:w-[200px]";
+    const secondaryOffsetClass = isLinguatude ? "-ml-20 md:-ml-24 mt-6" : "-ml-12 md:-ml-16 mt-12";
+    const mainSizes = isLinguatude ? "(max-width: 768px) 200px, 240px" : "(max-width: 768px) 180px, 220px";
+    const secondarySizes = isLinguatude ? "(max-width: 768px) 180px, 220px" : "(max-width: 768px) 160px, 200px";
+    const mainImgClass = isLinguatude ? "object-cover transform scale-110 -translate-y-1" : "object-cover";
+    const secondaryImgClass = isLinguatude ? "object-cover transform scale-105 -translate-y-0.5" : "object-cover";
     return (
       <div className="relative h-full min-h-[400px] flex items-center justify-center py-10">
         <div className="relative flex items-center gap-4 md:gap-8">
           {/* Main Mobile Frame */}
-          <div className="relative w-[180px] md:w-[220px] aspect-[9/19] rounded-[2.5rem] border-[6px] border-slate-900 bg-slate-900 shadow-2xl overflow-hidden z-10">
+          <div className={`relative ${mainWidthClass} aspect-[9/19] rounded-[2.5rem] border-[6px] border-slate-900 bg-slate-900 shadow-2xl overflow-hidden z-10`}>
               <div className="absolute top-0 left-1/2 -translate-x-1/2 w-20 h-5 bg-slate-900 rounded-b-xl z-20" />
               <div className="relative h-full w-full">
                 <Image
                   src={mockups[0]!}
                   alt={`${product.name} mockup 1`}
                   fill
-                  sizes="(max-width: 768px) 180px, 220px"
-                  quality={80}
-                  className="object-cover"
-                  priority={priority}
+                  sizes={mainSizes}
+                  quality={isLinguatude ? 100 : 80}
+                  className={mainImgClass}
+                  priority={priority || isLinguatude}
                 />
               </div>
           </div>
 
           {/* Secondary Offset Frame */}
           {mockups[1] && (
-            <div className="relative w-[160px] md:w-[200px] aspect-[9/19] rounded-[2.5rem] border-[6px] border-slate-800 bg-slate-800 shadow-xl overflow-hidden -ml-12 md:-ml-16 mt-12 opacity-90 transition-all hover:opacity-100 hover:-translate-y-2">
+            <div className={`relative ${secondaryWidthClass} aspect-[9/19] rounded-[2.5rem] border-[6px] border-slate-800 bg-slate-800 shadow-xl overflow-hidden ${secondaryOffsetClass} opacity-90 transition-all hover:opacity-100 hover:-translate-y-2`}>
                 <div className="absolute top-0 left-1/2 -translate-x-1/2 w-16 h-4 bg-slate-800 rounded-b-xl z-20" />
                 <div className="relative h-full w-full">
                     <Image
                     src={mockups[1]}
                     alt={`${product.name} mockup 2`}
                     fill
-                    sizes="(max-width: 768px) 160px, 200px"
-                    quality={80}
-                    className="object-cover"
-                    priority={priority}
+                    sizes={secondarySizes}
+                    quality={isLinguatude ? 90 : 80}
+                    className={secondaryImgClass}
+                    priority={priority || isLinguatude}
                     />
                 </div>
             </div>
@@ -236,7 +246,7 @@ export function ProductsPageContent({ initialProductId }: ProductsPageContentPro
                         fill
                         sizes="80px"
                         quality={80}
-                        className="object-contain p-2"
+                        className="object-contain p-2 rounded-xl"
                       />
                     </div>
                     <div className="flex flex-col">

@@ -2,6 +2,8 @@
 
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { useRef } from "react";
+import Lottie from "lottie-react";
+import aboutUsAnimation from "@/public/anims/about us.json";
 
 export function AboutPageContent() {
   const heroRef = useRef<HTMLDivElement>(null);
@@ -67,49 +69,8 @@ export function AboutPageContent() {
               transition={{ duration: 24, repeat: Infinity, ease: "linear" }}
             />
             <div className="relative overflow-hidden rounded-[2rem] border border-[#dbe8ff] bg-white/75 p-5 shadow-[0_40px_90px_-45px_rgba(85,111,177,0.75)] backdrop-blur-2xl">
-              <div className="grid gap-4 sm:grid-cols-2">
-                <motion.div
-                  className="rounded-2xl border border-[#dce8ff] bg-white/84 p-4"
-                  animate={{ y: [-2, 4, -2] }}
-                  transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
-                >
-                  <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[#6b82a8]">
-                    Product Studio
-                  </p>
-                  <div className="mt-3 h-16 rounded-xl bg-gradient-to-br from-[#e8f0ff] via-white to-[#edf5ff]" />
-                </motion.div>
-                <motion.div
-                  className="rounded-2xl border border-[#dce8ff] bg-white/84 p-4"
-                  animate={{ y: [3, -3, 3] }}
-                  transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-                >
-                  <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[#6b82a8]">
-                    AI Ops
-                  </p>
-                  <div className="relative mt-3 h-16 rounded-xl bg-[#f4f8ff]">
-                    <div className="absolute left-4 right-4 top-1/2 h-px -translate-y-1/2 bg-gradient-to-r from-[#89a9ff] via-[#58c6ff] to-[#9ea4ff]" />
-                  </div>
-                </motion.div>
-                <motion.div
-                  className="rounded-2xl border border-[#dce8ff] bg-white/84 p-4 sm:col-span-2"
-                  animate={{ y: [-1, 2, -1] }}
-                  transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
-                >
-                  <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[#6b82a8]">
-                    Global Delivery Network
-                  </p>
-                  <div className="mt-3 grid grid-cols-3 gap-2">
-                    <div className="rounded-lg bg-[#f3f8ff] p-2 text-center text-[11px] font-semibold text-[#56719d]">
-                      Pakistan
-                    </div>
-                    <div className="rounded-lg bg-[#f3f8ff] p-2 text-center text-[11px] font-semibold text-[#56719d]">
-                      Bahrain
-                    </div>
-                    <div className="rounded-lg bg-[#f3f8ff] p-2 text-center text-[11px] font-semibold text-[#56719d]">
-                      US
-                    </div>
-                  </div>
-                </motion.div>
+              <div className="flex items-center justify-center">
+                <Lottie animationData={aboutUsAnimation} loop={true} />
               </div>
             </div>
           </motion.div>

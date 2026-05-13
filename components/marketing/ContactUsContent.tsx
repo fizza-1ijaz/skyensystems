@@ -6,6 +6,8 @@ import Lottie from "lottie-react";
 import contactBoardAnimation from "@/public/anims/Man with contact us board.json";
 import arrowDownAnimation from "@/public/anims/Arrow down.json";
 
+const OFFICE_EMAIL = "Info@skyensystems.com";
+
 export default function ContactUsContent() {
   const [formData, setFormData] = useState({
     fullName: "",
@@ -229,31 +231,61 @@ export default function ContactUsContent() {
 
             {/* Info card below the form - visually enhanced */}
             <div className="rounded-3xl bg-gradient-to-br from-[#e6f7ff] to-[#d6efff] p-6 shadow-lg border border-transparent">
-              <div className="mb-4 text-center lg:text-left">
+              <div className="mb-6 text-center lg:text-left">
                 <h2 className="text-2xl font-extrabold text-[#0F172A]">Send us a message</h2>
                 <p className="mt-2 text-slate-700">Share your requirements below and our team will reply by email.</p>
               </div>
 
-                <div className="flex flex-col items-center gap-4">
-                  <div className="w-full max-w-xl rounded-xl bg-white p-4 shadow-sm relative overflow-visible text-center">
+              <div className="grid gap-4 lg:grid-cols-3 lg:items-start lg:gap-6">
+                <div className="flex flex-col gap-4">
+                  <div className="w-full rounded-xl bg-white p-4 shadow-sm relative overflow-visible text-center lg:text-left">
                     <p className="text-xs text-slate-400 uppercase tracking-wider">Email</p>
-                    <p className="mt-1 font-semibold text-[#0F172A]">Info@skyensystem.com</p>
+                    <p className="mt-1 font-semibold text-[#0F172A]">{OFFICE_EMAIL}</p>
 
-                    <div className="absolute right-4 top-1 md:top-1/2 md:-translate-y-1/2 w-8 h-8 pointer-events-none transform rotate-90">
+                    <div className="absolute right-4 top-1 md:top-1/2 md:-translate-y-1/2 w-8 h-8 pointer-events-none transform rotate-90 hidden sm:block">
                       <Lottie animationData={arrowDownAnimation} loop={true} />
                     </div>
                   </div>
 
-                  <div className="w-full max-w-xl rounded-xl bg-white p-4 shadow-sm text-center">
+                  <div className="w-full rounded-xl bg-white p-4 shadow-sm text-center lg:text-left">
                     <p className="text-xs text-slate-400 uppercase tracking-wider">Response Time</p>
-                    <p className="mt-1 font-semibold text-[#0F172A]">Within 4 business hours (Mon–Fri 9am–6pm ET)</p>
+                    <p className="mt-1 font-semibold text-[#0F172A]">
+                      We aim to reply within four business hours when possible.
+                    </p>
                   </div>
 
-                  <div className="w-full max-w-xl rounded-xl bg-white p-4 shadow-sm text-center">
+                  <div className="w-full rounded-xl bg-white p-4 shadow-sm text-center lg:text-left">
                     <p className="text-xs text-slate-400 uppercase tracking-wider">Important</p>
-                    <p className="mt-1 text-slate-600">We only handle enquiries via email form submissions.</p>
+                    <p className="mt-1 text-slate-600">
+                      Preferred contact method is via the form above. You may also reach us by phone during office hours.
+                    </p>
                   </div>
                 </div>
+
+                <div className="rounded-xl border border-slate-100 bg-white p-5 shadow-sm text-left text-sm text-slate-600">
+                  <p className="text-xs font-semibold uppercase tracking-[0.12em] text-slate-500">
+                    Pakistan Office (PSEB Registered)
+                  </p>
+                  <div className="mt-3 space-y-1.5 leading-relaxed">
+                    <p>12/27 AA Commercial, Sector D, Bahria Town</p>
+                    <p>Lahore, Punjab, Pakistan</p>
+                    <p>Phone: +92-423-5482980</p>
+                    <p>Email: {OFFICE_EMAIL}</p>
+                    <p>Hours: Monday–Friday, 9:00am–6:00pm PKT</p>
+                  </div>
+                </div>
+
+                <div className="rounded-xl border border-slate-100 bg-white p-5 shadow-sm text-left text-sm text-slate-600">
+                  <p className="text-xs font-semibold uppercase tracking-[0.12em] text-slate-500">Bahrain Head Office</p>
+                  <div className="mt-3 space-y-1.5 leading-relaxed">
+                    <p className="font-semibold text-[#0F172A]">Qismat Ventures W.L.L. (CR No. 190698-1)</p>
+                    <p>Office 501, Building 1025, Road 3621, Block 436</p>
+                    <p>Al-Seef, Manama, Kingdom of Bahrain — 0428</p>
+                    <p>Phone: +973 8048045</p>
+                    <p>Email: {OFFICE_EMAIL}</p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>

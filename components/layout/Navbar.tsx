@@ -2,21 +2,12 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import { useState, useEffect, type ReactNode } from "react";
 import { ArrowRight, Menu, X } from "lucide-react";
 import { motion } from "framer-motion";
+import { MAIN_NAV_ITEMS, MAIN_NAV_LINK_MOBILE_CLASS } from "@/lib/main-nav";
 
-const navItems = [
-  { label: "Home", href: "/" },
-  { label: "About", href: "/about" },
-  { label: "Services", href: "/services" },
-  { label: "Products", href: "/products" },
-  { label: "Pricing", href: "/pricing" },
-  { label: "Contact Us", href: "/contact-us" },
-  { label: "Blog", href: "/blog" },
-];
-
-export function Navbar() {
+export function Navbar({ desktopLinks }: { desktopLinks: ReactNode }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -53,18 +44,7 @@ export function Navbar() {
           </span>
         </Link>
 
-        <nav className="hidden items-center gap-4 lg:flex xl:gap-7">
-          {navItems.map((item) => (
-            <Link
-              key={item.label}
-              href={item.href}
-              className="group relative whitespace-nowrap text-[13px] font-medium text-slate-700 transition-colors hover:text-[#0F172A] xl:text-sm"
-            >
-              {item.label}
-              <span className="absolute -bottom-1 left-0 h-0.5 w-0 bg-gradient-to-r from-[#6C63FF] to-[#1E3A8A] transition-all group-hover:w-full" />
-            </Link>
-          ))}
-        </nav>
+        <nav className="hidden items-center gap-4 lg:flex xl:gap-7">{desktopLinks}</nav>
 
         <div className="flex items-center gap-2 lg:gap-3">
           <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.98 }}>
@@ -90,11 +70,11 @@ export function Navbar() {
       {isMobileMenuOpen ? (
         <div className="overflow-hidden border-t border-white/40 bg-white/85 backdrop-blur-xl lg:hidden">
           <div className="flex flex-col gap-4 p-6">
-            {navItems.map((item) => (
+            {MAIN_NAV_ITEMS.map((item) => (
               <Link
-                key={item.label}
+                key={item.href}
                 href={item.href}
-                className="text-lg font-semibold text-slate-700 transition-all duration-300 ease-in-out hover:text-[#0F172A]"
+                className={MAIN_NAV_LINK_MOBILE_CLASS}
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 {item.label}

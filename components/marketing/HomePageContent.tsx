@@ -6,6 +6,7 @@ import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { FAQ_TEAM_LOCATION_ANSWER } from "@/lib/company-offices";
 
 export function HomePageContent() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -22,7 +23,7 @@ export function HomePageContent() {
     {
       id: "pseb",
       title: "PSEB Registered",
-      body: "We are a formally registered software house under Pakistan's Software Export Board — meaning quality, accountability, and a structured operation, not a freelancer.",
+      body: "Skyen Systems is incorporated in Bahrain (CR No. 190698-1) and operates a PSEB-registered regional office in Lahore, Pakistan. That means a formal legal entity, regulated operations, professional accountability — and none of the risk that comes with anonymous freelancers or unregistered agencies.",
       pos: "left-[12%] top-[32%]",
     },
     {
@@ -143,7 +144,9 @@ export function HomePageContent() {
               transition={{ delay: 0.2, duration: 0.65, ease: "easeOut" }}
               className="mt-6 w-full text-balance text-base leading-relaxed text-[#4a6388] md:text-lg"
             >
-              We build websites, mobile apps, AI-powered products, and run the digital marketing that fills them with customers. PSEB-registered. US-market focused. One team that becomes part of yours.
+              We build websites, mobile apps, AI-powered products, and run the digital marketing that fills them with customers.{" "}
+              <span className="font-semibold text-[#0f2544]">Bahrain-incorporated. PSEB-registered. US-market focused.</span>{" "}
+              One team that becomes a genuine part of yours.
             </motion.p>
 
             <motion.div
@@ -182,7 +185,7 @@ export function HomePageContent() {
             >
               {[
                 "✓ PSEB Registered",
-                "✓ 50+ Projects Delivered",
+                "✓ 20+ Projects Delivered",
                 "✓ US Timezone Support",
                 "✓ 4-Hour Response Guarantee",
               ].map((item) => (
@@ -462,7 +465,7 @@ export function HomePageContent() {
         <div className="mt-6 grid gap-4 md:grid-cols-2">
           {[
             ["Do your prices include ad spend?", "No. Management fee covers work; ad spend is paid directly by the client to platforms."],
-            ["Where is your team located?", "Headquartered in Bahrain with regional development center and US-friendly communication hours."],
+            ["Where is your team located?", FAQ_TEAM_LOCATION_ANSWER],
             ["How do payments work?", "Packages are typically 50% upfront and 50% on delivery; retainers are billed monthly."],
             ["How is this different from a freelancer?", "You get a full multidisciplinary team with one point of contact and long-term support."],
           ].map(([q, a]) => (

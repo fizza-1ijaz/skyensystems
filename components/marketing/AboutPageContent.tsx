@@ -93,7 +93,8 @@ export function AboutPageContent() {
               viewport={{ once: true, amount: 0.35 }}
               className="rounded-3xl border border-[#dbe8ff] bg-white/78 p-6 text-lg leading-8 text-slate-600 shadow-[0_30px_70px_-45px_rgba(84,113,182,0.72)] backdrop-blur-xl"
             >
-              Skyen Systems is a registered software house based in Bahrain with a regional office in Pakistan. We work with small and medium businesses across the United States - and increasingly across the world - building websites, apps, AI tools, and running the digital marketing that makes them matter.
+              Skyen Systems is the trading name of Qismat Ventures W.L.L., a company incorporated in the Kingdom of Bahrain
+              (Commercial Registration No. 190698-1). Our head office is in Al-Seef, Manama, Bahrain.
             </motion.p>
 
             <motion.p
@@ -102,11 +103,10 @@ export function AboutPageContent() {
               viewport={{ once: true, amount: 0.35 }}
               className="rounded-3xl border border-[#dbe8ff] bg-white/78 p-6 text-lg leading-8 text-slate-600 shadow-[0_30px_70px_-45px_rgba(84,113,182,0.72)] backdrop-blur-xl"
             >
-              We started with a belief that{" "}
-              <span className="font-semibold text-[#28477d]">
-                excellent digital work shouldn&apos;t require a Fortune 500 budget
-              </span>{" "}
-              or navigating a dozen different agencies. One team, with deep skills across every discipline, working as a true extension of your business - that&apos;s what we built.
+              We operate a regional delivery office in Lahore, Pakistan, registered with the Pakistan Software Export Board
+              (PSEB) — the government body that certifies and regulates Pakistani software firms operating in international
+              markets. Our Lahore office is our primary development centre, staffed with senior developers, product designers,
+              AI engineers, and digital marketers who work full-time on client engagements.
             </motion.p>
 
             <motion.p
@@ -115,7 +115,20 @@ export function AboutPageContent() {
               viewport={{ once: true, amount: 0.35 }}
               className="rounded-3xl border border-[#dbe8ff] bg-white/78 p-6 text-lg leading-8 text-slate-600 shadow-[0_30px_70px_-45px_rgba(84,113,182,0.72)] backdrop-blur-xl"
             >
-              Our team includes senior developers, product designers, AI specialists, and digital marketers. Everyone on every project is a Skyen team member - not a contractor, not a marketplace match.
+              We serve clients across the United States, the United Kingdom, the GCC, and Pakistan — building websites,
+              mobile apps, AI-powered products, and running the digital marketing strategies that put those products in front
+              of the right customers.
+            </motion.p>
+
+            <motion.p
+              initial={{ opacity: 0, y: 18 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.35 }}
+              className="rounded-3xl border border-[#dbe8ff] bg-white/78 p-6 text-lg leading-8 text-slate-600 shadow-[0_30px_70px_-45px_rgba(84,113,182,0.72)] backdrop-blur-xl"
+            >
+              We started with a belief that excellent digital work shouldn&apos;t require a Fortune 500 budget or seven
+              different agencies. One team — with deep skills across every discipline — working as a true extension of your
+              business. That&apos;s what we built.
             </motion.p>
           </div>
         </div>
@@ -162,16 +175,30 @@ export function AboutPageContent() {
             <circle cx="990" cy="180" r="6" fill="#37BEFF" />
           </svg>
 
-          <div className="relative z-10 space-y-4 text-slate-600">
-            <p className="text-lg leading-8">
-              <strong className="text-[#0F172A]">Pakistan HQ:</strong> 12/27 AA Commercial Sector D, Bahria Town · Info@skyensystem.com
-            </p>
-            <p className="text-lg leading-8">
-              <strong className="text-[#0F172A]">Bahrain Regional:</strong> Office 501, Building 1025, Road 3621, Block 436, Al-Seef, Bahrain, 0428 · Info@skyensystem.com
-            </p>
-            <p className="text-lg leading-8">
-              <strong className="text-[#0F172A]">US inquiries:</strong> Info@skyensystem.com · Response within 4 hours (US business hours)
-            </p>
+          <div className="relative z-10 space-y-8 text-base leading-7 text-slate-600">
+            <div className="space-y-2">
+              <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[#6b82a8]">Head Office — Bahrain</p>
+              <p className="font-semibold text-[#0F172A]">Qismat Ventures W.L.L. (CR No. 190698-1)</p>
+              <p>
+                Office 501, Building 1025, Road 3621, Block 436, Al-Seef, Manama, Kingdom of Bahrain — 0428
+              </p>
+              <p>Phone: +973 8048045&nbsp;&nbsp;|&nbsp;&nbsp;Email: Info@skyensystems.com</p>
+            </div>
+            <div className="space-y-2">
+              <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[#6b82a8]">
+                Regional Office — Pakistan (PSEB Registered)
+              </p>
+              <p>12/27 AA Commercial, Sector D, Bahria Town, Lahore, Punjab, Pakistan</p>
+              <p>Phone: +92-423-5482980&nbsp;&nbsp;|&nbsp;&nbsp;Email: Info@skyensystems.com</p>
+              <p>Office Hours: Monday–Friday, 9:00am–6:00pm PKT</p>
+            </div>
+            <div className="space-y-2 border-t border-[#dbe8ff] pt-6">
+              <p className="font-semibold text-[#0F172A]">US Enquiries:</p>
+              <p>
+                Email: Info@skyensystems.com&nbsp;&nbsp;|&nbsp;&nbsp;Response within 4 hours (US business hours, Mon–Fri
+                9am–6pm ET)
+              </p>
+            </div>
           </div>
         </div>
       </section>

@@ -234,7 +234,8 @@ export function Hero() {
               transition={{ delay: 0.3, duration: 0.8, ease: "easeOut" }}
               className="mx-auto max-w-3xl text-xs sm:text-sm md:text-base lg:text-lg font-medium leading-relaxed text-slate-600 px-2 sm:px-0"
             >
-              We build websites, mobile apps, AI-powered products, and run the digital marketing that fills them with customers. <span className="text-slate-900 font-bold">PSEB-registered. US-market focused.</span> One team that becomes part of yours.
+              We build websites, mobile apps, AI-powered products, and run the digital marketing that fills them with customers.{" "}
+              <span className="text-slate-900 font-bold">Bahrain-incorporated. PSEB-registered. US-market focused.</span> One team that becomes a genuine part of yours.
             </motion.p>
 
             <motion.div

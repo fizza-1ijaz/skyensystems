@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import Link from "next/link";
 import { 
   Layout, 
@@ -41,6 +41,8 @@ type Feature = {
 type Plan = {
   name: string;
   price: string;
+  /** USD amount used for live PKR conversion (matches "From $X"). */
+  usdFromAmount: number;
   badge?: string;
   description: string;
   features: Feature[];
@@ -51,6 +53,7 @@ const PLANS: Plan[] = [
   {
     name: "Starter",
     price: "From $1,500",
+    usdFromAmount: 1500,
     description:
       "For small businesses needing a professional digital presence.",
     features: [
@@ -66,6 +69,7 @@ const PLANS: Plan[] = [
     name: "Growth",
     badge: "MOST POPULAR",
     price: "From $4,000",
+    usdFromAmount: 4000,
     description:
       "For businesses ready to grow with a full digital strategy.",
     features: [
@@ -82,6 +86,7 @@ const PLANS: Plan[] = [
   {
     name: "Scale",
     price: "From $8,000",
+    usdFromAmount: 8000,
     description:
       "For established businesses with complex multi-platform needs.",
     features: [
@@ -97,43 +102,176 @@ const PLANS: Plan[] = [
   },
 ];
 
-const FAQ = [
+const FAQ_ITEMS = [
   {
-    q: "Do you offer payment plans?",
-    a: "Yes. For projects over $2,000: 50% deposit / 50% on completion. Larger projects have phased milestone payments.",
+    question: "Do you offer payment plans?",
+    answer:
+      "Yes. For projects over PKR 560,000 (approx. USD 2,000), we offer milestone-based payment schedules — typically 50% at project start and 50% on completion. For larger projects, a 3-stage payment plan is available. Contact us to discuss.",
   },
   {
-    q: "What is included in the support period?",
-    a: "Bug fixes, minor content updates, performance monitoring. Feature additions quoted separately.",
+    question: "What is included in the support period?",
+    answer:
+      "The support period covers bug fixes, minor content updates (text/image swaps), and technical questions about the delivered work. It does not cover new features or scope additions, which are quoted separately. Support is provided via email with a 1-business-day response time.",
   },
   {
-    q: "Can I start Starter and upgrade later?",
-    a: "Absolutely. All projects built with scalability in mind. Moving from Starter to Growth is straightforward.",
+    question: "Can I start with Starter and upgrade later?",
+    answer:
+      "Yes. We design all projects with future growth in mind. If you start with a Starter website and later need e-commerce, a client portal, or additional functionality, we can scope and add those as a separate project. There are no lock-ins.",
   },
   {
-    q: "How does Dedicated Teams pricing work?",
-    a: "Monthly rate per team member based on seniority. Minimum 3-month engagement. Scale up/down with 30 days' notice.",
+    question: "How does Dedicated Teams pricing work?",
+    answer:
+      "Dedicated Teams are billed monthly in advance. Pricing depends on the number of team members, their seniority, and the engagement model (full-time vs. part-time). Engagements require a minimum 3-month commitment. Contact us for a custom quote based on your specific team needs.",
   },
 ];
+
+function formatPkrFromUsd(usd: number, rate: number): string {
+  const pkr = Math.round(usd * rate);
+  return `From PKR ${pkr.toLocaleString("en-PK", { maximumFractionDigits: 0 })}`;
+}
+
+const FALLBACK_PKR_PER_USD = 278.92;
+
+type FxSnapshot = {
+  pkrPerUsd: number;
+  lastUpdateUtc: string | null;
+  usedFallback: boolean;
+};
+
+function PricingCurrencyPanel({
+  fx,
+  rateLoading,
+  panelBusy,
+  onRetry,
+}: {
+  fx: FxSnapshot | null;
+  rateLoading: boolean;
+  panelBusy: boolean;
+  onRetry: () => void;
+}) {
+  const [usdInput, setUsdInput] = useState("1500");
+  const usdNum = parseFloat(String(usdInput).replace(/,/g, ""));
+  const pkrPerUsd = fx?.pkrPerUsd ?? null;
+  const converted =
+    pkrPerUsd != null && Number.isFinite(usdNum) && usdNum >= 0
+      ? Math.round(usdNum * pkrPerUsd)
+      : null;
+
+  const updatedLabel =
+    fx?.lastUpdateUtc &&
+    (() => {
+      try {
+        return new Date(fx.lastUpdateUtc).toLocaleString(undefined, {
+          dateStyle: "medium",
+          timeStyle: "short",
+        });
+      } catch {
+        return fx.lastUpdateUtc;
+      }
+    })();
+
+  return (
+    <div className="mb-8 rounded-2xl border border-[#1E3A8A22] bg-white/90 p-5 shadow-sm backdrop-blur-sm md:p-6">
+      <div className="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
+        <div>
+          <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-[#1E3A8A]/80">
+            USD → PKR (live reference)
+          </p>
+          {rateLoading && !fx ? (
+            <p className="mt-2 text-sm font-medium text-slate-600">Fetching exchange rate…</p>
+          ) : panelBusy ? (
+            <p className="mt-2 text-sm font-medium text-slate-600">Refreshing…</p>
+          ) : pkrPerUsd != null ? (
+            <p className="mt-2 text-lg font-bold text-[#0F172A]">
+              1 USD ≈ PKR{" "}
+              {pkrPerUsd.toLocaleString("en-PK", { maximumFractionDigits: 2, minimumFractionDigits: 2 })}
+            </p>
+          ) : (
+            <p className="mt-2 text-sm text-slate-600">Rate unavailable.</p>
+          )}
+          {updatedLabel ? (
+            <p className="mt-1 text-xs text-slate-500">As of {updatedLabel}</p>
+          ) : null}
+          {fx?.usedFallback ? (
+            <p className="mt-2 text-xs font-medium text-amber-800">
+              Live feed unavailable — showing indicative backup rate. Tap refresh to retry.
+            </p>
+          ) : null}
+        </div>
+        <button
+          type="button"
+          onClick={onRetry}
+          disabled={rateLoading || panelBusy}
+          className="inline-flex shrink-0 items-center justify-center rounded-lg border border-[#1E3A8A33] bg-white px-3 py-2 text-xs font-semibold text-[#1E3A8A] transition-colors hover:bg-[#1E3A8A08] disabled:opacity-50"
+        >
+          Refresh rate
+        </button>
+      </div>
+
+      {!rateLoading && !panelBusy && pkrPerUsd != null ? (
+        <div className="mt-5 flex flex-col gap-2 rounded-xl border border-slate-200/80 bg-slate-50/80 p-4 sm:flex-row sm:items-center sm:gap-4">
+          <label className="text-xs font-semibold uppercase tracking-wide text-slate-500 sm:shrink-0">
+            Quick convert
+          </label>
+          <div className="flex flex-1 flex-wrap items-center gap-2">
+            <span className="text-sm text-slate-600">USD</span>
+            <input
+              type="text"
+              inputMode="decimal"
+              value={usdInput}
+              onChange={(e) => setUsdInput(e.target.value)}
+              className="w-28 rounded-lg border border-slate-300 bg-white px-2 py-1.5 text-sm outline-none focus:border-[#1E3A8A]"
+              aria-label="Amount in USD"
+            />
+            <span className="text-slate-400">→</span>
+            <span className="text-sm font-semibold text-[#0F172A]">
+              {converted != null
+                ? `PKR ${converted.toLocaleString("en-PK", { maximumFractionDigits: 0 })}`
+                : "—"}
+            </span>
+          </div>
+        </div>
+      ) : null}
+
+      <p className="mt-4 text-xs leading-relaxed text-slate-600">
+        <span className="font-semibold text-slate-700">
+          Exchange rate is indicative. Final PKR amounts are confirmed at invoice stage.
+        </span>{" "}
+        Displayed conversions use the latest USD/PKR reference returned by our rate feed (or a backup
+        reference if the feed is temporarily unavailable).
+      </p>
+    </div>
+  );
+}
 
 
 function PricingCard({
   plan,
   isFeatured,
   isMobile,
-  isCentered,
+  isCentered: _isCentered,
+  pkrPerUsd,
+  rateLoading,
 }: {
   plan: Plan;
   isFeatured: boolean;
   isMobile?: boolean;
   isCentered?: boolean;
+  pkrPerUsd: number | null;
+  rateLoading: boolean;
 }) {
   const [isHovered, setIsHovered] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const [showPkr, setShowPkr] = useState(false);
 
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  const displayPrice =
+    showPkr && pkrPerUsd != null && !rateLoading
+      ? formatPkrFromUsd(plan.usdFromAmount, pkrPerUsd)
+      : plan.price;
 
   return (
     <motion.article
@@ -222,8 +360,24 @@ function PricingCard({
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.1 }}
             >
-              {plan.price}
+              {displayPrice}
             </motion.p>
+
+            {rateLoading ? (
+              <p className="mt-2 text-[11px] font-medium text-slate-500">Loading PKR rate…</p>
+            ) : pkrPerUsd != null ? (
+              <button
+                type="button"
+                onClick={() => setShowPkr((v) => !v)}
+                className={`mt-2 inline-flex items-center rounded-lg border px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.12em] transition-colors ${
+                  isFeatured
+                    ? "border-[#1E3A8A55] bg-white/60 text-[#1E3A8A] hover:bg-[#1E3A8A] hover:text-white"
+                    : "border-[#1E3A8A44] bg-white/70 text-[#1E3A8A] hover:bg-[#1E3A8A] hover:text-white"
+                }`}
+              >
+                {showPkr ? "Show in USD" : "Show in PKR"}
+              </button>
+            ) : null}
 
             <motion.p
               className="mt-3 text-[13px] leading-relaxed text-slate-600 md:text-sm"
@@ -319,6 +473,60 @@ function PricingCard({
 
 export function PricingPageContent() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
+  const [fx, setFx] = useState<FxSnapshot | null>(null);
+  const [rateLoading, setRateLoading] = useState(true);
+  const [panelBusy, setPanelBusy] = useState(false);
+  const initialFetch = useRef(true);
+
+  const loadRate = useCallback((opts?: { isRefresh?: boolean }) => {
+    const isRefresh = opts?.isRefresh ?? false;
+    if (isRefresh) setPanelBusy(true);
+    else if (initialFetch.current) setRateLoading(true);
+
+    fetch("/api/exchange-rate")
+      .then((r) => r.json())
+      .then(
+        (j: {
+          ok?: boolean;
+          pkrPerUsd?: number;
+          lastUpdateUtc?: string | null;
+        }) => {
+          if (j.ok && typeof j.pkrPerUsd === "number" && Number.isFinite(j.pkrPerUsd)) {
+            setFx({
+              pkrPerUsd: j.pkrPerUsd,
+              lastUpdateUtc: typeof j.lastUpdateUtc === "string" ? j.lastUpdateUtc : null,
+              usedFallback: false,
+            });
+          } else {
+            setFx({
+              pkrPerUsd: FALLBACK_PKR_PER_USD,
+              lastUpdateUtc: null,
+              usedFallback: true,
+            });
+          }
+        }
+      )
+      .catch(() => {
+        setFx({
+          pkrPerUsd: FALLBACK_PKR_PER_USD,
+          lastUpdateUtc: null,
+          usedFallback: true,
+        });
+      })
+      .finally(() => {
+        if (isRefresh) setPanelBusy(false);
+        else if (initialFetch.current) {
+          setRateLoading(false);
+          initialFetch.current = false;
+        }
+      });
+  }, []);
+
+  useEffect(() => {
+    loadRate();
+  }, [loadRate]);
+
+  const cardPkr = fx?.pkrPerUsd ?? null;
 
   return (
     <div className="pb-0 pt-12 text-[#0F172A] bg-white">
@@ -402,12 +610,26 @@ export function PricingPageContent() {
         </div>
 
         <div className="mx-auto max-w-7xl">
+          <PricingCurrencyPanel
+            fx={fx}
+            rateLoading={rateLoading}
+            panelBusy={panelBusy}
+            onRetry={() => loadRate({ isRefresh: true })}
+          />
+
           {/* Pricing cards with premium layout */}
           <div className="relative">
             {/* Mobile stacked layout */}
             <div className="grid gap-6 md:hidden">
               {PLANS.map((plan) => (
-                <PricingCard key={plan.name} plan={plan} isFeatured={!!plan.featured} isMobile />
+                <PricingCard
+                  key={plan.name}
+                  plan={plan}
+                  isFeatured={!!plan.featured}
+                  isMobile
+                  pkrPerUsd={cardPkr}
+                  rateLoading={rateLoading}
+                />
               ))}
             </div>
 
@@ -420,7 +642,13 @@ export function PricingPageContent() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0 }}
               >
-                <PricingCard plan={PLANS[0]} isFeatured={false} isMobile={false} />
+                <PricingCard
+                  plan={PLANS[0]}
+                  isFeatured={false}
+                  isMobile={false}
+                  pkrPerUsd={cardPkr}
+                  rateLoading={rateLoading}
+                />
               </motion.div>
 
               {/* Center card - elevated with negative margin */}
@@ -431,7 +659,14 @@ export function PricingPageContent() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.7, delay: 0.1 }}
               >
-                <PricingCard plan={PLANS[1]} isFeatured={true} isMobile={false} isCentered={true} />
+                <PricingCard
+                  plan={PLANS[1]}
+                  isFeatured={true}
+                  isMobile={false}
+                  isCentered={true}
+                  pkrPerUsd={cardPkr}
+                  rateLoading={rateLoading}
+                />
               </motion.div>
 
               {/* Right card */}
@@ -441,7 +676,13 @@ export function PricingPageContent() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.15 }}
               >
-                <PricingCard plan={PLANS[2]} isFeatured={false} isMobile={false} />
+                <PricingCard
+                  plan={PLANS[2]}
+                  isFeatured={false}
+                  isMobile={false}
+                  pkrPerUsd={cardPkr}
+                  rateLoading={rateLoading}
+                />
               </motion.div>
             </div>
 
@@ -481,17 +722,51 @@ export function PricingPageContent() {
             </svg>
           </div>
 
+          <div className="mt-10 rounded-2xl border border-[#1E3A8A22] bg-white/90 px-5 py-4 text-left text-sm leading-relaxed text-[#264766] shadow-sm backdrop-blur-sm md:px-6">
+            <p className="font-semibold text-[#0F172A]">Pakistan clients</p>
+            <p className="mt-2">
+              Pricing above is in USD. Indicative PKR equivalents at current rates: Starter — from PKR
+              420,000&nbsp;&nbsp;|&nbsp;&nbsp;Growth — from PKR 1,120,000&nbsp;&nbsp;|&nbsp;&nbsp;Scale — from PKR
+              2,240,000
+            </p>
+            <p className="mt-2">
+              Final amounts invoiced in PKR at rates confirmed at time of engagement. Contact us for a PKR
+              quote:{" "}
+              <Link
+                href="mailto:info@skyensystems.com"
+                className="font-semibold text-[#1E3A8A] underline-offset-2 hover:underline"
+              >
+                Info@skyensystems.com
+              </Link>
+            </p>
+          </div>
+
           {/* Disclaimer card */}
           <motion.div
-            className="mt-12 rounded-2xl border border-[#1E3A8A33] bg-gradient-to-br from-[#f4f8ff] via-white to-[#eef9ff] px-6 py-4 md:mt-16"
+            className="mt-12 rounded-2xl border border-[#1E3A8A33] bg-gradient-to-br from-[#f4f8ff] via-white to-[#eef9ff] px-6 py-4 md:mt-10"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.8 }}
           >
             <p className="text-sm text-[#264766]">
-              ⚠ Prices are starting points. All quotes are fixed-price — no hourly
-              billing surprises. Payment plans available for projects over $2,000.
+              ⚠ Prices are starting points. All quotes are fixed-price — no hourly billing surprises.
+              Payment plans are available for projects over USD $2,000 (approx. PKR 560,000 at indicative
+              rates). Exchange rate is indicative; final PKR amounts are confirmed at invoice stage.
+            </p>
+          </motion.div>
+
+          <motion.div
+            className="mt-6 rounded-2xl border border-[#1E3A8A22] bg-white/95 px-5 py-4 text-left text-sm leading-relaxed text-[#264766] shadow-sm backdrop-blur-sm md:px-6"
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+          >
+            <p>
+              <span className="font-semibold text-[#0F172A]">Payment Methods:</span> We accept international
+              bank transfers, Stripe (Visa/Mastercard/Debit), and PayPal. We do not accept cryptocurrency,
+              Bitcoin, USDT, Skrill, or any crypto-based payment platform.
             </p>
           </motion.div>
         </div>
@@ -519,28 +794,36 @@ export function PricingPageContent() {
               <Lottie animationData={cardAnimation} loop={true} />
             </div>
           </div>
-          <div className="mt-8 space-y-3">
-            {FAQ.map((item, index) => (
-              <div
-                key={item.q}
-                className="overflow-hidden rounded-xl border border-white/80 bg-white/85 shadow-[0_14px_32px_-26px_rgba(15,23,42,0.4)]"
-              >
-                <button
-                  onClick={() => setOpenFaq(openFaq === index ? null : index)}
-                  className="flex w-full items-center justify-between px-5 py-4 text-left font-semibold text-slate-800"
+          <div className="mt-8 space-y-3 text-left">
+            {FAQ_ITEMS.map((item, index) => {
+              const open = openFaq === index;
+              return (
+                <div
+                  key={item.question}
+                  className="rounded-xl border border-white/80 bg-white/85 shadow-[0_14px_32px_-26px_rgba(15,23,42,0.4)]"
                 >
-                  {item.q}
-                  <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-[#1E3A8A22] text-[#1E3A8A]">
-                    {openFaq === index ? "×" : "+"}
-                  </span>
-                </button>
-                {openFaq === index ? (
-                  <p className="px-5 pb-5 text-sm leading-7 text-slate-600">
-                    {item.a}
-                  </p>
-                ) : null}
-              </div>
-            ))}
+                  <button
+                    type="button"
+                    onClick={() => setOpenFaq(open ? null : index)}
+                    className="flex w-full items-center justify-between gap-3 px-5 py-4 text-left text-sm font-semibold text-slate-800 md:text-base"
+                  >
+                    <span>{item.question}</span>
+                    <span className="inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#1E3A8A22] text-[#1E3A8A]">
+                      {open ? "×" : "+"}
+                    </span>
+                  </button>
+                  <div
+                    className={`grid transition-[grid-template-rows] duration-300 ease-in-out ${
+                      open ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
+                    }`}
+                  >
+                    <div className="min-h-0 overflow-hidden">
+                      <p className="px-5 pb-5 text-sm leading-7 text-slate-600">{item.answer}</p>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>

@@ -1,4 +1,9 @@
 import type { Metadata } from "next";
+import {
+  OFFICE_EMAIL,
+  OFFICE_EMAIL_MAILTO,
+  PRIVACY_DATA_PROCESSING_LOCATIONS,
+} from "@/lib/company-offices";
 
 export const metadata: Metadata = {
   title: "Privacy Policy | Skyen Systems",
@@ -160,11 +165,11 @@ export default function PrivacyPolicyPage() {
             forgotten&apos;); data portability; objection to marketing processing; and
             restriction of processing. To exercise any right:
             <a
-              href="mailto:info@skyensystem.com"
+              href={OFFICE_EMAIL_MAILTO}
               className="font-medium text-[#3150bf] hover:text-[#25357d]"
             >
               {" "}
-              Info@skyensystem.com
+              {OFFICE_EMAIL}
             </a>
             . We respond within 30 days.
           </p>
@@ -173,12 +178,10 @@ export default function PrivacyPolicyPage() {
         <section className="space-y-4 rounded-2xl border border-[#c9d8ff] bg-white/90 p-6 shadow-md shadow-[#5678f8]/10">
           <h2 className="text-2xl font-semibold">7. International Data Transfers</h2>
           <p className="text-[#4d5f99]">
-            Skyen Systems operates from Pakistan with a Bahrain regional office. Your
-            data may be processed in Pakistan and Bahrain. We implement appropriate
-            technical and organisational safeguards including standard contractual
-            clauses where relevant. For EEA/UK users: we process data under contract
-            performance, legitimate interests, and consent as applicable under GDPR
-            and UK GDPR.
+            {PRIVACY_DATA_PROCESSING_LOCATIONS} We implement appropriate technical and
+            organisational safeguards including standard contractual clauses where
+            relevant. For EEA/UK users: we process data under contract performance,
+            legitimate interests, and consent as applicable under GDPR and UK GDPR.
           </p>
         </section>
 
@@ -199,11 +202,11 @@ export default function PrivacyPolicyPage() {
             We do not knowingly collect personal information from children. If you
             believe we have done so inadvertently, contact
             <a
-              href="mailto:info@skyensystem.com"
+              href={OFFICE_EMAIL_MAILTO}
               className="font-medium text-[#3150bf] hover:text-[#25357d]"
             >
               {" "}
-              Info@skyensystem.com
+              {OFFICE_EMAIL}
             </a>{" "}
             immediately and we will delete the data. Note for Studiely: students
             under 13 must have verifiable parental consent.
@@ -221,17 +224,26 @@ export default function PrivacyPolicyPage() {
 
         <section className="space-y-4 rounded-2xl border border-[#c9d8ff] bg-white/90 p-6 shadow-md shadow-[#5678f8]/10">
           <h2 className="text-2xl font-semibold">11. Contact — Privacy Matters</h2>
-          <p className="text-[#4d5f99]">
-            Privacy Officer, Skyen Systems - [Insert Pakistan office address] -
-            <a
-              href="mailto:info@skyensystem.com"
-              className="font-medium text-[#3150bf] hover:text-[#25357d]"
-            >
-              {" "}
-              Info@skyensystem.com
-            </a>{" "}
-            - Response within 30 days
-          </p>
+          <div className="space-y-3 text-[#4d5f99]">
+            <p className="font-semibold text-[#2b3c7e]">Privacy Officer, Skyen Systems</p>
+            <p>12/27 AA Commercial, Sector D, Bahria Town, Lahore, Punjab, Pakistan</p>
+            <p>
+              Email:{" "}
+              <a
+                href={OFFICE_EMAIL_MAILTO}
+                className="font-medium text-[#3150bf] hover:text-[#25357d]"
+              >
+                {OFFICE_EMAIL}
+              </a>
+              {"  |  "}
+              Phone: +92-423-5482980
+            </p>
+            <p>Response within 30 days.</p>
+            <p className="pt-1 leading-relaxed">
+              Head Office: Qismat Ventures W.L.L., Office 501, Building 1025, Road 3621, Block 436,
+              Al-Seef, Manama, Kingdom of Bahrain — CR No. 190698-1
+            </p>
+          </div>
         </section>
       </main>
     </div>

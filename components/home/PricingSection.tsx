@@ -8,7 +8,7 @@ const pillars = [
   {
     name: "PSEB Registered",
     description:
-      "We are a formally registered software house under Pakistan's Software Export Board — meaning quality, accountability, and a structured operation, not a freelancer.",
+      "Skyen Systems is incorporated in Bahrain (CR No. 190698-1) and operates a PSEB-registered regional office in Lahore, Pakistan. That means a formal legal entity, regulated operations, professional accountability — and none of the risk that comes with anonymous freelancers or unregistered agencies.",
   },
   {
     name: "US Market Focused",

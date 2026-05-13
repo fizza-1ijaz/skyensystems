@@ -1,5 +1,19 @@
 import Link from "next/link";
 import Image from "next/image";
+import {
+  HEAD_OFFICE_ADDRESS_BLOCK,
+  HEAD_OFFICE_CR,
+  HEAD_OFFICE_LABEL,
+  HEAD_OFFICE_PHONE,
+  LEGAL_ENTITY_LINE,
+  OFFICE_EMAIL,
+  REGIONAL_OFFICE_ADDRESS_BLOCK,
+  REGIONAL_OFFICE_HOURS,
+  REGIONAL_OFFICE_LABEL,
+  REGIONAL_OFFICE_NAME,
+  REGIONAL_OFFICE_PHONE,
+  REGIONAL_OFFICE_PSEB_PLACEHOLDER,
+} from "@/lib/company-offices";
 
 const servicesLinks = [
   { label: "Web Development", href: "/services" },
@@ -15,6 +29,7 @@ const companyLinks = [
   { label: "Services", href: "/services" },
   { label: "Products", href: "/products" },
   { label: "Blog", href: "/blog" },
+  { label: "FAQ", href: "/faq" },
   { label: "Contact", href: "/contact-us" },
 ];
 
@@ -108,6 +123,36 @@ export function Footer() {
                 </li>
               ))}
             </ul>
+            <div className="mt-6 space-y-2 border-t border-slate-700/60 pt-5 text-xs leading-relaxed text-slate-400">
+              <p>
+                Accepted Payments: Bank Transfer (SWIFT/Local) | Stripe (Visa/Mastercard) | PayPal
+              </p>
+              <p className="text-slate-300">We do not accept cryptocurrency payments of any kind.</p>
+            </div>
+          </div>
+        </div>
+
+        <div className="mt-12 grid gap-8 border-t border-slate-800 pt-10 text-left md:grid-cols-2">
+          <div className="space-y-2 text-xs leading-relaxed text-slate-400">
+            <p className="text-[10px] font-bold uppercase tracking-widest text-slate-500">{HEAD_OFFICE_LABEL}</p>
+            <p className="font-semibold text-slate-200">{LEGAL_ENTITY_LINE}</p>
+            {HEAD_OFFICE_ADDRESS_BLOCK.map((line) => (
+              <p key={line}>{line}</p>
+            ))}
+            <p>{HEAD_OFFICE_CR}</p>
+            <p>Phone: {HEAD_OFFICE_PHONE}</p>
+            <p>Email: {OFFICE_EMAIL}</p>
+          </div>
+          <div className="space-y-2 text-xs leading-relaxed text-slate-400">
+            <p className="text-[10px] font-bold uppercase tracking-widest text-slate-500">{REGIONAL_OFFICE_LABEL}</p>
+            <p className="font-semibold text-slate-200">{REGIONAL_OFFICE_NAME}</p>
+            {REGIONAL_OFFICE_ADDRESS_BLOCK.map((line) => (
+              <p key={line}>{line}</p>
+            ))}
+            <p>{REGIONAL_OFFICE_PSEB_PLACEHOLDER}</p>
+            <p>Phone: {REGIONAL_OFFICE_PHONE}</p>
+            <p>Email: {OFFICE_EMAIL}</p>
+            <p>{REGIONAL_OFFICE_HOURS}</p>
           </div>
         </div>
 

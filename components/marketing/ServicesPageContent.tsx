@@ -70,7 +70,7 @@ const SERVICES: ReelService[] = [
     approach:
       "We begin with user flows before writing code. Every screen is prototyped and approved. We build for performance first — your app will load fast and feel native.",
     stackLabel: "Technology",
-    stack: "React Native · Swift · Kotlin · Expo · Firebase · REST APIs · Redux",
+    stack: "React Native · Swift · Kotlin · Expo · Flutter · Firebase · REST APIs · Redux",
     cta: "Build a Mobile App",
     href: "/contact-us",
     previewImage: "/mobapp.jfif",

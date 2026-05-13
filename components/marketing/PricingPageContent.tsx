@@ -26,8 +26,10 @@ import {
   Calendar,
   LucideIcon
 } from "lucide-react";
+ 
 import { motion } from "framer-motion";
 import { PricingStickers } from "./PricingStickers";
+import PricingPanels from "./PricingPanels";
 import Lottie from "lottie-react";
 import girlAnimation from "../../public/girl say hi.json";
 import cardAnimation from "../../public/card.json";
@@ -54,8 +56,7 @@ const PLANS: Plan[] = [
     name: "Starter",
     price: "From $1,500",
     usdFromAmount: 1500,
-    description:
-      "For small businesses needing a professional digital presence.",
+    description: "For small businesses needing a professional digital presence.",
     features: [
       { text: "Up to 8-page website", icon: Layout },
       { text: "Mobile responsive", icon: Smartphone },
@@ -70,8 +71,7 @@ const PLANS: Plan[] = [
     badge: "MOST POPULAR",
     price: "From $4,000",
     usdFromAmount: 4000,
-    description:
-      "For businesses ready to grow with a full digital strategy.",
+    description: "For businesses ready to grow with a full digital strategy.",
     features: [
       { text: "Up to 20 pages or web app", icon: Monitor },
       { text: "CMS integration", icon: Database },
@@ -87,8 +87,7 @@ const PLANS: Plan[] = [
     name: "Scale",
     price: "From $8,000",
     usdFromAmount: 8000,
-    description:
-      "For established businesses with complex multi-platform needs.",
+    description: "For established businesses with complex multi-platform needs.",
     features: [
       { text: "Unlimited scope", icon: InfinityIcon },
       { text: "Custom integrations", icon: Puzzle },
@@ -138,110 +137,168 @@ type FxSnapshot = {
   usedFallback: boolean;
 };
 
-function PricingCurrencyPanel({
-  fx,
-  rateLoading,
-  panelBusy,
-  onRetry,
-}: {
-  fx: FxSnapshot | null;
-  rateLoading: boolean;
-  panelBusy: boolean;
-  onRetry: () => void;
-}) {
-  const [usdInput, setUsdInput] = useState("1500");
-  const usdNum = parseFloat(String(usdInput).replace(/,/g, ""));
-  const pkrPerUsd = fx?.pkrPerUsd ?? null;
-  const converted =
-    pkrPerUsd != null && Number.isFinite(usdNum) && usdNum >= 0
-      ? Math.round(usdNum * pkrPerUsd)
-      : null;
+  function PricingCurrencyPanel({
+    fx,
+    rateLoading,
+    panelBusy,
+    onRetry,
+  }: {
+    fx: FxSnapshot | null;
+    rateLoading: boolean;
+    panelBusy: boolean;
+    onRetry: () => void;
+  }) {
+    const [usdInput, setUsdInput] = useState("1500");
+    const usdNum = parseFloat(String(usdInput).replace(/,/g, ""));
+    const pkrPerUsd = fx?.pkrPerUsd ?? null;
+    const converted =
+      pkrPerUsd != null && Number.isFinite(usdNum) && usdNum >= 0
+        ? Math.round(usdNum * pkrPerUsd)
+        : null;
 
-  const updatedLabel =
-    fx?.lastUpdateUtc &&
-    (() => {
-      try {
-        return new Date(fx.lastUpdateUtc).toLocaleString(undefined, {
-          dateStyle: "medium",
-          timeStyle: "short",
-        });
-      } catch {
-        return fx.lastUpdateUtc;
-      }
-    })();
+    const updatedLabel = fx?.lastUpdateUtc ? `${fx.lastUpdateUtc.slice(0, 16).replace("T", " ")} UTC` : null;
 
-  return (
-    <div className="mb-8 rounded-2xl border border-[#1E3A8A22] bg-white/90 p-5 shadow-sm backdrop-blur-sm md:p-6">
-      <div className="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
-        <div>
-          <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-[#1E3A8A]/80">
-            USD → PKR (live reference)
-          </p>
-          {rateLoading && !fx ? (
-            <p className="mt-2 text-sm font-medium text-slate-600">Fetching exchange rate…</p>
-          ) : panelBusy ? (
-            <p className="mt-2 text-sm font-medium text-slate-600">Refreshing…</p>
-          ) : pkrPerUsd != null ? (
-            <p className="mt-2 text-lg font-bold text-[#0F172A]">
-              1 USD ≈ PKR{" "}
-              {pkrPerUsd.toLocaleString("en-PK", { maximumFractionDigits: 2, minimumFractionDigits: 2 })}
-            </p>
-          ) : (
-            <p className="mt-2 text-sm text-slate-600">Rate unavailable.</p>
-          )}
-          {updatedLabel ? (
-            <p className="mt-1 text-xs text-slate-500">As of {updatedLabel}</p>
-          ) : null}
-          {fx?.usedFallback ? (
-            <p className="mt-2 text-xs font-medium text-amber-800">
-              Live feed unavailable — showing indicative backup rate. Tap refresh to retry.
-            </p>
-          ) : null}
+    return (
+      <div className="relative mb-8 overflow-hidden rounded-[2rem] border border-[#1E3A8A2A] bg-[linear-gradient(135deg,rgba(255,255,255,0.94),rgba(239,248,255,0.86),rgba(226,248,255,0.72))] p-5 shadow-[0_28px_70px_-36px_rgba(15,23,42,0.45)] backdrop-blur-xl md:p-6">
+        <div className="pointer-events-none absolute inset-0 overflow-hidden">
+          <div className="absolute -left-20 -top-20 h-48 w-48 rounded-full bg-[radial-gradient(circle_at_center,rgba(30,58,138,0.16),transparent_70%)] blur-3xl animate-pulse" />
+          <div className="absolute -right-16 -bottom-16 h-44 w-44 rounded-full bg-[radial-gradient(circle_at_center,rgba(34,211,238,0.18),transparent_70%)] blur-3xl animate-pulse [animation-duration:6s]" />
+          <svg className="absolute inset-0 h-full w-full opacity-[0.035]" viewBox="0 0 100 100" preserveAspectRatio="none">
+            <defs>
+              <pattern id="currency-grid" width="10" height="10" patternUnits="userSpaceOnUse">
+                <path d="M 10 0 L 0 0 0 10" fill="none" stroke="#1E3A8A" strokeWidth="0.35" />
+              </pattern>
+            </defs>
+            <rect width="100" height="100" fill="url(#currency-grid)" />
+          </svg>
         </div>
-        <button
-          type="button"
-          onClick={onRetry}
-          disabled={rateLoading || panelBusy}
-          className="inline-flex shrink-0 items-center justify-center rounded-lg border border-[#1E3A8A33] bg-white px-3 py-2 text-xs font-semibold text-[#1E3A8A] transition-colors hover:bg-[#1E3A8A08] disabled:opacity-50"
-        >
-          Refresh rate
-        </button>
-      </div>
 
-      {!rateLoading && !panelBusy && pkrPerUsd != null ? (
-        <div className="mt-5 flex flex-col gap-2 rounded-xl border border-slate-200/80 bg-slate-50/80 p-4 sm:flex-row sm:items-center sm:gap-4">
-          <label className="text-xs font-semibold uppercase tracking-wide text-slate-500 sm:shrink-0">
-            Quick convert
-          </label>
-          <div className="flex flex-1 flex-wrap items-center gap-2">
-            <span className="text-sm text-slate-600">USD</span>
-            <input
-              type="text"
-              inputMode="decimal"
-              value={usdInput}
-              onChange={(e) => setUsdInput(e.target.value)}
-              className="w-28 rounded-lg border border-slate-300 bg-white px-2 py-1.5 text-sm outline-none focus:border-[#1E3A8A]"
-              aria-label="Amount in USD"
-            />
-            <span className="text-slate-400">→</span>
-            <span className="text-sm font-semibold text-[#0F172A]">
-              {converted != null
-                ? `PKR ${converted.toLocaleString("en-PK", { maximumFractionDigits: 0 })}`
-                : "—"}
-            </span>
+        <div className="relative grid gap-5 lg:grid-cols-[1.15fr_0.85fr] lg:items-stretch">
+          <div className="flex flex-col justify-between gap-5">
+            <div>
+              <div className="mb-3 flex flex-wrap items-center gap-2">
+                <span className="inline-flex items-center gap-2 rounded-full border border-[#1E3A8A1F] bg-white/80 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.16em] text-[#1E3A8A] shadow-sm">
+                  <motion.span
+                    className="h-2 w-2 rounded-full bg-emerald-500"
+                    animate={{ opacity: [0.4, 1, 0.4], scale: [0.9, 1.15, 0.9] }}
+                    transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
+                  />
+                  Live reference
+                </span>
+                {fx?.usedFallback ? (
+                  <span className="inline-flex items-center rounded-full border border-amber-200 bg-amber-50 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.14em] text-amber-800">
+                    Backup feed
+                  </span>
+                ) : null}
+              </div>
+
+              <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-[#1E3A8A]/75">
+                USD → PKR
+              </p>
+              <h3 className="mt-2 text-2xl font-black tracking-tight text-[#0F172A] md:text-3xl">
+                USD to PKR converter
+              </h3>
+              <p className="mt-3 max-w-xl text-sm leading-6 text-slate-600 md:text-[15px]">
+                Track the current reference rate and convert project budgets instantly. The card stays
+                calm, premium, and readable while the live value updates in the background.
+              </p>
+            </div>
+
+            <div className="grid gap-3 sm:grid-cols-3">
+              <div className="rounded-2xl border border-white/80 bg-white/85 p-3 shadow-sm backdrop-blur-sm">
+                <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-slate-500">Reference</p>
+                {rateLoading && !fx ? (
+                  <p className="mt-1 text-sm font-semibold text-slate-700">Fetching…</p>
+                ) : panelBusy ? (
+                  <p className="mt-1 text-sm font-semibold text-slate-700">Refreshing…</p>
+                ) : pkrPerUsd != null ? (
+                  <p className="mt-1 text-sm font-extrabold text-[#0F172A]">
+                    1 USD ≈ PKR {pkrPerUsd.toLocaleString("en-PK", { maximumFractionDigits: 2, minimumFractionDigits: 2 })}
+                  </p>
+                ) : (
+                  <p className="mt-1 text-sm font-semibold text-slate-700">Rate unavailable</p>
+                )}
+              </div>
+
+              <div className="rounded-2xl border border-white/80 bg-white/85 p-3 shadow-sm backdrop-blur-sm">
+                <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-slate-500">Status</p>
+                <p className="mt-1 text-sm font-semibold text-slate-700">
+                  {rateLoading && !fx ? "Loading live feed" : panelBusy ? "Updating now" : "Ready"}
+                </p>
+              </div>
+
+              <div className="rounded-2xl border border-white/80 bg-white/85 p-3 shadow-sm backdrop-blur-sm">
+                <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-slate-500">Updated</p>
+                <p className="mt-1 text-sm font-semibold text-slate-700">{updatedLabel ? updatedLabel : "—"}</p>
+              </div>
+            </div>
+
+            <p className="text-xs leading-relaxed text-slate-600">
+              Exchange rate is indicative. Final PKR amounts are confirmed at invoice stage.
+            </p>
+          </div>
+
+          <div className="relative overflow-hidden rounded-[1.75rem] border border-[#1E3A8A22] bg-[#0B1B2F] p-4 text-white shadow-[0_22px_50px_-30px_rgba(15,23,42,0.7)] md:p-5">
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(34,211,238,0.25),transparent_45%),radial-gradient(circle_at_bottom_left,rgba(30,58,138,0.5),transparent_55%)]" />
+            <div className="relative flex h-full flex-col justify-between gap-4">
+              <div>
+                <div className="flex items-center justify-between gap-3">
+                  <div>
+                    <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-cyan-200/80">Quick convert</p>
+                    <p className="mt-1 text-lg font-extrabold text-white">Project budget estimator</p>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={onRetry}
+                    disabled={rateLoading || panelBusy}
+                    className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-3 py-2 text-[11px] font-semibold text-white transition-transform hover:-translate-y-0.5 hover:bg-white/15 disabled:opacity-50"
+                  >
+                    <RefreshCw className="h-3.5 w-3.5" />
+                    Refresh
+                  </button>
+                </div>
+
+                {fx?.usedFallback ? (
+                  <p className="mt-3 inline-flex rounded-full border border-amber-300/30 bg-amber-400/10 px-3 py-1 text-[11px] font-medium text-amber-100">
+                    Live feed unavailable. Showing indicative backup rate.
+                  </p>
+                ) : null}
+              </div>
+
+              {!rateLoading && !panelBusy && pkrPerUsd != null ? (
+                <div className="space-y-3">
+                  <label className="block text-[11px] font-bold uppercase tracking-[0.18em] text-cyan-100/80">
+                    Amount in USD
+                  </label>
+                  <div className="flex items-center gap-2 rounded-2xl border border-white/12 bg-white/8 px-3 py-3 shadow-inner shadow-black/10 backdrop-blur-sm focus-within:border-cyan-300/60 focus-within:ring-2 focus-within:ring-cyan-300/20">
+                    <span className="text-sm font-semibold text-cyan-100">USD</span>
+                    <input
+                      type="text"
+                      inputMode="decimal"
+                      value={usdInput}
+                      onChange={(e) => setUsdInput(e.target.value)}
+                      className="min-w-0 flex-1 bg-transparent text-base font-semibold text-white outline-none placeholder:text-slate-400"
+                      aria-label="Amount in USD"
+                    />
+                    <span className="text-slate-300">→</span>
+                    <span className="rounded-full bg-white/10 px-3 py-1 text-sm font-bold text-white">
+                      PKR {converted != null ? converted.toLocaleString("en-PK", { maximumFractionDigits: 0 }) : "—"}
+                    </span>
+                  </div>
+                  <p className="text-xs leading-relaxed text-slate-300">
+                    The converter updates instantly as you type and uses the live reference shown beside it.
+                  </p>
+                </div>
+              ) : (
+                <div className="rounded-2xl border border-white/10 bg-white/8 p-4 text-sm text-slate-200">
+                  Live conversion will appear once the rate is loaded.
+                </div>
+              )}
+            </div>
           </div>
         </div>
-      ) : null}
-
-      <p className="mt-4 text-xs leading-relaxed text-slate-600">
-        <span className="font-semibold text-slate-700">
-          Exchange rate is indicative. Final PKR amounts are confirmed at invoice stage.
-        </span>{" "}
-        Displayed conversions use the latest USD/PKR reference returned by our rate feed (or a backup
-        reference if the feed is temporarily unavailable).
-      </p>
-    </div>
-  );
+      </div>
+    );
 }
 
 
@@ -473,6 +530,7 @@ function PricingCard({
 
 export function PricingPageContent() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
+  const [selectedTab, setSelectedTab] = useState<"packages" | "retainers" | "individual">("packages");
   const [fx, setFx] = useState<FxSnapshot | null>(null);
   const [rateLoading, setRateLoading] = useState(true);
   const [panelBusy, setPanelBusy] = useState(false);
@@ -617,110 +675,7 @@ export function PricingPageContent() {
             onRetry={() => loadRate({ isRefresh: true })}
           />
 
-          {/* Pricing cards with premium layout */}
-          <div className="relative">
-            {/* Mobile stacked layout */}
-            <div className="grid gap-6 md:hidden">
-              {PLANS.map((plan) => (
-                <PricingCard
-                  key={plan.name}
-                  plan={plan}
-                  isFeatured={!!plan.featured}
-                  isMobile
-                  pkrPerUsd={cardPkr}
-                  rateLoading={rateLoading}
-                />
-              ))}
-            </div>
-
-            {/* Desktop grid with elevated center card */}
-            <div className="hidden md:grid md:gap-6 md:grid-cols-3 md:items-end">
-              {/* Left card */}
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0 }}
-              >
-                <PricingCard
-                  plan={PLANS[0]}
-                  isFeatured={false}
-                  isMobile={false}
-                  pkrPerUsd={cardPkr}
-                  rateLoading={rateLoading}
-                />
-              </motion.div>
-
-              {/* Center card - elevated with negative margin */}
-              <motion.div
-                className="md:-mb-4 md:z-10"
-                initial={{ opacity: 0, y: 40, scale: 0.95 }}
-                whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.7, delay: 0.1 }}
-              >
-                <PricingCard
-                  plan={PLANS[1]}
-                  isFeatured={true}
-                  isMobile={false}
-                  isCentered={true}
-                  pkrPerUsd={cardPkr}
-                  rateLoading={rateLoading}
-                />
-              </motion.div>
-
-              {/* Right card */}
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.15 }}
-              >
-                <PricingCard
-                  plan={PLANS[2]}
-                  isFeatured={false}
-                  isMobile={false}
-                  pkrPerUsd={cardPkr}
-                  rateLoading={rateLoading}
-                />
-              </motion.div>
-            </div>
-
-            {/* Connecting energy lines - desktop only */}
-            <svg className="absolute hidden md:block inset-0 w-full h-full pointer-events-none" preserveAspectRatio="none">
-              <defs>
-                <linearGradient id="energyGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stopColor="#1E3A8A" stopOpacity="0.3" />
-                  <stop offset="50%" stopColor="#22D3EE" stopOpacity="0.5" />
-                  <stop offset="100%" stopColor="#1E3A8A" stopOpacity="0.3" />
-                </linearGradient>
-              </defs>
-              <motion.line
-                x1="33%"
-                y1="60%"
-                x2="50%"
-                y2="45%"
-                stroke="url(#energyGradient)"
-                strokeWidth="1.5"
-                initial={{ pathLength: 0 }}
-                whileInView={{ pathLength: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 1, delay: 0.5 }}
-              />
-              <motion.line
-                x1="67%"
-                y1="60%"
-                x2="50%"
-                y2="45%"
-                stroke="url(#energyGradient)"
-                strokeWidth="1.5"
-                initial={{ pathLength: 0 }}
-                whileInView={{ pathLength: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 1, delay: 0.6 }}
-              />
-            </svg>
-          </div>
+          <PricingPanels selectedTab={selectedTab} setSelectedTab={setSelectedTab} />
 
           <div className="mt-10 rounded-2xl border border-[#1E3A8A22] bg-white/90 px-5 py-4 text-left text-sm leading-relaxed text-[#264766] shadow-sm backdrop-blur-sm md:px-6">
             <p className="font-semibold text-[#0F172A]">Pakistan clients</p>

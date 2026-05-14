@@ -28,6 +28,29 @@ const COLUMN_VISUAL = [
   },
 ];
 
+/** Soft wave between hero art and white body — slight path variation per column. */
+const CARD_WAVE_PATHS = [
+  "M0,36 C320,6 640,54 960,24 C1180,8 1340,30 1440,18 L1440,56 L0,56 Z",
+  "M0,16 C280,48 540,4 880,32 C1100,52 1300,12 1440,24 L1440,56 L0,56 Z",
+  "M0,28 C380,58 760,2 1120,34 C1280,46 1380,22 1440,16 L1440,56 L0,56 Z",
+] as const;
+
+function CardWaveDivider({ variant }: { variant: number }) {
+  const d = CARD_WAVE_PATHS[variant % CARD_WAVE_PATHS.length];
+  return (
+    <div className="pointer-events-none absolute inset-x-0 bottom-0 z-[2] h-[52px] w-full sm:h-14">
+      <svg
+        className="h-full w-full text-white drop-shadow-[0_-6px_18px_rgba(15,23,42,0.07)]"
+        viewBox="0 0 1440 56"
+        preserveAspectRatio="none"
+        aria-hidden
+      >
+        <path fill="currentColor" d={d} />
+      </svg>
+    </div>
+  );
+}
+
 function TierArt({ variant }: { variant: "starter" | "premium" | "ultimate" }) {
   if (variant === "ultimate") {
     return (
@@ -110,17 +133,16 @@ function PricingTierCardsInner({ plans }: { plans: LaunchOrRetainerPlan[] }) {
               </motion.div>
 
               {plan.featured ? (
-                <div className="absolute right-4 top-4">
+                <div className="absolute right-4 top-4 z-[3]">
                   <span className="inline-flex items-center rounded-full border border-white/40 bg-white/25 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-white shadow-sm backdrop-blur-md">
                     Popular
                   </span>
                 </div>
               ) : null}
+              <CardWaveDivider variant={index} />
             </div>
 
-            <div className="relative flex flex-1 flex-col px-6 pb-8 pt-7 sm:px-8 sm:pt-8">
-              <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-slate-200/90 to-transparent" />
-
+            <div className="relative z-[1] -mt-px flex flex-1 flex-col bg-white px-6 pb-8 pt-5 sm:px-8 sm:pt-6">
               <div className="flex w-full flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
                 <h3 className="text-2xl font-semibold tracking-tight text-slate-900 sm:text-[1.65rem] md:text-3xl md:leading-tight">
                   {plan.name}

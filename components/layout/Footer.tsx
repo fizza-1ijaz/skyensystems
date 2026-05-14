@@ -123,12 +123,6 @@ export function Footer() {
                 </li>
               ))}
             </ul>
-            <div className="mt-6 space-y-2 border-t border-slate-700/60 pt-5 text-xs leading-relaxed text-slate-400">
-              <p>
-                Accepted Payments: Bank Transfer (SWIFT/Local) | Stripe (Visa/Mastercard) | PayPal
-              </p>
-              <p className="text-slate-300">We do not accept cryptocurrency payments of any kind.</p>
-            </div>
           </div>
         </div>
 

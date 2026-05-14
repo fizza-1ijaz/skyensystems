@@ -89,7 +89,7 @@ export function ServiceCard({ service, index }: { service: any; index: number })
                 </div>
                 {/* See More Link */}
                 <Link 
-                    href={`/services?service=${service.id}`}
+                    href={`/services/${service.slug}`}
                     className="mt-6 inline-flex items-center gap-2 text-[#6C63FF] font-semibold text-sm group/link transition-all duration-300 hover:gap-3"
                 >
                     <span>See more</span>
@@ -100,7 +100,7 @@ export function ServiceCard({ service, index }: { service: any; index: number })
             {/* Mobile "See More" Button */}
             <div className="md:hidden w-full flex justify-center mt-8 md:mt-12">
                 <Link 
-                    href={`/services?service=${service.id}`}
+                    href={`/services/${service.slug}`}
                     className="inline-flex items-center gap-3 px-8 py-4 rounded-2xl bg-gradient-to-r from-[#6C63FF] to-[#8B5CF6] text-white font-bold text-base shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300"
                 >
                     <span>View Service</span>

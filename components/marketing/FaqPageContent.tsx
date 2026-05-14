@@ -34,10 +34,10 @@ export function FaqPageContent() {
         </div>
 
         {/* Right animation (hidden on small screens) - anchored to the FAQ main container */}
-        <div className="pointer-events-none hidden md:block absolute -right-64 top-[calc(38%-608px)] -translate-y-1/2">
-          <div className="w-72">
+        <div className="pointer-events-none hidden md:block absolute -right-32 top-[calc(38%-792px)] -translate-y-1/2">
+          <div className="w-56">
             {rightAnim ? (
-              <Lottie animationData={rightAnim} loop={true} style={{ width: "auto", height: 440 }} />
+              <Lottie animationData={rightAnim} loop={true} style={{ width: "auto", height: 320 }} />
             ) : null}
           </div>
         </div>

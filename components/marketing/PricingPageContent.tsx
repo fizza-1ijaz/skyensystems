@@ -30,7 +30,7 @@ import {
 import { motion } from "framer-motion";
 import { PricingStickers } from "./PricingStickers";
 import PricingPanels from "./PricingPanels";
-import Lottie from "lottie-react";
+import { PricingPageLottie } from "./PricingPageLottie";
 import girlAnimation from "../../public/girl say hi.json";
 import cardAnimation from "../../public/card.json";
 import onlinePaymentAnimation from "../../public/Online Payment.json";
@@ -124,6 +124,38 @@ const FAQ_ITEMS = [
   },
 ];
 
+/** Per-item accordion shell + text accents (pricing page palette: cyan, indigo, violet, navy). */
+const PRICING_FAQ_CARD_THEMES = [
+  {
+    shell:
+      "border-cyan-400/40 bg-gradient-to-br from-sky-50 via-[#e6f6ff] to-cyan-50/90 shadow-[0_14px_36px_-24px_rgba(8,145,178,0.35)]",
+    question: "text-[#0c2744]",
+    toggle: "bg-cyan-500/25 text-cyan-900 ring-1 ring-cyan-600/20",
+    answer: "text-slate-700",
+  },
+  {
+    shell:
+      "border-indigo-400/40 bg-gradient-to-br from-indigo-50 via-[#eef2ff] to-violet-100/70 shadow-[0_14px_36px_-24px_rgba(67,56,202,0.28)]",
+    question: "text-[#1e1b4b]",
+    toggle: "bg-indigo-500/20 text-indigo-900 ring-1 ring-indigo-600/25",
+    answer: "text-slate-700",
+  },
+  {
+    shell:
+      "border-violet-500/40 bg-gradient-to-br from-violet-50 via-[#f3edff] to-purple-100/60 shadow-[0_14px_36px_-24px_rgba(109,40,217,0.28)]",
+    question: "text-[#2e1065]",
+    toggle: "bg-violet-500/20 text-violet-900 ring-1 ring-violet-600/25",
+    answer: "text-slate-700",
+  },
+  {
+    shell:
+      "border-[#1E3A8A]/45 bg-gradient-to-br from-[#e8eef9] via-[#dce8ff] to-[#c7d7f0]/90 shadow-[0_14px_36px_-24px_rgba(30,58,138,0.32)]",
+    question: "text-[#0f2742]",
+    toggle: "bg-[#1E3A8A]/20 text-[#1E3A8A] ring-1 ring-[#1E3A8A]/30",
+    answer: "text-slate-700",
+  },
+] as const;
+
 function formatPkrFromUsd(usd: number, rate: number): string {
   const pkr = Math.round(usd * rate);
   return `From PKR ${pkr.toLocaleString("en-PK", { maximumFractionDigits: 0 })}`;
@@ -149,7 +181,6 @@ type FxSnapshot = {
     onRetry: () => void;
   }) {
     const [usdInput, setUsdInput] = useState("1500");
-    const [mounted, setMounted] = useState(false);
     const usdNum = parseFloat(String(usdInput).replace(/,/g, ""));
     const pkrPerUsd = fx?.pkrPerUsd ?? null;
     const converted =
@@ -157,9 +188,7 @@ type FxSnapshot = {
         ? Math.round(usdNum * pkrPerUsd)
         : null;
 
-    useEffect(() => {
-      setMounted(true);
-    }, []);
+    const showConverter = pkrPerUsd != null && !rateLoading && !panelBusy;
 
     return (
         <div className="relative mt-6 mb-8 overflow-hidden rounded-[1.75rem] border border-[#1E3A8A22] bg-[#0B1B2F] p-4 text-white shadow-[0_22px_50px_-30px_rgba(15,23,42,0.7)] md:mt-8 md:p-5">
@@ -187,11 +216,7 @@ type FxSnapshot = {
               </p>
             ) : null}
 
-            {!mounted ? (
-              <div className="rounded-2xl border border-white/10 bg-white/8 p-4 text-sm text-slate-200">
-                Live conversion will appear once the rate is loaded.
-              </div>
-            ) : !rateLoading && !panelBusy && pkrPerUsd != null ? (
+            {showConverter ? (
               <div className="space-y-3">
                 <label className="block text-[11px] font-bold uppercase tracking-[0.18em] text-cyan-100/80">
                   Amount in USD
@@ -220,7 +245,7 @@ type FxSnapshot = {
           </div>
         </div>
     );
-}
+  }
 
 
 function PricingCard({
@@ -514,7 +539,7 @@ export function PricingPageContent() {
           <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-8">
             {/* Animation on the left */}
             <div className="w-32 h-32 md:w-48 md:h-48 flex-shrink-0">
-              <Lottie animationData={onlinePaymentAnimation} loop={true} />
+              <PricingPageLottie animationData={onlinePaymentAnimation} className="h-full w-full" />
             </div>
 
             <div className="text-center">
@@ -540,25 +565,15 @@ export function PricingPageContent() {
           <div className="absolute -left-40 -top-32 h-96 w-96 rounded-full bg-[radial-gradient(circle_at_50%_50%,rgba(30,58,138,0.08),transparent_70%)] blur-3xl" />
           <div className="absolute -right-40 bottom-0 h-96 w-96 rounded-full bg-[radial-gradient(circle_at_50%_50%,rgba(34,211,238,0.06),transparent_70%)] blur-3xl" />
           
-          {/* Floating particles */}
+          {/* Floating particles — CSS-only so SSR and client markup match */}
           {[...Array(8)].map((_, i) => (
-            <motion.div
+            <div
               key={`particle-${i}`}
-              className="absolute h-1 w-1 rounded-full bg-[#22D3EE]"
+              className="absolute h-1 w-1 animate-pulse rounded-full bg-[#22D3EE] opacity-40 motion-reduce:animate-none motion-reduce:opacity-20"
               style={{
                 left: `${(i * 12.5) % 100}%`,
                 top: `${(i * 14) % 100}%`,
-              }}
-              animate={{
-                opacity: [0.1, 0.4, 0.1],
-                scale: [0.5, 1.2, 0.5],
-                y: [0, -20, 0],
-              }}
-              transition={{
-                duration: 4 + (i % 2) * 1,
-                repeat: Infinity,
-                ease: "easeInOut",
-                delay: i * 0.3,
+                animationDelay: `${i * 0.35}s`,
               }}
             />
           ))}
@@ -653,7 +668,7 @@ export function PricingPageContent() {
           <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-12">
             {/* Girl on the left */}
             <div className="w-32 h-32 md:w-56 md:h-56 flex-shrink-0">
-              <Lottie animationData={girlAnimation} loop={true} />
+              <PricingPageLottie animationData={girlAnimation} className="h-full w-full" />
             </div>
 
             <div className="text-center">
@@ -667,24 +682,27 @@ export function PricingPageContent() {
 
             {/* Card guy on the right */}
             <div className="hidden xl:block w-32 h-32 md:w-48 md:h-48 flex-shrink-0 opacity-80">
-              <Lottie animationData={cardAnimation} loop={true} />
+              <PricingPageLottie animationData={cardAnimation} className="h-full w-full" />
             </div>
           </div>
           <div className="mt-8 space-y-3 text-left">
             {FAQ_ITEMS.map((item, index) => {
               const open = openFaq === index;
+              const theme = PRICING_FAQ_CARD_THEMES[index % PRICING_FAQ_CARD_THEMES.length];
               return (
                 <div
                   key={item.question}
-                  className="rounded-xl border border-white/80 bg-white/85 shadow-[0_14px_32px_-26px_rgba(15,23,42,0.4)]"
+                  className={`rounded-xl border ${theme.shell}`}
                 >
                   <button
                     type="button"
                     onClick={() => setOpenFaq(open ? null : index)}
-                    className="flex w-full items-center justify-between gap-3 px-5 py-4 text-left text-sm font-semibold text-slate-800 md:text-base"
+                    className={`flex w-full items-center justify-between gap-3 px-5 py-4 text-left text-sm font-semibold md:text-base ${theme.question}`}
                   >
                     <span>{item.question}</span>
-                    <span className="inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#1E3A8A22] text-[#1E3A8A]">
+                    <span
+                      className={`inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-sm leading-none ${theme.toggle}`}
+                    >
                       {open ? "×" : "+"}
                     </span>
                   </button>
@@ -694,7 +712,7 @@ export function PricingPageContent() {
                     }`}
                   >
                     <div className="min-h-0 overflow-hidden">
-                      <p className="px-5 pb-5 text-sm leading-7 text-slate-600">{item.answer}</p>
+                      <p className={`px-5 pb-5 text-sm leading-7 ${theme.answer}`}>{item.answer}</p>
                     </div>
                   </div>
                 </div>

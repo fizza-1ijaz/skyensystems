@@ -149,6 +149,7 @@ type FxSnapshot = {
     onRetry: () => void;
   }) {
     const [usdInput, setUsdInput] = useState("1500");
+    const [mounted, setMounted] = useState(false);
     const usdNum = parseFloat(String(usdInput).replace(/,/g, ""));
     const pkrPerUsd = fx?.pkrPerUsd ?? null;
     const converted =
@@ -156,148 +157,68 @@ type FxSnapshot = {
         ? Math.round(usdNum * pkrPerUsd)
         : null;
 
-    const updatedLabel = fx?.lastUpdateUtc ? `${fx.lastUpdateUtc.slice(0, 16).replace("T", " ")} UTC` : null;
+    useEffect(() => {
+      setMounted(true);
+    }, []);
 
     return (
-      <div className="relative mb-8 overflow-hidden rounded-[2rem] border border-[#1E3A8A2A] bg-[linear-gradient(135deg,rgba(255,255,255,0.94),rgba(239,248,255,0.86),rgba(226,248,255,0.72))] p-5 shadow-[0_28px_70px_-36px_rgba(15,23,42,0.45)] backdrop-blur-xl md:p-6">
-        <div className="pointer-events-none absolute inset-0 overflow-hidden">
-          <div className="absolute -left-20 -top-20 h-48 w-48 rounded-full bg-[radial-gradient(circle_at_center,rgba(30,58,138,0.16),transparent_70%)] blur-3xl animate-pulse" />
-          <div className="absolute -right-16 -bottom-16 h-44 w-44 rounded-full bg-[radial-gradient(circle_at_center,rgba(34,211,238,0.18),transparent_70%)] blur-3xl animate-pulse [animation-duration:6s]" />
-          <svg className="absolute inset-0 h-full w-full opacity-[0.035]" viewBox="0 0 100 100" preserveAspectRatio="none">
-            <defs>
-              <pattern id="currency-grid" width="10" height="10" patternUnits="userSpaceOnUse">
-                <path d="M 10 0 L 0 0 0 10" fill="none" stroke="#1E3A8A" strokeWidth="0.35" />
-              </pattern>
-            </defs>
-            <rect width="100" height="100" fill="url(#currency-grid)" />
-          </svg>
-        </div>
-
-        <div className="relative grid gap-5 lg:grid-cols-[1.15fr_0.85fr] lg:items-stretch">
-          <div className="flex flex-col justify-between gap-5">
-            <div>
-              <div className="mb-3 flex flex-wrap items-center gap-2">
-                <span className="inline-flex items-center gap-2 rounded-full border border-[#1E3A8A1F] bg-white/80 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.16em] text-[#1E3A8A] shadow-sm">
-                  <motion.span
-                    className="h-2 w-2 rounded-full bg-emerald-500"
-                    animate={{ opacity: [0.4, 1, 0.4], scale: [0.9, 1.15, 0.9] }}
-                    transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
-                  />
-                  Live reference
-                </span>
-                {fx?.usedFallback ? (
-                  <span className="inline-flex items-center rounded-full border border-amber-200 bg-amber-50 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.14em] text-amber-800">
-                    Backup feed
-                  </span>
-                ) : null}
-              </div>
-
-              <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-[#1E3A8A]/75">
-                USD → PKR
-              </p>
-              <h3 className="mt-2 text-2xl font-black tracking-tight text-[#0F172A] md:text-3xl">
-                USD to PKR converter
-              </h3>
-              <p className="mt-3 max-w-xl text-sm leading-6 text-slate-600 md:text-[15px]">
-                Track the current reference rate and convert project budgets instantly. The card stays
-                calm, premium, and readable while the live value updates in the background.
-              </p>
-            </div>
-
-            <div className="grid gap-3 sm:grid-cols-3">
-              <div className="rounded-2xl border border-white/80 bg-white/85 p-3 shadow-sm backdrop-blur-sm">
-                <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-slate-500">Reference</p>
-                {rateLoading && !fx ? (
-                  <p className="mt-1 text-sm font-semibold text-slate-700">Fetching…</p>
-                ) : panelBusy ? (
-                  <p className="mt-1 text-sm font-semibold text-slate-700">Refreshing…</p>
-                ) : pkrPerUsd != null ? (
-                  <p className="mt-1 text-sm font-extrabold text-[#0F172A]">
-                    1 USD ≈ PKR {pkrPerUsd.toLocaleString("en-PK", { maximumFractionDigits: 2, minimumFractionDigits: 2 })}
-                  </p>
-                ) : (
-                  <p className="mt-1 text-sm font-semibold text-slate-700">Rate unavailable</p>
-                )}
-              </div>
-
-              <div className="rounded-2xl border border-white/80 bg-white/85 p-3 shadow-sm backdrop-blur-sm">
-                <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-slate-500">Status</p>
-                <p className="mt-1 text-sm font-semibold text-slate-700">
-                  {rateLoading && !fx ? "Loading live feed" : panelBusy ? "Updating now" : "Ready"}
-                </p>
-              </div>
-
-              <div className="rounded-2xl border border-white/80 bg-white/85 p-3 shadow-sm backdrop-blur-sm">
-                <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-slate-500">Updated</p>
-                <p className="mt-1 text-sm font-semibold text-slate-700">{updatedLabel ? updatedLabel : "—"}</p>
-              </div>
-            </div>
-
-            <p className="text-xs leading-relaxed text-slate-600">
-              Exchange rate is indicative. Final PKR amounts are confirmed at invoice stage.
-            </p>
-          </div>
-
-          <div className="relative overflow-hidden rounded-[1.75rem] border border-[#1E3A8A22] bg-[#0B1B2F] p-4 text-white shadow-[0_22px_50px_-30px_rgba(15,23,42,0.7)] md:p-5">
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(34,211,238,0.25),transparent_45%),radial-gradient(circle_at_bottom_left,rgba(30,58,138,0.5),transparent_55%)]" />
-            <div className="relative flex h-full flex-col justify-between gap-4">
+        <div className="relative mt-6 mb-8 overflow-hidden rounded-[1.75rem] border border-[#1E3A8A22] bg-[#0B1B2F] p-4 text-white shadow-[0_22px_50px_-30px_rgba(15,23,42,0.7)] md:mt-8 md:p-5">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(34,211,238,0.25),transparent_45%),radial-gradient(circle_at_bottom_left,rgba(30,58,138,0.5),transparent_55%)]" />
+          <div className="relative flex h-full flex-col justify-between gap-4">
+            <div className="flex items-start justify-between gap-3">
               <div>
-                <div className="flex items-center justify-between gap-3">
-                  <div>
-                    <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-cyan-200/80">Quick convert</p>
-                    <p className="mt-1 text-lg font-extrabold text-white">Project budget estimator</p>
-                  </div>
-                  <button
-                    type="button"
-                    onClick={onRetry}
-                    disabled={rateLoading || panelBusy}
-                    className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-3 py-2 text-[11px] font-semibold text-white transition-transform hover:-translate-y-0.5 hover:bg-white/15 disabled:opacity-50"
-                  >
-                    <RefreshCw className="h-3.5 w-3.5" />
-                    Refresh
-                  </button>
-                </div>
-
-                {fx?.usedFallback ? (
-                  <p className="mt-3 inline-flex rounded-full border border-amber-300/30 bg-amber-400/10 px-3 py-1 text-[11px] font-medium text-amber-100">
-                    Live feed unavailable. Showing indicative backup rate.
-                  </p>
-                ) : null}
+                <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-cyan-200/80">USD → PKR</p>
+                <p className="mt-1 text-lg font-extrabold text-white">USD to PKR converter</p>
               </div>
-
-              {!rateLoading && !panelBusy && pkrPerUsd != null ? (
-                <div className="space-y-3">
-                  <label className="block text-[11px] font-bold uppercase tracking-[0.18em] text-cyan-100/80">
-                    Amount in USD
-                  </label>
-                  <div className="flex items-center gap-2 rounded-2xl border border-white/12 bg-white/8 px-3 py-3 shadow-inner shadow-black/10 backdrop-blur-sm focus-within:border-cyan-300/60 focus-within:ring-2 focus-within:ring-cyan-300/20">
-                    <span className="text-sm font-semibold text-cyan-100">USD</span>
-                    <input
-                      type="text"
-                      inputMode="decimal"
-                      value={usdInput}
-                      onChange={(e) => setUsdInput(e.target.value)}
-                      className="min-w-0 flex-1 bg-transparent text-base font-semibold text-white outline-none placeholder:text-slate-400"
-                      aria-label="Amount in USD"
-                    />
-                    <span className="text-slate-300">→</span>
-                    <span className="rounded-full bg-white/10 px-3 py-1 text-sm font-bold text-white">
-                      PKR {converted != null ? converted.toLocaleString("en-PK", { maximumFractionDigits: 0 }) : "—"}
-                    </span>
-                  </div>
-                  <p className="text-xs leading-relaxed text-slate-300">
-                    The converter updates instantly as you type and uses the live reference shown beside it.
-                  </p>
-                </div>
-              ) : (
-                <div className="rounded-2xl border border-white/10 bg-white/8 p-4 text-sm text-slate-200">
-                  Live conversion will appear once the rate is loaded.
-                </div>
-              )}
+              <button
+                type="button"
+                onClick={onRetry}
+                disabled={rateLoading || panelBusy}
+                className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-3 py-2 text-[11px] font-semibold text-white transition-transform hover:-translate-y-0.5 hover:bg-white/15 disabled:opacity-50"
+              >
+                <RefreshCw className="h-3.5 w-3.5" />
+                Refresh
+              </button>
             </div>
+
+            {fx?.usedFallback ? (
+              <p className="inline-flex w-fit rounded-full border border-amber-300/30 bg-amber-400/10 px-3 py-1 text-[11px] font-medium text-amber-100">
+                Live feed unavailable. Showing indicative backup rate.
+              </p>
+            ) : null}
+
+            {!mounted ? (
+              <div className="rounded-2xl border border-white/10 bg-white/8 p-4 text-sm text-slate-200">
+                Live conversion will appear once the rate is loaded.
+              </div>
+            ) : !rateLoading && !panelBusy && pkrPerUsd != null ? (
+              <div className="space-y-3">
+                <label className="block text-[11px] font-bold uppercase tracking-[0.18em] text-cyan-100/80">
+                  Amount in USD
+                </label>
+                <div className="flex items-center gap-2 rounded-2xl border border-white/12 bg-white/8 px-3 py-3 shadow-inner shadow-black/10 backdrop-blur-sm focus-within:border-cyan-300/60 focus-within:ring-2 focus-within:ring-cyan-300/20">
+                  <span className="text-sm font-semibold text-cyan-100">USD</span>
+                  <input
+                    type="text"
+                    inputMode="decimal"
+                    value={usdInput}
+                    onChange={(e) => setUsdInput(e.target.value)}
+                    className="min-w-0 flex-1 bg-transparent text-base font-semibold text-white outline-none placeholder:text-slate-400"
+                    aria-label="Amount in USD"
+                  />
+                  <span className="text-slate-300">→</span>
+                  <span className="rounded-full bg-white/10 px-3 py-1 text-sm font-bold text-white">
+                    PKR {converted != null ? converted.toLocaleString("en-PK", { maximumFractionDigits: 0 }) : "—"}
+                  </span>
+                </div>
+              </div>
+            ) : (
+              <div className="rounded-2xl border border-white/10 bg-white/8 p-4 text-sm text-slate-200">
+                Live conversion will appear once the rate is loaded.
+              </div>
+            )}
           </div>
         </div>
-      </div>
     );
 }
 

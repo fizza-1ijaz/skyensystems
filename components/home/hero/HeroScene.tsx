@@ -37,7 +37,8 @@ export function HeroScene() {
 
             <FloatingEcosystem />
 
-            <Environment preset="city" />
+            {/* Local HDR: preset="city" fetches from raw.githack.com and often fails in dev / strict networks */}
+            <Environment files="potsdamer_platz_1k.hdr" path="/hdri/" />
             <ContactShadows
               position={[0, -4.5, 0]}
               opacity={0.4}

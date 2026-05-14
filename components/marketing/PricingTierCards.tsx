@@ -28,6 +28,17 @@ const COLUMN_VISUAL = [
   },
 ];
 
+/** Monthly Retainers — Steady CTA; Launch “Start” keeps navy button. */
+const RETAINER_STEADY_BUTTON_GRADIENT = "from-[#7c2d12] via-[#9a3412] to-[#c2410c]";
+
+/** Monthly Retainers — Steady (bulb) hero; Launch “Start” keeps cool sky hero. */
+const RETAINER_STEADY_HERO_BG =
+  "bg-gradient-to-br from-[#fb923c] via-[#f97316] to-[#fbcfe8]";
+
+/** Monthly Retainers — Shield (candle) hero; Launch “Lead” keeps flat dark hero. */
+const RETAINER_SHIELD_HERO_BG =
+  "bg-gradient-to-br from-[#fce7f3] via-[#e9d5ff] to-[#7c3aed]";
+
 /** Soft wave between hero art and white body — slight path variation per column. */
 const CARD_WAVE_PATHS = [
   "M0,36 C320,6 640,54 960,24 C1180,8 1340,30 1440,18 L1440,56 L0,56 Z",
@@ -51,7 +62,43 @@ function CardWaveDivider({ variant }: { variant: number }) {
   );
 }
 
-function TierArt({ variant }: { variant: "starter" | "premium" | "ultimate" }) {
+type TierArtSet = "launch" | "retainer";
+
+function TierArt({ variant, artSet }: { variant: "starter" | "premium" | "ultimate"; artSet: TierArtSet }) {
+  if (artSet === "retainer") {
+    if (variant === "ultimate") {
+      return (
+        <img
+          src="/anims/candle.svg"
+          alt=""
+          width={280}
+          height={200}
+          className="relative z-[1] h-[min(152px,42vw)] w-auto max-w-[92%] object-contain object-center drop-shadow-[0_12px_28px_rgba(167,139,250,0.45)]"
+        />
+      );
+    }
+    if (variant === "starter") {
+      return (
+        <img
+          src="/anims/bulb.svg"
+          alt=""
+          width={280}
+          height={200}
+          className="relative z-[1] h-[min(152px,42vw)] w-auto max-w-[92%] object-contain object-center drop-shadow-[0_16px_28px_rgba(14,116,144,0.3)]"
+        />
+      );
+    }
+    return (
+      <img
+        src="/anims/sun.svg"
+        alt=""
+        width={280}
+        height={200}
+        className="relative z-[1] h-[min(152px,42vw)] w-auto max-w-[92%] object-contain object-center drop-shadow-[0_16px_30px_rgba(79,70,229,0.35)]"
+      />
+    );
+  }
+
   if (variant === "ultimate") {
     return (
       <img
@@ -85,12 +132,29 @@ function TierArt({ variant }: { variant: "starter" | "premium" | "ultimate" }) {
   );
 }
 
-function PricingTierCardsInner({ plans }: { plans: LaunchOrRetainerPlan[] }) {
+function PricingTierCardsInner({
+  plans,
+  tierArtSet = "launch",
+}: {
+  plans: LaunchOrRetainerPlan[];
+  tierArtSet?: TierArtSet;
+}) {
   return (
     <div className="grid gap-6 md:grid-cols-3 md:gap-5 lg:gap-8">
       {plans.map((plan, index) => {
         const col = COLUMN_VISUAL[index] ?? COLUMN_VISUAL[1];
         const artVariant = col.art;
+        const heroBgClassResolved =
+          tierArtSet === "retainer" && artVariant === "ultimate"
+            ? RETAINER_SHIELD_HERO_BG
+            : tierArtSet === "retainer" && artVariant === "starter"
+              ? RETAINER_STEADY_HERO_BG
+              : col.heroBgClass;
+        const isSteadyRetainer = tierArtSet === "retainer" && artVariant === "starter";
+        const buttonGradientResolved = isSteadyRetainer ? RETAINER_STEADY_BUTTON_GRADIENT : col.buttonGradient;
+        const ctaShadowClass = isSteadyRetainer
+          ? "shadow-[0_12px_32px_-16px_rgba(154,52,18,0.42)] hover:shadow-[0_16px_40px_-14px_rgba(194,65,12,0.48)] focus-visible:outline-orange-700"
+          : "shadow-[0_12px_32px_-16px_rgba(79,70,229,0.55)] hover:shadow-[0_16px_40px_-14px_rgba(79,70,229,0.5)] focus-visible:outline-indigo-500";
         return (
           <motion.article
             key={plan.name}
@@ -112,7 +176,7 @@ function PricingTierCardsInner({ plans }: { plans: LaunchOrRetainerPlan[] }) {
               <div className="pointer-events-none absolute -inset-px rounded-[24px] bg-gradient-to-b from-indigo-500/20 via-violet-500/10 to-transparent opacity-100" />
             ) : null}
             <div
-              className={`relative h-[192px] overflow-hidden ${col.heroBgClass} px-4 pt-6 sm:h-[200px]`}
+              className={`relative h-[192px] overflow-hidden ${heroBgClassResolved} px-4 pt-6 sm:h-[200px]`}
             >
               <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.42)_0%,rgba(255,255,255,0.08)_45%,transparent_100%)]" />
               <div className="pointer-events-none absolute -right-8 -top-8 h-32 w-32 rounded-full bg-white/25 blur-2xl" />
@@ -129,7 +193,7 @@ function PricingTierCardsInner({ plans }: { plans: LaunchOrRetainerPlan[] }) {
                 }}
               >
                 <div className="absolute inset-x-6 top-1/2 h-16 -translate-y-1/2 rounded-full bg-white/20 blur-2xl backdrop-blur-[2px]" />
-                <TierArt variant={artVariant} />
+                <TierArt variant={artVariant} artSet={tierArtSet} />
               </motion.div>
 
               {plan.featured ? (
@@ -170,7 +234,7 @@ function PricingTierCardsInner({ plans }: { plans: LaunchOrRetainerPlan[] }) {
                 <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} transition={{ duration: 0.2 }}>
                   <Link
                     href={plan.cta}
-                    className={`inline-flex w-full items-center justify-center rounded-2xl bg-gradient-to-r ${col.buttonGradient} px-5 py-3.5 text-sm font-semibold text-white shadow-[0_12px_32px_-16px_rgba(79,70,229,0.55)] ring-1 ring-white/20 transition-[box-shadow] duration-300 hover:shadow-[0_16px_40px_-14px_rgba(79,70,229,0.5)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500`}
+                    className={`inline-flex w-full items-center justify-center rounded-2xl bg-gradient-to-r ${buttonGradientResolved} px-5 py-3.5 text-sm font-semibold text-white ${ctaShadowClass} ring-1 ring-white/20 transition-[box-shadow] duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2`}
                   >
                     Get started
                   </Link>
@@ -184,7 +248,13 @@ function PricingTierCardsInner({ plans }: { plans: LaunchOrRetainerPlan[] }) {
   );
 }
 
-export function PricingTierCards({ plans }: { plans: LaunchOrRetainerPlan[] }) {
+export function PricingTierCards({
+  plans,
+  tierArtSet = "launch",
+}: {
+  plans: LaunchOrRetainerPlan[];
+  tierArtSet?: TierArtSet;
+}) {
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
@@ -224,5 +294,5 @@ export function PricingTierCards({ plans }: { plans: LaunchOrRetainerPlan[] }) {
     );
   }
 
-  return <PricingTierCardsInner plans={plans} />;
+  return <PricingTierCardsInner plans={plans} tierArtSet={tierArtSet} />;
 }

@@ -37,6 +37,12 @@ const products = [
   },
 ];
 
+const cardSurfaces = [
+  "border-sky-300/55 bg-sky-100",
+  "border-amber-200/60 bg-[#fffbeb]",
+  "border-emerald-200/60 bg-emerald-50",
+] as const;
+
 export function ProductsShowcase() {
   return (
     <section className="bg-[#0B1220] px-6 py-20 text-white md:px-10">
@@ -66,10 +72,10 @@ export function ProductsShowcase() {
               viewport={{ once: true, amount: 0.2 }}
               transition={{ delay: index * 0.08, duration: 0.42, ease: "easeOut" }}
               whileHover={{ y: -6, scale: 1.02 }}
-              className="group flex min-w-[18rem] flex-col snap-start rounded-2xl border border-white/10 bg-white/5 p-6 text-center backdrop-blur xl:min-w-[22rem]"
+              className={`group flex min-w-[18rem] flex-col snap-start rounded-2xl border p-6 text-center shadow-sm transition-shadow duration-300 hover:shadow-md xl:min-w-[22rem] ${cardSurfaces[index % cardSurfaces.length]}`}
             >
               <div className="mb-4 flex justify-center">
-                <div className="relative h-14 w-14 overflow-hidden rounded-xl border border-white/15 bg-white/10 p-1">
+                <div className="relative h-14 w-14 overflow-hidden rounded-xl border border-slate-200/80 bg-white p-1 shadow-sm">
                   <Image
                     src={product.logo}
                     alt={`${product.name} logo`}
@@ -81,11 +87,11 @@ export function ProductsShowcase() {
                 </div>
               </div>
               <div className="mb-4 flex flex-col items-center justify-center gap-1">
-                <h3 className="text-xl font-semibold">{product.name}</h3>
-                <span className="text-xs text-slate-400">{product.status}</span>
+                <h3 className="text-xl font-semibold text-slate-900">{product.name}</h3>
+                <span className="text-xs text-slate-500">{product.status}</span>
               </div>
               <p className="text-sm font-semibold text-gradient">{product.tag}</p>
-              <p className="mt-3 flex-grow text-sm leading-7 text-slate-300">{product.blurb}</p>
+              <p className="mt-3 flex-grow text-sm leading-7 text-slate-600">{product.blurb}</p>
               <Link
                 href={product.href}
                 target="_blank"

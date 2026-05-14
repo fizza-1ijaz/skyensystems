@@ -8,6 +8,52 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { FAQ_TEAM_LOCATION_ANSWER } from "@/lib/company-offices";
 
+/** Wavy connector from hub to satellite (viewBox 1200×700 coords). */
+function wavyConnectorPath(
+  sx: number,
+  sy: number,
+  ex: number,
+  ey: number,
+  segments = 36,
+  waves = 4,
+  amplitude = 13,
+) {
+  const dx = ex - sx;
+  const dy = ey - sy;
+  const len = Math.hypot(dx, dy) || 1;
+  const px = -dy / len;
+  const py = dx / len;
+  const parts: string[] = [];
+  for (let i = 0; i <= segments; i++) {
+    const t = i / segments;
+    const x = sx + dx * t;
+    const y = sy + dy * t;
+    const envelope = Math.sin(t * Math.PI);
+    const wobble = Math.sin(t * Math.PI * 2 * waves) * amplitude * envelope;
+    const x2 = x + px * wobble;
+    const y2 = y + py * wobble;
+    parts.push(i === 0 ? `M ${x2.toFixed(1)} ${y2.toFixed(1)}` : `L ${x2.toFixed(1)} ${y2.toFixed(1)}`);
+  }
+  return parts.join(" ");
+}
+
+/** Droopy sun blob for “Why choose us” satellite nodes (viewBox 0..200). */
+function droopyNodeBlobPath(cx = 100, cy = 100, baseR = 82, segments = 96) {
+  const parts: string[] = [];
+  for (let i = 0; i <= segments; i++) {
+    const t = (i / segments) * Math.PI * 2;
+    const rays = Math.sin(t * 11 + 0.2) * 3.2;
+    const droop = Math.sin(t * 3 + 0.65) * 5.5 + Math.sin(t * 2 - 0.35) * 2.8;
+    const r = baseR + rays + droop * 0.45;
+    const x = cx + r * Math.cos(t + 0.06);
+    const y = cy + r * Math.sin(t + 0.06);
+    parts.push(i === 0 ? `M ${x.toFixed(2)} ${y.toFixed(2)}` : `L ${x.toFixed(2)} ${y.toFixed(2)}`);
+  }
+  return `${parts.join(" ")} Z`;
+}
+
+const WHY_NODE_BLOB_D = droopyNodeBlobPath();
+
 export function HomePageContent() {
   const containerRef = useRef<HTMLDivElement>(null);
   const whyRef = useRef<HTMLDivElement>(null);
@@ -24,25 +70,25 @@ export function HomePageContent() {
       id: "pseb",
       title: "PSEB Registered",
       body: "Skyen Systems is incorporated in Bahrain (CR No. 190698-1) and operates a PSEB-registered regional office in Lahore, Pakistan. That means a formal legal entity, regulated operations, professional accountability — and none of the risk that comes with anonymous freelancers or unregistered agencies.",
-      pos: "left-[12%] top-[32%]",
+      pos: "left-[14%] top-[32%] -translate-x-1/2 -translate-y-1/2",
     },
     {
       id: "us-market",
       title: "US Market Focused",
       body: "We understand American business culture, customer expectations, and market dynamics. Our work is built for US users, not adapted for them as an afterthought.",
-      pos: "right-[12%] top-[32%]",
+      pos: "right-[14%] top-[32%] translate-x-1/2 -translate-y-1/2",
     },
     {
       id: "full-stack",
       title: "Full Stack",
       body: "Website. App. Design. AI. Marketing. One team handles everything. No briefing seven different vendors and hoping they work together.",
-      pos: "left-[14%] bottom-[18%]",
+      pos: "left-[15%] bottom-[20%] -translate-x-1/2 translate-y-1/2",
     },
     {
       id: "partners",
       title: "Long-Term Partners",
       body: "We measure success in client relationships that last years, not projects that close and move on. Your growth is how we grow.",
-      pos: "right-[14%] bottom-[18%]",
+      pos: "right-[15%] bottom-[20%] translate-x-1/2 translate-y-1/2",
     },
   ] as const;
   const activeWhyDetail =
@@ -243,20 +289,24 @@ export function HomePageContent() {
           </div>
 
           <svg className="pointer-events-none absolute inset-0 h-full w-full" viewBox="0 0 1200 700" fill="none">
-            {[
-              { toX: 220, toY: 220, id: "pseb" },
-              { toX: 980, toY: 220, id: "us-market" },
-              { toX: 240, toY: 520, id: "full-stack" },
-              { toX: 960, toY: 520, id: "partners" },
-            ].map((line) => (
+            {(
+              [
+                { toX: 220, toY: 220, id: "pseb", waves: 3.8, amplitude: 12 },
+                { toX: 980, toY: 220, id: "us-market", waves: 4.2, amplitude: 14 },
+                { toX: 240, toY: 520, id: "full-stack", waves: 3.5, amplitude: 13 },
+                { toX: 960, toY: 520, id: "partners", waves: 4, amplitude: 11 },
+              ] as const
+            ).map((line) => (
               <motion.path
                 key={line.id}
-                d={`M600 350 Q 600 350 ${line.toX} ${line.toY}`}
-                stroke={activeWhyNode === line.id ? "rgba(92,104,255,0.8)" : "rgba(114,138,180,0.38)"}
-                strokeWidth={activeWhyNode === line.id ? 2.8 : 1.8}
+                d={wavyConnectorPath(600, 350, line.toX, line.toY, 38, line.waves, line.amplitude)}
+                stroke={activeWhyNode === line.id ? "rgba(92,104,255,0.82)" : "rgba(114,138,180,0.42)"}
+                strokeWidth={activeWhyNode === line.id ? 2.6 : 1.85}
                 strokeLinecap="round"
-                strokeDasharray="6 8"
-                animate={{ opacity: activeWhyNode === line.id ? 1 : 0.6 }}
+                strokeLinejoin="round"
+                fill="none"
+                animate={{ opacity: activeWhyNode === line.id ? 1 : 0.58 }}
+                transition={{ duration: 0.25 }}
               />
             ))}
           </svg>
@@ -296,25 +346,29 @@ export function HomePageContent() {
                 onHoverStart={() => setActiveWhyNode(node.id)}
                 onFocus={() => setActiveWhyNode(node.id)}
                 className={`absolute z-30 ${node.pos}`}
-                animate={{ scale: isActive ? 1.04 : 0.98 }}
+                animate={{ scale: isActive ? 1.05 : 0.99 }}
                 transition={{ duration: 0.24, ease: "easeOut" }}
               >
-                <div
-                  className={`group rounded-full border px-4 py-2.5 shadow-[0_24px_50px_-34px_rgba(88,117,193,0.9)] backdrop-blur-xl transition-colors ${
-                    isActive
-                      ? "border-[#b8cdff] bg-white/92"
-                      : "border-[#d9e7ff] bg-white/72"
-                  }`}
-                >
-                  <p className="text-sm font-bold text-[#2a4d86]">{node.title}</p>
+                <div className="relative h-[8.5rem] w-[8.5rem] cursor-default sm:h-40 sm:w-40">
+                  <svg
+                    className="pointer-events-none absolute inset-0 h-full w-full drop-shadow-[0_12px_28px_-18px_rgba(70,100,170,0.45)]"
+                    viewBox="0 0 200 200"
+                    preserveAspectRatio="xMidYMid meet"
+                    aria-hidden
+                  >
+                    <path
+                      d={WHY_NODE_BLOB_D}
+                      fill={isActive ? "rgba(255,255,255,0.94)" : "rgba(255,255,255,0.86)"}
+                      stroke={isActive ? "rgba(90,104,255,0.45)" : "rgba(180,200,235,0.65)"}
+                      strokeWidth={isActive ? 3.5 : 2.75}
+                      strokeLinejoin="round"
+                      strokeLinecap="round"
+                    />
+                  </svg>
+                  <div className="absolute inset-[10%] z-10 flex items-center justify-center px-2 text-center">
+                    <p className="text-[11px] font-bold leading-snug text-[#2a4d86] sm:text-xs">{node.title}</p>
+                  </div>
                 </div>
-                <div
-                  className={`mx-auto mt-2 h-3 w-3 rounded-full transition-all ${
-                    isActive
-                      ? "bg-[#5a68ff] shadow-[0_0_16px_rgba(90,104,255,0.85)]"
-                      : "bg-[#7ea2d6]"
-                  }`}
-                />
               </motion.div>
             );
           })}

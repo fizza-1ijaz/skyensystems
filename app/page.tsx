@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Hero } from "@/components/home/Hero";
 import { ProblemSection } from "@/components/home/ProblemSection";
-import { ValueProps } from "@/components/home/ValueProps";
+import { ProcessSection } from "@/components/home/ProcessSection";
 import { ProductsShowcase } from "@/components/home/ProductsShowcase";
 import { PricingSection } from "@/components/home/PricingSection";
 import { FoundingBanner } from "@/components/home/FoundingBanner";
@@ -38,7 +38,7 @@ export default function Home() {
       />
       <Hero />
       <ProblemSection />
-      <ValueProps />
+      <ProcessSection />
       <ProductsShowcase />
       <PricingSection />
       <FoundingBanner />

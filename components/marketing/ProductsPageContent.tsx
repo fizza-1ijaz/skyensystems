@@ -33,6 +33,13 @@ type ProductScene = {
   playStoreHref?: string;
 };
 
+/** Text-column panel backgrounds (order matches PRODUCTS). */
+const PRODUCT_TEXT_PANEL_BG: string[] = [
+  "rounded-[1.75rem] bg-gradient-to-br from-sky-100 via-sky-50 to-cyan-50 p-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.85)] ring-1 ring-sky-200/55 md:p-8",
+  "rounded-[1.75rem] bg-gradient-to-br from-indigo-50 via-violet-50/90 to-indigo-100/70 p-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.8)] ring-1 ring-indigo-200/45 md:p-8",
+  "rounded-[1.75rem] bg-gradient-to-br from-pink-50 via-rose-50 to-pink-100/85 p-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.85)] ring-1 ring-pink-200/50 md:p-8",
+];
+
 const PRODUCTS: ProductScene[] = [
   {
     id: "studiely",
@@ -237,7 +244,9 @@ export function ProductsPageContent({ initialProductId }: ProductsPageContentPro
                 <div className="absolute right-10 top-14 h-48 w-48 rounded-full bg-[#1E3A8A1c] blur-3xl" />
               </div>
               <div className={`relative z-10 grid gap-12 ${idx % 2 === 1 ? "md:grid-cols-[1.1fr_1fr]" : "md:grid-cols-[1fr_1.1fr]"}`}>
-                <div className={`${idx % 2 === 1 ? "md:order-2" : ""} text-center md:text-left`}>
+                <div
+                  className={`${idx % 2 === 1 ? "md:order-2" : ""} text-center md:text-left ${PRODUCT_TEXT_PANEL_BG[idx] ?? PRODUCT_TEXT_PANEL_BG[0]}`}
+                >
                   <div className="mb-6 flex flex-col md:flex-row items-center md:items-end gap-4">
                     <div className="relative h-20 w-20 overflow-hidden rounded-2xl border border-[#d3e2ff] bg-white p-1.5 shadow-lg">
                       <Image
@@ -267,7 +276,7 @@ export function ProductsPageContent({ initialProductId }: ProductsPageContentPro
                       <p key={paragraph}>{paragraph}</p>
                     ))}
                   </div>
-                  <div className="mt-8 rounded-[2rem] border border-slate-100 bg-slate-50/50 p-8">
+                  <div className="mt-8 rounded-[2rem] border border-white/60 bg-white/55 p-8 shadow-sm backdrop-blur-[2px]">
                     <p className="text-xs font-black uppercase tracking-[0.2em] text-slate-400 mb-6">
                       {product.platforms[0] ?? "Core Capabilities"}
                     </p>

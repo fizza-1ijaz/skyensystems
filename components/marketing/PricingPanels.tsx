@@ -5,6 +5,38 @@ import { PricingTierCards } from "./PricingTierCards";
 
 type TabKey = "packages" | "retainers" | "individual";
 
+const TABS: {
+  key: TabKey;
+  label: string;
+  active: string;
+  inactive: string;
+}[] = [
+  {
+    key: "packages",
+    label: "Launch Packages",
+    active:
+      "bg-gradient-to-br from-[#6c63ff] via-[#7c6cff] to-[#8b5cf6] text-white shadow-[0_10px_28px_-6px_rgba(108,99,255,0.55),inset_0_1px_0_rgba(255,255,255,0.25)] ring-1 ring-white/40",
+    inactive:
+      "border border-[#6c63ff]/25 bg-gradient-to-br from-[#6c63ff]/12 to-[#a78bfa]/10 text-[#3b2f7a] shadow-[inset_0_1px_0_rgba(255,255,255,0.6)] hover:border-[#6c63ff]/40 hover:from-[#6c63ff]/18 hover:to-[#a78bfa]/14",
+  },
+  {
+    key: "retainers",
+    label: "Monthly Retainers",
+    active:
+      "bg-gradient-to-br from-sky-400 via-sky-500 to-[#0ea5e9] text-white shadow-[0_10px_28px_-6px_rgba(14,165,233,0.5),inset_0_1px_0_rgba(255,255,255,0.25)] ring-1 ring-white/40",
+    inactive:
+      "border border-sky-400/35 bg-gradient-to-br from-sky-400/18 to-sky-500/10 text-sky-950 shadow-[inset_0_1px_0_rgba(255,255,255,0.65)] hover:border-sky-400/50 hover:from-sky-400/26 hover:to-sky-500/16",
+  },
+  {
+    key: "individual",
+    label: "Individual Services",
+    active:
+      "bg-gradient-to-br from-[#f9a8d4] via-[#f472b6] to-[#ec4899] text-white shadow-[0_10px_28px_-6px_rgba(236,72,153,0.45),inset_0_1px_0_rgba(255,255,255,0.3)] ring-1 ring-white/40",
+    inactive:
+      "border border-pink-400/35 bg-gradient-to-br from-pink-200/50 to-[#fbcfe8]/40 text-[#831843] shadow-[inset_0_1px_0_rgba(255,255,255,0.7)] hover:border-pink-400/50 hover:from-pink-200/70 hover:to-[#fbcfe8]/55",
+  },
+];
+
 export default function PricingPanels({
   selectedTab,
   setSelectedTab,
@@ -15,26 +47,25 @@ export default function PricingPanels({
   return (
     <>
       <div className="mt-6 mb-6 flex flex-wrap items-center gap-3">
-        {[
-          { key: "packages" as const, label: "Launch Packages" },
-          { key: "retainers" as const, label: "Monthly Retainers" },
-          { key: "individual" as const, label: "Individual Services" },
-        ].map((t) => (
-          <button
-            key={t.key}
-            type="button"
-            onClick={() => setSelectedTab(t.key)}
-            className={`pricing-tab rounded-lg px-4 py-2 text-sm font-semibold transition-colors ${selectedTab === t.key ? "bg-[#1E3A8A] text-white" : "border border-slate-300/80 bg-white/60 text-[#0F172A]"}`}
-          >
-            {t.label}
-          </button>
-        ))}
+        {TABS.map((t) => {
+          const isOn = selectedTab === t.key;
+          return (
+            <button
+              key={t.key}
+              type="button"
+              onClick={() => setSelectedTab(t.key)}
+              className={`pricing-tab rounded-full px-5 py-2.5 text-sm font-semibold tracking-tight transition-all duration-200 ease-out ${isOn ? `${t.active} scale-[1.02]` : `${t.inactive} scale-100`} active:scale-[0.98]`}
+            >
+              {t.label}
+            </button>
+          );
+        })}
       </div>
 
       <div>
         {selectedTab === "packages" ? <PricingTierCards plans={PACKAGES} /> : null}
 
-        {selectedTab === "retainers" ? <PricingTierCards plans={RETAINERS} /> : null}
+        {selectedTab === "retainers" ? <PricingTierCards plans={RETAINERS} tierArtSet="retainer" /> : null}
 
         {selectedTab === "individual" ? (
           <div className="space-y-4">

@@ -263,6 +263,17 @@ export default function ContactUsContent() {
                 </div>
 
                 <div className="rounded-xl border border-slate-100 bg-white p-5 shadow-sm text-left text-sm text-slate-600">
+                  <p className="text-xs font-semibold uppercase tracking-[0.12em] text-slate-500">Bahrain Head Office</p>
+                  <div className="mt-3 space-y-1.5 leading-relaxed">
+                    <p className="font-semibold text-[#0F172A]">Qismat Ventures W.L.L. (CR No. 190698-1)</p>
+                    <p>Office 501, Building 1025, Road 3621, Block 436</p>
+                    <p>Al-Seef, Manama, Kingdom of Bahrain — 0428</p>
+                    <p>Phone: +973 8048045</p>
+                    <p>Email: {OFFICE_EMAIL}</p>
+                  </div>
+                </div>
+
+                <div className="rounded-xl border border-slate-100 bg-white p-5 shadow-sm text-left text-sm text-slate-600">
                   <p className="text-xs font-semibold uppercase tracking-[0.12em] text-slate-500">
                     Pakistan Office (PSEB Registered)
                   </p>
@@ -272,17 +283,6 @@ export default function ContactUsContent() {
                     <p>Phone: +92-423-5482980</p>
                     <p>Email: {OFFICE_EMAIL}</p>
                     <p>Hours: Monday–Friday, 9:00am–6:00pm PKT</p>
-                  </div>
-                </div>
-
-                <div className="rounded-xl border border-slate-100 bg-white p-5 shadow-sm text-left text-sm text-slate-600">
-                  <p className="text-xs font-semibold uppercase tracking-[0.12em] text-slate-500">Bahrain Head Office</p>
-                  <div className="mt-3 space-y-1.5 leading-relaxed">
-                    <p className="font-semibold text-[#0F172A]">Qismat Ventures W.L.L. (CR No. 190698-1)</p>
-                    <p>Office 501, Building 1025, Road 3621, Block 436</p>
-                    <p>Al-Seef, Manama, Kingdom of Bahrain — 0428</p>
-                    <p>Phone: +973 8048045</p>
-                    <p>Email: {OFFICE_EMAIL}</p>
                   </div>
                 </div>
               </div>

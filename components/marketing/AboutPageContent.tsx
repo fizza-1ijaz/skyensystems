@@ -109,7 +109,7 @@ export function AboutPageContent() {
   return (
     <div className="relative flex min-h-screen flex-col overflow-x-hidden bg-white pb-8">
       {/* Top: sky-blue hero — headline + compact Lottie above white body */}
-      <section className="relative overflow-visible px-6 pb-4 pt-[calc(4rem-50px)] text-center md:px-10 md:pb-6 md:pt-[calc(5rem-50px)]">
+      <section className="relative overflow-visible px-6 pb-4 pt-20 text-center md:px-10 md:pb-6 md:pt-[calc(5rem-50px)]">
         {/* Blue paint ends above section bottom — content / Lottie stay in normal flow */}
         <div
           className="pointer-events-none absolute inset-x-0 top-0 bottom-52 z-0 overflow-hidden bg-gradient-to-b from-sky-400 via-sky-500 to-sky-600 md:bottom-64"
@@ -124,7 +124,7 @@ export function AboutPageContent() {
           />
         </div>
 
-        <div className="relative z-10 mx-auto mt-14 max-w-4xl md:mt-20">
+        <div className="relative z-10 mx-auto mt-10 max-w-4xl md:mt-20">
           <p className="mb-4 text-xs font-semibold uppercase tracking-[0.22em] text-sky-100/95">
             WHO WE ARE
           </p>

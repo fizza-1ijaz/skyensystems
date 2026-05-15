@@ -209,7 +209,13 @@ export function ProductsPageContent({ initialProductId }: ProductsPageContentPro
   }, [initialProductId]);
 
   return (
-    <div className="pb-8 pt-12">
+    <div className="relative bg-white pb-8 pt-12">
+      {/* Mobile: lavender wash at top, fading downward */}
+      <div
+        className="pointer-events-none absolute inset-x-0 top-0 z-0 h-[min(52vh,28rem)] bg-gradient-to-b from-violet-500/50 via-purple-400/22 to-transparent md:hidden"
+        aria-hidden
+      />
+      <div className="relative z-[1]">
       <section className="px-6 py-16 md:px-16">
         <div className="mx-auto max-w-6xl text-center">
           <p className="mb-4 text-xs font-semibold uppercase tracking-[0.14em] text-slate-500">
@@ -388,6 +394,7 @@ export function ProductsPageContent({ initialProductId }: ProductsPageContentPro
           </div>
         </div>
       </section>
+      </div>
     </div>
   );
 }

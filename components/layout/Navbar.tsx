@@ -30,17 +30,17 @@ export function Navbar() {
   const shellClass = isHero
     ? isScrolled
       ? "border-white/20 bg-[#070B2B]/75 shadow-[0_20px_60px_-20px_rgba(99,102,241,0.45)] backdrop-blur-xl"
-      : "border-transparent bg-transparent shadow-none"
+      : "border-white/40 bg-white/45 shadow-none backdrop-blur-md"
     : isScrolled
-      ? "border-white/40 bg-white/70 shadow-[0_20px_60px_-26px_rgba(108,99,255,0.6)] backdrop-blur-xl"
-      : "border-white/55 bg-white/82 shadow-[0_14px_44px_-28px_rgba(15,23,42,0.45)] backdrop-blur-xl";
+      ? "border-white/40 bg-white/75 shadow-[0_20px_60px_-26px_rgba(108,99,255,0.6)] backdrop-blur-xl"
+      : "border-white/45 bg-white/45 shadow-[0_8px_32px_-24px_rgba(15,23,42,0.18)] backdrop-blur-md";
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 mx-auto mt-4 max-w-6xl px-3 transition-all duration-300 lg:max-w-7xl lg:px-4 ${shellClass} rounded-2xl border py-2.5 ${!isHero || isScrolled ? "backdrop-blur-xl" : ""}`}
+      className={`fixed top-0 left-0 right-0 z-50 mx-auto mt-4 max-w-6xl px-3 transition-all duration-300 lg:max-w-7xl lg:px-4 ${shellClass} rounded-2xl border py-2.5`}
     >
-      <div className="grid grid-cols-[1fr_auto_1fr] items-center gap-2 px-2 md:px-4">
-        <Link href="/" className="group flex items-center gap-2.5 justify-self-start">
+      <motion.div className="flex items-center justify-between gap-2 px-2 md:px-4 lg:grid lg:grid-cols-[1fr_auto_1fr] lg:items-center">
+        <Link href="/" className="group flex shrink-0 items-center gap-2.5 lg:justify-self-start">
           <div
             className={`relative overflow-hidden rounded-xl border shadow-md transition-transform group-hover:scale-105 ${
               isHero && !isScrolled ? "border-slate-200/70" : "border-white/30"
@@ -71,7 +71,7 @@ export function Navbar() {
           </span>
         </Link>
 
-        <nav className="hidden items-center justify-center gap-3 lg:flex xl:gap-6">
+        <nav className="hidden items-center justify-center gap-3 lg:flex lg:justify-self-center xl:gap-6">
           <NavbarDesktopLinks
             linkClassName={
               isHero ? (isScrolled ? HERO_NAV_LINK_SCROLLED_CLASS : HERO_NAV_LINK_CLASS) : undefined
@@ -79,7 +79,7 @@ export function Navbar() {
           />
         </nav>
 
-        <motion.div className="flex items-center justify-self-end gap-2">
+        <motion.div className="flex shrink-0 items-center gap-2 lg:justify-self-end">
           <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.98 }}>
             <Link
               href="/contact-us"
@@ -105,20 +105,30 @@ export function Navbar() {
             {isMobileMenuOpen ? <X /> : <Menu />}
           </button>
         </motion.div>
-      </div>
+      </motion.div>
 
       {isMobileMenuOpen ? (
         <div
-          className={`overflow-hidden border-t lg:hidden ${
-            isHero ? "border-white/15 bg-[#070B2B]/90" : "border-white/40 bg-white/85"
-          } backdrop-blur-xl`}
+          className={`overflow-hidden border-t lg:hidden backdrop-blur-xl ${
+            isHero
+              ? isScrolled
+                ? "border-white/15 bg-[#070B2B]/90"
+                : "border-white/40 bg-white/92"
+              : "border-white/40 bg-white/92"
+          }`}
         >
           <div className="flex flex-col gap-4 p-6">
             {MAIN_NAV_ITEMS.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className={isHero ? "text-lg font-semibold text-white/85 hover:text-white" : MAIN_NAV_LINK_MOBILE_CLASS}
+                className={
+                  isHero && !isScrolled
+                    ? "text-lg font-semibold text-[#0F172A] hover:text-[#6C63FF]"
+                    : isHero
+                      ? "text-lg font-semibold text-white/85 hover:text-white"
+                      : MAIN_NAV_LINK_MOBILE_CLASS
+                }
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 {item.label}
@@ -127,7 +137,11 @@ export function Navbar() {
             <Link
               href="/contact-us"
               className={`mt-2 flex items-center justify-center gap-2 rounded-full py-3 font-semibold transition-all ${
-                isHero ? "bg-white text-[#070B2B]" : "bg-[#112B44] text-white hover:bg-[#1B3E5E]"
+                isHero && !isScrolled
+                  ? "bg-[#112B44] text-white hover:bg-[#1B3E5E]"
+                  : isHero
+                    ? "bg-white text-[#070B2B]"
+                    : "bg-[#112B44] text-white hover:bg-[#1B3E5E]"
               }`}
               onClick={() => setIsMobileMenuOpen(false)}
             >

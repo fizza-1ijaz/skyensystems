@@ -533,7 +533,13 @@ export function PricingPageContent() {
   const cardPkr = fx?.pkrPerUsd ?? null;
 
   return (
-    <div className="pb-0 pt-12 text-[#0F172A] bg-white">
+    <div className="relative pb-0 pt-12 text-[#0F172A] bg-white">
+      {/* Mobile: teal-green wash at top, fading downward */}
+      <div
+        className="pointer-events-none absolute inset-x-0 top-0 z-0 h-[min(52vh,28rem)] bg-gradient-to-b from-teal-500/50 via-emerald-400/22 to-transparent md:hidden"
+        aria-hidden
+      />
+      <div className="relative z-[1]">
       <section className="px-6 py-12 md:px-16 overflow-hidden">
         <div className="mx-auto max-w-5xl">
           <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-8">
@@ -723,6 +729,7 @@ export function PricingPageContent() {
       </section>
 
       <PricingStickers />
+      </div>
     </div>
   );
 }

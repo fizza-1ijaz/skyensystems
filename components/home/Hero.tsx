@@ -6,6 +6,7 @@ import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import { ArrowRight, ArrowUpRight, Globe, Zap, Terminal, Cpu, Database, Layout } from "lucide-react";
 import { ServiceCard } from "./hero/ServiceCard";
 import { HeroLandscapeComposition } from "./hero/HeroLandscapeComposition";
+import { ServiceScrollCornerIcons } from "./hero/HeroTechCornerIcons";
 
 const rotatingTexts = [
   "Response within 4 business hours, guaranteed",
@@ -22,7 +23,6 @@ const services = [
     desc: "Custom websites, web applications, and e-commerce stores built to convert visitors into customers. Fast, secure, and built to grow with you.",
     features: "Next.js · React · WordPress · Shopify · API Integration",
     icon: Globe,
-    color: "from-blue-500/20 to-cyan-500/20",
     previewImage: "/webdevelop.jfif",
   },
   {
@@ -32,7 +32,6 @@ const services = [
     desc: "iOS and Android apps that your users will actually use. From MVP to full launch — we handle everything including App Store submission.",
     features: "React Native · Swift · Kotlin · App Store · Play Store",
     icon: Cpu,
-    color: "from-violet-500/20 to-purple-500/20",
     previewImage: "/mobapp.jfif",
   },
   {
@@ -42,7 +41,6 @@ const services = [
     desc: "Beautiful, intuitive interfaces that make your product a joy to use. Research-backed design that reduces churn and drives engagement.",
     features: "Figma · Prototyping · User Research · Design Systems",
     icon: Layout,
-    color: "from-cyan-500/20 to-blue-500/20",
     previewImage: "/UIUX.png",
   },
   {
@@ -52,7 +50,6 @@ const services = [
     desc: "Practical AI that solves real business problems. Chatbots, automation, intelligent features — without the complexity.",
     features: "LLM Integration · Chatbots · Automation · Custom Models",
     icon: Zap,
-    color: "from-purple-500/20 to-indigo-500/20",
     previewImage: "/AI.jfif",
   },
   {
@@ -62,7 +59,6 @@ const services = [
     desc: "More of the right customers finding your business. SEO, paid ads, content — all tied to measurable results.",
     features: "SEO · Google Ads · Meta Ads · Content Marketing",
     icon: Database,
-    color: "from-blue-500/20 to-violet-500/20",
     previewImage: "/digitalmarketing.jfif",
   },
   {
@@ -72,7 +68,6 @@ const services = [
     desc: "Your own extended team of developers and designers — working exclusively on your projects, in your timezone.",
     features: "Full-time Devs · Project Managers · Designers · Agile",
     icon: Terminal,
-    color: "from-indigo-500/20 to-blue-500/20",
     previewImage: "/teams.jfif",
   },
 ];
@@ -108,7 +103,7 @@ export function Hero() {
       >
         <motion.div
           style={{ opacity: heroOpacity, y: heroY }}
-          className="absolute left-1/2 top-24 z-[6] flex w-full max-w-5xl -translate-x-1/2 flex-col items-center px-4 text-center sm:top-28 md:top-32"
+          className="absolute left-1/2 top-1/2 z-[6] flex w-full max-w-5xl -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center px-4 text-center sm:top-28 sm:translate-y-0 md:top-32"
         >
           <motion.div
             initial={{ opacity: 0, y: 15 }}
@@ -185,13 +180,14 @@ export function Hero() {
       </motion.div>
 
       <div className="relative z-20 w-full overflow-hidden bg-[#f8fafc]">
-        <div className="mx-auto max-w-7xl px-6">
-          <div className="space-y-[30vh] py-[20vh]">
+        <ServiceScrollCornerIcons />
+        <motion.div className="relative z-10 mx-auto max-w-7xl px-6">
+          <motion.div className="space-y-[30vh] py-[20vh]">
             {services.map((service, idx) => (
               <ServiceCard key={service.id} service={service} index={idx} />
             ))}
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </div>
     </section>
   );

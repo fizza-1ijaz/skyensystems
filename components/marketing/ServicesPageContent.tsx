@@ -1,12 +1,11 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useId, useMemo, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { useSearchParams } from "next/navigation";
 import Image from "next/image";
-
 type ReelService = {
   id: string;
   slug: string;
@@ -23,6 +22,189 @@ type ReelService = {
   href: string;
   previewImage?: string;
 };
+
+/** Below this track width, even stops (2nd, 4th, 6th) sit under the road. */
+const ROAD_STAGGER_MAX_WIDTH = 1280;
+/** Lifts road, bus, and stops together (px). */
+const ROAD_VERTICAL_LIFT_PX = 18;
+/** Stable width for SSR + first client paint (must not use `window`). */
+const ROAD_LAYOUT_FALLBACK_WIDTH = 1200;
+
+type ServiceCardTheme = {
+  card: string;
+  overlay: string;
+  headline: string;
+  body: string;
+  label: string;
+  highlight: string;
+  emphasis: string;
+  cta: string;
+  imageBorder: string;
+};
+
+const SERVICE_CARD_THEMES: Record<string, ServiceCardTheme> = {
+  web: {
+    card: "border-sky-300/90 bg-gradient-to-br from-sky-100 via-sky-50 to-cyan-50 shadow-[0_35px_75px_-40px_rgba(14,165,233,0.28)]",
+    overlay:
+      "bg-[radial-gradient(circle_at_12%_18%,rgba(56,189,248,0.28),transparent_52%),radial-gradient(circle_at_88%_72%,rgba(14,165,233,0.14),transparent_48%)]",
+    headline: "text-[#0B1F4A]",
+    body: "text-[#1E3A5F]",
+    label: "text-[#1E40AF]",
+    highlight: "border-sky-200/95 bg-white/75 text-[#1E3353]",
+    emphasis: "text-[#0B1F4A]",
+    cta: "bg-[#1E3A8A] text-white hover:bg-[#172554]",
+    imageBorder: "border-sky-200/90",
+  },
+  mobile: {
+    card: "border-pink-300/90 bg-gradient-to-br from-pink-100 via-pink-50 to-rose-50 shadow-[0_35px_75px_-40px_rgba(236,72,153,0.26)]",
+    overlay:
+      "bg-[radial-gradient(circle_at_14%_22%,rgba(251,207,232,0.55),transparent_50%),radial-gradient(circle_at_82%_68%,rgba(244,114,182,0.18),transparent_46%)]",
+    headline: "text-[#881337]",
+    body: "text-[#9D174D]",
+    label: "text-[#BE185D]",
+    highlight: "border-pink-200/95 bg-white/75 text-[#831843]",
+    emphasis: "text-[#701A35]",
+    cta: "bg-[#9D174D] text-white hover:bg-[#831843]",
+    imageBorder: "border-pink-200/90",
+  },
+  uiux: {
+    card: "border-violet-300/90 bg-gradient-to-br from-violet-100 via-purple-50 to-fuchsia-50 shadow-[0_35px_75px_-40px_rgba(139,92,246,0.24)]",
+    overlay:
+      "bg-[radial-gradient(circle_at_16%_20%,rgba(196,181,253,0.45),transparent_50%),radial-gradient(circle_at_84%_70%,rgba(167,139,250,0.2),transparent_48%)]",
+    headline: "text-[#4C1D95]",
+    body: "text-[#5B21B6]",
+    label: "text-[#6D28D9]",
+    highlight: "border-violet-200/95 bg-white/75 text-[#4C1D95]",
+    emphasis: "text-[#3B0764]",
+    cta: "bg-[#6D28D9] text-white hover:bg-[#5B21B6]",
+    imageBorder: "border-violet-200/90",
+  },
+  ai: {
+    card: "border-yellow-300/90 bg-gradient-to-br from-yellow-100 via-amber-50 to-yellow-50 shadow-[0_35px_75px_-40px_rgba(234,179,8,0.26)]",
+    overlay:
+      "bg-[radial-gradient(circle_at_14%_24%,rgba(253,224,71,0.4),transparent_52%),radial-gradient(circle_at_86%_66%,rgba(251,191,36,0.2),transparent_46%)]",
+    headline: "text-[#7C2D12]",
+    body: "text-[#92400E]",
+    label: "text-[#B45309]",
+    highlight: "border-yellow-200/95 bg-white/75 text-[#78350F]",
+    emphasis: "text-[#713F12]",
+    cta: "bg-[#C2410C] text-white hover:bg-[#9A3412]",
+    imageBorder: "border-yellow-200/90",
+  },
+  marketing: {
+    card: "border-green-300/90 bg-gradient-to-br from-green-100 via-emerald-50 to-green-50 shadow-[0_35px_75px_-40px_rgba(34,197,94,0.26)]",
+    overlay:
+      "bg-[radial-gradient(circle_at_12%_20%,rgba(134,239,172,0.45),transparent_52%),radial-gradient(circle_at_88%_72%,rgba(52,211,153,0.18),transparent_48%)]",
+    headline: "text-[#14532D]",
+    body: "text-[#166534]",
+    label: "text-[#15803D]",
+    highlight: "border-green-200/95 bg-white/75 text-[#14532D]",
+    emphasis: "text-[#064E3B]",
+    cta: "bg-[#15803D] text-white hover:bg-[#166534]",
+    imageBorder: "border-green-200/90",
+  },
+  teams: {
+    card: "border-orange-300/90 bg-gradient-to-br from-orange-100 via-orange-50 to-amber-50 shadow-[0_35px_75px_-40px_rgba(249,115,22,0.26)]",
+    overlay:
+      "bg-[radial-gradient(circle_at_15%_22%,rgba(253,186,116,0.45),transparent_50%),radial-gradient(circle_at_85%_68%,rgba(251,146,60,0.2),transparent_48%)]",
+    headline: "text-[#7C2D12]",
+    body: "text-[#9A3412]",
+    label: "text-[#C2410C]",
+    highlight: "border-orange-200/95 bg-white/75 text-[#7C2D12]",
+    emphasis: "text-[#713F12]",
+    cta: "bg-[#C2410C] text-white hover:bg-[#9A3412]",
+    imageBorder: "border-orange-200/90",
+  },
+};
+
+function RoadStopBulb({
+  lit,
+  size = "md",
+  className = "",
+}: {
+  lit: boolean;
+  size?: "sm" | "md";
+  className?: string;
+}) {
+  const bulbHeight = size === "sm" ? "h-[22px]" : "h-[30px]";
+  const glowOuter = size === "sm" ? "h-9 w-9" : "h-12 w-12";
+  const glowMid = size === "sm" ? "h-6 w-6" : "h-8 w-8";
+
+  return (
+    <span className={`relative inline-flex shrink-0 items-center justify-center ${className}`}>
+      <span
+        aria-hidden
+        className={`absolute rounded-full transition-all duration-500 ease-out ${glowOuter} ${
+          lit
+            ? "bg-yellow-300/55 blur-lg"
+            : "scale-75 bg-transparent opacity-0"
+        }`}
+      />
+      <span
+        aria-hidden
+        className={`absolute rounded-full transition-all duration-500 ease-out ${glowMid} ${
+          lit ? "bg-yellow-200/90 blur-[6px]" : "scale-75 bg-transparent opacity-0"
+        }`}
+      />
+      <img
+        src="/anims/bulb.svg"
+        alt=""
+        width={62}
+        height={93}
+        aria-hidden
+        className={`relative z-[1] w-auto object-contain transition-all duration-500 ease-out ${bulbHeight} ${
+          lit
+            ? "brightness-110 saturate-110 drop-shadow-[0_0_4px_#FEF9C3,0_0_10px_#FDE047,0_0_20px_#FACC15,0_0_34px_rgba(234,179,8,0.75)]"
+            : "opacity-35 saturate-[0.35] brightness-[0.85] grayscale"
+        }`}
+      />
+    </span>
+  );
+}
+
+function RoadBusIcon({ className = "" }: { className?: string }) {
+  const gradientId = useId();
+
+  return (
+    <svg
+      viewBox="0 0 56 34"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden
+      className={`h-9 w-[3.75rem] drop-shadow-[0_10px_18px_rgba(61,62,138,0.5)] md:h-10 md:w-[4.25rem] ${className}`}
+    >
+      <defs>
+        <linearGradient id={gradientId} x1="28" y1="6" x2="28" y2="26" gradientUnits="userSpaceOnUse">
+          <stop stopColor="#A5F3FC" />
+          <stop offset="0.45" stopColor="#8FD4FF" />
+          <stop offset="1" stopColor="#7C3AED" />
+        </linearGradient>
+      </defs>
+      <rect x="3" y="14" width="4" height="5" rx="1.2" fill="#FCD34D" stroke="#D97706" strokeWidth="0.75" />
+      <path
+        d="M8 14h40c2.2 0 4 1.8 4 4v5c0 2.2-1.8 4-4 4H8c-2.2 0-4-1.8-4-4v-5c0-2.2 1.8-4 4-4z"
+        fill={`url(#${gradientId})`}
+        stroke="#3D3E8A"
+        strokeWidth="1.25"
+      />
+      <path
+        d="M12 14V10.5c0-1.1.9-2 2-2h4.2l2.3 2h17.5c1.1 0 2 .9 2 2V14"
+        fill="#C4B5FD"
+        stroke="#3D3E8A"
+        strokeWidth="1.1"
+        strokeLinejoin="round"
+      />
+      <rect x="12" y="16.5" width="13" height="6.5" rx="1.4" fill="#ECFEFF" stroke="#67E8F9" strokeWidth="0.75" />
+      <rect x="28" y="16.5" width="11" height="6.5" rx="1.4" fill="#EDE9FE" stroke="#A78BFA" strokeWidth="0.75" />
+      <rect x="41.5" y="17.5" width="4" height="5" rx="0.8" fill="#FEF08A" stroke="#EAB308" strokeWidth="0.6" />
+      <circle cx="16" cy="27" r="3.6" fill="#0F172A" stroke="#1E293B" strokeWidth="1" />
+      <circle cx="16" cy="27" r="1.4" fill="#94A3B8" />
+      <circle cx="40" cy="27" r="3.6" fill="#0F172A" stroke="#1E293B" strokeWidth="1" />
+      <circle cx="40" cy="27" r="1.4" fill="#94A3B8" />
+      <path d="M49 18.5h2.5v3.5H49a1 1 0 01-1-1v-1.5a1 1 0 011-1z" fill="#E2E8F0" stroke="#64748B" strokeWidth="0.6" />
+    </svg>
+  );
+}
 
 const SERVICES: ReelService[] = [
   {
@@ -54,7 +236,7 @@ const SERVICES: ReelService[] = [
   {
     id: "mobile",
     slug: "mobile-apps",
-    title: "Mobile App Development",
+    title: "App Development",
     short: "App",
     sectionHeadline: "iOS & Android Apps Your Users Will Actually Love",
     listLabel: "What we build",
@@ -176,9 +358,12 @@ type ServicesPageContentProps = {
 export function ServicesPageContent({ initialServiceSlug }: ServicesPageContentProps) {
   const searchParams = useSearchParams();
   const [activeIndex, setActiveIndex] = useState(0);
+  const [roadTrackWidth, setRoadTrackWidth] = useState(0);
   const dragStartX = useRef<number | null>(null);
+  const roadStopsRef = useRef<HTMLDivElement>(null);
   const itemCount = SERVICES.length;
   const activeService = SERVICES[activeIndex];
+  const cardTheme = SERVICE_CARD_THEMES[activeService.id] ?? SERVICE_CARD_THEMES.web;
 
   useEffect(() => {
     if (initialServiceSlug) {
@@ -204,34 +389,58 @@ export function ServicesPageContent({ initialServiceSlug }: ServicesPageContentP
     }
   }, [initialServiceSlug, searchParams]);
 
-  const ringItems = useMemo(
-    () =>
-      SERVICES.map((service, idx) => {
-        const progress = idx / (itemCount - 1 || 1);
-        const x = -420 + progress * 840;
-        const curveY = Math.sin(progress * Math.PI) * -86;
-        const edgeStopLift = idx === 0 || idx === itemCount - 1 ? 5 : 0;
-        const stopY = curveY - 62 - edgeStopLift;
-        const edgeOffset = Math.abs(progress - 0.5) * 2;
-        const carY = curveY + 4 + edgeOffset * 10;
-        const nearFocal = idx === activeIndex;
-        return {
-          ...service,
-          idx,
-          progress,
-          x,
-          y: stopY,
-          carY,
-          nearFocal,
-        };
-      }),
-    [activeIndex, itemCount],
-  );
+  useEffect(() => {
+    const el = roadStopsRef.current;
+    if (!el) return;
+
+    const updateWidth = () => setRoadTrackWidth(el.offsetWidth);
+    updateWidth();
+
+    const observer = new ResizeObserver(updateWidth);
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  const layoutRoadWidth =
+    roadTrackWidth > 0 ? roadTrackWidth : ROAD_LAYOUT_FALLBACK_WIDTH;
+  const isStaggeredRoad = layoutRoadWidth < ROAD_STAGGER_MAX_WIDTH;
+
+  const ringItems = useMemo(() => {
+    const width = layoutRoadWidth;
+    const edgeInset = Math.max(96, width * 0.07);
+    const span = Math.max(width - edgeInset * 2, 0);
+    const isStaggered = layoutRoadWidth < ROAD_STAGGER_MAX_WIDTH;
+    const topStopOffset = isStaggered ? 72 : 80;
+    const bottomStopOffset = isStaggered ? 44 : 48;
+
+    return SERVICES.map((service, idx) => {
+      const progress = idx / (itemCount - 1 || 1);
+      const x = -width / 2 + edgeInset + progress * span;
+      const roadY = 0;
+      const edgeAdjust = idx === 0 || idx === itemCount - 1 ? 4 : 0;
+      const onBottom = isStaggered && idx % 2 === 1;
+      const stopY = onBottom
+        ? roadY + bottomStopOffset + edgeAdjust
+        : roadY - topStopOffset - edgeAdjust;
+      const carY = roadY + 8;
+      const nearFocal = idx === activeIndex;
+      return {
+        ...service,
+        idx,
+        progress,
+        x,
+        y: stopY,
+        carY,
+        nearFocal,
+        stopSide: onBottom ? ("bottom" as const) : ("top" as const),
+      };
+    });
+  }, [activeIndex, itemCount, layoutRoadWidth]);
 
   const mobileStops = useMemo(
     () => [
       { label: "Web", idx: SERVICES.findIndex((service) => service.id === "web"), top: true },
-      { label: "App", idx: SERVICES.findIndex((service) => service.id === "mobile"), top: false },
+      { label: "App Development", idx: SERVICES.findIndex((service) => service.id === "mobile"), top: false },
       { label: "UI", idx: SERVICES.findIndex((service) => service.id === "uiux"), top: true },
       { label: "AI", idx: SERVICES.findIndex((service) => service.id === "ai"), top: false },
       { label: "SEO", idx: SERVICES.findIndex((service) => service.id === "marketing"), top: true },
@@ -244,9 +453,12 @@ export function ServicesPageContent({ initialServiceSlug }: ServicesPageContentP
     0,
     mobileStops.findIndex((stop) => stop.idx === activeIndex),
   );
-  const mobileCarLeftPercentRaw =
-    ((activeMobileStopIndex + 0.5) / (mobileStops.length || 1)) * 100;
-  const mobileCarLeftPercent = Math.min(88, Math.max(12, mobileCarLeftPercentRaw));
+  const mobileEdgeInsetPercent = 8;
+  const mobileCarLeftPercent =
+    mobileStops.length <= 1
+      ? 50
+      : mobileEdgeInsetPercent +
+        (activeMobileStopIndex / (mobileStops.length - 1)) * (100 - mobileEdgeInsetPercent * 2);
 
   const onTouchStart = (event: React.TouchEvent<HTMLDivElement>) => {
     dragStartX.current = event.touches[0].clientX;
@@ -276,24 +488,34 @@ export function ServicesPageContent({ initialServiceSlug }: ServicesPageContentP
   };
 
   return (
-    <div className="min-h-screen bg-[#F7F9FC] pt-[90px] md:pt-24">
-      <section className="px-6 pb-4 md:px-16 md:pb-5">
-        <div className="mx-auto max-w-6xl text-center">
-          <p className="mb-4 text-xs font-semibold uppercase tracking-[0.14em] text-slate-500">
+    <motion.div className="relative flex min-h-screen flex-col overflow-x-hidden bg-[#F7F9FC]">
+      <section className="relative overflow-visible px-6 pb-10 pt-[calc(4rem-50px)] text-center md:px-10 md:pb-14 md:pt-[calc(5rem-50px)]">
+        <motion.div
+          className="pointer-events-none absolute inset-x-0 top-0 bottom-[21px] z-0 overflow-hidden bg-gradient-to-b from-violet-400 via-[#7C3AED] to-[#5B21B6] md:bottom-[29px]"
+          aria-hidden
+        >
+          <motion.div className="absolute -left-20 top-0 h-72 w-72 rounded-full bg-violet-300/40 blur-3xl" />
+          <motion.div className="absolute -right-16 top-24 h-80 w-80 rounded-full bg-fuchsia-300/30 blur-3xl" />
+          <motion.div className="absolute bottom-0 left-1/2 h-36 w-full -translate-x-1/2 rounded-[100%] bg-[#4C1D95]/30 blur-2xl md:h-40 md:w-[105%]" />
+          <motion.div
+            className="absolute inset-0 opacity-[0.12] [background-size:40px_40px] [background-image:linear-gradient(to_right,rgba(255,255,255,0.35)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.35)_1px,transparent_1px)]"
+            aria-hidden
+          />
+        </motion.div>
+
+        <motion.div className="relative z-10 mx-auto mt-[75px] max-w-4xl md:mt-[107px]">
+          <p className="mb-4 text-xs font-semibold uppercase tracking-[0.22em] text-purple-100/95">
             WHAT WE OFFER
           </p>
-          <h1 className="text-4xl font-extrabold text-[#0F172A] md:text-5xl">
+          <h1 className="text-balance text-4xl font-extrabold leading-[1.05] tracking-tight text-white drop-shadow-sm md:text-5xl lg:text-6xl">
             Every digital service your business needs.
           </h1>
-          <p className="mx-auto mt-3 max-w-3xl text-base text-slate-600 md:text-lg">
-            Six specialisms. One team. No coordination overhead.
-          </p>
-        </div>
+        </motion.div>
       </section>
 
       <section
         id="service-road"
-        className="mt-10 flex items-start px-3 pb-6 md:mt-[120px] md:px-8 md:pb-8 xl:px-12"
+        className="relative z-20 mt-8 flex items-start overflow-visible px-0 pb-0 pt-4 md:mt-14 md:pt-6 md:pb-0"
       >
         <div
           className="mx-auto w-full max-w-none"
@@ -302,26 +524,32 @@ export function ServicesPageContent({ initialServiceSlug }: ServicesPageContentP
           onPointerDown={onPointerDown}
           onPointerUp={onPointerUp}
         >
-          <div className="relative mx-auto h-[120px] w-full max-w-[1180px] md:h-[240px]">
-            <div className="pointer-events-none absolute inset-0 hidden md:block">
+          <motion.div
+            className={`relative isolate z-40 mx-auto mt-4 h-[120px] w-full overflow-visible md:mt-8 md:h-[240px] ${isStaggeredRoad ? "md:h-[300px]" : ""}`}
+            style={{ transform: `translateY(-${ROAD_VERTICAL_LIFT_PX}px)` }}
+          >
+            <div className="pointer-events-none absolute left-1/2 top-1/2 z-0 hidden h-[220px] w-screen max-w-[100vw] -translate-x-1/2 -translate-y-1/2 md:top-[53%] md:block">
               <svg
-                className="absolute left-1/2 top-[40%] h-[220px] w-[96%] max-w-[1120px] -translate-x-1/2 -translate-y-1/2"
-                viewBox="0 0 1120 220"
+                className="h-full w-full"
+                viewBox="0 0 1440 220"
+                preserveAspectRatio="none"
                 fill="none"
+                aria-hidden
               >
-                <path d="M40 180 C 260 20, 860 20, 1080 180" stroke="#112B44" strokeWidth="28" strokeLinecap="round" />
-                <path d="M40 180 C 260 20, 860 20, 1080 180" stroke="#274A68" strokeWidth="2" strokeDasharray="10 16" />
+                <path d="M0 110 L1440 110" stroke="#112B44" strokeWidth="28" />
+                <path d="M0 110 L1440 110" stroke="#274A68" strokeWidth="2" strokeDasharray="10 16" />
               </svg>
               <div className="absolute -left-16 top-10 h-56 w-56 rounded-full bg-[#8B5CF626] blur-3xl" />
               <div className="absolute -right-16 top-16 h-64 w-64 rounded-full bg-[#1E3A8A1f] blur-3xl" />
-              <div className="absolute left-1/2 top-[40%] h-32 w-[92%] max-w-[58rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-r from-[#6C63FF16] via-[#8B5CF61a] to-[#1E3A8A16] blur-3xl" />
+              <div className="absolute inset-x-0 top-1/2 h-32 -translate-y-1/2 rounded-full bg-gradient-to-r from-[#6C63FF16] via-[#8B5CF61a] to-[#1E3A8A16] blur-3xl" />
             </div>
 
-            <div className="relative z-20 mx-auto flex w-full flex-col items-center">
-              <div className="relative mb-3 block h-[112px] w-full max-w-[440px] md:hidden">
-                <div className="absolute left-6 right-6 top-[56px] h-[2px] rounded-full bg-gradient-to-r from-[#1E3A8A88] via-[#6C63FF66] to-[#2DD4BF88]" />
+            <motion.div className="relative z-50 mx-auto flex w-full flex-col items-center px-3 pt-2 md:absolute md:inset-0 md:px-8 md:pt-0 xl:px-12">
+              <div className="relative mb-3 block h-[112px] w-full md:hidden">
+                <div className="absolute inset-x-0 top-[62px] h-[28px] -translate-y-1/2 bg-[#112B44]" />
+                <div className="absolute inset-x-0 top-[62px] h-[2px] -translate-y-1/2 bg-gradient-to-r from-[#274A68] via-[#6C63FF] to-[#274A68]" />
                 <motion.div
-                  className="pointer-events-none absolute top-[76px] z-20 h-8 w-14 -translate-x-1/2 -translate-y-1/2"
+                  className="pointer-events-none absolute top-[62px] z-[60] -translate-x-1/2 -translate-y-1/2"
                   animate={{
                     left: `${mobileCarLeftPercent}%`,
                   }}
@@ -334,7 +562,7 @@ export function ServicesPageContent({ initialServiceSlug }: ServicesPageContentP
                     <div className="absolute -bottom-1.5 right-2 h-3 w-3 rounded-full border border-[#0B1F31] bg-[#0F172A]" />
                   </div>
                 </motion.div>
-                <div className="absolute left-0 right-0 top-[56px] grid -translate-y-1/2 grid-cols-6 items-center">
+                <div className="absolute left-0 right-0 top-[54px] z-[60] grid -translate-y-1/2 grid-cols-6 items-center">
                   {mobileStops.map((stop) => (
                     <button
                       key={stop.label}
@@ -344,28 +572,26 @@ export function ServicesPageContent({ initialServiceSlug }: ServicesPageContentP
                       aria-label={`Select ${stop.label}`}
                     >
                       <span
-                        className={`absolute -top-5 text-[10px] font-semibold leading-none tracking-tight ${activeIndex === stop.idx ? "text-[#0F2742]" : "text-[#5A728C]"
+                        className={`absolute -top-7 text-[10px] font-semibold leading-none tracking-tight ${activeIndex === stop.idx ? "text-[#0F2742]" : "text-[#5A728C]"
                           }`}
                       >
                         {stop.label}
                       </span>
-                      <span
-                        className={`h-3 w-3 rounded-full border ${activeIndex === stop.idx
-                            ? "border-[#1E3A8A] bg-[#1E3A8A] shadow-[0_0_0_5px_rgba(30,58,138,0.16)]"
-                            : "border-[#8FA6BE] bg-[#D6E2F0]"
-                          }`}
-                      />
+                      <RoadStopBulb lit={activeIndex === stop.idx} size="sm" />
                     </button>
                   ))}
                 </div>
               </div>
 
-              <div className="relative hidden h-[210px] w-full max-w-[1180px] md:block">
+              <motion.div
+                ref={roadStopsRef}
+                className="relative z-[60] hidden w-full md:absolute md:inset-0 md:block"
+              >
                 <motion.div
-                  className="pointer-events-none absolute left-1/2 top-1/2 z-30 -translate-x-1/2 -translate-y-1/2"
+                  className="pointer-events-none absolute left-1/2 top-1/2 z-[70] -translate-x-1/2 -translate-y-1/2"
                   animate={{
                     x: ringItems[activeIndex]?.x ?? 0,
-                    y: ringItems[activeIndex]?.carY ?? 36,
+                    y: ringItems[activeIndex]?.carY ?? 8,
                   }}
                   transition={{ duration: 0.68, ease: [0.16, 1, 0.3, 1] }}
                 >
@@ -382,7 +608,11 @@ export function ServicesPageContent({ initialServiceSlug }: ServicesPageContentP
                     key={item.id}
                     type="button"
                     onClick={() => setActiveIndex(item.idx)}
-                    className="absolute left-1/2 top-1/2 flex h-[96px] w-[190px] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full whitespace-nowrap bg-transparent text-center outline-none ring-0 select-none focus:outline-none focus:ring-0 focus-visible:outline-none focus-visible:ring-0 md:h-[112px] md:w-[230px]"
+                    className={`absolute left-1/2 top-1/2 z-[70] flex -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full whitespace-nowrap bg-transparent text-center outline-none ring-0 select-none focus:outline-none focus:ring-0 focus-visible:outline-none focus-visible:ring-0 ${
+                      isStaggeredRoad
+                        ? "h-[88px] w-[150px]"
+                        : "h-[96px] w-[190px] md:h-[112px] md:w-[230px]"
+                    }`}
                     animate={{
                       x: item.x,
                       y: item.y,
@@ -396,79 +626,82 @@ export function ServicesPageContent({ initialServiceSlug }: ServicesPageContentP
                     transition={{ duration: 0.74, ease: [0.16, 1, 0.3, 1] }}
                     aria-label={`Select ${item.title}`}
                   >
-                    <div className="pointer-events-none">
-                      <span
-                        className={`mx-auto mb-2 block h-5 w-5 rounded-full border ${item.nearFocal
-                            ? "border-[#38BDF8] bg-[#38BDF8]"
-                            : "border-[#5C7FA1] bg-[#2C4B68]"
-                          }`}
-                      />
-                      <span
-                        className={`block max-w-[140px] px-1.5 py-0.5 text-center text-xs font-semibold leading-tight tracking-[0.01em] sm:max-w-[180px] sm:text-sm md:max-w-[220px] md:text-lg ${item.nearFocal ? "text-[#0F2742]" : "text-[#264766]"
-                          }`}
-                      >
-                        {item.title}
-                      </span>
-                    </div>
+                    <motion.div className="pointer-events-none flex flex-col items-center">
+                      {item.stopSide === "top" ? (
+                        <>
+                          <span
+                            className={`relative z-50 block px-1 py-0.5 text-center font-semibold leading-tight tracking-[0.01em] ${isStaggeredRoad
+                                ? "max-w-[120px] text-[11px] sm:max-w-[140px] sm:text-xs"
+                                : "max-w-[140px] text-xs sm:max-w-[180px] sm:text-sm md:max-w-[220px] md:text-lg"
+                              } ${item.nearFocal ? "text-[#0F2742]" : "text-[#264766]"}`}
+                          >
+                            {item.title}
+                          </span>
+                          <RoadStopBulb
+                            lit={item.nearFocal}
+                            size={isStaggeredRoad ? "sm" : "md"}
+                            className={isStaggeredRoad ? "mx-auto mt-1.5" : "mx-auto mt-2"}
+                          />
+                        </>
+                      ) : (
+                        <>
+                          <RoadStopBulb lit={item.nearFocal} size="sm" className="mx-auto mb-1.5" />
+                          <span
+                            className={`relative z-50 block max-w-[120px] px-1 py-0.5 text-center text-[11px] font-semibold leading-tight tracking-[0.01em] sm:max-w-[140px] sm:text-xs ${item.nearFocal ? "text-[#0F2742]" : "text-[#264766]"}`}
+                          >
+                            {item.title}
+                          </span>
+                        </>
+                      )}
+                    </motion.div>
                   </motion.button>
                 ))}
+              </motion.div>
+            </motion.div>
+          </motion.div>
 
-                <motion.div
-                  key={`curve-badge-${activeService.id}`}
-                  initial={{ opacity: 0, y: 10, scale: 0.96 }}
-                  animate={{ opacity: 1, y: 0, scale: 1 }}
-                  transition={{ duration: 0.35, ease: "easeOut" }}
-                  className="pointer-events-none absolute left-1/2 top-[78%] z-20 -translate-x-1/2 -translate-y-1/2"
-                >
-                  <div className="relative inline-flex items-center justify-center overflow-hidden rounded-full border border-[#7C8FB7] bg-white/75 px-6 py-2.5 backdrop-blur-xl shadow-[0_18px_44px_-24px_rgba(30,58,138,0.65)]">
-                    <span className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(108,99,255,0.24),transparent_55%),radial-gradient(circle_at_70%_80%,rgba(56,189,248,0.18),transparent_50%)]" />
-                    <span className="relative text-sm font-bold uppercase tracking-[0.2em] text-[#1E3353] md:text-base">
-                      {activeService.short}
-                    </span>
-                  </div>
-                </motion.div>
-              </div>
-            </div>
-          </div>
-
-          <div className="mx-auto w-full max-w-4xl">
+          <div className="relative z-0 mx-auto -mt-3 w-full max-w-[min(88rem,calc(100%-1.5rem))] px-3 pt-0 sm:max-w-[min(88rem,calc(100%-2.5rem))] sm:px-5 md:-mt-8 md:max-w-[min(88rem,calc(100%-4rem))] md:px-8 md:pt-1 lg:px-12">
             <motion.div
               key={activeService.id}
               initial={{ opacity: 0, y: 16, scale: 0.98 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               transition={{ duration: 0.45, ease: "easeOut" }}
-              className="relative mt-4 w-full rounded-3xl border border-[#2B4A67] bg-[#112B44E8] p-5 text-[#EAF2FF] shadow-[0_35px_75px_-40px_rgba(8,20,34,0.85)] backdrop-blur-xl md:-mt-[30px] md:p-7"
+              className={`relative mt-1 w-full rounded-3xl border p-5 md:mt-2 md:p-8 lg:p-10 ${cardTheme.card}`}
             >
-              <div className="pointer-events-none absolute inset-0 rounded-3xl bg-[radial-gradient(circle_at_15%_20%,rgba(108,99,255,0.22),transparent_48%),radial-gradient(circle_at_85%_35%,rgba(30,58,138,0.16),transparent_40%)]" />
+              <div
+                className={`pointer-events-none absolute inset-0 rounded-3xl ${cardTheme.overlay}`}
+              />
               <div className="relative text-center md:text-left">
                 <div className="flex flex-col md:flex-row gap-8 items-center md:items-start">
                   <div className="flex-1">
-                    <h2 className="mt-2 text-2xl font-bold text-[#F6FAFF] md:text-4xl">
+                    <h2 className={`mt-2 text-2xl font-bold md:text-4xl ${cardTheme.headline}`}>
                       {activeService.sectionHeadline}
                     </h2>
-                    <p className="mt-3 text-[#C5D4E7]">{activeService.description}</p>
-                    <p className="mt-4 text-sm font-semibold uppercase tracking-[0.12em] text-[#9CB3CF]">
+                    <p className={`mt-3 ${cardTheme.body}`}>{activeService.description}</p>
+                    <p
+                      className={`mt-4 text-sm font-semibold uppercase tracking-[0.12em] ${cardTheme.label}`}
+                    >
                       {activeService.listLabel ?? "What we build"}
                     </p>
                     <ul className="mt-4 grid gap-2 text-left sm:grid-cols-2">
                       {activeService.highlights.map((item) => (
                         <li
                           key={item}
-                          className="rounded-xl border border-[#2D4E6D] bg-[#0F253AE6] px-3 py-2 text-sm text-[#C9D9ED]"
+                          className={`rounded-xl border px-3 py-2 text-sm ${cardTheme.highlight}`}
                         >
                           {item}
                         </li>
                       ))}
                     </ul>
                     {activeService.approach ? (
-                      <p className="mt-4 text-sm text-[#C5D4E7]">
-                        <span className="font-semibold text-[#EAF2FF]">Our approach: </span>
+                      <p className={`mt-4 text-sm ${cardTheme.body}`}>
+                        <span className={`font-semibold ${cardTheme.emphasis}`}>Our approach: </span>
                         {activeService.approach}
                       </p>
                     ) : null}
                     {activeService.stack ? (
-                      <p className="mt-3 text-sm text-[#C5D4E7]">
-                        <span className="font-semibold text-[#EAF2FF]">
+                      <p className={`mt-3 text-sm ${cardTheme.body}`}>
+                        <span className={`font-semibold ${cardTheme.emphasis}`}>
                           {activeService.stackLabel ?? "Technology"}:{" "}
                         </span>
                         {activeService.stack}
@@ -476,15 +709,17 @@ export function ServicesPageContent({ initialServiceSlug }: ServicesPageContentP
                     ) : null}
                     <Link
                       href={activeService.href}
-                      className="mt-6 inline-flex items-center gap-2 rounded-xl bg-[#112B44] px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#1B3E5E]"
+                      className={`mt-6 inline-flex items-center gap-2 rounded-xl px-5 py-2.5 text-sm font-semibold transition-colors ${cardTheme.cta}`}
                     >
                       {activeService.cta}
                       <ArrowUpRight className="h-4 w-4" />
                     </Link>
                   </div>
                   {activeService.previewImage && (
-                    <div className="w-full md:w-[320px] flex-shrink-0 mt-6 md:mt-0">
-                      <div className="relative w-full aspect-[4/3] md:aspect-square rounded-2xl overflow-hidden shadow-2xl border border-[#2D4E6D]">
+                    <div className="mt-6 w-full flex-shrink-0 md:mt-0 md:w-[min(380px,34%)]">
+                      <div
+                        className={`relative w-full aspect-[4/3] md:aspect-square rounded-2xl overflow-hidden shadow-2xl border ${cardTheme.imageBorder}`}
+                      >
                         <Image
                           src={activeService.previewImage}
                           alt={activeService.title}
@@ -501,6 +736,6 @@ export function ServicesPageContent({ initialServiceSlug }: ServicesPageContentP
           </div>
         </div>
       </section>
-    </div>
+    </motion.div>
   );
 }

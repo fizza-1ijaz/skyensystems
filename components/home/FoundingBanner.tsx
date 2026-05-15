@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 
 export function FoundingBanner() {
   return (
-    <section className="w-full overflow-hidden bg-gradient-to-r from-[#EEF3FF] via-[#F7F8FC] to-[#E8F8FF] px-0 py-16">
+    <section className="-mt-6 w-full overflow-hidden bg-gradient-to-r from-[#EEF3FF] via-[#F7F8FC] to-[#E8F8FF] px-0 pb-12 pt-0 md:-mt-10 md:pb-14">
       <motion.div
         initial={{ opacity: 0, y: 24 }}
         whileInView={{ opacity: 1, y: 0 }}

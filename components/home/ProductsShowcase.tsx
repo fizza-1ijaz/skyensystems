@@ -37,15 +37,12 @@ const products = [
   },
 ];
 
-const cardSurfaces = [
-  "border-sky-300/55 bg-sky-100",
-  "border-amber-200/60 bg-[#fffbeb]",
-  "border-emerald-200/60 bg-emerald-50",
-] as const;
-
 export function ProductsShowcase() {
   return (
-    <section className="bg-[#0B1220] px-6 py-20 text-white md:px-10">
+    <section
+      className="relative overflow-hidden bg-cover bg-center bg-no-repeat px-6 py-20 md:px-10"
+      style={{ backgroundImage: "url('/bgs/cute%20blue.jfif')" }}
+    >
       <div className="mx-auto max-w-7xl text-center">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
@@ -54,11 +51,11 @@ export function ProductsShowcase() {
           transition={{ duration: 0.45, ease: "easeOut" }}
           className="mb-10"
         >
-          <p className="mb-2 text-xs font-semibold uppercase tracking-[0.14em] text-slate-300">
+          <p className="mb-2 text-xs font-semibold uppercase tracking-[0.14em] text-slate-600">
             OUR PRODUCTS
           </p>
-          <h2 className="text-3xl font-bold md:text-4xl">We don't just build for clients. We build for users.</h2>
-          <p className="mx-auto mt-4 max-w-3xl text-center text-slate-300">
+          <h2 className="text-3xl font-bold text-slate-900 md:text-4xl">We don't just build for clients. We build for users.</h2>
+          <p className="mx-auto mt-4 max-w-3xl text-center text-slate-600">
             Products built and tested by the same team that builds your projects.
           </p>
         </motion.div>
@@ -72,7 +69,7 @@ export function ProductsShowcase() {
               viewport={{ once: true, amount: 0.2 }}
               transition={{ delay: index * 0.08, duration: 0.42, ease: "easeOut" }}
               whileHover={{ y: -6, scale: 1.02 }}
-              className={`group flex min-w-[18rem] flex-col snap-start rounded-2xl border p-6 text-center shadow-sm transition-shadow duration-300 hover:shadow-md xl:min-w-[22rem] ${cardSurfaces[index % cardSurfaces.length]}`}
+              className="group flex min-w-[18rem] flex-col snap-start rounded-2xl border border-white/15 bg-[#112B44] p-6 text-center text-white shadow-sm transition-shadow duration-300 hover:shadow-md xl:min-w-[22rem]"
             >
               <div className="mb-4 flex justify-center">
                 <div className="relative h-14 w-14 overflow-hidden rounded-xl border border-slate-200/80 bg-white p-1 shadow-sm">
@@ -87,16 +84,16 @@ export function ProductsShowcase() {
                 </div>
               </div>
               <div className="mb-4 flex flex-col items-center justify-center gap-1">
-                <h3 className="text-xl font-semibold text-slate-900">{product.name}</h3>
-                <span className="text-xs text-slate-500">{product.status}</span>
+                <h3 className="text-xl font-semibold text-white">{product.name}</h3>
+                <span className="text-xs text-white/70">{product.status}</span>
               </div>
-              <p className="text-sm font-semibold text-gradient">{product.tag}</p>
-              <p className="mt-3 flex-grow text-sm leading-7 text-slate-600">{product.blurb}</p>
+              <p className="text-sm font-semibold text-white">{product.tag}</p>
+              <p className="mt-3 flex-grow text-sm leading-7 text-white/85">{product.blurb}</p>
               <Link
                 href={product.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-6 inline-block rounded-lg bg-[#112B44] px-4 py-2 text-sm font-semibold text-white shadow-[0_14px_30px_-18px_rgba(17,43,68,0.75)] transition-all duration-300 hover:bg-[#1B3E5E] hover:shadow-[0_18px_36px_-18px_rgba(17,43,68,0.95)]"
+                className="mt-6 inline-block rounded-full bg-sky-200 px-5 py-2.5 text-sm font-semibold text-sky-800 shadow-[0_10px_28px_-10px_rgba(14,165,233,0.55)] ring-1 ring-sky-300/60 transition-all duration-300 hover:bg-sky-300 hover:shadow-[0_12px_32px_-10px_rgba(14,165,233,0.65)]"
               >
                 {product.cta}
               </Link>

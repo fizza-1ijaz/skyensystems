@@ -6,7 +6,7 @@ export const MAIN_NAV_ITEMS = [
   { label: "Products", href: "/products" },
   { label: "Pricing", href: "/pricing" },
   { label: "FAQ", href: "/faq" },
-  { label: "Contact Us", href: "/contact-us" },
+  { label: "Contact", href: "/contact-us" },
   { label: "Blog", href: "/blog" },
 ] as const;
 

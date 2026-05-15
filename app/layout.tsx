@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Footer } from "@/components/layout/Footer";
 import { Inter, Space_Grotesk } from "next/font/google";
 import { Navbar } from "@/components/layout/Navbar";
-import { NavbarDesktopLinks } from "@/components/layout/NavbarDesktopLinks";
 import { GlobalCursorGlow } from "@/components/ui/GlobalCursorGlow";
 import { ScrollProgress } from "@/components/ui/ScrollProgress";
 import { SmoothScrollProvider } from "@/components/ui/SmoothScrollProvider";
@@ -106,7 +105,7 @@ gtag('config', '${gaMeasurementId}', { anonymize_ip: true });`}
         <ScrollProgress />
         <GlobalCursorGlow />
         <SmoothScrollProvider>
-          <Navbar desktopLinks={<NavbarDesktopLinks />} />
+          <Navbar />
           <div className="flex-1">{children}</div>
           <Footer />
         </SmoothScrollProvider>

@@ -123,7 +123,7 @@ export function PricingSection() {
   ] as const;
 
   return (
-    <section id="pricing" className="px-6 pb-10 pt-16 md:px-10 md:py-20">
+    <section id="pricing" className="px-6 pb-0 pt-16 md:px-10 md:pt-20">
       <div className="mx-auto max-w-7xl">
         <motion.div
           initial={{ opacity: 0, y: 24 }}

@@ -2,20 +2,18 @@
 
 import type { MotionStyle } from "framer-motion";
 import { motion, useScroll, useTransform } from "framer-motion";
+import Image from "next/image";
 import { useRef } from "react";
 import { HeroTechCornerIcons } from "./HeroTechCornerIcons";
 
 type HeroLandscapeCompositionProps = {
   children?: React.ReactNode;
   motionStyle: MotionStyle;
+  lite?: boolean;
 };
 
 const HERO_LEFT_BG = "/bgs/cute%20blue.jfif";
 
-/**
- * Cubic wave segments for the left white carve boundary.
- * Each tuple: cp1x, cp1y, cp2x, cp2y, endx, endy
- */
 const LANDSCAPE_WAVE_SEGMENTS = [
   [260, 855, 440, 795, 300, 735],
   [200, 675, 480, 615, 320, 555],
@@ -39,14 +37,12 @@ function buildCubicWavePath(
     .join(" ");
 }
 
-/** Plain white blob: wavy left edge, straight bottom-right corner */
 const WHITE_CARVE_PATH = [
   "M380,900",
   buildCubicWavePath(LANDSCAPE_WAVE_SEGMENTS, (x, y) => [x, y]),
   "L1440,900 Z",
 ].join(" ");
 
-/** Organic white carve-out — wavy diagonal boundary (~1440×900). */
 function WhiteLandscapeCarve() {
   return (
     <svg
@@ -65,11 +61,15 @@ function WhiteLandscapeCarve() {
   );
 }
 
-export function HeroLandscapeComposition({ children, motionStyle }: HeroLandscapeCompositionProps) {
+export function HeroLandscapeComposition({
+  children,
+  motionStyle,
+  lite = false,
+}: HeroLandscapeCompositionProps) {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
-  const bgY = useTransform(scrollYProgress, [0, 1], [0, 40]);
-  const bgScale = useTransform(scrollYProgress, [0, 1], [1, 1.04]);
+  const bgY = useTransform(scrollYProgress, [0, 1], [0, lite ? 20 : 40]);
+  const bgScale = useTransform(scrollYProgress, [0, 1], [1, lite ? 1 : 1.04]);
 
   return (
     <motion.div
@@ -77,20 +77,33 @@ export function HeroLandscapeComposition({ children, motionStyle }: HeroLandscap
       style={motionStyle}
       className="relative h-full min-h-[inherit] w-full overflow-hidden bg-[#dbeafe]"
     >
-      {/* Left hero panel — cute blue photo (visible where white carve does not cover) */}
-      <motion.div className="absolute inset-0 z-0" style={{ y: bgY, scale: bgScale }}>
-        <motion.div
-          className="absolute inset-0 bg-cover bg-[center_40%] bg-no-repeat"
-          style={{ backgroundImage: `url('${HERO_LEFT_BG}')` }}
-          animate={{ scale: [1, 1.03, 1] }}
-          transition={{ duration: 28, repeat: Infinity, ease: "easeInOut" }}
+      <motion.div
+        className="absolute inset-0 z-0 transform-gpu"
+        style={lite ? undefined : { y: bgY, scale: bgScale }}
+      >
+        <Image
+          src={HERO_LEFT_BG}
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          quality={lite ? 70 : 82}
+          unoptimized
+          className="object-cover object-[center_40%]"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-[#93c5fd]/15 via-transparent to-[#1e3a8a]/10" />
-        <motion.div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-white/25" />
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-white/25" />
+        {!lite ? (
+          <motion.div
+            className="absolute inset-0"
+            animate={{ scale: [1, 1.02, 1] }}
+            transition={{ duration: 32, repeat: Infinity, ease: "easeInOut" }}
+            aria-hidden
+          />
+        ) : null}
       </motion.div>
 
       <WhiteLandscapeCarve />
-
       <HeroTechCornerIcons />
 
       {children ? (

@@ -1,10 +1,31 @@
 import type { Metadata } from "next";
+import dynamic from "next/dynamic";
 import { Hero } from "@/components/home/Hero";
-import { ProblemSection } from "@/components/home/ProblemSection";
-import { ProcessSection } from "@/components/home/ProcessSection";
-import { ProductsShowcase } from "@/components/home/ProductsShowcase";
-import { PricingSection } from "@/components/home/PricingSection";
-import { FoundingBanner } from "@/components/home/FoundingBanner";
+
+const ProblemSection = dynamic(
+  () => import("@/components/home/ProblemSection").then((m) => ({ default: m.ProblemSection })),
+  { loading: () => <section className="min-h-[40vh]" aria-hidden /> },
+);
+
+const ProcessSection = dynamic(
+  () => import("@/components/home/ProcessSection").then((m) => ({ default: m.ProcessSection })),
+  { loading: () => <section className="min-h-[60vh]" aria-hidden /> },
+);
+
+const ProductsShowcase = dynamic(
+  () => import("@/components/home/ProductsShowcase").then((m) => ({ default: m.ProductsShowcase })),
+  { loading: () => <section className="min-h-[50vh]" aria-hidden /> },
+);
+
+const PricingSection = dynamic(
+  () => import("@/components/home/PricingSection").then((m) => ({ default: m.PricingSection })),
+  { loading: () => <section className="min-h-[40vh]" aria-hidden /> },
+);
+
+const FoundingBanner = dynamic(
+  () => import("@/components/home/FoundingBanner").then((m) => ({ default: m.FoundingBanner })),
+  { loading: () => <section className="min-h-[20vh]" aria-hidden /> },
+);
 
 export const metadata: Metadata = {
   title: "Custom Software Development & AI Solutions | Skyen Systems",

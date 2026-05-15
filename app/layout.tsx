@@ -79,9 +79,8 @@ export default function RootLayout({
     >
       <head>
         {/* Preload critical resources */}
+        <link rel="preload" as="image" href="/bgs/cute%20blue.jfif" fetchPriority="high" />
         <link rel="preload" as="image" href="/logo-png.png" />
-        <link rel="preload" as="font" href="/_next/static/fonts/Inter-Regular.woff2" type="font/woff2" crossOrigin="anonymous" />
-        <link rel="preload" as="font" href="/_next/static/fonts/SpaceGrotesk-Regular.woff2" type="font/woff2" crossOrigin="anonymous" />
         {/* Preconnect to external services */}
         <link rel="preconnect" href="https://www.googletagmanager.com" />
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />

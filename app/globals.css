@@ -23,6 +23,32 @@ html {
   background-color: #f8fafc;
 }
 
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .service-card-sway {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+@media (max-width: 767px) {
+  .glass {
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+}
+
 body {
   background-color: #f8fafc;
   color: var(--foreground);
@@ -91,5 +117,44 @@ h6 {
   .glow-mesh {
     background-image: radial-gradient(at 0% 0%, rgba(108, 99, 255, 0.1) 0px, transparent 50%),
                       radial-gradient(at 100% 100%, rgba(34, 211, 238, 0.1) 0px, transparent 50%);
+  }
+
+  /* GPU-only service card reveal (opacity + translate3d) */
+  .service-card-sway {
+    opacity: 0;
+    transform: translate3d(var(--sway-x, -3rem), 0, 0);
+    transition:
+      opacity 0.52s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.52s cubic-bezier(0.16, 1, 0.3, 1);
+    transition-delay: var(--sway-delay, 0ms);
+  }
+
+  .service-card-sway.is-visible {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+
+  @media (min-width: 768px) {
+    .service-card-sway {
+      --sway-x: var(--sway-x-desktop, -3.5rem);
+    }
+  }
+
+  .founding-corner-icon {
+    transform: rotate(var(--icon-rotate, 0deg));
+    animation: founding-corner-float 5.5s ease-in-out infinite;
+    animation-delay: var(--float-delay, 0s);
+    will-change: transform;
+  }
+
+  @keyframes founding-corner-float {
+    0%,
+    100% {
+      transform: rotate(var(--icon-rotate, 0deg)) translate3d(0, 0, 0);
+    }
+
+    50% {
+      transform: rotate(var(--icon-rotate, 0deg)) translate3d(0, -10px, 0);
+    }
   }
 }

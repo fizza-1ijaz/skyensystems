@@ -1,12 +1,21 @@
 "use client";
 
 import Link from "next/link";
+import dynamic from "next/dynamic";
 import { useRef, useState, useEffect } from "react";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import { ArrowRight, ArrowUpRight, Globe, Zap, Terminal, Cpu, Database, Layout } from "lucide-react";
 import { ServiceCard } from "./hero/ServiceCard";
 import { HeroLandscapeComposition } from "./hero/HeroLandscapeComposition";
-import { ServiceScrollCornerIcons } from "./hero/HeroTechCornerIcons";
+import { useMotionProfile } from "@/hooks/useMotionProfile";
+
+const ServiceScrollCornerIcons = dynamic(
+  () =>
+    import("./hero/HeroTechCornerIcons").then((m) => ({
+      default: m.ServiceScrollCornerIcons,
+    })),
+  { ssr: false },
+);
 
 const rotatingTexts = [
   "Response within 4 business hours, guaranteed",
@@ -74,6 +83,8 @@ const services = [
 
 export function Hero() {
   const [textIndex, setTextIndex] = useState(0);
+  const profile = useMotionProfile();
+  const isLite = profile !== "full";
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -89,14 +100,26 @@ export function Hero() {
     offset: ["start start", "end start"],
   });
 
-  const smoothScroll = useSpring(scrollYProgress, { stiffness: 100, damping: 30, restDelta: 0.001 });
+  const smoothScroll = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001,
+  });
+  const scrollProgress = isLite ? scrollYProgress : smoothScroll;
 
-  const heroOpacity = useTransform(smoothScroll, [0, 0.25], [1, 0]);
-  const heroScale = useTransform(smoothScroll, [0, 0.25], [1, 0.95]);
-  const heroY = useTransform(smoothScroll, [0, 0.25], [0, -40]);
+  const heroOpacity = useTransform(scrollProgress, [0, 0.25], [1, 0]);
+  const heroScale = useTransform(scrollProgress, [0, 0.25], [1, isLite ? 1 : 0.95]);
+  const heroY = useTransform(scrollProgress, [0, 0.25], [0, isLite ? -24 : -40]);
+
+  const scrollSectionMinH = isLite ? "min-h-[280vh]" : "min-h-[400vh]";
+  const cardSpacing = isLite ? "space-y-[22vh] py-[14vh]" : "space-y-[30vh] py-[20vh]";
 
   return (
-    <section ref={containerRef} id="hero-container" className="relative min-h-[400vh] w-full">
+    <section
+      ref={containerRef}
+      id="hero-container"
+      className={`relative w-full ${scrollSectionMinH}`}
+    >
       <motion.div
         id="ecosystem-container"
         className="relative sticky top-0 h-screen min-h-[640px] w-full overflow-hidden"
@@ -176,18 +199,21 @@ export function Hero() {
           </motion.div>
         </motion.div>
 
-        <HeroLandscapeComposition motionStyle={{ opacity: heroOpacity, scale: heroScale, y: heroY }} />
+        <HeroLandscapeComposition
+          motionStyle={{ opacity: heroOpacity, scale: heroScale, y: heroY }}
+          lite={isLite}
+        />
       </motion.div>
 
       <div className="relative z-20 w-full overflow-hidden bg-[#f8fafc]">
-        <ServiceScrollCornerIcons />
-        <motion.div className="relative z-10 mx-auto max-w-7xl px-6">
-          <motion.div className="space-y-[30vh] py-[20vh]">
+        {profile !== "minimal" ? <ServiceScrollCornerIcons /> : null}
+        <div className="relative z-10 mx-auto max-w-7xl px-6">
+          <div className={cardSpacing}>
             {services.map((service, idx) => (
               <ServiceCard key={service.id} service={service} index={idx} />
             ))}
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
       </div>
     </section>
   );

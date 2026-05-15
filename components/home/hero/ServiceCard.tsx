@@ -1,12 +1,13 @@
 "use client";
 
-import React, { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { useReducedMotion } from "framer-motion";
+import { useRef, type CSSProperties } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { getServiceCardTheme } from "@/lib/service-card-themes";
+import { useRevealOnce } from "@/hooks/useRevealOnce";
 
 export type HeroScrollService = {
   id: string;
@@ -25,40 +26,40 @@ export function ServiceCard({
   service: HeroScrollService;
   index: number;
 }) {
-  const cardRef = useRef(null);
+  const cardRef = useRef<HTMLDivElement>(null);
   const theme = getServiceCardTheme(service.id);
-  const { scrollYProgress } = useScroll({
-    target: cardRef,
-    offset: ["start end", "end start"],
-  });
-
-  const x = useTransform(scrollYProgress, [0, 0.4], [index % 2 === 0 ? -100 : 100, 0]);
-  const opacity = useTransform(scrollYProgress, [0, 0.7, 1], [1, 1, 0]);
-  const scale = useTransform(scrollYProgress, [0, 0.3], [0.8, 1]);
-  const rotate = useTransform(scrollYProgress, [0, 0.4], [index % 2 === 0 ? -10 : 10, 0]);
+  const reduceMotion = useReducedMotion();
+  const fromLeft = index % 2 === 0;
+  const isVisible = useRevealOnce(cardRef, !reduceMotion);
 
   const gridPatternIdDesktop = `grid-desktop-svc-${index}`;
   const Icon = service.icon;
 
+  const swayStyle = {
+    "--sway-x": fromLeft ? "-3rem" : "3rem",
+    "--sway-x-desktop": fromLeft ? "-3.5rem" : "3.5rem",
+    "--sway-delay": `${index * 70}ms`,
+  } as CSSProperties;
+
   return (
-    <motion.div
+    <div
       ref={cardRef}
-      style={{ x, opacity, scale, rotate }}
-      className={`relative flex flex-col ${index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"} items-center gap-4 md:gap-12`}
+      style={swayStyle}
+      className={`service-card-sway relative flex flex-col ${isVisible ? "is-visible" : ""} ${index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"} items-center gap-4 md:gap-12`}
     >
       <div className="w-full md:w-1/2 group">
-        <motion.div
+        <div
           className={`relative overflow-hidden rounded-[2.5rem] border p-8 transition-all duration-700 md:rounded-[3rem] md:p-10 ${theme.card}`}
         >
           <div
             className={`pointer-events-none absolute inset-0 rounded-[2.5rem] md:rounded-[3rem] ${theme.overlay}`}
           />
           <div className="relative">
-            <motion.div
+            <div
               className={`mb-6 flex h-16 w-16 items-center justify-center rounded-[1.5rem] border bg-white/80 shadow-sm transition-all duration-700 group-hover:rotate-6 group-hover:scale-110 md:mb-8 md:h-20 md:w-20 md:rounded-[2rem] ${theme.highlight}`}
             >
               <Icon className={`h-8 w-8 md:h-10 md:w-10 ${theme.label}`} />
-            </motion.div>
+            </div>
             <h2 className={`mb-4 text-3xl font-black tracking-tighter md:mb-6 md:text-4xl ${theme.headline}`}>
               {service.title}
             </h2>
@@ -78,10 +79,10 @@ export function ServiceCard({
               </div>
             </div>
           </div>
-        </motion.div>
+        </div>
       </div>
 
-      <motion.div className="hidden w-full flex-col items-center justify-center md:flex md:w-1/2">
+      <div className="hidden w-full flex-col items-center justify-center md:flex md:w-1/2">
         <div className="relative group">
           <div
             className={`pointer-events-none absolute inset-0 opacity-15 blur-[100px] transition-opacity duration-700 group-hover:opacity-25 ${theme.overlay}`}
@@ -115,13 +116,11 @@ export function ServiceCard({
               <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 transition-opacity duration-700 group-hover:opacity-100" />
             </div>
           </div>
-          <motion.div
-            animate={{ y: [0, -10, 0] }}
-            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+          <div
             className={`absolute -right-6 -top-6 z-10 flex h-14 w-14 items-center justify-center rounded-2xl border bg-white shadow-2xl ${theme.highlight}`}
           >
             <Icon className={`h-7 w-7 ${theme.label}`} />
-          </motion.div>
+          </div>
         </div>
         <Link
           href={`/services/${service.slug}`}
@@ -130,7 +129,7 @@ export function ServiceCard({
           <span>See more</span>
           <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover/link:translate-x-1 group-hover/link:-translate-y-1" />
         </Link>
-      </motion.div>
+      </div>
 
       <div className="relative w-full md:hidden">
         <div
@@ -160,6 +159,6 @@ export function ServiceCard({
           <ArrowUpRight className="h-5 w-5 transition-transform duration-300" />
         </Link>
       </div>
-    </motion.div>
+    </div>
   );
 }

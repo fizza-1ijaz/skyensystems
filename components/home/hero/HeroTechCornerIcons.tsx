@@ -1,6 +1,9 @@
 "use client";
 
-import { motion } from "framer-motion";
+import type { RefObject } from "react";
+import { motion, useReducedMotion } from "framer-motion";
+import { useMotionProfile } from "@/hooks/useMotionProfile";
+import { useInViewport } from "@/hooks/useInViewport";
 import {
   Monitor,
   Laptop,
@@ -297,12 +300,14 @@ function ScatteredTechIconItem({
   iconColors,
   sizeScale = 1,
   className,
+  animateFloat = true,
 }: {
   config: TechIconConfig;
   index: number;
   iconColors: readonly string[];
   sizeScale?: number;
   className?: string;
+  animateFloat?: boolean;
 }) {
   const { Icon, insetX, insetY, size, opacity, rotate, delay, nudgeX = 0, nudgeY = 0 } = config;
   const stroke = iconColors[index % iconColors.length];
@@ -316,20 +321,31 @@ function ScatteredTechIconItem({
         left: insetX,
         top: insetY,
         translate: `${nudgeX}px ${nudgeY}px`,
+        rotate: `${rotate}deg`,
       }}
-      initial={{ opacity: 0, x: enterX, y: enterY, rotate: rotate - 18 }}
-      animate={{ opacity: 1, x: 0, y: 0, rotate }}
+      initial={animateFloat ? { opacity: 0, x: enterX, y: enterY } : false}
+      animate={animateFloat ? { opacity: 1, x: 0, y: 0 } : { opacity: 1 }}
       transition={{ duration: 0.7, delay: 0.15 + delay, ease: [0.16, 1, 0.3, 1] }}
     >
-      <motion.div
-        animate={{ y: [0, -5, 0], rotate: [rotate, rotate + 2.5, rotate] }}
-        transition={{
-          duration: 5.5 + index * 0.22,
-          repeat: Infinity,
-          ease: "easeInOut",
-          delay: index * 0.14,
-        }}
-      >
+      {animateFloat ? (
+        <motion.div
+          animate={{ y: [0, -5, 0], rotate: [0, 2.5, 0] }}
+          transition={{
+            duration: 5.5 + index * 0.22,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: index * 0.14,
+          }}
+        >
+          <Icon
+            size={size * sizeScale}
+            strokeWidth={1.5}
+            color={stroke}
+            style={{ opacity }}
+            aria-hidden
+          />
+        </motion.div>
+      ) : (
         <Icon
           size={size * sizeScale}
           strokeWidth={1.5}
@@ -337,7 +353,7 @@ function ScatteredTechIconItem({
           style={{ opacity }}
           aria-hidden
         />
-      </motion.div>
+      )}
     </motion.div>
   );
 }
@@ -347,27 +363,28 @@ function ScatteredTechIcons({
   iconColors,
   className = "pointer-events-none absolute inset-0 z-0",
   mobileCount = 14,
+  desktopCount,
+  animateFloat = true,
 }: {
   icons: TechIconConfig[];
   iconColors: readonly string[];
   className?: string;
   mobileCount?: number;
+  desktopCount?: number;
+  animateFloat?: boolean;
 }) {
+  const desktopIcons = icons.slice(0, desktopCount ?? icons.length);
+
   return (
-    <motion.div
-      className={className}
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-      aria-hidden
-    >
+    <div className={className} aria-hidden>
       <div className="absolute inset-0 overflow-hidden">
-        {icons.map((config, i) => (
+        {desktopIcons.map((config, i) => (
           <ScatteredTechIconItem
             key={`scatter-${config.insetX}-${config.insetY}-${config.rotate}-${i}`}
             config={config}
             index={i}
             iconColors={iconColors}
+            animateFloat={animateFloat}
             className="absolute hidden sm:block"
           />
         ))}
@@ -378,11 +395,12 @@ function ScatteredTechIcons({
             index={i}
             iconColors={iconColors}
             sizeScale={0.72}
+            animateFloat={animateFloat}
             className="absolute sm:hidden"
           />
         ))}
       </div>
-    </motion.div>
+    </div>
   );
 }
 
@@ -392,11 +410,26 @@ export function HeroTechCornerIcons() {
 
 /** Themed icons scattered across the full scroll service viewer background */
 export function ServiceScrollCornerIcons() {
+  const profile = useMotionProfile();
+  const reduceMotion = useReducedMotion();
+  const { ref, inView } = useInViewport({ rootMargin: "200px 0px", once: true });
+
+  if (profile === "minimal" || reduceMotion) return null;
+
+  const animateFloat = profile === "full" && inView;
+  const desktopCount = profile === "lite" ? 22 : SERVICE_SCROLL_SCATTER_ICONS.length;
+  const mobileCount = profile === "lite" ? 8 : 14;
+
   return (
-    <ScatteredTechIcons
-      icons={SERVICE_SCROLL_SCATTER_ICONS}
-      iconColors={SERVICE_SCROLL_ICON_COLORS}
-      className="pointer-events-none absolute inset-0 z-0"
-    />
+    <div ref={ref as unknown as RefObject<HTMLDivElement>} className="pointer-events-none absolute inset-0 z-0">
+      <ScatteredTechIcons
+        icons={SERVICE_SCROLL_SCATTER_ICONS}
+        iconColors={SERVICE_SCROLL_ICON_COLORS}
+        className="absolute inset-0"
+        desktopCount={desktopCount}
+        mobileCount={mobileCount}
+        animateFloat={animateFloat}
+      />
+    </div>
   );
 }

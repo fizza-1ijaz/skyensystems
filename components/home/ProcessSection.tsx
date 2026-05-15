@@ -10,6 +10,7 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import { useEffect, useMemo, useRef, useState } from "react";
+import { useMotionProfile } from "@/hooks/useMotionProfile";
 
 const ILLUS_DESKTOP_DEFAULT = "w-[min(220px,18vw)] max-w-[240px]";
 const ILLUS_EMBEDDED_DEFAULT =
@@ -112,6 +113,8 @@ function useSequentialGlow(stepCount: number, intervalMs: number, enabled: boole
 
 export function ProcessSection() {
   const reduceMotion = useReducedMotion();
+  const profile = useMotionProfile();
+  const isLite = profile !== "full";
   const sectionRef = useRef<HTMLElement>(null);
   const [liteParticles, setLiteParticles] = useState(false);
   const activeGlow = useSequentialGlow(STEPS.length, 1000, !reduceMotion);
@@ -151,11 +154,11 @@ export function ProcessSection() {
       />
 
       {/* Floating blobs */}
-      {!reduceMotion && (
+      {!reduceMotion && !isLite && (
         <>
           <motion.div
             aria-hidden
-            className="pointer-events-none absolute -left-32 top-[12%] h-[min(420px,55vw)] w-[min(420px,55vw)] rounded-full bg-[#7c4dff]/25 blur-[100px] will-change-transform"
+            className="pointer-events-none absolute -left-32 top-[12%] h-[min(420px,55vw)] w-[min(420px,55vw)] rounded-full bg-[#7c4dff]/25 blur-[80px] will-change-transform"
             animate={{ x: [0, 36, 0], y: [0, 24, 0], scale: [1, 1.08, 1] }}
             transition={{ duration: 22, repeat: Infinity, ease: "easeInOut" }}
           />

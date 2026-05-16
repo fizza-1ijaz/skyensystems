@@ -25,6 +25,14 @@ import {
   Layers,
   HardDrive,
   Plug,
+  Globe,
+  Layout,
+  Zap,
+  Bot,
+  Megaphone,
+  LineChart,
+  Users,
+  Palette,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 
@@ -408,6 +416,93 @@ export function HeroTechCornerIcons() {
   return <CornerTechIcons iconColors={HERO_ICON_COLORS} />;
 }
 
+/** Accent colors per service card — matches service-card-themes */
+const SERVICE_CARD_ICON_COLORS: Record<string, readonly string[]> = {
+  web: ["#1E40AF", "#2563eb", "#3b82f6", "#1E3A8A", "#0ea5e9"],
+  mobile: ["#BE185D", "#DB2777", "#EC4899", "#9D174D", "#f472b6"],
+  uiux: ["#6D28D9", "#7C3AED", "#8B5CF6", "#4C1D95", "#a78bfa"],
+  ai: ["#B45309", "#D97706", "#F59E0B", "#C2410C", "#fbbf24"],
+  marketing: ["#15803D", "#16a34a", "#22c55e", "#14532D", "#4ade80"],
+  teams: ["#C2410C", "#EA580C", "#F97316", "#9A3412", "#fb923c"],
+};
+
+const CARD_SCATTER_SLOTS: Pick<TechIconConfig, "insetX" | "insetY" | "rotate" | "nudgeX" | "nudgeY">[] = [
+  { insetX: "2%", insetY: "6%", rotate: -34, nudgeY: 4 },
+  { insetX: "82%", insetY: "8%", rotate: 22 },
+  { insetX: "44%", insetY: "4%", rotate: 48, nudgeX: -6 },
+  { insetX: "10%", insetY: "38%", rotate: -48 },
+  { insetX: "76%", insetY: "34%", rotate: 36, nudgeY: 6 },
+  { insetX: "52%", insetY: "42%", rotate: -22 },
+  { insetX: "24%", insetY: "72%", rotate: 18 },
+  { insetX: "68%", insetY: "68%", rotate: -40, nudgeX: 8 },
+  { insetX: "4%", insetY: "58%", rotate: 52 },
+  { insetX: "88%", insetY: "52%", rotate: -16 },
+  { insetX: "36%", insetY: "22%", rotate: 28 },
+  { insetX: "58%", insetY: "78%", rotate: -28, nudgeY: -4 },
+];
+
+const SERVICE_CARD_SCATTER_ICONS: Record<string, LucideIcon[]> = {
+  web: [Globe, Monitor, Code2, Laptop, Terminal, Braces, GitBranch, Keyboard, Server, Cloud],
+  mobile: [Smartphone, Tablet, Cpu, Wifi, Plug, Layers, Bug, HardDrive],
+  uiux: [Layout, PenLine, Palette, MousePointer2, Layers, Monitor, PenLine, Tablet],
+  ai: [Zap, Bot, Cpu, Cloud, Terminal, Braces, Database, Server],
+  marketing: [Megaphone, LineChart, Database, Wifi, Globe, Cloud, Layers, MousePointer2],
+  teams: [Users, Terminal, GitBranch, Server, Laptop, Keyboard, Cpu, Plug],
+};
+
+function buildServiceCardScatter(serviceId: string, cardIndex: number): TechIconConfig[] {
+  const icons = SERVICE_CARD_SCATTER_ICONS[serviceId] ?? SERVICE_CARD_SCATTER_ICONS.web;
+  const offset = cardIndex % CARD_SCATTER_SLOTS.length;
+
+  return icons.map((Icon, i) => {
+    const slot = CARD_SCATTER_SLOTS[(i + offset) % CARD_SCATTER_SLOTS.length];
+    return {
+      Icon,
+      insetX: slot.insetX,
+      insetY: slot.insetY,
+      size: 34 + (i % 4) * 8,
+      opacity: 0.36 + (i % 3) * 0.06,
+      rotate: slot.rotate + (cardIndex % 2 === 0 ? 0 : 6),
+      delay: i * 0.05,
+      nudgeX: slot.nudgeX,
+      nudgeY: slot.nudgeY,
+    };
+  });
+}
+
+/** Scattered tech icons behind each individual service card in the scroll viewer */
+export function ServiceCardBackgroundIcons({
+  serviceId,
+  cardIndex,
+  animate = true,
+}: {
+  serviceId: string;
+  cardIndex: number;
+  animate?: boolean;
+}) {
+  const profile = useMotionProfile();
+  const reduceMotion = useReducedMotion();
+
+  if (profile === "minimal" || reduceMotion) return null;
+
+  const icons = buildServiceCardScatter(serviceId, cardIndex);
+  const iconColors = SERVICE_CARD_ICON_COLORS[serviceId] ?? SERVICE_CARD_ICON_COLORS.web;
+  const desktopCount = profile === "lite" ? 8 : icons.length;
+  const mobileCount = profile === "lite" ? 5 : 7;
+  const animateFloat = profile === "full" && animate;
+
+  return (
+    <ScatteredTechIcons
+      icons={icons}
+      iconColors={iconColors}
+      className="pointer-events-none absolute inset-0 z-0 overflow-hidden rounded-[2rem] md:rounded-[2.5rem]"
+      desktopCount={desktopCount}
+      mobileCount={mobileCount}
+      animateFloat={animateFloat}
+    />
+  );
+}
+
 /** Themed icons scattered across the full scroll service viewer background */
 export function ServiceScrollCornerIcons() {
   const profile = useMotionProfile();
@@ -421,15 +516,18 @@ export function ServiceScrollCornerIcons() {
   const mobileCount = profile === "lite" ? 8 : 14;
 
   return (
-    <div ref={ref as unknown as RefObject<HTMLDivElement>} className="pointer-events-none absolute inset-0 z-0">
+    <motion.div
+      ref={ref as unknown as RefObject<HTMLDivElement>}
+      className="pointer-events-none absolute inset-x-0 top-0 z-0 min-h-full"
+    >
       <ScatteredTechIcons
         icons={SERVICE_SCROLL_SCATTER_ICONS}
         iconColors={SERVICE_SCROLL_ICON_COLORS}
-        className="absolute inset-0"
+        className="absolute inset-0 min-h-full"
         desktopCount={desktopCount}
         mobileCount={mobileCount}
         animateFloat={animateFloat}
       />
-    </div>
+    </motion.div>
   );
 }

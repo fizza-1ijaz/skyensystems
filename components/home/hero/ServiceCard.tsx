@@ -8,6 +8,7 @@ import { ArrowUpRight } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { getServiceCardTheme } from "@/lib/service-card-themes";
 import { useRevealOnce } from "@/hooks/useRevealOnce";
+import { ServiceCardBackgroundIcons } from "./HeroTechCornerIcons";
 
 export type HeroScrollService = {
   id: string;
@@ -47,7 +48,8 @@ export function ServiceCard({
       style={swayStyle}
       className={`service-card-sway relative flex flex-col ${isVisible ? "is-visible" : ""} ${index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"} items-center gap-4 md:gap-12`}
     >
-      <div className="w-full md:w-1/2 group">
+      <ServiceCardBackgroundIcons serviceId={service.id} cardIndex={index} animate={isVisible} />
+      <div className="relative z-[1] w-full md:w-1/2 group">
         <div
           className={`relative overflow-hidden rounded-[2.5rem] border p-8 transition-all duration-700 md:rounded-[3rem] md:p-10 ${theme.card}`}
         >
@@ -56,11 +58,13 @@ export function ServiceCard({
           />
           <div className="relative">
             <div
-              className={`mb-6 flex h-16 w-16 items-center justify-center rounded-[1.5rem] border bg-white/80 shadow-sm transition-all duration-700 group-hover:rotate-6 group-hover:scale-110 md:mb-8 md:h-20 md:w-20 md:rounded-[2rem] ${theme.highlight}`}
+              className={`mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-[1.5rem] border bg-white/80 shadow-sm transition-all duration-700 group-hover:rotate-6 group-hover:scale-110 md:mx-0 md:mb-8 md:h-20 md:w-20 md:rounded-[2rem] ${theme.highlight}`}
             >
               <Icon className={`h-8 w-8 md:h-10 md:w-10 ${theme.label}`} />
             </div>
-            <h2 className={`mb-4 text-3xl font-black tracking-tighter md:mb-6 md:text-4xl ${theme.headline}`}>
+            <h2
+              className={`mb-4 text-center text-3xl font-black tracking-tighter md:mb-6 md:text-left md:text-4xl ${theme.headline}`}
+            >
               {service.title}
             </h2>
             <p className={`mb-6 text-base font-medium leading-relaxed md:mb-8 md:text-lg ${theme.body}`}>
@@ -82,7 +86,7 @@ export function ServiceCard({
         </div>
       </div>
 
-      <div className="hidden w-full flex-col items-center justify-center md:flex md:w-1/2">
+      <div className="relative z-[1] hidden w-full flex-col items-center justify-center md:flex md:w-1/2">
         <div className="relative group">
           <div
             className={`pointer-events-none absolute inset-0 opacity-15 blur-[100px] transition-opacity duration-700 group-hover:opacity-25 ${theme.overlay}`}
@@ -131,7 +135,7 @@ export function ServiceCard({
         </Link>
       </div>
 
-      <div className="relative w-full md:hidden">
+      <div className="relative z-[1] w-full md:hidden">
         <div
           className={`relative w-full rounded-2xl border p-2 backdrop-blur-md transition-all duration-700 ${theme.imageBorder} bg-white/50`}
         >
@@ -150,7 +154,7 @@ export function ServiceCard({
         </div>
       </div>
 
-      <div className="flex w-full justify-center md:hidden">
+      <div className="relative z-[1] flex w-full justify-center md:hidden">
         <Link
           href={`/services/${service.slug}`}
           className={`inline-flex items-center gap-3 rounded-2xl px-8 py-4 text-base font-bold shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl ${theme.cta}`}

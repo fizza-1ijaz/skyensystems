@@ -6,13 +6,13 @@ import { FoundingBannerCornerIcons } from "./FoundingBannerCornerIcons";
 
 export function FoundingBanner() {
   return (
-    <section className="-mt-6 w-full overflow-hidden bg-gradient-to-r from-[#EEF3FF] via-[#F7F8FC] to-[#E8F8FF] px-0 pb-12 pt-0 md:-mt-10 md:pb-14">
+    <section className="mt-8 w-full overflow-hidden bg-gradient-to-r from-[#EEF3FF] via-[#F7F8FC] to-[#E8F8FF] px-0 pb-0 pt-0 md:-mt-10">
       <motion.div
         initial={{ opacity: 0, y: 24 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.3 }}
         transition={{ duration: 0.45, ease: "easeOut" }}
-        className="relative isolate w-full overflow-hidden border-y border-white/70 bg-white/66 px-6 py-12 text-center shadow-[0_26px_70px_-42px_rgba(15,23,42,0.35)] md:px-10"
+        className="relative isolate w-full overflow-hidden border-t border-white/70 bg-white/66 px-6 py-12 text-center shadow-[0_26px_70px_-42px_rgba(15,23,42,0.35)] md:px-10"
       >
         <div
           className="pointer-events-none absolute inset-0"

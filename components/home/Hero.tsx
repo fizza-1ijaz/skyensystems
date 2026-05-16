@@ -206,9 +206,9 @@ export function Hero() {
       </motion.div>
 
       <div className="relative z-20 w-full overflow-hidden bg-[#f8fafc]">
-        {profile !== "minimal" ? <ServiceScrollCornerIcons /> : null}
-        <div className="relative z-10 mx-auto max-w-7xl px-6">
-          <div className={cardSpacing}>
+        <div className="relative mx-auto max-w-7xl px-6">
+          {profile !== "minimal" ? <ServiceScrollCornerIcons /> : null}
+          <div className={`relative z-10 ${cardSpacing}`}>
             {services.map((service, idx) => (
               <ServiceCard key={service.id} service={service} index={idx} />
             ))}

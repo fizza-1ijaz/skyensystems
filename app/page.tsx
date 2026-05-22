@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import dynamic from "next/dynamic";
+import { BlogPreviewSection } from "@/components/home/BlogPreviewSection";
 import { Hero } from "@/components/home/Hero";
 
 const ProblemSection = dynamic(
@@ -62,6 +63,7 @@ export default function Home() {
       <ProcessSection />
       <ProductsShowcase />
       <PricingSection />
+      <BlogPreviewSection />
       <FoundingBanner />
     </>
   );

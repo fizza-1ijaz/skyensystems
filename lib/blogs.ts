@@ -1,7 +1,7 @@
 import { cache } from "react";
 import { supabase } from "@/lib/supabaseClient";
 
-const SITE_KEY = (process.env.SITE_KEY || "studiely").trim();
+const SITE_KEY = (process.env.SITE_KEY || "skyen-systems").trim();
 const SITE_ID_OVERRIDE = process.env.SITE_ID?.trim() || "";
 
 const SUPABASE_QUERY_RETRIES = Math.max(
@@ -286,6 +286,13 @@ export async function getBlogBySlugForConfiguredSite(
   if (!row) return null;
   const typedRow = row as Omit<BlogPostRow, "category"> & { category: unknown };
   return { ...typedRow, category: normalizeCategory(typedRow.category) };
+}
+
+export async function getRecentBlogsForConfiguredSite(
+  limit = 3,
+): Promise<BlogListRow[]> {
+  const { posts } = await getBlogIndexDataForConfiguredSite();
+  return posts.slice(0, Math.max(0, limit));
 }
 
 export async function getBlogSlugsForConfiguredSite(): Promise<

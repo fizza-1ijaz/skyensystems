@@ -16,7 +16,7 @@
   --foreground: #0f172a;
   --accent: #6c63ff;
   --accent-foreground: #ffffff;
-  --site-nav-height: 3.75rem; /* 4px top bar + 56px nav */
+  --site-nav-height: 3.5rem; /* 56px nav (h-14) */
 }
 
 html {

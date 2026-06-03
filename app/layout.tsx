@@ -63,7 +63,7 @@ export const viewport = {
   width: "device-width",
   initialScale: 1,
   viewportFit: "cover",
-  themeColor: "#0F172A",
+  themeColor: "#F2F2F2",
 };
 
 export default function RootLayout({
@@ -105,7 +105,7 @@ gtag('config', '${gaMeasurementId}', { anonymize_ip: true });`}
         <GlobalCursorGlow />
         <SmoothScrollProvider>
           <Navbar />
-          <div className="flex-1 pt-[3.75rem]">{children}</div>
+          <div className="flex-1 pt-14">{children}</div>
           <Footer />
         </SmoothScrollProvider>
         <CookieConsent />

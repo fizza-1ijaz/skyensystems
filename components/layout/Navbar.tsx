@@ -197,11 +197,8 @@ export function Navbar() {
   const closeMobile = () => setIsMobileMenuOpen(false);
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 overflow-visible">
-      <div className="h-1 w-full bg-[#3D2B3D]" aria-hidden />
-
-      <div className="overflow-visible border-b border-[#E0E0E0] bg-[#F2F2F2]">
-        <div className="mx-auto flex h-14 max-w-[1440px] items-stretch overflow-visible px-4 md:px-6 lg:px-8">
+    <header className="fixed inset-x-0 top-0 z-50 overflow-visible border-b border-[#E0E0E0] bg-[#F2F2F2]">
+      <div className="mx-auto flex h-14 max-w-[1440px] items-stretch overflow-visible px-4 md:px-6 lg:px-8">
           <div className="flex shrink-0 items-center pr-4 lg:pr-6">
             <Link
               href="/"
@@ -275,7 +272,6 @@ export function Navbar() {
             </button>
           </div>
         </div>
-      </div>
 
       {isMobileMenuOpen ? (
         <div className="border-b border-[#E0E0E0] bg-[#F2F2F2] lg:hidden">

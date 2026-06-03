@@ -8,6 +8,7 @@ type ContactPayload = {
   email: string;
   phone?: string;
   budget: string;
+  timeline?: string;
   projectDescription: string;
   source: string;
 };
@@ -25,10 +26,12 @@ function validatePayload(data: unknown): data is ContactPayload {
   if (!data || typeof data !== "object") return false;
   const payload = data as Record<string, unknown>;
 
-  const requiredFields = ["fullName", "service", "email", "budget", "projectDescription", "source"] as const;
-  return requiredFields.every(
-    (field) => typeof payload[field] === "string" && payload[field].trim().length > 0,
-  ) && (payload.projectDescription as string).trim().length >= 50;
+  const requiredFields = ["fullName", "service", "email", "budget", "projectDescription"] as const;
+  return (
+    requiredFields.every(
+      (field) => typeof payload[field] === "string" && payload[field].trim().length > 0,
+    ) && (payload.projectDescription as string).trim().length >= 50
+  );
 }
 
 export async function POST(request: Request) {
@@ -41,6 +44,8 @@ export async function POST(request: Request) {
         { status: 400 },
       );
     }
+
+    const source = data.source?.trim() || "Contact page";
 
     const missingEnvVars = requiredEnvVars.filter((key) => !process.env[key]);
     if (missingEnvVars.length > 0) {
@@ -78,7 +83,8 @@ export async function POST(request: Request) {
         `Phone: ${data.phone?.trim() || "N/A"}`,
         `Service: ${data.service}`,
         `Budget: ${data.budget}`,
-        `How did you find us?: ${data.source}`,
+        `Timeline: ${data.timeline?.trim() || "N/A"}`,
+        `How did you find us?: ${source}`,
         "",
         "Project Description:",
         data.projectDescription,

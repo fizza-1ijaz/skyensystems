@@ -18,6 +18,8 @@ export default async function BlogPage() {
   return (
     <BlogPageContent
       posts={blogData.posts}
+      categories={blogData.categories}
+      seo={blogData.seo}
       emptyStateMessage={blogData.seo.empty_state_message}
     />
   );

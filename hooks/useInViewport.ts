@@ -10,21 +10,25 @@ type UseInViewportOptions = {
 
 /**
  * IntersectionObserver hook — use to pause offscreen animations / defer work.
+ * Target node state is updated after commit so we never setState during render/ref attachment.
  */
 export function useInViewport({
   rootMargin = "120px",
   threshold = 0,
   once = false,
 }: UseInViewportOptions = {}) {
-  const [node, setNode] = useState<HTMLElement | null>(null);
+  const [target, setTarget] = useState<HTMLElement | null>(null);
   const [inView, setInView] = useState(false);
 
   const ref = useCallback((el: HTMLElement | null) => {
-    setNode(el);
+    queueMicrotask(() => setTarget(el));
   }, []);
 
   useEffect(() => {
-    if (!node) return;
+    if (!target) {
+      setInView(false);
+      return;
+    }
 
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -38,9 +42,9 @@ export function useInViewport({
       { rootMargin, threshold },
     );
 
-    observer.observe(node);
+    observer.observe(target);
     return () => observer.disconnect();
-  }, [node, rootMargin, threshold, once]);
+  }, [target, rootMargin, threshold, once]);
 
   return { ref, inView };
 }

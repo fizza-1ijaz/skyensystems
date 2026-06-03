@@ -1,27 +1,26 @@
 import type { Metadata } from "next";
-import { Suspense } from "react";
-import { ServicesPageContent } from "@/components/marketing/ServicesPageContent";
+import { ServicesPage as ServicesPageView } from "@/components/services/ServicesPage";
 
 export const metadata: Metadata = {
-  title: "Web Development Services for Small Business | Skyen Systems",
+  title: "Software Engineering & Product Development Services | Skyen Systems",
   description:
-    "Every digital service your business needs: web development, mobile apps, UI/UX, AI solutions, digital marketing, and dedicated teams.",
+    "Strategy, design, engineering, AI, and growth — one accountable team solving complex business and technical problems for US, UK, and GCC clients.",
   alternates: {
     canonical: "/services",
   },
 };
 
-export default function ServicesPage() {
+export default function ServicesRoute() {
   const serviceSchema = {
     "@context": "https://schema.org",
     "@type": "Service",
-    serviceType: "Digital product and growth services for small businesses",
+    serviceType: "Software engineering and product development",
     provider: {
       "@type": "Organization",
       name: "Skyen Systems",
       url: "https://skyensystems.com",
     },
-    areaServed: "US",
+    areaServed: ["US", "UK", "Pakistan", "Bahrain"],
   };
 
   return (
@@ -30,11 +29,7 @@ export default function ServicesPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
       />
-      <Suspense fallback={null}>
-        <ServicesPageContent />
-      </Suspense>
+      <ServicesPageView />
     </>
   );
 }
-
-

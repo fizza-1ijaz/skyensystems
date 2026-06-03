@@ -85,7 +85,7 @@ export default function RootLayout({
         <link rel="preconnect" href="https://www.googletagmanager.com" />
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
       </head>
-      <body className="min-h-full flex flex-col bg-[#F7F9FC] text-[#0F172A]">
+      <body className="min-h-full flex flex-col bg-[#F4F4F2] text-[#141414]">
         {gaMeasurementId ? (
           <>
             <Script
@@ -105,7 +105,7 @@ gtag('config', '${gaMeasurementId}', { anonymize_ip: true });`}
         <GlobalCursorGlow />
         <SmoothScrollProvider>
           <Navbar />
-          <div className="flex-1">{children}</div>
+          <div className="flex-1 pt-[3.75rem]">{children}</div>
           <Footer />
         </SmoothScrollProvider>
         <CookieConsent />

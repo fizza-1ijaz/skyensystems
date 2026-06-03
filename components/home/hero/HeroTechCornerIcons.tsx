@@ -1,6 +1,5 @@
 "use client";
 
-import type { RefObject } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { useMotionProfile } from "@/hooks/useMotionProfile";
 import { useInViewport } from "@/hooks/useInViewport";
@@ -517,7 +516,7 @@ export function ServiceScrollCornerIcons() {
 
   return (
     <motion.div
-      ref={ref as unknown as RefObject<HTMLDivElement>}
+      ref={ref}
       className="pointer-events-none absolute inset-x-0 top-0 z-0 min-h-full"
     >
       <ScatteredTechIcons

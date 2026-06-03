@@ -1,15 +1,18 @@
-import Link from "next/link";
+"use client";
+
+import type { ReactNode } from "react";
 import Image from "next/image";
+import Link from "next/link";
+import { BlogBlueprintBackdrop } from "@/components/blog/BlogBlueprintBackdrop";
 import {
   HEAD_OFFICE_ADDRESS_BLOCK,
   HEAD_OFFICE_CR,
-  HEAD_OFFICE_LABEL,
   HEAD_OFFICE_PHONE,
   LEGAL_ENTITY_LINE,
   OFFICE_EMAIL,
+  OFFICE_EMAIL_MAILTO,
   REGIONAL_OFFICE_ADDRESS_BLOCK,
   REGIONAL_OFFICE_HOURS,
-  REGIONAL_OFFICE_LABEL,
   REGIONAL_OFFICE_NAME,
   REGIONAL_OFFICE_PHONE,
   REGIONAL_OFFICE_PSEB_PLACEHOLDER,
@@ -22,143 +25,266 @@ const servicesLinks = [
   { label: "AI Solutions", href: "/services" },
   { label: "Digital Marketing", href: "/services" },
   { label: "Dedicated Teams", href: "/services" },
-];
+] as const;
 
 const companyLinks = [
-  { label: "About Us", href: "/about" },
+  { label: "About Us", href: "/about/who-we-are" },
   { label: "Services", href: "/services" },
   { label: "Products", href: "/products" },
   { label: "Blog", href: "/blog" },
   { label: "FAQ", href: "/faq" },
   { label: "Contact", href: "/contact-us" },
-];
+] as const;
 
 const productsLinks = [
   { label: "Studiely", href: "https://studiely.com" },
   { label: "Make My Lesson", href: "https://makemylesson.ai" },
   { label: "Linguatude", href: "https://linguatude.com" },
-];
+] as const;
 
 const legalLinks = [
   { label: "Privacy Policy", href: "/privacy-policy" },
   { label: "Terms of Service", href: "/terms-of-service" },
   { label: "Cookies Policy", href: "/cookies-policy" },
   { label: "Refund Policy", href: "/refund-policy" },
-];
+] as const;
+
+const FOOTER_METRICS = [
+  { value: "Software", label: "Engineering" },
+  { value: "AI", label: "Solutions" },
+  { value: "Bahrain", label: "HQ" },
+  { value: "Pakistan", label: "Delivery Centre" },
+] as const;
+
+function FooterLink({
+  href,
+  children,
+  external = false,
+}: {
+  href: string;
+  children: ReactNode;
+  external?: boolean;
+}) {
+  const className =
+    "group inline-flex text-sm text-white/65 transition-colors duration-200 hover:text-white";
+
+  if (external) {
+    return (
+      <a
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={className}
+      >
+        <span className="border-b border-transparent pb-0.5 transition-colors duration-200 group-hover:border-[#6C63FF]">
+          {children}
+        </span>
+      </a>
+    );
+  }
+
+  return (
+    <Link href={href} className={className}>
+      <span className="border-b border-transparent pb-0.5 transition-colors duration-200 group-hover:border-[#6C63FF]">
+        {children}
+      </span>
+    </Link>
+  );
+}
+
+function FooterNavGroup({ title, links }: { title: string; links: readonly { label: string; href: string }[] }) {
+  return (
+    <div>
+      <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#6C63FF]">
+        {title}
+      </p>
+      <ul className="mt-5 space-y-3">
+        {links.map((link) => (
+          <li key={link.label}>
+            <FooterLink href={link.href} external={link.href.startsWith("http")}>
+              {link.label}
+            </FooterLink>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
 
 export function Footer() {
   return (
-    <footer className="mt-0 border-t border-slate-800 bg-[#0F172A]">
-      <div className="mx-auto max-w-7xl px-6 pt-12 pb-12 md:px-10">
-        <div className="mb-12 flex items-center gap-3">
-          <Link href="/" className="group flex items-center gap-3">
-            <div className="relative overflow-hidden rounded-xl border border-slate-700 shadow-xl shadow-black/20">
-              <Image
-                src="/logo.jpeg"
-                alt="Skyen Systems logo"
-                width={40}
-                height={40}
-                className="object-cover"
-              />
-            </div>
-            <span className="text-xl font-bold tracking-tight text-white">
-              SKYEN <span className="text-[#8B8CFF]">SYSTEMS</span>
-            </span>
-          </Link>
-        </div>
+    <footer className="relative mt-0 min-h-[700px] overflow-hidden bg-[#111827] text-white md:min-h-[820px]">
+      <BlogBlueprintBackdrop variant="dark" className="opacity-[0.035]" parallax />
 
-        <div className="grid grid-cols-2 gap-8 md:gap-12 md:grid-cols-4">
-          <div>
-            <h4 className="mb-6 text-xs font-bold uppercase tracking-widest text-slate-400">Services</h4>
-            <ul className="space-y-3">
-              {servicesLinks.map((link) => (
-                <li key={link.label}>
-                  <Link href={link.href} className="tactile-footer-link inline-flex items-center gap-2 text-sm font-semibold text-slate-300 transition-colors hover:text-white">
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
+      <span
+        className="pointer-events-none absolute -right-4 top-24 select-none font-heading text-[clamp(14rem,32vw,24rem)] font-bold leading-none text-white opacity-[0.025] md:-right-8 md:top-20"
+        aria-hidden
+      >
+        07
+      </span>
+
+      <div className="relative z-10 mx-auto max-w-[1440px] px-6 md:px-10">
+        {/* Top CTA */}
+        <section className="border-b border-white/10 py-20 text-center md:py-28">
+          <h2 className="mx-auto max-w-3xl font-heading text-[clamp(2.25rem,5.5vw,3.75rem)] font-bold leading-[1.02] tracking-[-0.03em] text-[#FAFAF8]">
+            Building software that moves businesses forward.
+          </h2>
+          <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-5">
+            <Link
+              href="/contact-us#inquiry"
+              className="inline-flex min-w-[220px] items-center justify-center bg-[#6C63FF] px-10 py-4 text-sm font-semibold uppercase tracking-[0.14em] text-white transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#5A52E8]"
+            >
+              Start a project
+            </Link>
+            <Link
+              href="/contact-us"
+              className="inline-flex min-w-[220px] items-center justify-center border border-white/35 bg-transparent px-10 py-4 text-sm font-semibold uppercase tracking-[0.14em] text-white transition-all duration-200 hover:-translate-y-0.5 hover:border-white hover:bg-white/5"
+            >
+              Contact us
+            </Link>
+          </div>
+        </section>
+
+        {/* Main grid */}
+        <section className="grid gap-12 border-b border-white/10 py-16 md:grid-cols-12 md:gap-10 md:py-20 lg:gap-12">
+          <div className="md:col-span-4">
+            <Link href="/" className="inline-flex items-center gap-3">
+              <div className="relative h-10 w-10 overflow-hidden border border-white/15">
+                <Image
+                  src="/logo.jpeg"
+                  alt="Skyen Systems logo"
+                  width={40}
+                  height={40}
+                  className="object-cover"
+                />
+              </div>
+              <span className="font-heading text-lg font-bold tracking-tight text-white">
+                SKYEN <span className="text-[#6C63FF]">SYSTEMS</span>
+              </span>
+            </Link>
+            <p className="mt-6 max-w-sm text-sm leading-relaxed text-white/55">
+              Software engineering, AI solutions, and digital products for ambitious
+              organizations.
+            </p>
           </div>
 
-          <div>
-            <h4 className="mb-6 text-xs font-bold uppercase tracking-widest text-slate-400">Company</h4>
-            <ul className="space-y-3">
-              {companyLinks.map((link) => (
-                <li key={link.label}>
-                  <Link href={link.href} className="tactile-footer-link inline-flex text-sm font-semibold text-slate-300 transition-colors hover:text-white">
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
+          <div className="grid gap-10 sm:grid-cols-2 md:col-span-4">
+            <FooterNavGroup title="Company" links={companyLinks} />
+            <FooterNavGroup title="Services" links={servicesLinks} />
           </div>
 
-          <div>
-            <h4 className="mb-6 text-xs font-bold uppercase tracking-widest text-slate-400">Products</h4>
-            <ul className="space-y-3">
-              {productsLinks.map((link) => (
-                <li key={link.label}>
-                  <a 
-                    href={link.href} 
-                    rel={link.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                    target={link.href.startsWith("http") ? "_blank" : undefined}
-                    className="tactile-footer-link inline-flex text-sm font-semibold text-slate-300 transition-colors hover:text-white"
+          <div className="grid gap-10 sm:grid-cols-2 md:col-span-4">
+            <FooterNavGroup title="Products" links={productsLinks} />
+            <FooterNavGroup title="Legal" links={legalLinks} />
+          </div>
+        </section>
+
+        {/* Metrics strip */}
+        <section className="border-b border-white/10 py-12 md:py-14">
+          <div className="grid gap-px bg-white/10 sm:grid-cols-2 lg:grid-cols-4">
+            {FOOTER_METRICS.map((metric) => (
+              <div key={metric.label} className="bg-[#111827] px-6 py-6 md:px-8 md:py-7">
+                <p className="font-heading text-2xl font-bold tracking-tight text-[#FAFAF8] md:text-[1.75rem]">
+                  {metric.value}
+                </p>
+                <p className="mt-1.5 text-[10px] font-semibold uppercase tracking-[0.18em] text-white/45">
+                  {metric.label}
+                </p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Offices */}
+        <section className="py-16 md:py-20">
+          <h3 className="font-heading text-3xl font-bold tracking-[-0.03em] text-[#FAFAF8] md:text-4xl">
+            Global presence
+          </h3>
+
+          <div className="mt-10 grid gap-6 lg:grid-cols-12 lg:gap-8">
+            <article className="border-t-2 border-[#6C63FF] bg-white/[0.03] p-8 transition-colors duration-200 hover:border-[#6C63FF]/80 hover:bg-white/[0.045] md:p-10 lg:col-span-7">
+              <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#6C63FF]">
+                Head office
+              </p>
+              <p className="mt-3 font-heading text-xl font-bold text-white md:text-2xl">
+                Bahrain
+              </p>
+              <p className="mt-4 text-sm font-medium text-white/75">{LEGAL_ENTITY_LINE}</p>
+              <div className="mt-4 space-y-1 text-sm leading-relaxed text-white/55">
+                {HEAD_OFFICE_ADDRESS_BLOCK.map((line) => (
+                  <p key={line}>{line}</p>
+                ))}
+              </div>
+              <div className="mt-6 space-y-2 border-t border-white/10 pt-6 text-sm text-white/55">
+                <p>{HEAD_OFFICE_CR}</p>
+                <p>
+                  Phone:{" "}
+                  <a
+                    href={`tel:${HEAD_OFFICE_PHONE.replace(/\s/g, "")}`}
+                    className="text-white/75 transition-colors hover:text-[#6C63FF]"
                   >
-                    {link.label}
+                    {HEAD_OFFICE_PHONE}
                   </a>
-                </li>
-              ))}
-            </ul>
-          </div>
+                </p>
+                <p>
+                  Email:{" "}
+                  <a
+                    href={OFFICE_EMAIL_MAILTO}
+                    className="text-white/75 transition-colors hover:text-[#6C63FF]"
+                  >
+                    {OFFICE_EMAIL}
+                  </a>
+                </p>
+              </div>
+            </article>
 
-          <div>
-            <h4 className="mb-6 text-xs font-bold uppercase tracking-widest text-slate-400">Legal</h4>
-            <ul className="space-y-3">
-              {legalLinks.map((link) => (
-                <li key={link.label}>
-                  <Link href={link.href} className="tactile-footer-link inline-flex text-sm font-semibold text-slate-300 transition-colors hover:text-white">
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
+            <article className="border border-white/[0.08] bg-white/[0.03] p-8 transition-colors duration-200 hover:border-white/15 hover:bg-white/[0.045] md:p-10 lg:col-span-5">
+              <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-white/45">
+                Regional office
+              </p>
+              <p className="mt-3 font-heading text-xl font-bold text-white md:text-2xl">
+                Pakistan
+              </p>
+              <p className="mt-4 text-sm font-medium text-white/75">{REGIONAL_OFFICE_NAME}</p>
+              <div className="mt-4 space-y-1 text-sm leading-relaxed text-white/55">
+                {REGIONAL_OFFICE_ADDRESS_BLOCK.map((line) => (
+                  <p key={line}>{line}</p>
+                ))}
+              </div>
+              <div className="mt-6 space-y-2 border-t border-white/10 pt-6 text-sm text-white/55">
+                <p>{REGIONAL_OFFICE_PSEB_PLACEHOLDER}</p>
+                <p>
+                  Phone:{" "}
+                  <a
+                    href={`tel:${REGIONAL_OFFICE_PHONE.replace(/\s/g, "")}`}
+                    className="text-white/75 transition-colors hover:text-[#6C63FF]"
+                  >
+                    {REGIONAL_OFFICE_PHONE}
+                  </a>
+                </p>
+                <p>
+                  Email:{" "}
+                  <a
+                    href={OFFICE_EMAIL_MAILTO}
+                    className="text-white/75 transition-colors hover:text-[#6C63FF]"
+                  >
+                    {OFFICE_EMAIL}
+                  </a>
+                </p>
+                <p>{REGIONAL_OFFICE_HOURS}</p>
+              </div>
+            </article>
           </div>
-        </div>
+        </section>
 
-        <div className="mt-12 grid gap-8 border-t border-slate-800 pt-10 text-left md:grid-cols-2">
-          <div className="space-y-2 text-xs leading-relaxed text-slate-400">
-            <p className="text-[10px] font-bold uppercase tracking-widest text-slate-500">{HEAD_OFFICE_LABEL}</p>
-            <p className="font-semibold text-slate-200">{LEGAL_ENTITY_LINE}</p>
-            {HEAD_OFFICE_ADDRESS_BLOCK.map((line) => (
-              <p key={line}>{line}</p>
-            ))}
-            <p>{HEAD_OFFICE_CR}</p>
-            <p>Phone: {HEAD_OFFICE_PHONE}</p>
-            <p>Email: {OFFICE_EMAIL}</p>
-          </div>
-          <div className="space-y-2 text-xs leading-relaxed text-slate-400">
-            <p className="text-[10px] font-bold uppercase tracking-widest text-slate-500">{REGIONAL_OFFICE_LABEL}</p>
-            <p className="font-semibold text-slate-200">{REGIONAL_OFFICE_NAME}</p>
-            {REGIONAL_OFFICE_ADDRESS_BLOCK.map((line) => (
-              <p key={line}>{line}</p>
-            ))}
-            <p>{REGIONAL_OFFICE_PSEB_PLACEHOLDER}</p>
-            <p>Phone: {REGIONAL_OFFICE_PHONE}</p>
-            <p>Email: {OFFICE_EMAIL}</p>
-            <p>{REGIONAL_OFFICE_HOURS}</p>
-          </div>
-        </div>
-
-        <div className="mt-16 border-t border-slate-800 pt-8 text-center">
-          <p className="text-xs font-bold tracking-wide text-slate-500">
-            © 2025 Skyen Systems - a trade name of Qismat Ventures W.L.L. (CR
-            190698-1)
+        {/* Bottom bar */}
+        <div className="flex flex-col gap-4 border-t border-white/10 py-8 text-xs text-white/45 md:flex-row md:items-center md:justify-between md:py-10">
+          <p className="font-medium tracking-wide text-white/55">© 2025 Skyen Systems</p>
+          <p className="text-white/45">
+            A trade name of Qismat Ventures W.L.L. · CR 190698-1
           </p>
         </div>
       </div>
     </footer>
   );
 }
-
-

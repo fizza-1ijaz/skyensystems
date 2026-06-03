@@ -109,7 +109,10 @@ export function AboutPageContent() {
   return (
     <div className="relative flex min-h-screen flex-col overflow-x-hidden bg-white pb-8">
       {/* Top: sky-blue hero — headline + compact Lottie above white body */}
-      <section className="relative overflow-visible px-6 pb-4 pt-20 text-center md:px-10 md:pb-6 md:pt-[calc(5rem-50px)]">
+      <section
+        id="who-we-are"
+        className="relative scroll-mt-20 overflow-visible px-6 pb-4 pt-20 text-center md:px-10 md:pb-6 md:pt-[calc(5rem-50px)]"
+      >
         {/* Blue paint ends above section bottom — content / Lottie stay in normal flow */}
         <div
           className="pointer-events-none absolute inset-x-0 top-0 bottom-52 z-0 overflow-hidden bg-gradient-to-b from-sky-400 via-sky-500 to-sky-600 md:bottom-64"
@@ -234,7 +237,10 @@ export function AboutPageContent() {
           </div>
         </section>
 
-        <section className="relative mx-auto w-full max-w-7xl px-6 py-7 md:px-10 md:py-8">
+        <section
+          id="locations"
+          className="relative mx-auto w-full max-w-7xl scroll-mt-20 px-6 py-7 md:px-10 md:py-8"
+        >
           <div className="relative overflow-hidden rounded-[2rem] border border-[#dbe8ff] bg-white p-7 shadow-[0_35px_80px_-45px_rgba(84,113,182,0.78)] md:p-10">
             <p className="relative z-10 mb-4 text-center text-sm font-extrabold uppercase tracking-[0.16em] text-[#4a6288] sm:text-base md:mb-5 md:text-lg">
               Our Offices

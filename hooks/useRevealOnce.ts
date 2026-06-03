@@ -6,7 +6,7 @@ export function useRevealOnce(
   ref: RefObject<HTMLElement | null>,
   enabled = true,
 ): boolean {
-  const [visible, setVisible] = useState(!enabled);
+  const [visible, setVisible] = useState(false);
 
   useEffect(() => {
     if (!enabled) {

@@ -258,7 +258,7 @@ export function HomePageContent() {
           <div className="space-y-4 text-slate-600">
             <p>You have seen the quotes. $5,000 for a five-page website. $2,000 a month to post three times a week on Instagram.</p>
             <p>We removed agency overhead and kept capability. What is left is a fast, honest team delivering the same standard for a fraction of the price.</p>
-            <Link href="/about" className="inline-block rounded-xl border border-white/60 bg-white/70 px-5 py-2.5 text-sm font-semibold">How we work</Link>
+            <Link href="/about/who-we-are" className="inline-block rounded-xl border border-white/60 bg-white/70 px-5 py-2.5 text-sm font-semibold">How we work</Link>
           </div>
         </div>
       </section>
@@ -557,7 +557,7 @@ export function HomePageContent() {
       <section className="px-0 py-14">
         <div className="w-full rounded-none border-y border-white/50 bg-white/75 px-8 py-12 text-center shadow-[0_20px_60px_-32px_rgba(108,99,255,0.6)] md:px-16">
           <p className="text-sm font-semibold uppercase tracking-[0.14em] text-slate-500">Let us work together</p>
-          <h2 className="mt-3 text-4xl font-bold">
+          <h2 className="text-4xl font-bold">
             Ready to build something <span className="text-gradient">that actually works?</span>
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-slate-600">

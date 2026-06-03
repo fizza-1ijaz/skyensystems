@@ -6,6 +6,8 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://skyensystems.com";
 const staticRoutes = [
   "/",
   "/about",
+  "/about/who-we-are",
+  "/about/locations",
   "/services",
   "/products",
   "/pricing",

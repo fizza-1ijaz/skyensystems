@@ -1,17 +1,17 @@
 import type { Metadata } from "next";
-import { FaqPageContent } from "@/components/marketing/FaqPageContent";
+import { FaqPage as FaqPageView } from "@/components/faq/FaqPage";
 
 const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || "https://skyensystems.com").replace(/\/$/, "");
 
 export const metadata: Metadata = {
-  title: "Frequently Asked Questions | Skyen Systems",
+  title: "Before You Build — Client Guide | Skyen Systems",
   description:
-    "Answers to common questions about Skyen Systems' services, pricing in PKR and USD, payment methods, refund policy, office locations, and project process.",
+    "A strategic guide for prospective clients — project process, pricing, engagement models, security, and how Skyen Systems delivers transparent software partnerships.",
   alternates: {
     canonical: `${siteUrl}/faq`,
   },
 };
 
-export default function FaqPage() {
-  return <FaqPageContent />;
+export default function FaqRoute() {
+  return <FaqPageView />;
 }

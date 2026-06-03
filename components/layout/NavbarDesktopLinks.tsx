@@ -11,12 +11,18 @@ export function NavbarDesktopLinks({ linkClassName }: NavbarDesktopLinksProps) {
 
   return (
     <>
-      {MAIN_NAV_ITEMS.map((item) => (
-        <Link key={item.href} href={item.href} className={linkClass}>
-          {item.label}
-          <span className="absolute -bottom-1 left-0 h-0.5 w-0 bg-gradient-to-r from-[#6C63FF] to-[#22D3EE] transition-all group-hover:w-full" />
-        </Link>
-      ))}
+      {MAIN_NAV_ITEMS.map((item) =>
+        item.children?.length ? (
+          <span key={item.href} className={linkClass}>
+            {item.label}
+          </span>
+        ) : (
+          <Link key={item.href} href={item.href} className={linkClass}>
+            {item.label}
+            <span className="absolute -bottom-1 left-0 h-0.5 w-0 bg-gradient-to-r from-[#6C63FF] to-[#22D3EE] transition-all group-hover:w-full" />
+          </Link>
+        ),
+      )}
     </>
   );
 }

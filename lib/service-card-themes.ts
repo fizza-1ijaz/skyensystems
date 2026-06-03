@@ -8,6 +8,8 @@ export type ServiceCardTheme = {
   emphasis: string;
   cta: string;
   imageBorder: string;
+  /** RGB triplet for corner border glow, e.g. "56, 189, 248" */
+  glowRgb: string;
 };
 
 export const SERVICE_CARD_THEMES: Record<string, ServiceCardTheme> = {
@@ -22,6 +24,7 @@ export const SERVICE_CARD_THEMES: Record<string, ServiceCardTheme> = {
     emphasis: "text-[#0B1F4A]",
     cta: "bg-[#1E3A8A] text-white hover:bg-[#172554]",
     imageBorder: "border-sky-200/90",
+    glowRgb: "56, 189, 248",
   },
   mobile: {
     card: "border-pink-300/90 bg-gradient-to-br from-pink-100 via-pink-50 to-rose-50 shadow-[0_35px_75px_-40px_rgba(236,72,153,0.26)]",
@@ -34,6 +37,7 @@ export const SERVICE_CARD_THEMES: Record<string, ServiceCardTheme> = {
     emphasis: "text-[#701A35]",
     cta: "bg-[#9D174D] text-white hover:bg-[#831843]",
     imageBorder: "border-pink-200/90",
+    glowRgb: "236, 72, 153",
   },
   uiux: {
     card: "border-violet-300/90 bg-gradient-to-br from-violet-100 via-purple-50 to-fuchsia-50 shadow-[0_35px_75px_-40px_rgba(139,92,246,0.24)]",
@@ -46,6 +50,7 @@ export const SERVICE_CARD_THEMES: Record<string, ServiceCardTheme> = {
     emphasis: "text-[#3B0764]",
     cta: "bg-[#6D28D9] text-white hover:bg-[#5B21B6]",
     imageBorder: "border-violet-200/90",
+    glowRgb: "139, 92, 246",
   },
   ai: {
     card: "border-yellow-300/90 bg-gradient-to-br from-yellow-100 via-amber-50 to-yellow-50 shadow-[0_35px_75px_-40px_rgba(234,179,8,0.26)]",
@@ -58,6 +63,7 @@ export const SERVICE_CARD_THEMES: Record<string, ServiceCardTheme> = {
     emphasis: "text-[#713F12]",
     cta: "bg-[#C2410C] text-white hover:bg-[#9A3412]",
     imageBorder: "border-yellow-200/90",
+    glowRgb: "234, 179, 8",
   },
   marketing: {
     card: "border-green-300/90 bg-gradient-to-br from-green-100 via-emerald-50 to-green-50 shadow-[0_35px_75px_-40px_rgba(34,197,94,0.26)]",
@@ -70,6 +76,7 @@ export const SERVICE_CARD_THEMES: Record<string, ServiceCardTheme> = {
     emphasis: "text-[#064E3B]",
     cta: "bg-[#15803D] text-white hover:bg-[#166534]",
     imageBorder: "border-green-200/90",
+    glowRgb: "34, 197, 94",
   },
   teams: {
     card: "border-orange-300/90 bg-gradient-to-br from-orange-100 via-orange-50 to-amber-50 shadow-[0_35px_75px_-40px_rgba(249,115,22,0.26)]",
@@ -82,6 +89,7 @@ export const SERVICE_CARD_THEMES: Record<string, ServiceCardTheme> = {
     emphasis: "text-[#713F12]",
     cta: "bg-[#C2410C] text-white hover:bg-[#9A3412]",
     imageBorder: "border-orange-200/90",
+    glowRgb: "249, 115, 22",
   },
 };
 

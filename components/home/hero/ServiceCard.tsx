@@ -1,7 +1,7 @@
 "use client";
 
 import { useReducedMotion } from "framer-motion";
-import { useRef, type CSSProperties } from "react";
+import { useEffect, useRef, useState, type CSSProperties } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
@@ -29,7 +29,14 @@ export function ServiceCard({
 }) {
   const cardRef = useRef<HTMLDivElement>(null);
   const theme = getServiceCardTheme(service.id);
-  const reduceMotion = useReducedMotion();
+  const prefersReducedMotion = useReducedMotion();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const reduceMotion = mounted && Boolean(prefersReducedMotion);
   const fromLeft = index % 2 === 0;
   const isVisible = useRevealOnce(cardRef, !reduceMotion);
 
@@ -42,17 +49,25 @@ export function ServiceCard({
     "--sway-delay": `${index * 70}ms`,
   } as CSSProperties;
 
+  const cornerGlowStyle = { "--glow-rgb": theme.glowRgb } as CSSProperties;
+
   return (
     <div
       ref={cardRef}
       style={swayStyle}
-      className={`service-card-sway relative flex flex-col ${isVisible ? "is-visible" : ""} ${index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"} items-center gap-4 md:gap-12`}
+      className={`service-card-row service-card-sway relative flex flex-col ${isVisible ? "is-visible" : ""} ${index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"} items-center gap-4 md:gap-12`}
     >
       <ServiceCardBackgroundIcons serviceId={service.id} cardIndex={index} animate={isVisible} />
       <div className="relative z-[1] w-full md:w-1/2 group">
         <div
           className={`relative overflow-hidden rounded-[2.5rem] border p-8 transition-all duration-700 md:rounded-[3rem] md:p-10 ${theme.card}`}
         >
+          <div
+            className="service-card-corner-glow service-card-corner-glow--soft"
+            style={cornerGlowStyle}
+            aria-hidden
+          />
+          <div className="service-card-corner-glow" style={cornerGlowStyle} aria-hidden />
           <div
             className={`pointer-events-none absolute inset-0 rounded-[2.5rem] md:rounded-[3rem] ${theme.overlay}`}
           />
@@ -104,8 +119,18 @@ export function ServiceCard({
           </div>
 
           <div
-            className={`relative rounded-3xl border bg-white/40 p-3 backdrop-blur-md transition-all duration-700 hover:rotate-1 hover:scale-105 ${theme.imageBorder}`}
+            className={`relative overflow-hidden rounded-3xl border bg-white/40 p-3 backdrop-blur-md transition-all duration-700 hover:rotate-1 hover:scale-105 ${theme.imageBorder}`}
           >
+            <div
+              className="service-card-corner-glow service-card-corner-glow--soft rounded-3xl"
+              style={cornerGlowStyle}
+              aria-hidden
+            />
+            <div
+              className="service-card-corner-glow rounded-3xl"
+              style={cornerGlowStyle}
+              aria-hidden
+            />
             <div className={`relative h-72 w-[22rem] overflow-hidden rounded-2xl border shadow-2xl ${theme.imageBorder}`}>
               <Image
                 src={service.previewImage}
@@ -137,8 +162,18 @@ export function ServiceCard({
 
       <div className="relative z-[1] w-full md:hidden">
         <div
-          className={`relative w-full rounded-2xl border p-2 backdrop-blur-md transition-all duration-700 ${theme.imageBorder} bg-white/50`}
+          className={`relative w-full overflow-hidden rounded-2xl border p-2 backdrop-blur-md transition-all duration-700 ${theme.imageBorder} bg-white/50`}
         >
+          <div
+            className="service-card-corner-glow service-card-corner-glow--soft rounded-2xl"
+            style={cornerGlowStyle}
+            aria-hidden
+          />
+          <div
+            className="service-card-corner-glow rounded-2xl"
+            style={cornerGlowStyle}
+            aria-hidden
+          />
           <div className={`relative h-48 w-full overflow-hidden rounded-xl border shadow-lg ${theme.imageBorder}`}>
             <Image
               src={service.previewImage}

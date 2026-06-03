@@ -15,6 +15,9 @@ import { GlobalSearchModal } from "@/components/layout/GlobalSearchModal";
 const NAV_LINK_CLASS =
   "whitespace-nowrap px-3 py-2 text-[13px] font-medium text-[#0F172A] transition-colors hover:text-[#6C63FF] xl:px-3.5 xl:text-sm";
 
+const MOBILE_ICON_BUTTON =
+  "flex h-11 w-11 shrink-0 items-center justify-center rounded-md text-[#0F172A] transition-colors hover:bg-[#E8E8E6] active:bg-[#E0E0DE] hover:text-[#6C63FF] lg:h-full lg:w-auto lg:rounded-none lg:hover:bg-transparent lg:active:bg-transparent";
+
 function NavDivider({ className = "" }: { className?: string }) {
   return (
     <div
@@ -198,84 +201,84 @@ export function Navbar() {
 
   return (
     <header className="fixed inset-x-0 top-0 z-50 overflow-visible border-b border-[#E0E0E0] bg-[#F2F2F2]">
-      <div className="mx-auto flex h-14 max-w-[1440px] items-stretch overflow-visible px-4 md:px-6 lg:px-8">
-          <div className="flex shrink-0 items-center pr-4 lg:pr-6">
-            <Link
-              href="/"
-              className="text-base font-semibold tracking-tight text-[#0F172A] transition-colors hover:text-[#6C63FF] md:text-lg"
-            >
-              Skyen <span className="font-bold">Systems</span>
-            </Link>
-          </div>
+      <div className="mx-auto flex h-14 max-w-[1440px] items-center overflow-visible px-5 sm:px-6 lg:items-stretch lg:px-8">
+        <div className="flex min-w-0 shrink-0 items-center lg:pr-6">
+          <Link
+            href="/"
+            className="truncate text-[15px] font-semibold tracking-tight text-[#0F172A] transition-colors hover:text-[#6C63FF] sm:text-base md:text-lg"
+          >
+            Skyen <span className="font-bold">Systems</span>
+          </Link>
+        </div>
+
+        <NavDivider />
+
+        <nav
+          className="hidden min-w-0 flex-1 items-center justify-center gap-0 overflow-visible lg:flex"
+          aria-label="Main navigation"
+        >
+          {MAIN_NAV_ITEMS.map((item) => {
+            const isActive = mounted && isNavItemActive(pathname, item);
+
+            if (item.children?.length) {
+              return (
+                <AboutNavDropdown
+                  key={item.href}
+                  item={{ ...item, children: item.children }}
+                  isActive={isActive}
+                />
+              );
+            }
+
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={`${NAV_LINK_CLASS} ${isActive ? "text-[#6C63FF]" : ""}`}
+                aria-current={isActive ? "page" : undefined}
+              >
+                {item.label}
+              </Link>
+            );
+          })}
+        </nav>
+
+        <NavDivider />
+
+        <div className="ml-auto flex shrink-0 items-center gap-0.5 lg:ml-0 lg:gap-0">
+          <Link
+            href="/contact-us"
+            className="hidden h-full items-center bg-[#6C63FF] px-5 text-[13px] font-semibold text-white transition-colors hover:bg-[#5A52E8] lg:inline-flex xl:px-6 xl:text-sm"
+          >
+            Start Project
+          </Link>
 
           <NavDivider />
 
-          <nav
-            className="hidden min-w-0 flex-1 items-center justify-center gap-0 overflow-visible lg:flex"
-            aria-label="Main navigation"
+          <button
+            type="button"
+            className={`${MOBILE_ICON_BUTTON} lg:px-5`}
+            aria-label="Search site"
+            onClick={() => setIsSearchOpen(true)}
           >
-            {MAIN_NAV_ITEMS.map((item) => {
-              const isActive = mounted && isNavItemActive(pathname, item);
+            <Search className="h-5 w-5 stroke-[2] lg:h-[18px] lg:w-[18px]" />
+          </button>
 
-              if (item.children?.length) {
-                return (
-                  <AboutNavDropdown
-                    key={item.href}
-                    item={{ ...item, children: item.children }}
-                    isActive={isActive}
-                  />
-                );
-              }
-
-              return (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className={`${NAV_LINK_CLASS} ${isActive ? "text-[#6C63FF]" : ""}`}
-                  aria-current={isActive ? "page" : undefined}
-                >
-                  {item.label}
-                </Link>
-              );
-            })}
-          </nav>
-
-          <NavDivider className="ml-auto lg:ml-0" />
-
-          <div className="flex shrink-0 items-center">
-            <Link
-              href="/contact-us"
-              className="hidden h-full items-center bg-[#6C63FF] px-5 text-[13px] font-semibold text-white transition-colors hover:bg-[#5A52E8] lg:inline-flex xl:px-6 xl:text-sm"
-            >
-              Start Project
-            </Link>
-
-            <NavDivider />
-
-            <button
-              type="button"
-              className="flex h-full items-center justify-center px-4 text-[#0F172A] transition-colors hover:text-[#6C63FF] lg:px-5"
-              aria-label="Search site"
-              onClick={() => setIsSearchOpen(true)}
-            >
-              <Search className="h-[18px] w-[18px] stroke-[2]" />
-            </button>
-
-            <button
-              type="button"
-              className="flex items-center p-2 text-[#0F172A] lg:hidden"
-              onClick={() => setIsMobileMenuOpen((open) => !open)}
-              aria-expanded={isMobileMenuOpen}
-              aria-label="Toggle menu"
-            >
-              {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-            </button>
-          </div>
+          <button
+            type="button"
+            className={`${MOBILE_ICON_BUTTON} lg:hidden`}
+            onClick={() => setIsMobileMenuOpen((open) => !open)}
+            aria-expanded={isMobileMenuOpen}
+            aria-label="Toggle menu"
+          >
+            {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          </button>
         </div>
+      </div>
 
       {isMobileMenuOpen ? (
         <div className="border-b border-[#E0E0E0] bg-[#F2F2F2] lg:hidden">
-          <div className="mx-auto flex max-w-[1440px] flex-col gap-1 px-4 py-4 md:px-6">
+          <div className="mx-auto flex max-w-[1440px] flex-col gap-1 px-5 py-4 sm:px-6">
             {MAIN_NAV_ITEMS.map((item) => {
               const isActive = mounted && isNavItemActive(pathname, item);
 

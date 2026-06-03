@@ -113,39 +113,10 @@ function FooterNavGroup({ title, links }: { title: string; links: readonly { lab
 
 export function Footer() {
   return (
-    <footer className="relative mt-0 min-h-[700px] overflow-hidden bg-[#111827] text-white md:min-h-[820px]">
+    <footer className="relative mt-0 overflow-hidden bg-[#111827] text-white">
       <BlogBlueprintBackdrop variant="dark" className="opacity-[0.035]" parallax />
 
-      <span
-        className="pointer-events-none absolute -right-4 top-24 select-none font-heading text-[clamp(14rem,32vw,24rem)] font-bold leading-none text-white opacity-[0.025] md:-right-8 md:top-20"
-        aria-hidden
-      >
-        07
-      </span>
-
       <div className="relative z-10 mx-auto max-w-[1440px] px-6 md:px-10">
-        {/* Top CTA */}
-        <section className="border-b border-white/10 py-20 text-center md:py-28">
-          <h2 className="mx-auto max-w-3xl font-heading text-[clamp(2.25rem,5.5vw,3.75rem)] font-bold leading-[1.02] tracking-[-0.03em] text-[#FAFAF8]">
-            Building software that moves businesses forward.
-          </h2>
-          <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-5">
-            <Link
-              href="/contact-us#inquiry"
-              className="inline-flex min-w-[220px] items-center justify-center bg-[#6C63FF] px-10 py-4 text-sm font-semibold uppercase tracking-[0.14em] text-white transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#5A52E8]"
-            >
-              Start a project
-            </Link>
-            <Link
-              href="/contact-us"
-              className="inline-flex min-w-[220px] items-center justify-center border border-white/35 bg-transparent px-10 py-4 text-sm font-semibold uppercase tracking-[0.14em] text-white transition-all duration-200 hover:-translate-y-0.5 hover:border-white hover:bg-white/5"
-            >
-              Contact us
-            </Link>
-          </div>
-        </section>
-
-        {/* Main grid */}
         <section className="grid gap-12 border-b border-white/10 py-16 md:grid-cols-12 md:gap-10 md:py-20 lg:gap-12">
           <div className="md:col-span-4">
             <Link href="/" className="inline-flex items-center gap-3">

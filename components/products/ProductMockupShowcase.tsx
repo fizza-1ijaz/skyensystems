@@ -46,7 +46,7 @@ export function ProductMockupShowcase({
     ? {}
     : {
         animate: { y: [0, -6, 0] },
-        transition: { duration: 5, repeat: Infinity, ease: "easeInOut" },
+        transition: { duration: 5, repeat: Infinity, ease: "easeInOut" as const },
       };
 
   return (

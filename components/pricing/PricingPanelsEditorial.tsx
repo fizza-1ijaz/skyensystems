@@ -31,7 +31,7 @@ export function PricingPanelsEditorial({
 }) {
   return (
     <>
-      <div className="flex flex-wrap items-center gap-x-8 gap-y-3 border-b border-[#DADAD8]">
+      <div className="-mx-6 flex items-center gap-x-6 gap-y-3 overflow-x-auto border-b border-[#DADAD8] px-6 pb-px no-scrollbar md:mx-0 md:flex-wrap md:overflow-visible md:px-0">
         {TABS.map((tab) => {
           const isOn = selectedTab === tab.key;
           return (
@@ -39,7 +39,7 @@ export function PricingPanelsEditorial({
               key={tab.key}
               type="button"
               onClick={() => setSelectedTab(tab.key)}
-              className={`-mb-px flex items-center gap-2 border-b-2 pb-3 text-sm font-semibold uppercase tracking-[0.12em] transition-colors duration-200 ${
+              className={`-mb-px flex shrink-0 items-center gap-2 border-b-2 pb-3 text-xs font-semibold uppercase tracking-[0.1em] transition-colors duration-200 sm:text-sm sm:tracking-[0.12em] ${
                 isOn
                   ? "border-[#6C63FF] text-[#141414]"
                   : "border-transparent text-[#8A8A8A] hover:text-[#141414]"
@@ -59,7 +59,43 @@ export function PricingPanelsEditorial({
         {selectedTab === "retainers" ? <PricingTierCardsEditorial plans={RETAINERS} /> : null}
 
         {selectedTab === "individual" ? (
-          <div className="overflow-x-auto border border-[#DADAD8] bg-white shadow-[0_1px_0_0_#E5E5E3]">
+          <>
+            <div className="space-y-3 lg:hidden">
+              {INDIVIDUAL.map((row, index) => (
+                <article
+                  key={row.name}
+                  className={`border border-[#DADAD8] p-4 shadow-[0_1px_0_0_#E5E5E3] ${
+                    index % 2 === 0 ? "bg-white" : "bg-[#FAFAF8]"
+                  }`}
+                >
+                  <h3 className="text-sm font-semibold leading-snug text-[#141414]">{row.name}</h3>
+                  <div className="mt-3 grid grid-cols-1 gap-3 text-sm min-[400px]:grid-cols-2">
+                    <div>
+                      <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-[#8A8A8A]">
+                        Our price
+                      </p>
+                      <div className="mt-1">
+                        <PriceCell value={row.price} />
+                      </div>
+                    </div>
+                    <div>
+                      <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-[#8A8A8A]">
+                        You save
+                      </p>
+                      <p className="mt-1 font-heading text-sm font-bold text-[#6C63FF]">{row.save}</p>
+                    </div>
+                  </div>
+                  <p className="mt-3 border-t border-[#E5E5E3] pt-3 text-sm text-[#5C5C5C]">
+                    <span className="block text-[10px] font-semibold uppercase tracking-[0.16em] text-[#8A8A8A]">
+                      US agency rate
+                    </span>
+                    {row.us}
+                  </p>
+                </article>
+              ))}
+            </div>
+
+            <div className="hidden overflow-x-auto border border-[#DADAD8] bg-white shadow-[0_1px_0_0_#E5E5E3] lg:block">
             <table className="w-full min-w-[640px] border-collapse text-left">
               <thead>
                 <tr className="border-b border-[#DADAD8] bg-[#F7F7F5]">
@@ -101,6 +137,7 @@ export function PricingPanelsEditorial({
               </tbody>
             </table>
           </div>
+          </>
         ) : null}
       </div>
     </>

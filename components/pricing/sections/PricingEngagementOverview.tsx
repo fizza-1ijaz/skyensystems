@@ -8,7 +8,7 @@ export function PricingEngagementOverview() {
     <section className="border-t border-[#DADAD8] bg-[#F4F4F2] pt-20 pb-10 md:pt-28 md:pb-12">
       <div className="mx-auto max-w-[1440px] px-6 md:px-10">
         <Reveal>
-          <h2 className="max-w-2xl font-heading text-4xl font-bold tracking-[-0.03em] text-[#141414] md:text-5xl">
+          <h2 className="editorial-section-title max-w-2xl text-balance text-[#141414]">
             How we typically engage.
           </h2>
           <p className="mt-4 max-w-2xl text-sm leading-relaxed text-[#5C5C5C] md:text-base">

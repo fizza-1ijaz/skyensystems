@@ -39,7 +39,7 @@ export function PricingEstimator({
                 <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-[#8A8A8A]">
                   Investment estimator
                 </p>
-                <h2 className="mt-4 max-w-xl font-heading text-4xl font-bold tracking-[-0.03em] text-[#141414] md:text-5xl">
+                <h2 className="editorial-section-title mt-4 max-w-xl text-balance text-[#141414]">
                   Plan local investment with clarity.
                 </h2>
               </Reveal>

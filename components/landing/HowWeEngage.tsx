@@ -8,9 +8,9 @@ export function HowWeEngage() {
   return (
     <section className="relative overflow-hidden bg-[#F4F4F2] py-24 md:py-32">
       {/* Full-width headline */}
-      <div className="w-full px-6 md:px-10 lg:px-16">
+      <div className="mx-auto max-w-[1440px] px-6 md:px-10">
         <Reveal className="w-full">
-          <h2 className="w-full font-heading text-4xl font-bold tracking-[-0.03em] text-[#141414] md:text-5xl">
+          <h2 className="editorial-section-title w-full text-balance text-[#141414]">
             A delivery model shaped like your roadmap — not a pricing grid.
           </h2>
         </Reveal>
@@ -23,13 +23,7 @@ export function HowWeEngage() {
         <ol className="relative mt-0 flex flex-col gap-0 md:gap-2">
           {ENGAGEMENT_PHASES.map((step, index) => (
             <Reveal key={step.phase} delay={index * 0.07}>
-              <li
-                className="relative grid gap-4 border-b border-[#DADAD8] py-8 md:grid-cols-12 md:items-baseline md:py-10"
-                style={{
-                  marginLeft: `${index * 4}%`,
-                  maxWidth: `${100 - index * 3}%`,
-                }}
-              >
+              <li className="relative grid w-full gap-4 border-b border-[#DADAD8] py-8 md:grid-cols-12 md:items-baseline md:py-10">
                 <span className="font-heading text-5xl font-bold text-[#6C63FF]/30 md:col-span-2 md:text-6xl">
                   {step.phase}
                 </span>

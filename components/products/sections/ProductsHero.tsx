@@ -5,7 +5,7 @@ import { Reveal } from "@/components/landing/Reveal";
 
 export function ProductsHero() {
   return (
-    <section className="relative overflow-hidden bg-[#F4F4F2] pb-10 pt-10 md:pb-14 md:pt-14">
+    <section className="relative overflow-hidden bg-[#F4F4F2] pb-6 pt-10 md:pb-8 md:pt-14">
       <ProductsBlueprintBackdrop parallax />
 
       <div className="relative z-10 mx-auto max-w-[1440px] px-6 md:px-10">

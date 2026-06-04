@@ -20,6 +20,7 @@
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/mobile-nav.css">
 <style>
 :root {
   --bg-primary:#1E2240;--bg-secondary:#252A4A;--bg-tertiary:#0F1429;
@@ -128,7 +129,6 @@ body{background:var(--bg-primary);color:var(--text-primary);font-family:var(--fo
   .service-block-inner{grid-template-columns:1fr;gap:36px;}
   .service-block-inner.reverse{direction:ltr;}
   .footer-main{grid-template-columns:1fr;gap:32px;}
-  .nav-links{display:none;}
 }
 @media(min-width:769px){
   .mobile-journey{display:none;}
@@ -153,6 +153,7 @@ body{background:var(--bg-primary);color:var(--text-primary);font-family:var(--fo
       <a href="/contact.html" class="btn btn-ghost btn-sm">Contact</a>
       <a href="https://calendly.com/skyensystems/discovery" class="btn btn-primary btn-sm" target="_blank" rel="noopener">Book a Call ↗</a>
     </div>
+    <button class="nav-hamburger" type="button" aria-label="Open menu" aria-expanded="false"><svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true"><path d="M3 6h16M3 11h16M3 16h16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
   </div>
 </nav>
 
@@ -583,5 +584,6 @@ body{background:var(--bg-primary);color:var(--text-primary);font-family:var(--fo
   initForViewport();
 })();
 </script>
+<script src="/mobile-nav.js" defer></script>
 </body>
 </html>

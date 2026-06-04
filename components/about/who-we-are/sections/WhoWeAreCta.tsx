@@ -15,7 +15,7 @@ export function WhoWeAreCta() {
         <Reveal delay={0.1} className="md:col-span-4 md:text-right">
           <Link
             href="/contact-us"
-            className="inline-flex min-w-[200px] items-center justify-center bg-[#6C63FF] px-8 py-4 text-sm font-semibold uppercase tracking-[0.14em] text-white transition-colors hover:bg-[#5A52E8]"
+            className="inline-flex w-full items-center justify-center sm:w-auto sm:min-w-[200px] bg-[#6C63FF] px-8 py-4 text-sm font-semibold uppercase tracking-[0.14em] text-white transition-colors hover:bg-[#5A52E8]"
             style={{
               clipPath:
                 "polygon(0 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%)",

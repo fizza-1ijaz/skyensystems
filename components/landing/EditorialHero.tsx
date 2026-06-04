@@ -19,7 +19,7 @@ export function EditorialHero() {
     <section className="relative overflow-hidden bg-[#F4F4F2]">
       {/* Embedded photography — architectural, not full-bleed hero */}
       <div
-        className="pointer-events-none absolute right-0 top-0 h-[72%] w-[min(52%,640px)] opacity-[0.22]"
+        className="pointer-events-none absolute right-0 top-0 hidden h-[72%] w-[min(52%,640px)] opacity-[0.22] lg:block"
         aria-hidden
       >
         <div
@@ -36,7 +36,7 @@ export function EditorialHero() {
         {/* Left — editorial headline */}
         <div className="lg:col-span-7 lg:pt-6">
           <Reveal>
-            <p className="mb-6 text-[11px] font-semibold uppercase tracking-[0.28em] text-[#6B6B6B]">
+            <p className="mb-6 max-w-[28ch] text-[11px] font-semibold uppercase tracking-[0.2em] text-[#6B6B6B] sm:tracking-[0.28em]">
               Software house · Bahrain & Pakistan
             </p>
           </Reveal>

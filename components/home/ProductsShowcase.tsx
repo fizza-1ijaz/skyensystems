@@ -17,7 +17,7 @@ const products = [
   },
   {
     name: "Make My Lesson",
-    status: "In development",
+    status: "Live on App Store and Play Store",
     tag: "AI lesson plan generator for teachers.",
     blurb:
       "Curriculum-aligned, time-saving, editable. For educators who have enough on their plate.",
@@ -60,7 +60,7 @@ export function ProductsShowcase() {
           </p>
         </motion.div>
 
-        <div className="no-scrollbar flex snap-x gap-5 overflow-x-auto pb-4">
+        <div className="grid gap-5 sm:grid-cols-2 sm:gap-5 lg:flex lg:snap-x lg:gap-5 lg:overflow-x-auto lg:pb-4 no-scrollbar">
           {products.map((product, index) => (
             <motion.article
               key={product.name}
@@ -69,7 +69,7 @@ export function ProductsShowcase() {
               viewport={{ once: true, amount: 0.2 }}
               transition={{ delay: index * 0.08, duration: 0.42, ease: "easeOut" }}
               whileHover={{ y: -6, scale: 1.02 }}
-              className="group flex min-w-[18rem] flex-col snap-start rounded-2xl border border-white/15 bg-[#112B44] p-6 text-center text-white shadow-sm transition-shadow duration-300 hover:shadow-md xl:min-w-[22rem]"
+              className="group flex w-full flex-col rounded-2xl border border-white/15 bg-[#112B44] p-6 text-center text-white shadow-sm transition-shadow duration-300 hover:shadow-md lg:min-w-[18rem] lg:snap-start xl:min-w-[22rem]"
             >
               <div className="mb-4 flex justify-center">
                 <div className="relative h-14 w-14 overflow-hidden rounded-xl border border-slate-200/80 bg-white p-1 shadow-sm">

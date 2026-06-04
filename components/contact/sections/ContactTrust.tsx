@@ -8,7 +8,7 @@ export function ContactTrust() {
     <section className="border-y border-[#E5E5E3] bg-[#F4F4F2] py-20 md:py-28">
       <div className="mx-auto max-w-[1440px] px-6 md:px-10">
         <Reveal>
-          <h2 className="max-w-2xl font-heading text-4xl font-bold tracking-[-0.03em] text-[#141414] md:text-5xl">
+          <h2 className="editorial-section-title max-w-2xl text-balance text-[#141414]">
             Built for long-term partnerships.
           </h2>
         </Reveal>

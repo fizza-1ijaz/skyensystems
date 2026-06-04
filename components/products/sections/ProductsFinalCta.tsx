@@ -30,13 +30,13 @@ export function ProductsFinalCta() {
           >
             <Link
               href="/contact-us#inquiry"
-              className="inline-flex min-w-[240px] items-center justify-center bg-[#6C63FF] px-10 py-4 text-sm font-semibold uppercase tracking-[0.14em] text-white transition-colors duration-200 hover:bg-[#5A52E8]"
+              className="inline-flex w-full items-center justify-center sm:w-auto sm:min-w-[240px] bg-[#6C63FF] px-10 py-4 text-sm font-semibold uppercase tracking-[0.14em] text-white transition-colors duration-200 hover:bg-[#5A52E8]"
             >
               Start a project
             </Link>
             <Link
               href="/contact-us"
-              className="inline-flex min-w-[240px] items-center justify-center border border-white/40 bg-transparent px-10 py-4 text-sm font-semibold uppercase tracking-[0.14em] text-white transition-all duration-200 hover:border-white hover:bg-white/5"
+              className="inline-flex w-full items-center justify-center sm:w-auto sm:min-w-[240px] border border-white/40 bg-transparent px-10 py-4 text-sm font-semibold uppercase tracking-[0.14em] text-white transition-all duration-200 hover:border-white hover:bg-white/5"
             >
               Schedule a consultation
             </Link>

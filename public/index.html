@@ -548,20 +548,6 @@ body {
 }
 .us-compare span { color: var(--teal); font-weight: 600; }
 
-/* Founding offer banner */
-.founding-banner {
-  margin-top: 40px; padding: 28px 36px;
-  background: var(--bg-tertiary); border: 1px solid var(--border-accent);
-  border-radius: var(--radius-card);
-  display: flex; align-items: center; justify-content: space-between; gap: 30px;
-}
-.founding-text { }
-.founding-title {
-  font-family: var(--font-head); font-size: 18px; font-weight: 700;
-  color: var(--text-primary); margin-bottom: 6px;
-}
-.founding-desc { font-size: 14px; color: var(--text-secondary); }
-
 /* Retainer plans */
 .retainer-grid {
   display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
@@ -778,8 +764,14 @@ body {
 }
 @media (max-width: 768px) {
   .section-pad { padding: 64px 0; }
-  .nav-links { display: none; }
-  .nav-hamburger { display: block; }
+  .nav { position: relative; }
+  .nav-inner { flex-wrap: wrap; }
+  .nav-links { display: none; width: 100%; flex-direction: column; align-items: stretch; gap: 0; order: 10; padding: 8px 0 12px; }
+  .nav-actions { display: none; width: 100%; flex-direction: column; gap: 10px; order: 11; padding-bottom: 12px; }
+  .nav-menu-open .nav-links,
+  .nav-menu-open .nav-actions { display: flex; }
+  .nav-links a { display: block; padding: 12px 0; }
+  .nav-hamburger { display: flex; align-items: center; justify-content: center; margin-left: auto; }
   .value-grid { grid-template-columns: 1fr; }
   .value-item { border-right: none; border-bottom: 1px solid var(--border); }
   .products-grid { grid-template-columns: 1fr; }
@@ -790,7 +782,6 @@ body {
   .about-stats { grid-template-columns: 1fr 1fr; }
   .footer-main { grid-template-columns: 1fr; gap: 32px; }
   .proof-banner { flex-direction: column; text-align: center; }
-  .founding-banner { flex-direction: column; }
   .hero-btns { flex-direction: column; }
   .services-table { font-size: 12px; }
   .services-table th, .services-table td { padding: 10px 12px; }
@@ -1030,18 +1021,21 @@ body {
               <path d="M8 8h6M8 12h4M8 16h5" stroke-linecap="round"/>
             </svg>
           </div>
-          <span class="badge badge-soon">Arriving soon</span>
+          <span class="badge badge-live">
+            <span style="width:6px;height:6px;border-radius:50%;background:var(--green);display:inline-block;"></span>
+            Live
+          </span>
         </div>
         <div class="product-name">Make My Lesson</div>
         <div class="product-tagline">Teaching, reimagined.</div>
-        <div class="product-desc">An AI-powered lesson planning platform for educators who spend more time on paperwork than on students. Describe your topic, set your grade level — get a complete structured lesson plan instantly.</div>
+        <div class="product-desc">An AI-powered lesson planning platform for educators — live on iOS, Android, and Web. Describe your topic, set your grade level — get a complete structured lesson plan instantly.</div>
         <div class="product-platforms">
           <span class="platform-tag">iOS</span>
           <span class="platform-tag">Android</span>
           <span class="platform-tag">Web App</span>
         </div>
-        <a href="/products#make-my-lesson" class="product-link">
-          Join waitlist <span>→</span>
+        <a href="https://makemylesson.ai" class="product-link" target="_blank" rel="noopener">
+          Visit Make My Lesson <span>→</span>
         </a>
       </div>
 
@@ -1217,7 +1211,7 @@ body {
      URL: /pricing
      SEO: affordable web design pricing, website package cost,
           social media management pricing, mobile app cost
-     LSI: website design package, monthly retainer, founding rate
+     LSI: website design package, monthly retainer
      ============================================================ -->
 <section class="pricing section-pad" id="pricing" aria-label="Pricing">
   <div class="container">
@@ -1376,14 +1370,6 @@ body {
       <p style="font-size:12px;color:var(--text-muted);margin-top:16px;">All prices exclude ad spend. Ad spend is always paid directly by the client to the platform.</p>
     </div>
 
-    <!-- Founding Client Offer Banner -->
-    <div class="founding-banner">
-      <div class="founding-text">
-        <div class="founding-title">⭐ Founding Client Rate — 20% off START &amp; GROW</div>
-        <div class="founding-desc">We're building our US portfolio. For a limited time, get 20% off either package in exchange for a written testimonial and permission to feature your project. One condition. Real savings.</div>
-      </div>
-      <a href="/contact?offer=founding" class="btn btn-primary" style="flex-shrink:0;">Claim the offer →</a>
-    </div>
   </div>
 </section>
 
@@ -1460,9 +1446,9 @@ body {
     -->
 
     <div class="testimonials-invite">
-      <div class="testimonials-invite-title">Be one of our first US clients.</div>
-      <div class="testimonials-invite-sub">We're building our US portfolio and offering our Founding Client rate — 20% off in exchange for your honest review. Your success story could be right here.</div>
-      <a href="/contact?offer=founding" class="btn btn-primary">Claim the Founding Rate →</a>
+      <div class="testimonials-invite-title">Tell us about your project.</div>
+      <div class="testimonials-invite-sub">Share what you are building — we reply within 24 hours with an honest scope and quote.</div>
+      <a href="/contact.html" class="btn btn-primary">Get in touch →</a>
     </div>
   </div>
 </section>
@@ -1726,5 +1712,6 @@ body {
 })();
 </script>
 
+<script src="/mobile-nav.js" defer></script>
 </body>
 </html>

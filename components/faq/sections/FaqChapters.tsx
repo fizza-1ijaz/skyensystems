@@ -66,7 +66,7 @@ export function FaqChapters() {
           >
             <div className="mx-auto max-w-[1440px] px-6 md:px-10">
               <Reveal>
-                <h2 className="font-heading text-4xl font-bold tracking-[-0.03em] md:text-5xl">
+                <h2 className="editorial-section-title text-balance">
                   {chapter.title}
                 </h2>
                 <p className={`mt-3 max-w-xl text-base ${dark ? "text-[#B8B8B8]" : "text-[#5C5C5C]"}`}>

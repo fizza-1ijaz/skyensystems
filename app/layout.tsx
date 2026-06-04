@@ -105,7 +105,7 @@ gtag('config', '${gaMeasurementId}', { anonymize_ip: true });`}
         <GlobalCursorGlow />
         <SmoothScrollProvider>
           <Navbar />
-          <div className="flex-1 pt-14">{children}</div>
+          <div className="flex-1 pt-14 min-w-0 overflow-x-clip">{children}</div>
           <Footer />
         </SmoothScrollProvider>
         <CookieConsent />

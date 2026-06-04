@@ -17,7 +17,7 @@ export function PricingComparison() {
 
       <div className="relative z-10 mx-auto max-w-[1440px] px-6 md:px-10">
         <Reveal>
-          <h2 className="max-w-2xl font-heading text-4xl font-bold tracking-[-0.03em] text-[#141414] md:text-5xl">
+          <h2 className="editorial-section-title max-w-2xl text-balance text-[#141414]">
             Package comparison.
           </h2>
           <p className="mt-4 max-w-2xl text-sm leading-relaxed text-[#5C5C5C] md:text-base">
@@ -37,10 +37,15 @@ export function PricingComparison() {
                 Pakistan clients
               </p>
               <p className="mt-3 text-sm leading-relaxed text-[#5C5C5C]">
-                Pricing above is in USD. Indicative PKR equivalents at current rates: Starter — from
-                PKR 420,000&nbsp;&nbsp;|&nbsp;&nbsp;Growth — from PKR 1,120,000&nbsp;&nbsp;|&nbsp;&nbsp;Scale
-                — from PKR 2,240,000. Final amounts invoiced in PKR at rates confirmed at time of
-                engagement.
+                Pricing above is in USD. Indicative PKR equivalents at current rates:
+              </p>
+              <ul className="mt-3 flex flex-col gap-2 text-sm text-[#5C5C5C] sm:flex-row sm:flex-wrap sm:gap-x-6">
+                <li>Starter — from PKR 420,000</li>
+                <li>Growth — from PKR 1,120,000</li>
+                <li>Scale — from PKR 2,240,000</li>
+              </ul>
+              <p className="mt-3 text-sm leading-relaxed text-[#5C5C5C]">
+                Final amounts invoiced in PKR at rates confirmed at time of engagement.
               </p>
               <p className="mt-3 text-sm text-[#5C5C5C]">
                 Contact us for a PKR quote:{" "}

@@ -116,7 +116,7 @@ export function Footer() {
     <footer className="relative mt-0 overflow-hidden bg-[#111827] text-white">
       <BlogBlueprintBackdrop variant="dark" className="opacity-[0.035]" parallax />
 
-      <div className="relative z-10 mx-auto max-w-[1440px] px-6 md:px-10">
+      <div className="relative z-10 mx-auto max-w-[1440px] px-4 sm:px-6 md:px-10">
         <section className="grid gap-12 border-b border-white/10 py-16 md:grid-cols-12 md:gap-10 md:py-20 lg:gap-12">
           <div className="md:col-span-4">
             <Link href="/" className="inline-flex items-center gap-3">

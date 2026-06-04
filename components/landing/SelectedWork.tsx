@@ -10,7 +10,7 @@ export function SelectedWork() {
     <section className="overflow-hidden bg-[#141414] py-20 text-[#FAFAF8] md:py-28">
       <div className="mx-auto max-w-[1440px] px-6 md:px-10">
         <Reveal>
-          <h2 className="max-w-2xl font-heading text-4xl font-bold tracking-[-0.03em] md:text-5xl">
+          <h2 className="editorial-section-title max-w-2xl text-balance">
             Products we built. Standards we bring to every client.
           </h2>
         </Reveal>
@@ -43,14 +43,14 @@ export function SelectedWork() {
                     <div
                       className={
                         logoRight
-                          ? "md:col-span-7 md:order-1 max-md:pl-6 md:pl-10 lg:pl-16"
+                          ? "md:col-span-7 md:order-1 md:pl-10 lg:pl-16"
                           : "md:col-span-7"
                       }
                     >
                       <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#6C63FF]">
                         {project.category}
                       </p>
-                      <h3 className="mt-3 font-heading text-3xl font-bold md:text-4xl">
+                      <h3 className="mt-3 break-words font-heading text-2xl font-bold sm:text-3xl md:text-4xl">
                         {project.name}
                       </h3>
                       <p className="mt-4 max-w-md text-sm leading-relaxed text-[#B8B8B8]">
@@ -58,7 +58,9 @@ export function SelectedWork() {
                       </p>
                       <div className="mt-8 inline-flex border-l-2 border-[#6C63FF] pl-5">
                         <div>
-                          <p className="font-heading text-3xl font-bold">{project.metric}</p>
+                          <p className="break-words font-heading text-xl font-bold sm:text-2xl md:text-3xl">
+                            {project.metric}
+                          </p>
                           <p className="text-xs uppercase tracking-[0.16em] text-[#8A8A8A]">
                             {project.metricLabel}
                           </p>

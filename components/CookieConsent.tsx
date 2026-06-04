@@ -66,7 +66,7 @@ export function CookieConsent() {
       <AnimatePresence>
         {isVisible && (
           <motion.div
-            className="fixed bottom-0 left-0 right-0 z-50 flex items-end justify-center md:bottom-6 md:left-6 md:right-6"
+            className="fixed bottom-0 left-0 right-0 z-50 flex items-end justify-center safe-area-bottom md:bottom-6 md:left-6 md:right-6"
             initial={{ opacity: 0, y: 100 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 100 }}
@@ -111,7 +111,7 @@ export function CookieConsent() {
                 </div>
 
                 {/* Content */}
-                <div className="relative flex flex-col gap-4 p-5 md:flex-row md:gap-8 md:p-8 md:items-center md:justify-between">
+                <div className="relative flex flex-col gap-4 p-5 pr-12 md:flex-row md:gap-8 md:p-8 md:pr-8 md:items-center md:justify-between">
                   {/* Left section - Animated cookie */}
                   <div className="flex flex-shrink-0 items-center justify-center md:order-first">
                     <AnimatedCookie />
@@ -138,10 +138,10 @@ export function CookieConsent() {
                   </div>
 
                   {/* Right section - Buttons */}
-                  <div className="flex flex-shrink-0 flex-col gap-2 md:flex-row md:gap-3 md:order-last">
+                  <div className="flex w-full flex-shrink-0 flex-col gap-2 sm:flex-row sm:flex-wrap sm:gap-3 md:order-last">
                     <motion.button
                       onClick={handleAllowAll}
-                      className="rounded-lg bg-gradient-to-r from-[#1E3A8A] to-[#112B44] px-4 py-2 text-xs font-semibold uppercase tracking-[0.1em] text-white shadow-[0_8px_16px_-4px_rgba(30,58,138,0.4)] transition-all hover:shadow-[0_12px_24px_-4px_rgba(30,58,138,0.6)] whitespace-nowrap"
+                      className="w-full rounded-lg bg-gradient-to-r from-[#1E3A8A] to-[#112B44] px-4 py-2 text-xs font-semibold uppercase tracking-[0.1em] text-white shadow-[0_8px_16px_-4px_rgba(30,58,138,0.4)] transition-all hover:shadow-[0_12px_24px_-4px_rgba(30,58,138,0.6)] sm:w-auto"
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.98 }}
                       initial={{ opacity: 0, y: 10 }}
@@ -153,7 +153,7 @@ export function CookieConsent() {
 
                     <motion.button
                       onClick={handleEssentialOnly}
-                      className="rounded-lg border-2 border-[#1E3A8A] bg-white/50 px-4 py-2 text-xs font-semibold uppercase tracking-[0.1em] text-[#1E3A8A] transition-all hover:bg-[#f4f8ff] whitespace-nowrap"
+                      className="w-full rounded-lg border-2 border-[#1E3A8A] bg-white/50 px-4 py-2 text-xs font-semibold uppercase tracking-[0.1em] text-[#1E3A8A] transition-all hover:bg-[#f4f8ff] sm:w-auto"
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.98 }}
                       initial={{ opacity: 0, y: 10 }}
@@ -207,7 +207,7 @@ export function CookieConsent() {
             onClick={() => setShowSettings(false)}
           >
             <motion.div
-              className="w-full max-w-md overflow-hidden rounded-3xl bg-gradient-to-br from-white/90 via-[#f4f8ff]/85 to-white/80 backdrop-blur-xl shadow-[0_25px_50px_-25px_rgba(30,58,138,0.5)]"
+              className="mx-4 w-[calc(100%-2rem)] max-h-[90vh] max-w-md overflow-y-auto overflow-hidden rounded-3xl bg-gradient-to-br from-white/90 via-[#f4f8ff]/85 to-white/80 backdrop-blur-xl shadow-[0_25px_50px_-25px_rgba(30,58,138,0.5)] md:mx-0 md:w-full"
               initial={{ opacity: 0, scale: 0.9, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.9, y: 20 }}

@@ -201,7 +201,7 @@ export function Navbar() {
 
   return (
     <header className="fixed inset-x-0 top-0 z-50 overflow-visible border-b border-[#E0E0E0] bg-[#F2F2F2]">
-      <div className="mx-auto flex h-14 max-w-[1440px] items-center overflow-visible px-5 sm:px-6 lg:items-stretch lg:px-8">
+      <div className="mx-auto flex h-14 max-w-[1440px] items-center overflow-visible px-4 sm:px-6 lg:items-stretch lg:px-8">
         <div className="flex min-w-0 shrink-0 items-center lg:pr-6">
           <Link
             href="/"

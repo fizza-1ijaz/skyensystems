@@ -29,7 +29,7 @@ export function BlogArticleCard({
         <article
           className={`relative flex h-full flex-col border border-[#DADAD8] bg-[#FAFAF8] transition-all duration-200 ease-out hover:-translate-y-1 hover:border-[#141414]/25 ${
             isLarge ? "md:grid md:grid-cols-2 md:items-stretch" : ""
-          } ${isEditorial ? "md:flex-row" : ""}`}
+          } ${isEditorial ? "lg:flex-row" : ""}`}
         >
           <span
             className="absolute left-0 top-0 h-0 w-0.5 bg-[#6C63FF] transition-all duration-200 group-hover:h-full"
@@ -52,7 +52,7 @@ export function BlogArticleCard({
             </div>
           ) : null}
 
-          <div className={`flex flex-1 flex-col p-7 md:p-8 ${isLarge ? "md:py-10" : ""}`}>
+          <div className={`flex flex-1 flex-col p-5 sm:p-7 md:p-8 ${isLarge ? "md:py-10" : ""}`}>
             <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#6C63FF]">
               {post.category?.name ?? "Blog"}
             </p>

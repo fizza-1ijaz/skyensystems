@@ -3,10 +3,11 @@
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Our Products | Skyen Systems — Studiely, Make My Lesson, Linguatude</title>
-<meta name="description" content="Meet the products built entirely by the Skyen team — Studiely (live on iOS, Android & Web), Make My Lesson (AI lesson planning, coming soon), and Linguatude (English test prep, coming soon).">
+<meta name="description" content="Meet the products built entirely by the Skyen team — Studiely and Make My Lesson (live on iOS, Android & Web), and Linguatude (English test prep, coming soon).">
 <meta property="og:title" content="Our Products | Skyen Systems"><meta property="og:url" content="https://skyensystems.com/products">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/mobile-nav.css">
 <style>
 :root{--bg-primary:#1E2240;--bg-secondary:#252A4A;--bg-tertiary:#0F1429;--bg-surface:#2A3050;--bg-card:rgba(255,255,255,0.04);--bg-card-hover:rgba(255,255,255,0.07);--cyan:#1E3A8A;--teal:#2DD4BF;--gradient:linear-gradient(135deg,#1E3A8A,#2DD4BF);--gradient-text:linear-gradient(135deg,#1E3A8A 0%,#2DD4BF 100%);--text-primary:#FFFFFF;--text-secondary:#94A3B8;--text-muted:#64748B;--border:rgba(255,255,255,0.08);--border-accent:rgba(30,58,138,0.30);--border-card:rgba(255,255,255,0.06);--green:#10B981;--font-head:'Plus Jakarta Sans',sans-serif;--font-body:'DM Sans',sans-serif;--max-w:1200px;--radius-card:14px;--radius-btn:8px;}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
@@ -79,7 +80,7 @@ body{background:var(--bg-primary);color:var(--text-primary);font-family:var(--fo
 .footer-bottom{padding:22px 0;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;}
 .footer-copy{font-size:12px;color:var(--text-muted);}
 .footer-legal{display:flex;gap:24px;}.footer-legal a{font-size:12px;color:var(--text-muted);text-decoration:none;}.footer-legal a:hover{color:var(--teal);}
-@media(max-width:768px){.product-inner{grid-template-columns:1fr;gap:36px;}.product-inner.reverse{direction:ltr;}.footer-main{grid-template-columns:1fr;gap:32px;}.nav-links{display:none;}.waitlist-form{flex-direction:column;}}
+@media(max-width:768px){.product-inner{grid-template-columns:1fr;gap:36px;}.product-inner.reverse{direction:ltr;}.footer-main{grid-template-columns:1fr;gap:32px;}.waitlist-form{flex-direction:column;}.cta-btns{flex-direction:column;align-items:stretch;}}
 </style>
 </head>
 <body>
@@ -88,6 +89,7 @@ body{background:var(--bg-primary);color:var(--text-primary);font-family:var(--fo
     <a href="/index.html" class="nav-logo"><span class="nav-logo-skyen">SKYEN</span><span class="nav-logo-sub">Systems</span></a>
     <ul class="nav-links"><li><a href="/services.html">Services</a></li><li><a href="/pricing.html">Pricing</a></li><li><a href="/products.html" class="active">Products</a></li><li><a href="/about.html">About</a></li><li><a href="/blog.html">Blog</a></li></ul>
     <div class="nav-actions"><a href="/contact.html" class="btn btn-ghost btn-sm">Contact</a><a href="https://calendly.com/skyensystems/discovery" class="btn btn-primary btn-sm" target="_blank" rel="noopener">Book a Call ↗</a></div>
+    <button class="nav-hamburger" type="button" aria-label="Open menu" aria-expanded="false"><svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true"><path d="M3 6h16M3 11h16M3 16h16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
   </div>
 </nav>
 
@@ -166,23 +168,26 @@ body{background:var(--bg-primary);color:var(--text-primary);font-family:var(--fo
     <div class="product-inner reverse">
       <div>
         <div class="product-status-bar">
-          <span class="badge badge-soon">Arriving soon</span>
+          <span class="badge badge-live"><span style="width:7px;height:7px;border-radius:50%;background:var(--green);display:inline-block;"></span>Live</span>
           <span style="font-size:12px;color:var(--text-muted);">iOS · Android · Web</span>
         </div>
         <div class="product-name">Make My Lesson</div>
         <div class="product-tagline">Teaching, reimagined.</div>
         <div class="product-desc">
           <p>Educators spend hours creating lesson plans. Make My Lesson changes that. Describe your topic, set your grade level, and get a complete, structured, curriculum-aligned lesson plan — instantly.</p>
-          <p>Built by the same team as Studiely, Make My Lesson is nearly ready. Join the waitlist to be the first to access it when we launch.</p>
+          <p>Built by the same team as Studiely, Make My Lesson is live on iOS, Android, and the web — real teachers, real lesson plans, maintained by our in-house team.</p>
         </div>
         <div class="platform-row">
           <span class="platform-tag">iOS App</span><span class="platform-tag">Android App</span><span class="platform-tag">Web App</span>
         </div>
-        <div class="waitlist-form">
-          <input type="email" class="waitlist-input" placeholder="Your email address">
-          <button class="btn btn-primary">Join waitlist</button>
+        <div class="product-cta-row">
+          <a href="https://makemylesson.ai" class="btn btn-primary" target="_blank" rel="noopener">Visit Make My Lesson ↗</a>
         </div>
-        <p style="font-size:12px;color:var(--text-muted);margin-top:8px;">No spam. Launch announcement only.</p>
+        <p style="font-size:10px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--text-muted);margin-top:28px;margin-bottom:12px;">Download and see it now</p>
+        <div style="display:flex;flex-wrap:wrap;gap:10px;">
+          <a href="https://makemylesson.ai" class="btn btn-ghost btn-sm" target="_blank" rel="noopener">App Store ↗</a>
+          <a href="https://play.google.com/store/apps/details?id=com.skyensolutions.makemylesson.make_my_lesson" class="btn btn-ghost btn-sm" target="_blank" rel="noopener">Google Play ↗</a>
+        </div>
       </div>
       <div class="product-visual">
         <div class="visual-title">Make My Lesson — UI preview</div>
@@ -270,5 +275,6 @@ body{background:var(--bg-primary);color:var(--text-primary);font-family:var(--fo
   </div>
   <div class="footer-bottom"><div class="footer-copy">© 2025 Skyen Systems. Part of the Skyen Group. Headquartered in Bahrain.</div><div class="footer-legal"><a href="/privacy-policy.html">Privacy Policy</a><a href="/terms.html">Terms of Service</a></div></div>
 </div></footer>
+<script src="/mobile-nav.js" defer></script>
 </body>
 </html>

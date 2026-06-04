@@ -11,7 +11,7 @@ export function CapabilitiesGrid() {
       <div className="mx-auto max-w-[1440px] px-6 md:px-10">
         <div className="mb-14 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <Reveal>
-            <h2 className="max-w-xl font-heading text-4xl font-bold tracking-[-0.03em] text-[#141414] md:text-5xl">
+            <h2 className="editorial-section-title max-w-xl text-balance text-[#141414]">
               Capabilities across the full product lifecycle.
             </h2>
           </Reveal>
@@ -33,7 +33,7 @@ export function CapabilitiesGrid() {
               <Reveal
                 key={item.num}
                 delay={index * 0.05}
-                className={`${item.span} ${"colStart" in item ? item.colStart : ""} ${item.minH}`}
+                className={`${item.span} min-w-0 ${"colStart" in item ? item.colStart : ""} ${item.minH}`}
               >
                 <article className="group relative flex h-full flex-col overflow-visible border border-[#E5E5E3] bg-white transition-[border-color,box-shadow] duration-300 hover:border-[#141414] hover:shadow-[0_24px_60px_-40px_rgba(20,20,20,0.2)]">
                   <span

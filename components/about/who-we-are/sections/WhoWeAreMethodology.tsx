@@ -24,7 +24,7 @@ export function WhoWeAreMethodology() {
 
         <div className="relative mx-auto mt-16 max-w-4xl">
           <div className="absolute left-1/2 top-8 bottom-8 hidden w-px -translate-x-1/2 bg-[#6C63FF]/40 md:block" aria-hidden />
-          <ol className="grid gap-6 md:grid-cols-4 md:gap-4">
+          <ol className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4 lg:gap-4">
             {METHODOLOGY_STEPS.map((step, index) => (
               <Reveal key={step.id} delay={index * 0.07}>
                 <li className="relative border border-[#3A3A3A] bg-[#0F0F0F] p-6 text-center md:pt-10">

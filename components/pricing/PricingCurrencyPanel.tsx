@@ -43,7 +43,7 @@ export function PricingCurrencyPanel({
     <div className="relative">
       {/* Floating exchange rate card */}
       {formattedRate ? (
-        <div className="absolute -top-5 right-0 z-20 border border-[rgba(108,99,255,0.2)] bg-[#FAFAF8] px-5 py-4 shadow-[0_16px_40px_-24px_rgba(15,23,42,0.35)] md:-right-4">
+        <div className="absolute -top-5 right-4 z-20 max-w-[calc(100%-2rem)] border border-[rgba(108,99,255,0.2)] bg-[#FAFAF8] px-5 py-4 shadow-[0_16px_40px_-24px_rgba(15,23,42,0.35)] sm:right-0 sm:max-w-none md:-right-4">
           <div className="absolute left-0 top-0 h-full w-0.5 bg-[#6C63FF]" aria-hidden />
           <p className="text-[9px] font-semibold uppercase tracking-[0.2em] text-[#8A8A8A]">
             Current exchange rate

@@ -175,7 +175,7 @@ export function GlobalSearchModal({ open, onClose }: GlobalSearchModalProps) {
 
           <motion.div
             ref={panelRef}
-            className="relative flex max-h-[min(88vh,720px)] w-full max-w-[680px] flex-col overflow-hidden border border-[#DADAD8] bg-[#FAFAF8] shadow-[0_24px_64px_-24px_rgba(15,23,42,0.35)] md:max-h-[min(78vh,680px)] max-md:fixed max-md:inset-0 max-md:max-h-none max-md:max-w-none max-md:border-0"
+            className="relative flex max-h-[min(88vh,720px)] w-full max-w-[680px] flex-col overflow-hidden border border-[#DADAD8] bg-[#FAFAF8] shadow-[0_24px_64px_-24px_rgba(15,23,42,0.35)] md:max-h-[min(78vh,680px)] max-md:fixed max-md:inset-0 max-md:max-h-none max-md:max-w-none max-md:border-0 max-md:safe-area-top max-md:safe-area-bottom"
             initial={
               prefersReducedMotion ? false : { opacity: 0, scale: 0.98, y: 8 }
             }
@@ -223,7 +223,7 @@ export function GlobalSearchModal({ open, onClose }: GlobalSearchModalProps) {
               ) : null}
 
               {debouncedQuery.trim() && flat.length === 0 ? (
-                <p className="px-3 py-8 text-center text-sm text-[#5C5C5C]">
+                <p className="break-words px-3 py-8 text-center text-sm text-[#5C5C5C]">
                   No results for &ldquo;{debouncedQuery}&rdquo;
                 </p>
               ) : null}

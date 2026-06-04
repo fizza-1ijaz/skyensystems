@@ -22,6 +22,7 @@
 html {
   scroll-behavior: smooth;
   background-color: #f8fafc;
+  overflow-x: clip;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -56,7 +57,15 @@ body {
   font-family: var(--font-inter), Arial, Helvetica, sans-serif;
   text-rendering: optimizeLegibility;
   min-height: 100vh;
-  overflow-x: hidden;
+  overflow-x: clip;
+}
+
+img,
+picture,
+video,
+canvas {
+  max-width: 100%;
+  height: auto;
 }
 
 h1,
@@ -99,6 +108,27 @@ h6 {
 
   .text-balance {
     text-wrap: balance;
+  }
+
+  .editorial-section-title {
+    font-family: var(--font-space-grotesk), Arial, Helvetica, sans-serif;
+    font-size: clamp(1.75rem, 5vw, 3rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+  }
+
+  @media (min-width: 768px) {
+    .editorial-section-title {
+      font-size: 3rem;
+    }
+  }
+
+  .safe-area-bottom {
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+
+  .safe-area-top {
+    padding-top: env(safe-area-inset-top, 0px);
   }
 
   .noise {

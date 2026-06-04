@@ -36,7 +36,9 @@ export function ProductMockupShowcase({
 
   const mainWidthClass = isLinguatude ? "w-[200px] md:w-[240px]" : "w-[180px] md:w-[220px]";
   const secondaryWidthClass = isLinguatude ? "w-[180px] md:w-[220px]" : "w-[160px] md:w-[200px]";
-  const secondaryOffsetClass = isLinguatude ? "-ml-20 md:-ml-24 mt-6" : "-ml-12 md:-ml-16 mt-12";
+  const secondaryOffsetClass = isLinguatude
+    ? "mt-0 md:-ml-24 md:mt-6"
+    : "mt-0 md:-ml-16 md:mt-12";
   const mainSizes = isLinguatude ? "(max-width: 768px) 200px, 240px" : "(max-width: 768px) 180px, 220px";
   const secondarySizes = isLinguatude ? "(max-width: 768px) 180px, 220px" : "(max-width: 768px) 160px, 200px";
   const mainImgClass = isLinguatude ? "object-cover scale-110 -translate-y-1" : "object-cover";
@@ -51,7 +53,7 @@ export function ProductMockupShowcase({
 
   return (
     <div
-      className={`group relative min-h-[28rem] overflow-hidden border border-white/10 ${bgClass} p-8 md:min-h-[32rem] md:p-12 lg:p-14`}
+      className={`group relative min-h-[22rem] overflow-hidden border border-white/10 ${bgClass} p-6 sm:min-h-[28rem] sm:p-8 md:min-h-[32rem] md:p-12 lg:p-14`}
     >
       {/* Blueprint overlay inside frame */}
       <div
@@ -75,7 +77,7 @@ export function ProductMockupShowcase({
         className="relative z-10 flex min-h-[20rem] items-center justify-center py-4"
         {...floatAnimation}
       >
-        <div className="relative flex items-center gap-4 md:gap-8">
+        <div className="relative flex flex-col items-center gap-6 md:flex-row md:items-center md:gap-8">
           <div
             className={`relative ${mainWidthClass} aspect-[9/19] overflow-hidden rounded-[2.25rem] border-[5px] border-[#1a2438] bg-[#0a0f1a] shadow-[0_32px_64px_-24px_rgba(0,0,0,0.55)] transition-transform duration-300 group-hover:scale-[1.02] z-10`}
           >

@@ -125,7 +125,7 @@ export function ContactInquiryForm() {
       <div className="mx-auto max-w-[1440px] px-6 md:px-10">
         <div className="mx-auto flex w-full max-w-[800px] flex-col items-center text-center">
           <Reveal className="w-full">
-            <h2 className="font-heading text-4xl font-bold tracking-[-0.03em] text-[#141414] md:text-5xl">
+            <h2 className="editorial-section-title text-balance text-[#141414]">
               Tell us about your project.
             </h2>
             <p className="mx-auto mt-4 max-w-lg text-sm leading-relaxed text-[#5C5C5C] md:text-base">
@@ -160,7 +160,7 @@ export function ContactInquiryForm() {
                 </button>
               </div>
             ) : (
-              <div className="border border-[#DADAD8] bg-[#FAFAF8] px-8 py-12 shadow-[0_24px_60px_-48px_rgba(20,20,20,0.18)] md:px-14 md:py-16 lg:px-16">
+              <div className="border border-[#DADAD8] bg-[#FAFAF8] px-5 py-10 shadow-[0_24px_60px_-48px_rgba(20,20,20,0.18)] sm:px-8 sm:py-12 md:px-14 md:py-16 lg:px-16">
                 <form onSubmit={handleSubmit}>
                   <div className="grid gap-10 text-left md:grid-cols-2 md:gap-x-10 md:gap-y-11">
                     <Field label="Name" htmlFor="contact-name">
@@ -292,7 +292,7 @@ export function ContactInquiryForm() {
                     <button
                       type="submit"
                       disabled={status === "submitting"}
-                      className="inline-flex min-w-[240px] items-center justify-center bg-[#141414] px-10 py-4 text-sm font-semibold uppercase tracking-[0.14em] text-[#FAFAF8] transition-colors hover:bg-[#6C63FF] hover:text-[#141414] disabled:opacity-50"
+                      className="inline-flex w-full items-center justify-center sm:w-auto sm:min-w-[240px] bg-[#141414] px-10 py-4 text-sm font-semibold uppercase tracking-[0.14em] text-[#FAFAF8] transition-colors hover:bg-[#6C63FF] hover:text-[#141414] disabled:opacity-50"
                       style={{
                         clipPath:
                           "polygon(0 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%)",

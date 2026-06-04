@@ -364,17 +364,6 @@ export function ServicesPageContent({ initialServiceSlug }: ServicesPageContentP
     [],
   );
 
-  const activeMobileStopIndex = Math.max(
-    0,
-    mobileStops.findIndex((stop) => stop.idx === activeIndex),
-  );
-  const mobileEdgeInsetPercent = 8;
-  const mobileCarLeftPercent =
-    mobileStops.length <= 1
-      ? 50
-      : mobileEdgeInsetPercent +
-        (activeMobileStopIndex / (mobileStops.length - 1)) * (100 - mobileEdgeInsetPercent * 2);
-
   const onTouchStart = (event: React.TouchEvent<HTMLDivElement>) => {
     dragStartX.current = event.touches[0].clientX;
   };
@@ -404,14 +393,14 @@ export function ServicesPageContent({ initialServiceSlug }: ServicesPageContentP
 
   return (
     <motion.div className="relative flex min-h-screen flex-col overflow-x-hidden bg-[#F7F9FC]">
-      <section className="relative overflow-visible px-6 pb-10 pt-[calc(4rem-50px)] text-center md:px-10 md:pb-14 md:pt-[calc(5rem-50px)]">
+      <section className="relative overflow-hidden px-6 pb-10 pt-[calc(4rem-50px)] text-center md:px-10 md:pb-14 md:pt-[calc(5rem-50px)]">
         <motion.div
           className="pointer-events-none absolute inset-x-0 top-0 bottom-[21px] z-0 overflow-hidden bg-gradient-to-b from-violet-400 via-[#7C3AED] to-[#5B21B6] md:bottom-[29px]"
           aria-hidden
         >
-          <motion.div className="absolute -left-20 top-0 h-72 w-72 rounded-full bg-violet-300/40 blur-3xl" />
-          <motion.div className="absolute -right-16 top-24 h-80 w-80 rounded-full bg-fuchsia-300/30 blur-3xl" />
-          <motion.div className="absolute bottom-0 left-1/2 h-36 w-full -translate-x-1/2 rounded-[100%] bg-[#4C1D95]/30 blur-2xl md:h-40 md:w-[105%]" />
+          <motion.div className="absolute -left-8 top-0 h-72 w-72 rounded-full bg-violet-300/40 blur-3xl md:-left-20" />
+          <motion.div className="absolute -right-8 top-24 h-80 w-80 rounded-full bg-fuchsia-300/30 blur-3xl md:-right-16" />
+          <motion.div className="absolute bottom-0 left-1/2 h-36 w-full max-w-full -translate-x-1/2 rounded-[100%] bg-[#4C1D95]/30 blur-2xl md:h-40" />
           <motion.div
             className="absolute inset-0 opacity-[0.12] [background-size:40px_40px] [background-image:linear-gradient(to_right,rgba(255,255,255,0.35)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.35)_1px,transparent_1px)]"
             aria-hidden
@@ -422,7 +411,7 @@ export function ServicesPageContent({ initialServiceSlug }: ServicesPageContentP
           <p className="mb-4 text-xs font-semibold uppercase tracking-[0.22em] text-purple-100/95">
             WHAT WE OFFER
           </p>
-          <h1 className="text-balance text-4xl font-extrabold leading-[1.05] tracking-tight text-white drop-shadow-sm md:text-5xl lg:text-6xl">
+          <h1 className="text-balance text-[clamp(1.875rem,6vw,3.75rem)] font-extrabold leading-[1.05] tracking-tight text-white drop-shadow-sm">
             Every digital service your business needs.
           </h1>
         </motion.div>
@@ -430,7 +419,7 @@ export function ServicesPageContent({ initialServiceSlug }: ServicesPageContentP
 
       <section
         id="service-road"
-        className="relative z-20 mt-8 flex items-start overflow-visible px-0 pb-0 pt-4 md:mt-14 md:pt-6 md:pb-0"
+        className="relative z-20 mt-8 flex items-start overflow-x-hidden px-4 pb-0 pt-4 sm:px-6 md:mt-14 md:px-0 md:pt-6 md:pb-0"
       >
         <div
           className="mx-auto w-full max-w-none"
@@ -440,10 +429,10 @@ export function ServicesPageContent({ initialServiceSlug }: ServicesPageContentP
           onPointerUp={onPointerUp}
         >
           <motion.div
-            className={`relative isolate z-40 mx-auto mt-4 h-[120px] w-full overflow-visible md:mt-8 md:h-[240px] ${isStaggeredRoad ? "md:h-[300px]" : ""}`}
+            className={`relative isolate z-40 mx-auto mt-2 h-0 w-full overflow-hidden lg:mt-8 lg:h-[240px] ${isStaggeredRoad ? "lg:h-[300px]" : ""}`}
             style={{ transform: `translateY(-${ROAD_VERTICAL_LIFT_PX}px)` }}
           >
-            <div className="pointer-events-none absolute left-1/2 top-1/2 z-0 hidden h-[220px] w-screen max-w-[100vw] -translate-x-1/2 -translate-y-1/2 md:top-[53%] md:block">
+            <div className="pointer-events-none absolute left-1/2 top-1/2 z-0 hidden h-[220px] w-full max-w-[min(100%,1440px)] -translate-x-1/2 -translate-y-1/2 lg:top-[53%] lg:block">
               <svg
                 className="h-full w-full"
                 viewBox="0 0 1440 220"
@@ -454,53 +443,34 @@ export function ServicesPageContent({ initialServiceSlug }: ServicesPageContentP
                 <path d="M0 110 L1440 110" stroke="#112B44" strokeWidth="28" />
                 <path d="M0 110 L1440 110" stroke="#274A68" strokeWidth="2" strokeDasharray="10 16" />
               </svg>
-              <div className="absolute -left-16 top-10 h-56 w-56 rounded-full bg-[#8B5CF626] blur-3xl" />
-              <div className="absolute -right-16 top-16 h-64 w-64 rounded-full bg-[#1E3A8A1f] blur-3xl" />
+              <div className="absolute -left-8 top-10 h-56 w-56 rounded-full bg-[#8B5CF626] blur-3xl lg:-left-16" />
+              <div className="absolute -right-8 top-16 h-64 w-64 rounded-full bg-[#1E3A8A1f] blur-3xl lg:-right-16" />
               <div className="absolute inset-x-0 top-1/2 h-32 -translate-y-1/2 rounded-full bg-gradient-to-r from-[#6C63FF16] via-[#8B5CF61a] to-[#1E3A8A16] blur-3xl" />
             </div>
 
             <motion.div className="relative z-50 mx-auto flex w-full flex-col items-center px-3 pt-2 md:absolute md:inset-0 md:px-8 md:pt-0 xl:px-12">
-              <div className="relative mb-3 block h-[112px] w-full md:hidden">
-                <div className="absolute inset-x-0 top-[62px] h-[28px] -translate-y-1/2 bg-[#112B44]" />
-                <div className="absolute inset-x-0 top-[62px] h-[2px] -translate-y-1/2 bg-gradient-to-r from-[#274A68] via-[#6C63FF] to-[#274A68]" />
-                <motion.div
-                  className="pointer-events-none absolute top-[62px] z-[60] -translate-x-1/2 -translate-y-1/2"
-                  animate={{
-                    left: `${mobileCarLeftPercent}%`,
-                  }}
-                  transition={{ duration: 0.45, ease: [0.22, 0.9, 0.25, 1.08] }}
-                >
-                  <div className="relative h-8 w-14 rounded-lg border border-[#3D3E8A] bg-gradient-to-b from-[#8FD4FF] via-[#7E8BFF] to-[#7C3AED] shadow-[0_10px_22px_-10px_rgba(0,0,0,0.65)]">
-                    <div className="absolute left-1.5 top-1.5 h-2.5 w-6 rounded bg-[#E6F7FF]" />
-                    <div className="absolute right-1.5 top-1.5 h-2.5 w-4 rounded bg-[#DDD7FF]" />
-                    <div className="absolute -bottom-1.5 left-2 h-3 w-3 rounded-full border border-[#0B1F31] bg-[#0F172A]" />
-                    <div className="absolute -bottom-1.5 right-2 h-3 w-3 rounded-full border border-[#0B1F31] bg-[#0F172A]" />
-                  </div>
-                </motion.div>
-                <div className="absolute left-0 right-0 top-[18px] z-[60] grid -translate-y-1/2 grid-cols-6 items-center">
-                  {mobileStops.map((stop) => (
-                    <button
-                      key={stop.label}
-                      type="button"
-                      onClick={() => setActiveIndex(stop.idx)}
-                      className="relative mx-auto flex h-11 w-11 items-center justify-center"
-                      aria-label={`Select ${stop.label}`}
-                    >
-                      <span
-                        className={`absolute -top-7 text-[10px] font-semibold leading-none tracking-tight ${activeIndex === stop.idx ? "text-[#0F2742]" : "text-[#5A728C]"
-                          }`}
-                      >
-                        {stop.label}
-                      </span>
-                      <RoadStopBulb lit={activeIndex === stop.idx} size="sm" />
-                    </button>
-                  ))}
-                </div>
+              <div className="mb-4 flex w-full max-w-lg flex-wrap justify-center gap-2 px-2 lg:hidden">
+                {mobileStops.map((stop) => (
+                  <button
+                    key={stop.label}
+                    type="button"
+                    onClick={() => setActiveIndex(stop.idx)}
+                    className={`rounded-full border px-3 py-2 text-xs font-semibold tracking-wide transition-colors ${
+                      activeIndex === stop.idx
+                        ? "border-[#6C63FF] bg-[#6C63FF] text-white shadow-sm"
+                        : "border-[#C5D4E3] bg-white/90 text-[#264766] hover:border-[#6C63FF]/50"
+                    }`}
+                    aria-label={`Select ${stop.label}`}
+                    aria-pressed={activeIndex === stop.idx}
+                  >
+                    {stop.label}
+                  </button>
+                ))}
               </div>
 
               <motion.div
                 ref={roadStopsRef}
-                className="relative z-[60] hidden w-full md:absolute md:inset-0 md:block"
+                className="relative z-[60] hidden w-full lg:absolute lg:inset-0 lg:block"
               >
                 <motion.div
                   className="pointer-events-none absolute left-1/2 top-1/2 z-[70] -translate-x-1/2 -translate-y-1/2"
@@ -589,7 +559,7 @@ export function ServicesPageContent({ initialServiceSlug }: ServicesPageContentP
               <div className="relative text-center md:text-left">
                 <div className="flex flex-col md:flex-row gap-8 items-center md:items-start">
                   <div className="flex-1">
-                    <h2 className={`mt-2 text-2xl font-bold md:text-4xl ${cardTheme.headline}`}>
+                    <h2 className={`mt-2 text-[clamp(1.5rem,4.5vw,2.25rem)] font-bold md:text-4xl ${cardTheme.headline}`}>
                       {activeService.sectionHeadline}
                     </h2>
                     <p className={`mt-3 ${cardTheme.body}`}>{activeService.description}</p>

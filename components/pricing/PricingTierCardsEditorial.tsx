@@ -56,7 +56,7 @@ export function PricingTierCardsEditorial({
               }`}
             >
               <div
-                className={`flex flex-col gap-6 border-b pb-6 sm:flex-row sm:items-start sm:justify-between ${
+                className={`flex flex-col gap-4 border-b pb-6 md:flex-row md:items-start md:justify-between md:gap-6 ${
                   featured ? "border-white/10" : "border-[#E5E5E3]"
                 }`}
               >

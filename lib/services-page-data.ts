@@ -261,7 +261,7 @@ export const PROOF_BLOCKS = [
   {
     type: "quote" as const,
     quote: "Clear communication, strong engineering, and no agency fluff.",
-    role: "Founding client · US small business",
+    role: "Client · US small business",
     span: "lg:col-span-4",
   },
   {
@@ -279,7 +279,7 @@ export const PROOF_BLOCKS = [
   {
     type: "case" as const,
     title: "Make My Lesson",
-    description: "AI lesson planning product in active development for educators.",
+    description: "AI lesson planning product live for educators on iOS and Android.",
     span: "lg:col-span-3",
   },
 ];

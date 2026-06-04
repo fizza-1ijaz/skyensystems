@@ -98,9 +98,9 @@ export const SELECTED_WORK = [
   },
   {
     name: "Make My Lesson",
-    category: "EdTech · In development",
-    metric: "3–4 wk",
-    metricLabel: "Avg. web delivery",
+    category: "EdTech · Live",
+    metric: "App Store & Play Store",
+    metricLabel: "Distribution",
     description:
       "Curriculum-aligned lesson planning for educators — saving hours every week.",
     logo: "/logo-makemylesson.png",

@@ -409,7 +409,7 @@ export function HomePageContent() {
         <div className="mt-8 grid gap-7 md:grid-cols-3 lg:gap-8">
           {[
             ["Studiely", "Live", "Learning, made personal.", "A full-stack education platform live on iOS, Android, and Web.", "Visit Studiely", "https://studiely.com"],
-            ["Make My Lesson", "Arriving soon", "Teaching, reimagined.", "AI-powered lesson planning with instant structured plans.", "Join waitlist", "/products"],
+            ["Make My Lesson", "Live", "Teaching, reimagined.", "AI-powered lesson planning — live on iOS, Android, and Web.", "Visit Make My Lesson", "https://makemylesson.ai"],
             ["Linguatude", "Coming soon", "English, unlocked.", "Adaptive English test prep with real exam simulations.", "Notify me", "/products"],
           ].map(([name, status, tag, desc, cta, href]) => (
             <motion.article
@@ -501,12 +501,12 @@ export function HomePageContent() {
           <h2 className="text-3xl font-bold md:text-4xl">Early results. Real businesses.</h2>
         </div>
         <div className="mt-6 rounded-3xl border border-dashed border-[#6C63FF55] bg-white/70 p-8 text-center">
-          <h3 className="text-2xl font-bold">Be one of our first US clients.</h3>
+          <h3 className="text-2xl font-bold">Tell us about your project.</h3>
           <p className="mx-auto mt-3 max-w-2xl text-slate-600">
-            We are offering a Founding Client rate with 20% off in exchange for your honest review.
+            Share what you are building — we reply within 24 hours with an honest scope and quote.
           </p>
           <Link href="/contact-us" className="mt-5 inline-block rounded-xl bg-[#112B44] px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-[#1B3E5E]">
-            Claim the Founding Rate
+            Get in touch
           </Link>
         </div>
       </section>

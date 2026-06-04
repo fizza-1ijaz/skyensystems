@@ -33,7 +33,7 @@ export function LandingCta() {
           <Reveal delay={0.1} className="lg:col-span-4 lg:text-right">
             <Link
               href="/contact-us"
-              className="inline-flex min-w-[220px] items-center justify-center bg-[#6C63FF] px-8 py-4 text-sm font-semibold uppercase tracking-[0.14em] text-[#141414] transition-colors hover:bg-[#5A52E8]"
+              className="inline-flex w-full items-center justify-center sm:w-auto sm:min-w-[220px] bg-[#6C63FF] px-8 py-4 text-sm font-semibold uppercase tracking-[0.14em] text-[#141414] transition-colors hover:bg-[#5A52E8]"
               style={{
                 clipPath:
                   "polygon(0 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%)",

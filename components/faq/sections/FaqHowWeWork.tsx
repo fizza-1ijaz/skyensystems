@@ -1,34 +1,23 @@
 "use client";
 
 import { FAQ_PROCESS } from "@/lib/faq-editorial-data";
+import { EditorialProcessTimeline } from "@/components/landing/EditorialProcessTimeline";
 import { Reveal } from "@/components/landing/Reveal";
 
 export function FaqHowWeWork() {
   return (
-    <section id="process" className="scroll-mt-20 overflow-x-auto border-b border-[#E5E5E3] bg-[#141414] py-20 text-[#FAFAF8] md:py-28">
-      <div className="mx-auto min-w-[min(100%,1440px)] max-w-[1440px] px-6 md:px-10">
+    <section
+      id="process"
+      className="scroll-mt-20 border-b border-[#E5E5E3] bg-[#141414] py-20 text-[#FAFAF8] md:py-28"
+    >
+      <div className="mx-auto max-w-[1440px] px-6 md:px-10">
         <Reveal>
-          <h2 className="max-w-2xl font-heading text-4xl font-bold tracking-[-0.03em] md:text-5xl">
+          <h2 className="editorial-section-title max-w-2xl text-balance">
             From first conversation to long-term partnership.
           </h2>
         </Reveal>
 
-        <div className="relative mt-14 min-w-[720px]">
-          <div className="absolute left-0 right-0 top-12 h-px bg-[#6C63FF]/50" aria-hidden />
-          <ol className="grid grid-cols-6 gap-4">
-            {FAQ_PROCESS.map((step, index) => (
-              <Reveal key={step.phase} delay={index * 0.05}>
-                <li className="relative pt-16">
-                  <span className="absolute left-0 top-6 flex h-12 w-12 items-center justify-center border border-[#6C63FF] bg-[#141414] font-heading text-sm font-bold text-[#6C63FF]">
-                    {step.phase}
-                  </span>
-                  <h3 className="font-heading text-lg font-bold">{step.title}</h3>
-                  <p className="mt-2 text-xs leading-relaxed text-[#B8B8B8]">{step.detail}</p>
-                </li>
-              </Reveal>
-            ))}
-          </ol>
-        </div>
+        <EditorialProcessTimeline steps={FAQ_PROCESS} />
       </div>
     </section>
   );

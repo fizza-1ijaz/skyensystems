@@ -119,7 +119,7 @@ export function PricingHeroVisual({ className = "" }: { className?: string }) {
           <InvestmentModelDiagram />
         </div>
 
-        <div className="mt-6 grid grid-cols-3 gap-px bg-white/10">
+        <div className="mt-6 grid grid-cols-1 gap-px bg-white/10 min-[480px]:grid-cols-3">
           {HERO_SIGNALS.map((signal) => (
             <div key={signal.label} className="bg-[#0F172A] px-3 py-4 text-center md:px-4">
               <p className="font-heading text-lg font-bold tracking-tight text-[#FAFAF8] md:text-xl">

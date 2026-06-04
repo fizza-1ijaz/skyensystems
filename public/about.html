@@ -7,6 +7,7 @@
 <meta property="og:title" content="About Skyen Systems"><meta property="og:url" content="https://skyensystems.com/about">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/mobile-nav.css">
 <style>
 :root{--bg-primary:#1E2240;--bg-secondary:#252A4A;--bg-tertiary:#0F1429;--bg-surface:#2A3050;--bg-card:rgba(255,255,255,0.04);--bg-card-hover:rgba(255,255,255,0.07);--cyan:#1E3A8A;--teal:#2DD4BF;--gradient:linear-gradient(135deg,#1E3A8A,#2DD4BF);--gradient-text:linear-gradient(135deg,#1E3A8A 0%,#2DD4BF 100%);--text-primary:#FFFFFF;--text-secondary:#94A3B8;--text-muted:#64748B;--border:rgba(255,255,255,0.08);--border-accent:rgba(30,58,138,0.30);--border-card:rgba(255,255,255,0.06);--green:#10B981;--font-head:'Plus Jakarta Sans',sans-serif;--font-body:'DM Sans',sans-serif;--max-w:1200px;--radius-card:14px;--radius-btn:8px;}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}html{scroll-behavior:smooth;}
@@ -71,7 +72,7 @@ body{background:var(--bg-primary);color:var(--text-primary);font-family:var(--fo
 .footer-links{list-style:none;}.footer-links li{margin-bottom:12px;}.footer-links a{font-size:14px;color:var(--text-secondary);text-decoration:none;transition:color .2s;}.footer-links a:hover{color:var(--teal);}
 .footer-bottom{padding:22px 0;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;}
 .footer-copy{font-size:12px;color:var(--text-muted);}.footer-legal{display:flex;gap:24px;}.footer-legal a{font-size:12px;color:var(--text-muted);text-decoration:none;}.footer-legal a:hover{color:var(--teal);}
-@media(max-width:768px){.stats-grid{grid-template-columns:1fr 1fr;}.values-grid{grid-template-columns:1fr;}.group-row{grid-template-columns:1fr;}.footer-main{grid-template-columns:1fr;gap:32px;}.nav-links{display:none;}}
+@media(max-width:768px){.stats-grid{grid-template-columns:1fr 1fr;}.values-grid{grid-template-columns:1fr;}.group-row{grid-template-columns:1fr;}.footer-main{grid-template-columns:1fr;gap:32px;}.cta-btns{flex-direction:column;align-items:stretch;}}
 </style>
 </head>
 <body>
@@ -80,6 +81,7 @@ body{background:var(--bg-primary);color:var(--text-primary);font-family:var(--fo
     <a href="/index.html" class="nav-logo"><span class="nav-logo-skyen">SKYEN</span><span class="nav-logo-sub">Systems</span></a>
     <ul class="nav-links"><li><a href="/services.html">Services</a></li><li><a href="/pricing.html">Pricing</a></li><li><a href="/products.html">Products</a></li><li><a href="/about.html" class="active">About</a></li><li><a href="/blog.html">Blog</a></li></ul>
     <div class="nav-actions"><a href="/contact.html" class="btn btn-ghost btn-sm">Contact</a><a href="https://calendly.com/skyensystems/discovery" class="btn btn-primary btn-sm" target="_blank" rel="noopener">Book a Call ↗</a></div>
+    <button class="nav-hamburger" type="button" aria-label="Open menu" aria-expanded="false"><svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true"><path d="M3 6h16M3 11h16M3 16h16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
   </div>
 </nav>
 
@@ -112,7 +114,7 @@ body{background:var(--bg-primary);color:var(--text-primary);font-family:var(--fo
     <div style="font-size:15px;color:var(--text-secondary);line-height:1.9;">
       <p style="margin-bottom:18px;">Skyen Systems grew from a simple frustration: too many great businesses were paying too much for digital work that underwhelmed them, or too little for work that embarrassed them. There was no honest middle ground — no team that combined real capability with real transparency.</p>
       <p style="margin-bottom:18px;">We're the digital services arm of the Skyen Group — headquartered in Bahrain, with a regional development center that gives us the depth and capacity to handle everything from a single landing page to a full mobile app ecosystem.</p>
-      <p style="margin-bottom:18px;">Our sister company, Skyen Solutions, builds EdTech products — including Studiely, a live platform on iOS, Android, and Web, and two more products in development. That product-building experience is what makes us different. We don't just execute briefs. We think about products — how they work, why they fail, and what makes people keep using them.</p>
+      <p style="margin-bottom:18px;">Our sister company, Skyen Solutions, builds EdTech products — including Studiely and Make My Lesson, live on iOS, Android, and Web, with Linguatude in development. That product-building experience is what makes us different. We don't just execute briefs. We think about products — how they work, why they fail, and what makes people keep using them.</p>
       <p>When we take on your project, we're not learning on your budget. We already know what it takes.</p>
     </div>
   </div>
@@ -182,7 +184,7 @@ body{background:var(--bg-primary);color:var(--text-primary);font-family:var(--fo
           <div class="group-card-sub">EdTech Products — Bahrain</div>
           <ul class="group-card-list">
             <li>Studiely — Live on iOS, Android, Web</li>
-            <li>Make My Lesson — Arriving soon</li>
+            <li>Make My Lesson — Live on iOS, Android, Web</li>
             <li>Linguatude — Coming soon</li>
           </ul>
         </div>
@@ -234,5 +236,6 @@ body{background:var(--bg-primary);color:var(--text-primary);font-family:var(--fo
   </div>
   <div class="footer-bottom"><div class="footer-copy">© 2025 Skyen Systems. Part of the Skyen Group. Headquartered in Bahrain.</div><div class="footer-legal"><a href="/privacy-policy.html">Privacy Policy</a><a href="/terms.html">Terms of Service</a></div></div>
 </div></footer>
+<script src="/mobile-nav.js" defer></script>
 </body>
 </html>

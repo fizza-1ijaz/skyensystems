@@ -58,7 +58,7 @@ export const COMPANY_TIMELINE = [
     year: "Products",
     title: "In-house product studio",
     detail:
-      "Studiely live on App Store and Play Store; Make My Lesson and Linguatude in active development.",
+      "Studiely and Make My Lesson live on App Store and Play Store; Linguatude in active development.",
   },
   {
     year: "Global",

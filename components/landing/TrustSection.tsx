@@ -6,7 +6,7 @@ import { Reveal } from "@/components/landing/Reveal";
 const TESTIMONIAL = {
   quote:
     "Skyen Systems delivered a polished platform on time — clear communication, strong engineering, and no agency fluff.",
-  role: "Founding client · US small business",
+  role: "Client · US small business",
 };
 
 export function TrustSection() {
@@ -15,13 +15,13 @@ export function TrustSection() {
       <div className="mx-auto max-w-[1440px] px-6 md:px-10">
         <div className="grid gap-6 lg:grid-cols-12">
           {/* Stats block — annual report style */}
-          <Reveal className="grid grid-cols-2 gap-px bg-[#E5E5E3] sm:grid-cols-4 lg:col-span-7">
+          <Reveal className="grid grid-cols-1 gap-px bg-[#E5E5E3] min-[400px]:grid-cols-2 sm:grid-cols-4 lg:col-span-7">
             {TRUST_STATS.map((stat) => (
-              <div key={stat.label} className="bg-white p-6 md:p-8">
-                <p className="font-heading text-4xl font-bold tracking-tight text-[#141414] md:text-5xl">
+              <div key={stat.label} className="min-w-0 bg-white p-4 min-[400px]:p-5 sm:p-6 md:p-8">
+                <p className="font-heading text-3xl font-bold tracking-tight text-[#141414] sm:text-4xl md:text-5xl">
                   {stat.value}
                 </p>
-                <p className="mt-2 text-xs uppercase tracking-[0.14em] text-[#6B6B6B]">
+                <p className="mt-2 text-[10px] uppercase leading-snug tracking-[0.12em] text-[#6B6B6B] sm:text-xs sm:tracking-[0.14em]">
                   {stat.label}
                 </p>
               </div>
@@ -36,12 +36,12 @@ export function TrustSection() {
             <p className="mt-4 font-heading text-2xl font-bold text-[#141414]">
               PSEB-registered software export house
             </p>
-            <p className="mt-4 text-sm leading-relaxed text-[#5C5C5C]">
+            <p className="mt-4 break-words text-sm leading-relaxed text-[#5C5C5C]">
               Qismat Ventures W.L.L. · CR 190698-1 · Bahrain head office · Lahore delivery centre
             </p>
-            <ul className="mt-6 space-y-2 text-xs uppercase tracking-[0.12em] text-[#8A8A8A]">
+            <ul className="mt-6 space-y-2 break-words text-xs uppercase tracking-[0.12em] text-[#8A8A8A]">
               <li>Studiely — Live on App Store & Play Store</li>
-              <li>Make My Lesson — In development</li>
+              <li>Make My Lesson — Live on App Store & Play Store</li>
               <li>Linguatude — In development</li>
             </ul>
           </Reveal>
@@ -49,7 +49,7 @@ export function TrustSection() {
           {/* Testimonial — wide */}
           <Reveal
             delay={0.12}
-            className="border-l-4 border-[#6C63FF] bg-[#141414] p-8 text-[#FAFAF8] lg:col-span-8"
+            className="border-l-4 border-[#6C63FF] bg-[#141414] p-8 text-[#FAFAF8] lg:col-span-12"
           >
             <p className="font-heading text-2xl font-medium leading-snug md:text-3xl">
               &ldquo;{TESTIMONIAL.quote}&rdquo;
@@ -57,24 +57,6 @@ export function TrustSection() {
             <p className="mt-6 text-xs uppercase tracking-[0.16em] text-[#9A9A9A]">
               {TESTIMONIAL.role}
             </p>
-          </Reveal>
-
-          {/* Founding offer */}
-          <Reveal
-            delay={0.16}
-            className="flex flex-col justify-between border border-[#E5E5E3] p-8 lg:col-span-4"
-          >
-            <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#8A8A8A]">
-                Founding client program
-              </p>
-              <p className="mt-3 font-heading text-xl font-bold text-[#141414]">
-                20% off for early US partners
-              </p>
-              <p className="mt-2 text-sm text-[#5C5C5C]">
-                In exchange for an honest review after delivery.
-              </p>
-            </div>
           </Reveal>
         </div>
       </div>

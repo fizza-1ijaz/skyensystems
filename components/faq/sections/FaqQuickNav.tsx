@@ -24,7 +24,7 @@ export function FaqQuickNav() {
                 <span className="font-heading text-xl font-bold text-[#141414] transition-colors group-hover:text-[#6C63FF] md:col-span-4 md:text-2xl">
                   {cat.label}
                 </span>
-                <span className="text-sm text-[#8A8A8A] opacity-0 transition-opacity group-hover:opacity-100 md:col-span-7 md:text-right">
+                <span className="text-sm text-[#8A8A8A] max-md:opacity-100 md:col-span-7 md:text-right md:opacity-0 md:transition-opacity md:group-hover:opacity-100">
                   Jump to section →
                 </span>
               </a>

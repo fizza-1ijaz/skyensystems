@@ -44,12 +44,12 @@ export function ContactHero() {
                 </p>
               </Reveal>
 
-              <div className="mt-12 grid grid-cols-2 gap-y-8 sm:flex sm:flex-wrap sm:items-start md:mt-14">
+              <div className="mt-12 grid grid-cols-1 gap-6 min-[400px]:grid-cols-2 md:mt-14 md:gap-8 lg:grid-cols-4">
                 {HERO_METRICS.map((metric, index) => (
                   <Reveal
                     key={metric.label}
                     delay={0.12 + index * 0.06}
-                    className={`min-w-[7.5rem] sm:px-6 ${index === 0 ? "sm:pl-0" : "border-[#DADAD8] sm:border-l"}`}
+                    className={`min-w-0 ${index > 0 ? "min-[400px]:border-l min-[400px]:border-[#DADAD8] min-[400px]:pl-6 lg:pl-0 lg:border-l-0" : ""}`}
                   >
                     <p className="font-heading text-2xl font-bold tracking-tight text-[#141414] transition-colors duration-300 hover:text-[#6C63FF] md:text-3xl">
                       {metric.value}
@@ -65,14 +65,14 @@ export function ContactHero() {
 
           {/* Right — contact panel */}
           <Reveal delay={0.1} className="mt-12 lg:col-span-5 lg:mt-4">
-            <div className="relative z-10 bg-[#0F172A] px-8 py-8 md:px-10 md:py-10">
+            <div className="relative z-10 bg-[#0F172A] px-5 py-8 sm:px-8 md:px-10 md:py-10">
               <div className="border-b border-white/10 py-6 first:pt-0">
                 <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-white/45">
                   Email
                 </p>
                 <Link
                   href={OFFICE_EMAIL_MAILTO}
-                  className="mt-2 inline-block font-heading text-xl font-bold text-[#FAFAF8] transition-colors hover:text-[#6C63FF] md:text-2xl"
+                  className="mt-2 inline-block break-all font-heading text-lg font-bold text-[#FAFAF8] transition-colors hover:text-[#6C63FF] sm:text-xl md:text-2xl"
                 >
                   {OFFICE_EMAIL}
                 </Link>

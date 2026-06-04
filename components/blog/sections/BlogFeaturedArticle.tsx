@@ -25,7 +25,7 @@ export function BlogFeaturedArticle({ post }: BlogFeaturedArticleProps) {
               <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#6C63FF]">
                 {post.category?.name ?? "Featured"}
               </p>
-              <h2 className="mt-4 font-heading text-3xl font-bold leading-[1.05] tracking-[-0.03em] text-[#141414] transition-colors duration-200 group-hover:text-[#6C63FF] md:text-4xl lg:text-[2.75rem]">
+              <h2 className="mt-4 break-words font-heading text-[clamp(1.5rem,5vw,2.75rem)] font-bold leading-[1.05] tracking-[-0.03em] text-[#141414] transition-colors duration-200 group-hover:text-[#6C63FF]">
                 {post.title}
               </h2>
               <p className="mt-5 max-w-xl text-base leading-relaxed text-[#5C5C5C] md:text-lg">

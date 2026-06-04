@@ -7,6 +7,7 @@
 <meta property="og:title" content="Contact Skyen Systems"><meta property="og:url" content="https://skyensystems.com/contact">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/mobile-nav.css">
 <style>
 :root{--bg-primary:#1E2240;--bg-secondary:#252A4A;--bg-tertiary:#0F1429;--bg-card:rgba(255,255,255,0.04);--bg-card-hover:rgba(255,255,255,0.07);--cyan:#1E3A8A;--teal:#2DD4BF;--gradient:linear-gradient(135deg,#1E3A8A,#2DD4BF);--gradient-text:linear-gradient(135deg,#1E3A8A 0%,#2DD4BF 100%);--text-primary:#FFFFFF;--text-secondary:#94A3B8;--text-muted:#64748B;--border:rgba(255,255,255,0.08);--border-accent:rgba(30,58,138,0.30);--border-card:rgba(255,255,255,0.06);--green:#10B981;--font-head:'Plus Jakarta Sans',sans-serif;--font-body:'DM Sans',sans-serif;--max-w:1200px;--radius-card:14px;--radius-btn:8px;}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}html{scroll-behavior:smooth;}
@@ -52,10 +53,6 @@ body{background:var(--bg-primary);color:var(--text-primary);font-family:var(--fo
 .calendly-card{background:var(--bg-secondary);border:1.5px solid var(--border-accent);border-radius:var(--radius-card);padding:28px;text-align:center;}
 .calendly-title{font-family:var(--font-head);font-size:18px;font-weight:700;color:var(--text-primary);margin-bottom:8px;}
 .calendly-desc{font-size:13px;color:var(--text-secondary);margin-bottom:20px;line-height:1.6;}
-/* Founding offer */
-.founding-banner{background:rgba(30,58,138,.06);border:1px solid var(--border-accent);border-radius:var(--radius-card);padding:22px 24px;margin-top:8px;}
-.founding-title{font-family:var(--font-head);font-size:14px;font-weight:700;color:var(--text-primary);margin-bottom:4px;}
-.founding-desc{font-size:12px;color:var(--text-secondary);}
 /* FAQ */
 .faq-list{margin-top:40px;display:flex;flex-direction:column;gap:2px;}
 .faq-item{background:var(--bg-card);border:1px solid var(--border-card);border-radius:10px;overflow:hidden;}
@@ -72,7 +69,7 @@ body{background:var(--bg-primary);color:var(--text-primary);font-family:var(--fo
 .footer-links{list-style:none;}.footer-links li{margin-bottom:12px;}.footer-links a{font-size:14px;color:var(--text-secondary);text-decoration:none;transition:color .2s;}.footer-links a:hover{color:var(--teal);}
 .footer-bottom{padding:22px 0;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;}
 .footer-copy{font-size:12px;color:var(--text-muted);}.footer-legal{display:flex;gap:24px;}.footer-legal a{font-size:12px;color:var(--text-muted);text-decoration:none;}.footer-legal a:hover{color:var(--teal);}
-@media(max-width:768px){.contact-grid{grid-template-columns:1fr;gap:40px;}.form-row{grid-template-columns:1fr;}.footer-main{grid-template-columns:1fr;gap:32px;}.nav-links{display:none;}}
+@media(max-width:768px){.contact-grid{grid-template-columns:1fr;gap:40px;}.form-row{grid-template-columns:1fr;}.footer-main{grid-template-columns:1fr;gap:32px;}}
 </style>
 </head>
 <body>
@@ -81,6 +78,7 @@ body{background:var(--bg-primary);color:var(--text-primary);font-family:var(--fo
     <a href="/index.html" class="nav-logo"><span class="nav-logo-skyen">SKYEN</span><span class="nav-logo-sub">Systems</span></a>
     <ul class="nav-links"><li><a href="/services.html">Services</a></li><li><a href="/pricing.html">Pricing</a></li><li><a href="/products.html">Products</a></li><li><a href="/about.html">About</a></li><li><a href="/blog.html">Blog</a></li></ul>
     <div class="nav-actions"><a href="/contact.html" class="btn btn-primary btn-sm">Contact</a></div>
+    <button class="nav-hamburger" type="button" aria-label="Open menu" aria-expanded="false"><svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true"><path d="M3 6h16M3 11h16M3 16h16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
   </div>
 </nav>
 
@@ -119,7 +117,6 @@ body{background:var(--bg-primary);color:var(--text-primary);font-family:var(--fo
               <option value="digital-marketing">Digital Marketing / SEO</option>
               <option value="brand-design">Brand &amp; Logo Design</option>
               <option value="web-app">Web Application / SaaS</option>
-              <option value="founding">Founding Client Offer (20% off)</option>
               <option value="not-sure">Not sure yet — I want to talk first</option>
             </select>
           </div>
@@ -169,11 +166,6 @@ body{background:var(--bg-primary);color:var(--text-primary);font-family:var(--fo
           <div class="info-card-detail">Available Mon–Fri, 9am–6pm GMT+3</div>
         </div>
 
-        <!-- Founding offer -->
-        <div class="founding-banner">
-          <div class="founding-title">⭐ Founding Client Rate available</div>
-          <div class="founding-desc">Select "Founding Client Offer" above and get 20% off any START or GROW package. In exchange, we ask for a written testimonial and permission to feature your project.</div>
-        </div>
       </div>
     </div>
 
@@ -210,7 +202,7 @@ body{background:var(--bg-primary);color:var(--text-primary);font-family:var(--fo
   var pkg=params.get('package')||params.get('plan')||params.get('service')||params.get('offer');
   if(pkg){
     var sel=document.getElementById('service');
-    var map={start:'website',grow:'full-package',lead:'full-package','mobile-app':'mobile-app','social-media':'social-media',founding:'founding','seo-marketing':'digital-marketing','seo-audit':'digital-marketing','web-app':'web-app','brand-design':'brand-design',steady:'social-media',amplify:'social-media',shield:'website'};
+    var map={start:'website',grow:'full-package',lead:'full-package','mobile-app':'mobile-app','social-media':'social-media','seo-marketing':'digital-marketing','seo-audit':'digital-marketing','web-app':'web-app','brand-design':'brand-design',steady:'social-media',amplify:'social-media',shield:'website'};
     if(map[pkg]){sel.value=map[pkg];}
   }
   document.getElementById('contact-form').addEventListener('submit',function(e){
@@ -219,5 +211,6 @@ body{background:var(--bg-primary);color:var(--text-primary);font-family:var(--fo
   });
 })();
 </script>
+<script src="/mobile-nav.js" defer></script>
 </body>
 </html>

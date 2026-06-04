@@ -11,7 +11,7 @@ const PRODUCT_META: Record<string, { title: string; description: string }> = {
   "make-my-lesson": {
     title: "Make My Lesson | Skyen Systems Products",
     description:
-      "Discover Make My Lesson, an AI-powered lesson planning product by Skyen Systems.",
+      "Explore Make My Lesson, Skyen Systems' live AI lesson planning product for educators on iOS, Android, and web.",
   },
   linguatude: {
     title: "Linguatude | Skyen Systems Products",
@@ -26,7 +26,8 @@ const PRODUCT_SCHEMA: Record<string, { name: string; description: string }> = {
   },
   "make-my-lesson": {
     name: "Make My Lesson",
-    description: "AI lesson planning product for teachers.",
+    description:
+      "Live AI lesson planning product for teachers on iOS, Android, and web.",
   },
   linguatude: {
     name: "Linguatude",

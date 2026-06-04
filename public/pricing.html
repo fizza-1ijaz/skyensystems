@@ -10,6 +10,7 @@
 <meta property="og:url" content="https://skyensystems.com/pricing">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/mobile-nav.css">
 <style>
 :root{--bg-primary:#1E2240;--bg-secondary:#252A4A;--bg-tertiary:#0F1429;--bg-surface:#2A3050;--bg-card:rgba(255,255,255,0.045);--bg-card-hover:rgba(255,255,255,0.09);--cyan:#1E3A8A;--teal:#2DD4BF;--gradient:linear-gradient(135deg,#1E3A8A,#2DD4BF);--gradient-text:linear-gradient(135deg,#1E3A8A 0%,#2DD4BF 100%);--text-primary:#FFFFFF;--text-secondary:#94A3B8;--text-muted:#64748B;--text-accent:#2DD4BF;--border:rgba(255,255,255,0.08);--border-accent:rgba(30,58,138,0.34);--border-card:rgba(255,255,255,0.08);--green:#10B981;--font-head:'Plus Jakarta Sans',sans-serif;--font-body:'DM Sans',sans-serif;--max-w:1200px;--radius-card:18px;--radius-btn:10px;--shadow-card:0 26px 60px -38px rgba(0,0,0,.7);}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
@@ -82,10 +83,7 @@ var(--bg-primary);color:var(--text-primary);font-family:var(--font-body);font-we
 .price-cell{color:var(--teal);font-weight:600;font-size:15px;}
 .us-cell{color:var(--text-muted);text-decoration:line-through;}
 .save-cell{color:var(--green);font-weight:600;font-size:12px;}
-/* Founding banner */
-.founding-banner{margin-top:52px;padding:34px 40px;background:linear-gradient(145deg,#111935,#0f1429);border:1px solid var(--border-accent);border-radius:var(--radius-card);display:flex;align-items:center;justify-content:space-between;gap:30px;flex-wrap:wrap;box-shadow:0 24px 56px -34px rgba(30,58,138,.35);}
-.founding-title{font-family:var(--font-head);font-size:18px;font-weight:700;color:var(--text-primary);margin-bottom:6px;}
-.founding-desc{font-size:14px;color:var(--text-secondary);}
+/* FAQ */
 /* FAQ */
 .faq-list{display:flex;flex-direction:column;gap:12px;margin-top:40px;}
 .faq-item{background:linear-gradient(160deg,rgba(255,255,255,.05),rgba(255,255,255,.02));border:1px solid var(--border-card);border-radius:var(--radius-card);overflow:hidden;transition:border-color .24s ease,box-shadow .24s ease;}
@@ -121,7 +119,7 @@ var(--bg-primary);color:var(--text-primary);font-family:var(--font-body);font-we
 .section-label{font-family:var(--font-head);font-size:22px;font-weight:800;color:var(--text-primary);margin-bottom:8px;margin-top:60px;}
 .section-label-sub{font-size:14px;color:var(--text-secondary);margin-bottom:28px;}
 @media(max-width:1024px){.pricing-grid{grid-template-columns:repeat(2,1fr);}.price-card.featured{transform:none;}}
-@media(max-width:768px){.pricing-grid{grid-template-columns:1fr;}.footer-main{grid-template-columns:1fr;gap:32px;}.nav-links{display:none;}.founding-banner{flex-direction:column;align-items:flex-start;padding:28px 24px;}.services-table th,.services-table td{padding:10px 12px;font-size:12px;}.pricing-tabs{width:100%;overflow-x:auto;}.page-hero{padding:68px 0 48px;}.price-card{padding:28px 22px;}.section-label{margin-top:48px;}}
+@media(max-width:768px){.pricing-grid{grid-template-columns:1fr;}.footer-main{grid-template-columns:1fr;gap:32px;}.services-table th,.services-table td{padding:10px 12px;font-size:12px;}.pricing-tabs{width:100%;overflow-x:auto;}.page-hero{padding:68px 0 48px;}.price-card{padding:28px 22px;}.section-label{margin-top:48px;}}
 </style>
 </head>
 <body>
@@ -139,6 +137,7 @@ var(--bg-primary);color:var(--text-primary);font-family:var(--font-body);font-we
       <a href="/contact.html" class="btn btn-ghost btn-sm">Contact</a>
       <a href="https://calendly.com/skyensystems/discovery" class="btn btn-primary btn-sm" target="_blank" rel="noopener">Book a Call ↗</a>
     </div>
+    <button class="nav-hamburger" type="button" aria-label="Open menu" aria-expanded="false"><svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true"><path d="M3 6h16M3 11h16M3 16h16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
   </div>
 </nav>
 
@@ -305,15 +304,6 @@ var(--bg-primary);color:var(--text-primary);font-family:var(--font-body);font-we
     <p style="font-size:12px;color:var(--text-muted);margin-top:14px;">All prices in USD. Custom quotes available for any project not listed above.</p>
   </div>
 
-  <!-- Founding offer -->
-  <div class="founding-banner">
-    <div>
-      <div class="founding-title">⭐ Founding Client Rate — 20% off START &amp; GROW</div>
-      <div class="founding-desc">We're building our US portfolio. Get 20% off either package in exchange for a written testimonial and permission to feature your project. One condition. Real savings. Available for a limited time.</div>
-    </div>
-    <a href="/contact.html?offer=founding" class="btn btn-primary" style="flex-shrink:0;">Claim the offer →</a>
-  </div>
-
   <!-- FAQ -->
   <div style="margin-top:80px;">
     <div class="eyebrow">Pricing FAQ</div>
@@ -403,5 +393,6 @@ var(--bg-primary);color:var(--text-primary);font-family:var(--font-body);font-we
   });
 })();
 </script>
+<script src="/mobile-nav.js" defer></script>
 </body>
 </html>

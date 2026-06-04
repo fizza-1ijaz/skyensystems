@@ -54,7 +54,9 @@ export function ProductFeatureSection({
   return (
     <section
       id={`product-${product.id}`}
-      className={`relative overflow-hidden py-20 md:py-28 ${
+      className={`relative overflow-hidden ${
+        index === 0 ? "pb-20 pt-10 md:pb-28 md:pt-14" : "py-20 md:py-28"
+      } ${
         featured ? "bg-[#0F172A] text-[#FAFAF8]" : "bg-[#F4F4F2] text-[#141414]"
       } ${highlighted ? "ring-2 ring-inset ring-[#6C63FF]/40" : ""}`}
     >
@@ -81,7 +83,7 @@ export function ProductFeatureSection({
             </Reveal>
 
             <Reveal delay={0.05}>
-              <div className="mt-6 flex items-end gap-4">
+              <div className="mt-6 flex flex-col gap-4 sm:flex-row sm:flex-wrap sm:items-end">
                 <div
                   className={`relative h-16 w-16 shrink-0 overflow-hidden border ${
                     featured ? "border-white/15 bg-white/5" : "border-[#DADAD8] bg-white"
@@ -97,7 +99,7 @@ export function ProductFeatureSection({
                   />
                 </div>
                 <h2
-                  className={`font-heading text-4xl font-bold tracking-[-0.03em] md:text-5xl lg:text-[3.25rem] ${
+                  className={`break-words font-heading text-[clamp(1.75rem,5vw,3.25rem)] font-bold tracking-[-0.03em] ${
                     featured ? "text-[#FAFAF8]" : "text-[#141414]"
                   }`}
                 >
@@ -108,7 +110,7 @@ export function ProductFeatureSection({
 
             <Reveal delay={0.08}>
               <p
-                className={`mt-6 text-xl font-semibold leading-snug md:text-2xl ${
+                className={`mt-6 text-lg font-semibold leading-snug sm:text-xl md:text-2xl ${
                   featured ? "text-white/85" : "text-[#141414]"
                 }`}
               >

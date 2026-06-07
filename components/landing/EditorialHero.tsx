@@ -68,7 +68,7 @@ export function EditorialHero() {
 
       <div className="editorial-hero-content pointer-events-none relative z-10 flex min-h-[calc(100svh+var(--site-nav-height)-1in)] flex-col md:absolute md:inset-0 md:min-h-0">
         <div className="pointer-events-auto relative flex flex-1 flex-col items-center gap-10 px-6 pb-12 sm:px-8 md:h-full md:w-full md:items-stretch md:justify-start md:gap-0 md:px-12 md:pb-20 md:pt-52">
-          <Reveal className="w-full shrink-0 pt-[calc(var(--site-nav-height)+1in)] text-center md:mb-6 md:pt-0">
+          <Reveal className="w-full shrink-0 pt-[calc(var(--site-nav-height)+0.5in)] text-center md:-mt-5 md:mb-4 md:pt-0">
             <p className="editorial-hero-eyebrow font-semibold uppercase text-white/65">
               Software house · Bahrain & Pakistan
             </p>
@@ -76,7 +76,7 @@ export function EditorialHero() {
 
           <div className="-mt-[2in] flex w-full flex-col items-center gap-10 md:mt-0 md:contents">
             <div className="w-full min-h-[24vh] shrink-0 md:hidden" aria-hidden />
-            <div className="w-full max-w-4xl shrink-0 md:max-w-4xl">
+            <div className="w-full max-w-4xl shrink-0 pl-4 sm:pl-6 md:max-w-4xl md:pl-12 lg:pl-16">
               <Reveal delay={0.06} className="shrink-0">
                 <h1 className="editorial-hero-headline text-left font-heading font-bold text-white">
                   We engineer
@@ -87,8 +87,8 @@ export function EditorialHero() {
                 </h1>
               </Reveal>
 
-              <Reveal delay={0.12} className="mt-10 flex w-full justify-center md:mt-12">
-                <p className="editorial-hero-body max-w-lg text-justify text-white/82">
+              <Reveal delay={0.12} className="mt-10 w-full md:mt-6">
+                <p className="editorial-hero-body w-full max-w-lg text-justify text-white/82 md:max-w-2xl md:text-left">
                   Skyen Systems is a PSEB-registered software company building websites, apps, and
                   AI systems for businesses that need one accountable team — not seven vendors.
                 </p>
@@ -96,7 +96,7 @@ export function EditorialHero() {
             </div>
 
             <motion.div
-            className="pointer-events-auto mt-8 shrink-0 self-end md:absolute md:bottom-2 md:right-12 md:mt-0 md:self-auto"
+            className="pointer-events-auto mt-8 shrink-0 self-end md:absolute md:bottom-8 md:right-12 md:mt-0 md:self-auto"
             initial={{ opacity: 0, rotate: 0, y: 0 }}
             animate={{
               opacity: 1,

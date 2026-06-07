@@ -11,7 +11,7 @@ type BlogBlueprintBackdropProps = {
 
 function BlueprintSvg({ variant }: { variant: "light" | "dark" }) {
   const ink = variant === "dark" ? "rgba(255, 255, 255, 1)" : "rgba(20, 20, 20, 1)";
-  const accent = "rgba(108, 99, 255, 1)";
+  const accent = "rgba(49,195,195, 1)";
 
   return (
     <svg

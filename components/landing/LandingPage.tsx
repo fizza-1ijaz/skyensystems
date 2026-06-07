@@ -1,5 +1,3 @@
-"use client";
-
 import { EditorialHero } from "@/components/landing/EditorialHero";
 import { CapabilitiesGrid } from "@/components/landing/CapabilitiesGrid";
 import { SelectedWork } from "@/components/landing/SelectedWork";
@@ -7,6 +5,7 @@ import { HowWeEngage } from "@/components/landing/HowWeEngage";
 import { IndustriesSection } from "@/components/landing/IndustriesSection";
 import { TrustSection } from "@/components/landing/TrustSection";
 import { LandingCta } from "@/components/landing/LandingCta";
+import { FeaturedBlogs } from "@/components/home/FeaturedBlogs";
 
 export function LandingPage() {
   return (
@@ -17,6 +16,7 @@ export function LandingPage() {
       <HowWeEngage />
       <IndustriesSection />
       <TrustSection />
+      <FeaturedBlogs />
       <LandingCta />
     </div>
   );

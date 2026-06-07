@@ -27,7 +27,7 @@ export function PricingEstimator({
   const inlineRate = formatInlineRate(fx);
 
   return (
-    <section className="relative overflow-hidden bg-[#F4F4F2] pb-16 pt-0 md:pb-20">
+    <section className="relative overflow-hidden bg-[#F4F4F2] pb-16 pt-10 md:pb-20 md:pt-14">
       <div className="mx-auto max-w-[1440px] px-6 md:px-10">
         <div className="lg:grid lg:grid-cols-12 lg:items-start lg:gap-10 xl:gap-14">
           {/* Left — editorial context (60%) */}
@@ -98,12 +98,12 @@ export function PricingEstimator({
                 <div
                   key={item.label}
                   className={`group bg-[#FAFAF8] p-6 transition-colors duration-200 md:p-8 ${
-                    index % 2 === 1 ? "md:bg-[rgba(108,99,255,0.03)]" : ""
+                    index % 2 === 1 ? "md:bg-[rgba(49,195,195,0.03)]" : ""
                   }`}
                 >
                   <div className="relative pl-0 transition-all duration-200 group-hover:pl-3">
                     <span
-                      className="absolute left-0 top-0 h-0 w-0.5 bg-[#6C63FF] transition-all duration-200 group-hover:h-full"
+                      className="absolute left-0 top-0 h-0 w-0.5 bg-[#31C3C3] transition-all duration-200 group-hover:h-full"
                       aria-hidden
                     />
                     <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#8A8A8A]">
@@ -113,7 +113,7 @@ export function PricingEstimator({
                       {item.range}
                     </p>
                     <span
-                      className="mt-2 block h-px w-full max-w-[6rem] bg-[#6C63FF]/35"
+                      className="mt-2 block h-px w-full max-w-[6rem] bg-[#31C3C3]/35"
                       aria-hidden
                     />
                     <p className="mt-3 text-xs leading-relaxed text-[#5C5C5C]">{item.note}</p>

@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useState, type ReactNode } from "react";
 import { Reveal } from "@/components/landing/Reveal";
+import { EditorialBoxButton } from "@/components/ui/EditorialBoxCta";
 import {
   BUDGET_RANGES,
   PROJECT_TYPES,
@@ -12,7 +13,7 @@ import {
 const fieldLabel =
   "text-[10px] font-semibold uppercase tracking-[0.22em] text-[#8A8A8A]";
 const fieldInput =
-  "w-full border-0 border-b border-[#DADAD8] bg-transparent py-3.5 text-sm text-[#141414] outline-none transition-colors placeholder:text-[#ABABAB] focus:border-[#6C63FF]";
+  "w-full border-0 border-b border-[#DADAD8] bg-transparent py-3.5 text-sm text-[#141414] outline-none transition-colors placeholder:text-[#ABABAB] focus:border-[#31C3C3]";
 const fieldSelect = `${fieldInput} cursor-pointer appearance-none rounded-none`;
 
 function Field({
@@ -137,7 +138,7 @@ export function ContactInquiryForm() {
           <Reveal delay={0.08} className="mt-12 w-full md:mt-14">
             {status === "success" ? (
               <div className="border border-[#DADAD8] bg-[#FAFAF8] px-10 py-14 text-center shadow-[0_24px_60px_-48px_rgba(20,20,20,0.18)] md:px-16 md:py-16">
-                <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-[#6C63FF]">
+                <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-[#31C3C3]">
                   Message received
                 </p>
                 <h3 className="mt-3 font-heading text-3xl font-bold text-[#141414]">
@@ -146,18 +147,19 @@ export function ContactInquiryForm() {
                 <p className="mx-auto mt-4 max-w-md text-sm leading-relaxed text-[#5C5C5C]">
                   A member of our team will review your inquiry and respond by email. If your
                   project is time-sensitive, write directly to{" "}
-                  <Link href="mailto:info@skyensystems.com" className="text-[#6C63FF] hover:underline">
+                  <Link href="mailto:info@skyensystems.com" className="text-[#31C3C3] hover:underline">
                     info@skyensystems.com
                   </Link>
                   .
                 </p>
-                <button
+                <EditorialBoxButton
                   type="button"
                   onClick={() => setStatus("idle")}
-                  className="mt-8 text-sm font-semibold uppercase tracking-[0.12em] text-[#141414] underline-offset-4 hover:underline"
+                  className="mt-8"
+                  variant="neutral"
                 >
-                  Send another inquiry →
-                </button>
+                  Send another inquiry
+                </EditorialBoxButton>
               </div>
             ) : (
               <div className="border border-[#DADAD8] bg-[#FAFAF8] px-5 py-10 shadow-[0_24px_60px_-48px_rgba(20,20,20,0.18)] sm:px-8 sm:py-12 md:px-14 md:py-16 lg:px-16">
@@ -281,7 +283,7 @@ export function ContactInquiryForm() {
                   {status === "error" ? (
                     <p className="mt-8 text-center text-sm text-[#141414]">
                       Something went wrong. Please try again or email{" "}
-                      <Link href="mailto:info@skyensystems.com" className="text-[#6C63FF] hover:underline">
+                      <Link href="mailto:info@skyensystems.com" className="text-[#31C3C3] hover:underline">
                         info@skyensystems.com
                       </Link>
                       .
@@ -292,13 +294,13 @@ export function ContactInquiryForm() {
                     <button
                       type="submit"
                       disabled={status === "submitting"}
-                      className="inline-flex w-full items-center justify-center sm:w-auto sm:min-w-[240px] bg-[#141414] px-10 py-4 text-sm font-semibold uppercase tracking-[0.14em] text-[#FAFAF8] transition-colors hover:bg-[#6C63FF] hover:text-[#141414] disabled:opacity-50"
+                      className="inline-flex w-full items-center justify-center sm:w-auto sm:min-w-[240px] bg-[#141414] px-10 py-4 text-sm font-semibold uppercase tracking-[0.14em] text-[#FAFAF8] transition-colors hover:bg-[#31C3C3] hover:text-[#141414] disabled:opacity-50"
                       style={{
                         clipPath:
                           "polygon(0 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%)",
                       }}
                     >
-                      {status === "submitting" ? "Sending…" : "Submit inquiry →"}
+                      {status === "submitting" ? "Sending…" : "Submit inquiry"}
                     </button>
 
                     <p className="mt-6 max-w-sm text-center text-xs leading-relaxed text-[#8A8A8A]">

@@ -38,7 +38,7 @@ export function GlobalFootprint() {
                     y1={node.y}
                     x2={other.x}
                     y2={other.y}
-                    stroke="#6C63FF"
+                    stroke="#31C3C3"
                     strokeWidth="0.15"
                     opacity="0.35"
                   />
@@ -46,12 +46,12 @@ export function GlobalFootprint() {
               )}
               {GLOBAL_NODES.map((node) => (
                 <g key={node.id}>
-                  <circle cx={node.x} cy={node.y} r="2.2" fill="#6C63FF" />
+                  <circle cx={node.x} cy={node.y} r="2.2" fill="#31C3C3" />
                   <circle
                     cx={node.x}
                     cy={node.y}
                     r="4"
-                    stroke="#6C63FF"
+                    stroke="#31C3C3"
                     strokeWidth="0.3"
                     fill="none"
                     opacity="0.5"

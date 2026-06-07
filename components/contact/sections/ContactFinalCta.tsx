@@ -21,7 +21,7 @@ export function ContactFinalCta() {
             </p>
             <Link
               href={OFFICE_EMAIL_MAILTO}
-              className="mt-2 inline-block font-heading text-2xl font-bold text-[#FAFAF8] transition-colors hover:text-[#6C63FF] md:text-3xl"
+              className="mt-2 inline-block font-heading text-2xl font-bold text-[#FAFAF8] transition-colors hover:text-[#31C3C3] md:text-3xl"
             >
               {OFFICE_EMAIL}
             </Link>
@@ -30,7 +30,7 @@ export function ContactFinalCta() {
           <Reveal delay={0.16} className="mt-12">
             <Link
               href="#inquiry"
-              className="inline-flex w-full items-center justify-center sm:w-auto sm:min-w-[260px] bg-[#6C63FF] px-10 py-4 text-sm font-semibold uppercase tracking-[0.14em] text-[#141414] transition-colors hover:bg-[#5A52E8]"
+              className="inline-flex w-full items-center justify-center sm:w-auto sm:min-w-[260px] bg-[#31C3C3] px-10 py-4 text-sm font-semibold uppercase tracking-[0.14em] text-[#141414] transition-colors hover:bg-[#2AB0B0]"
               style={{
                 clipPath:
                   "polygon(0 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%)",

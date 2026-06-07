@@ -1,16 +1,16 @@
 import type { Metadata } from "next";
 import { Footer } from "@/components/layout/Footer";
 import { Inter, Space_Grotesk } from "next/font/google";
+import { MainContent } from "@/components/layout/MainContent";
 import { Navbar } from "@/components/layout/Navbar";
 import { GlobalCursorGlow } from "@/components/ui/GlobalCursorGlow";
 import { ScrollProgress } from "@/components/ui/ScrollProgress";
 import { SmoothScrollProvider } from "@/components/ui/SmoothScrollProvider";
+import { ConsentAwareAnalytics } from "@/components/ConsentAwareAnalytics";
 import { CookieConsent } from "@/components/CookieConsent";
-import Script from "next/script";
 import "./globals.css";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://skyensystems.com";
-const gaMeasurementId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
 
 const inter = Inter({
   variable: "--font-inter",
@@ -86,26 +86,12 @@ export default function RootLayout({
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
       </head>
       <body className="min-h-full flex flex-col bg-[#F4F4F2] text-[#141414]">
-        {gaMeasurementId ? (
-          <>
-            <Script
-              src={`https://www.googletagmanager.com/gtag/js?id=${gaMeasurementId}`}
-              strategy="afterInteractive"
-            />
-            <Script id="ga4-init" strategy="afterInteractive">
-              {`window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-window.gtag = window.gtag || gtag;
-gtag('js', new Date());
-gtag('config', '${gaMeasurementId}', { anonymize_ip: true });`}
-            </Script>
-          </>
-        ) : null}
+        <ConsentAwareAnalytics />
         <ScrollProgress />
         <GlobalCursorGlow />
         <SmoothScrollProvider>
           <Navbar />
-          <div className="flex-1 pt-14 min-w-0 overflow-x-clip">{children}</div>
+          <MainContent>{children}</MainContent>
           <Footer />
         </SmoothScrollProvider>
         <CookieConsent />

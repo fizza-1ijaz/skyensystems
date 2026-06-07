@@ -1,116 +1,137 @@
 "use client";
 
 import Link from "next/link";
-import {
-  Building2,
-  Clock,
-  Globe2,
-  Layers,
-  Rocket,
-  ShieldCheck,
-} from "lucide-react";
-import { HERO_PROOF_POINTS } from "@/components/landing/landing-data";
+import { useEffect, useRef } from "react";
+import { motion } from "framer-motion";
 import { Reveal } from "@/components/landing/Reveal";
 
-const PROOF_ICONS = [ShieldCheck, Rocket, Layers, Clock, Globe2, Building2] as const;
+const HERO_VIDEO_SRC = "/videos/hero-bg.mp4";
+const DESKTOP_MEDIA = "(min-width: 768px)";
 
 export function EditorialHero() {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  const startPlayback = () => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    if (!window.matchMedia(DESKTOP_MEDIA).matches) {
+      video.pause();
+      return;
+    }
+
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (prefersReducedMotion) {
+      video.pause();
+      return;
+    }
+
+    video.muted = true;
+    void video.play().catch(() => {
+      // Autoplay may be blocked until user interaction.
+    });
+  };
+
+  useEffect(() => {
+    startPlayback();
+
+    const desktopMq = window.matchMedia(DESKTOP_MEDIA);
+    const onViewportChange = () => startPlayback();
+    desktopMq.addEventListener("change", onViewportChange);
+    return () => desktopMq.removeEventListener("change", onViewportChange);
+  }, []);
+
   return (
-    <section className="relative overflow-hidden bg-[#F4F4F2]">
-      {/* Embedded photography — architectural, not full-bleed hero */}
-      <div
-        className="pointer-events-none absolute right-0 top-0 hidden h-[72%] w-[min(52%,640px)] opacity-[0.22] lg:block"
-        aria-hidden
-      >
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{
-            backgroundImage: "url('/bgs/man.jfif')",
-            clipPath: "polygon(18% 0, 100% 0, 100% 100%, 0 88%)",
-          }}
+    <section className="relative -mt-[var(--site-nav-height)] min-h-[calc(100svh+var(--site-nav-height)-1in)] overflow-hidden bg-[#0B1220] md:h-[calc(100svh+var(--site-nav-height))] md:min-h-0">
+      <div className="absolute inset-0" aria-hidden>
+        {/* Mobile — static backdrop, no video */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0F172A] via-[#0B1220] to-[#070B14] md:hidden" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_30%_20%,rgba(49,195,195,0.12),transparent_55%)] md:hidden" />
+
+        {/* Desktop — video background */}
+        <video
+          ref={videoRef}
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
+          src={HERO_VIDEO_SRC}
+          className="hidden h-full w-full object-cover md:block"
+          onLoadedData={startPlayback}
+          onCanPlay={startPlayback}
         />
-        <div className="absolute inset-0 bg-gradient-to-l from-[#F4F4F2] via-[#F4F4F2]/40 to-transparent" />
+        <div className="absolute inset-0 hidden bg-[#0B1220]/62 md:block" />
+        <div className="absolute inset-0 hidden bg-gradient-to-r from-[#0B1220]/88 via-[#0B1220]/45 to-[#0B1220]/20 md:block" />
+        <div className="absolute inset-0 hidden bg-gradient-to-t from-[#0B1220]/75 via-transparent to-[#0B1220]/35 md:block" />
       </div>
 
-      <div className="relative mx-auto grid max-w-[1440px] gap-10 px-6 pb-16 pt-10 md:px-10 md:pb-24 md:pt-14 lg:grid-cols-12 lg:gap-6 lg:pb-28">
-        {/* Left — editorial headline */}
-        <div className="lg:col-span-7 lg:pt-6">
-          <Reveal>
-            <p className="mb-6 max-w-[28ch] text-[11px] font-semibold uppercase tracking-[0.2em] text-[#6B6B6B] sm:tracking-[0.28em]">
+      <div className="editorial-hero-content pointer-events-none relative z-10 flex min-h-[calc(100svh+var(--site-nav-height)-1in)] flex-col md:absolute md:inset-0 md:min-h-0">
+        <div className="pointer-events-auto relative flex flex-1 flex-col items-center gap-10 px-6 pb-12 sm:px-8 md:h-full md:w-full md:items-stretch md:justify-start md:gap-0 md:px-12 md:pb-20 md:pt-52">
+          <Reveal className="w-full shrink-0 pt-[calc(var(--site-nav-height)+1in)] text-center md:mb-6 md:pt-0">
+            <p className="editorial-hero-eyebrow font-semibold uppercase text-white/65">
               Software house · Bahrain & Pakistan
             </p>
           </Reveal>
-          <Reveal delay={0.06}>
-            <h1 className="max-w-[14ch] font-heading text-[clamp(2.75rem,7.5vw,5.75rem)] font-bold leading-[0.92] tracking-[-0.04em] text-[#141414]">
-              We engineer
-              <br />
-              digital
-              <br />
-              <span className="text-[#6C63FF]">products</span>
-              <br />
-              that hold up.
-            </h1>
-          </Reveal>
-          <Reveal delay={0.12} className="mt-10 max-w-md">
-            <p className="text-base leading-relaxed text-[#4A4A4A] md:text-lg">
-              Skyen Systems is a PSEB-registered software company building websites, apps, and AI
-              systems for businesses that need one accountable team — not seven vendors.
-            </p>
-          </Reveal>
-          <Reveal delay={0.18} className="mt-10">
+
+          <div className="-mt-[2in] flex w-full flex-col items-center gap-10 md:mt-0 md:contents">
+            <div className="w-full min-h-[24vh] shrink-0 md:hidden" aria-hidden />
+            <div className="w-full max-w-4xl shrink-0 md:max-w-4xl">
+              <Reveal delay={0.06} className="shrink-0">
+                <h1 className="editorial-hero-headline text-left font-heading font-bold text-white">
+                  We engineer
+                  <br />
+                  digital <span className="text-[#31C3C3]">products</span>
+                  <br />
+                  that hold up.
+                </h1>
+              </Reveal>
+
+              <Reveal delay={0.12} className="mt-10 flex w-full justify-center md:mt-12">
+                <p className="editorial-hero-body max-w-lg text-justify text-white/82">
+                  Skyen Systems is a PSEB-registered software company building websites, apps, and
+                  AI systems for businesses that need one accountable team — not seven vendors.
+                </p>
+              </Reveal>
+            </div>
+
+            <motion.div
+            className="pointer-events-auto mt-8 shrink-0 self-end md:absolute md:bottom-2 md:right-12 md:mt-0 md:self-auto"
+            initial={{ opacity: 0, rotate: 0, y: 0 }}
+            animate={{
+              opacity: 1,
+              rotate: [0, 3, 0, -3, 0],
+              y: [0, -6, 0, -4, 0],
+            }}
+            transition={{
+              opacity: { delay: 0.35, duration: 0.5, ease: [0.22, 1, 0.36, 1] },
+              rotate: { delay: 0.9, duration: 5.5, repeat: Infinity, ease: "easeInOut" },
+              y: { delay: 0.9, duration: 5.5, repeat: Infinity, ease: "easeInOut" },
+            }}
+            whileHover={{
+              rotate: [0, -6, 6, -4, 4, -2, 2, 0],
+              y: [0, -2, 2, 0],
+              transition: { duration: 0.55, ease: "easeInOut" },
+            }}
+            whileTap={{
+              rotate: [0, -10, 10, -7, 7, 0],
+              scale: 0.94,
+              transition: { duration: 0.4, ease: "easeInOut" },
+            }}
+          >
             <Link
               href="/contact-us"
-              className="inline-flex items-center gap-3 border-b-2 border-[#141414] pb-1 text-sm font-semibold uppercase tracking-[0.14em] text-[#141414] transition-colors hover:border-[#6C63FF] hover:text-[#6C63FF]"
+              className="editorial-hero-cta group relative flex items-center justify-center rounded-full bg-[#31C3C3] text-center shadow-[0_24px_48px_-16px_rgba(49,195,195,0.65)]"
+              aria-label="Discuss your project with Skyen Systems"
             >
-              Begin a project
-              <span aria-hidden>→</span>
+              <span className="editorial-hero-cta-label max-w-[9rem] shrink-0 px-4 font-semibold text-white">
+                Let&apos;s Discuss Your Idea
+              </span>
             </Link>
-          </Reveal>
-        </div>
-
-        {/* Right — chamfered capability panel */}
-        <div className="lg:col-span-5 lg:flex lg:items-end lg:justify-end">
-          <Reveal delay={0.1} className="w-full max-w-lg lg:max-w-none">
-            <div
-              className="relative border border-[#D8D8D6] bg-[#FAFAF8] p-6 shadow-[24px_48px_80px_-48px_rgba(20,20,20,0.35)] md:p-8"
-              style={{
-                clipPath:
-                  "polygon(0 0, 100% 0, 100% calc(100% - 28px), calc(100% - 28px) 100%, 0 100%, 0 28px, 28px 0)",
-              }}
-            >
-              <div className="mb-6 flex items-end justify-between gap-4 border-b border-[#E5E5E3] pb-4">
-                <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-[#8A8A8A]">
-                  Capability index
-                </p>
-                <span className="font-heading text-3xl font-bold text-[#6C63FF]">
-                  06
-                </span>
-              </div>
-              <ul className="space-y-5">
-                {HERO_PROOF_POINTS.map((point, index) => {
-                  const Icon = PROOF_ICONS[index] ?? ShieldCheck;
-                  return (
-                    <li key={point.title} className="flex gap-4">
-                      <span className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center border border-[#E0E0DE] bg-white text-[#6C63FF]">
-                        <Icon className="h-4 w-4" strokeWidth={1.75} />
-                      </span>
-                      <div>
-                        <p className="text-sm font-semibold text-[#141414]">{point.title}</p>
-                        <p className="mt-1 text-xs leading-relaxed text-[#5C5C5C]">
-                          {point.description}
-                        </p>
-                      </div>
-                    </li>
-                  );
-                })}
-              </ul>
-            </div>
-          </Reveal>
+            </motion.div>
+          </div>
         </div>
       </div>
-
-      {/* Bottom rule */}
-      <div className="h-px w-full bg-[#DADAD8]" aria-hidden />
     </section>
   );
 }

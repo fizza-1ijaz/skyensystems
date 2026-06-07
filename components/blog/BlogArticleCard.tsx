@@ -32,7 +32,7 @@ export function BlogArticleCard({
           } ${isEditorial ? "lg:flex-row" : ""}`}
         >
           <span
-            className="absolute left-0 top-0 h-0 w-0.5 bg-[#6C63FF] transition-all duration-200 group-hover:h-full"
+            className="absolute left-0 top-0 h-0 w-0.5 bg-[#31C3C3] transition-all duration-200 group-hover:h-full"
             aria-hidden
           />
 
@@ -53,11 +53,11 @@ export function BlogArticleCard({
           ) : null}
 
           <div className={`flex flex-1 flex-col p-5 sm:p-7 md:p-8 ${isLarge ? "md:py-10" : ""}`}>
-            <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#6C63FF]">
+            <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#31C3C3]">
               {post.category?.name ?? "Blog"}
             </p>
             <h3
-              className={`mt-3 font-heading font-bold leading-snug tracking-tight text-[#141414] transition-colors duration-200 group-hover:text-[#6C63FF] ${
+              className={`mt-3 font-heading font-bold leading-snug tracking-tight text-[#141414] transition-colors duration-200 group-hover:text-[#31C3C3] ${
                 isLarge ? "text-2xl md:text-3xl" : "text-xl md:text-2xl"
               }`}
             >

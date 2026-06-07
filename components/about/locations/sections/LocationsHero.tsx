@@ -28,7 +28,7 @@ function MapComposition() {
       ].map((node) => (
         <g key={node.label}>
           <circle cx={node.cx} cy={node.cy} r="28" stroke="#D4D4D4" strokeWidth="1" fill="white" />
-          <circle cx={node.cx} cy={node.cy} r="6" fill="#6C63FF" />
+          <circle cx={node.cx} cy={node.cy} r="6" fill="#31C3C3" />
           <text
             x={node.cx}
             y={node.cy + 44}
@@ -42,8 +42,8 @@ function MapComposition() {
           </text>
         </g>
       ))}
-      <path d="M120 140 L220 100 L300 130 L340 110" stroke="#6C63FF" strokeWidth="1" strokeDasharray="6 4" opacity="0.7" />
-      <path d="M300 130 L340 110 L280 160" stroke="#6C63FF" strokeWidth="1" strokeDasharray="6 4" opacity="0.5" />
+      <path d="M120 140 L220 100 L300 130 L340 110" stroke="#31C3C3" strokeWidth="1" strokeDasharray="6 4" opacity="0.7" />
+      <path d="M300 130 L340 110 L280 160" stroke="#31C3C3" strokeWidth="1" strokeDasharray="6 4" opacity="0.5" />
     </svg>
   );
 }

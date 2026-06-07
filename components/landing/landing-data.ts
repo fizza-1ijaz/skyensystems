@@ -62,7 +62,7 @@ export const CAPABILITIES = [
     description: "Research-led UI/UX that converts visitors into qualified leads.",
     span: "lg:col-span-4",
     minH: "min-h-[16rem]",
-    visualBleed: "lg:-mr-8",
+    visualBleed: "",
   },
   {
     num: "05",
@@ -145,6 +145,8 @@ export const ENGAGEMENT_PHASES = [
     detail: "Retainers, feature roadmaps, and growth support as your product matures.",
   },
 ] as const;
+
+export { PROCESS_STAGES as PROCESS_ROADMAP_STEPS } from "@/components/landing/process/process-data";
 
 export const INDUSTRIES = [
   {

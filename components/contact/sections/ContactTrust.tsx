@@ -17,7 +17,7 @@ export function ContactTrust() {
           {CONTACT_TRUST_COLUMNS.map((column, index) => (
             <Reveal key={column.label} delay={index * 0.05}>
               <div className="bg-[#FAFAF8] p-8 md:p-10">
-                <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#6C63FF]">
+                <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#31C3C3]">
                   {column.label}
                 </p>
                 <p className="mt-4 text-sm leading-relaxed text-[#5C5C5C]">{column.body}</p>

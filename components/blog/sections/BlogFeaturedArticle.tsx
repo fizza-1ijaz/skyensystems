@@ -22,10 +22,10 @@ export function BlogFeaturedArticle({ post }: BlogFeaturedArticleProps) {
         <Reveal>
           <Link href={`/blog/${post.slug}`} className="group grid items-center gap-10 lg:grid-cols-12 lg:gap-14">
             <div className="lg:col-span-6">
-              <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#6C63FF]">
+              <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#31C3C3]">
                 {post.category?.name ?? "Featured"}
               </p>
-              <h2 className="mt-4 break-words font-heading text-[clamp(1.5rem,5vw,2.75rem)] font-bold leading-[1.05] tracking-[-0.03em] text-[#141414] transition-colors duration-200 group-hover:text-[#6C63FF]">
+              <h2 className="mt-4 break-words font-heading text-[clamp(1.5rem,5vw,2.75rem)] font-bold leading-[1.05] tracking-[-0.03em] text-[#141414] transition-colors duration-200 group-hover:text-[#31C3C3]">
                 {post.title}
               </h2>
               <p className="mt-5 max-w-xl text-base leading-relaxed text-[#5C5C5C] md:text-lg">
@@ -37,7 +37,7 @@ export function BlogFeaturedArticle({ post }: BlogFeaturedArticleProps) {
                 <span aria-hidden>·</span>
                 <span>{readingTime} min read</span>
               </div>
-              <span className="mt-8 inline-flex items-center bg-[#6C63FF] px-8 py-3.5 text-sm font-semibold uppercase tracking-[0.12em] text-white transition-colors duration-200 group-hover:bg-[#5A52E8]">
+              <span className="mt-8 inline-flex items-center bg-[#31C3C3] px-8 py-3.5 text-sm font-semibold uppercase tracking-[0.12em] text-white transition-colors duration-200 group-hover:bg-[#2AB0B0]">
                 Read article
               </span>
             </div>
@@ -56,7 +56,7 @@ export function BlogFeaturedArticle({ post }: BlogFeaturedArticleProps) {
                   className="absolute inset-0 opacity-30"
                   style={{
                     backgroundImage:
-                      "linear-gradient(rgba(108,99,255,0.25) 1px, transparent 1px), linear-gradient(90deg, rgba(108,99,255,0.25) 1px, transparent 1px)",
+                      "linear-gradient(rgba(49,195,195,0.25) 1px, transparent 1px), linear-gradient(90deg, rgba(49,195,195,0.25) 1px, transparent 1px)",
                     backgroundSize: "32px 32px",
                   }}
                 />

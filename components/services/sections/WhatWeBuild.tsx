@@ -18,12 +18,12 @@ export function WhatWeBuild() {
             <Reveal key={item.label} delay={index * 0.04}>
               <article className="group grid gap-4 border border-[#E5E5E3] bg-white p-6 transition-colors hover:border-[#141414] md:grid-cols-12 md:items-center md:p-8">
                 <div className="md:col-span-2">
-                  <span className="font-heading text-sm font-bold uppercase tracking-[0.14em] text-[#6C63FF]">
+                  <span className="font-heading text-sm font-bold uppercase tracking-[0.14em] text-[#31C3C3]">
                     {item.metric}
                   </span>
                 </div>
                 <div className="md:col-span-4">
-                  <h3 className="font-heading text-2xl font-bold text-[#141414] transition-colors group-hover:text-[#6C63FF] md:text-3xl">
+                  <h3 className="font-heading text-2xl font-bold text-[#141414] transition-colors group-hover:text-[#31C3C3] md:text-3xl">
                     {item.label}
                   </h3>
                 </div>

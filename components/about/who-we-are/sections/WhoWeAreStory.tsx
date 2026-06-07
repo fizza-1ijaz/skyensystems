@@ -19,7 +19,7 @@ export function WhoWeAreStory() {
             {COMPANY_TIMELINE.map((milestone, index) => (
               <Reveal key={milestone.year} delay={index * 0.05}>
                 <li className="grid gap-4 border-t border-[#E5E5E3] py-8 md:grid-cols-12 md:gap-8 md:py-10">
-                  <p className="font-mono text-xs font-semibold uppercase tracking-[0.2em] text-[#6C63FF] md:col-span-2 md:pt-1">
+                  <p className="font-mono text-xs font-semibold uppercase tracking-[0.2em] text-[#31C3C3] md:col-span-2 md:pt-1">
                     {milestone.year}
                   </p>
                   <h3 className="font-heading text-xl font-bold text-[#141414] md:col-span-4 md:text-2xl">

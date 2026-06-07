@@ -18,10 +18,10 @@ export function ContactEngagements() {
             <Reveal key={item.title} delay={index * 0.04} className="min-h-0">
               <article className="group relative min-h-[10rem] bg-[#0F172A] p-8 transition-colors duration-300 md:min-h-[11rem] md:p-10">
                 <div
-                  className="pointer-events-none absolute inset-0 border border-transparent transition-colors duration-300 group-hover:border-[#6C63FF]/50"
+                  className="pointer-events-none absolute inset-0 border border-transparent transition-colors duration-300 group-hover:border-[#31C3C3]/50"
                   aria-hidden
                 />
-                <h3 className="font-heading text-xl font-bold tracking-tight text-[#FAFAF8] transition-colors duration-300 group-hover:text-[#6C63FF] md:text-2xl">
+                <h3 className="font-heading text-xl font-bold tracking-tight text-[#FAFAF8] transition-colors duration-300 group-hover:text-[#31C3C3] md:text-2xl">
                   {item.title}
                 </h3>
                 <p className="mt-3 text-sm leading-relaxed text-white/60 transition-colors duration-300 group-hover:text-white/75">

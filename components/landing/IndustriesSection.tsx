@@ -7,8 +7,8 @@ export function IndustriesSection() {
   return (
     <section className="bg-[#FAFAF8] py-20 md:py-28">
       <div className="mx-auto max-w-[1440px] px-6 md:px-10">
-        <Reveal>
-          <h2 className="editorial-section-title max-w-2xl text-balance text-[#141414]">
+        <Reveal className="text-center">
+          <h2 className="editorial-section-title w-full text-balance text-center text-[#141414]">
             Sectors where we bring product discipline and delivery clarity.
           </h2>
         </Reveal>
@@ -18,7 +18,7 @@ export function IndustriesSection() {
             <Reveal key={industry.label} delay={index * 0.04} className="min-h-0">
               <article className="group relative min-h-[11.5rem] overflow-hidden bg-[#FAFAF8] md:min-h-[12.5rem]">
                 <div
-                  className="absolute inset-x-0 bottom-0 z-0 h-0 bg-[#6C63FF] transition-[height] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] [@media(hover:hover)]:group-hover:h-full motion-reduce:[@media(hover:hover)]:group-hover:h-0"
+                  className="absolute inset-x-0 bottom-0 z-0 h-0 bg-[#31C3C3] transition-[height] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] [@media(hover:hover)]:group-hover:h-full motion-reduce:[@media(hover:hover)]:group-hover:h-0"
                   aria-hidden
                 />
 

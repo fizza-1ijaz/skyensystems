@@ -17,7 +17,7 @@ function CookiesTable({
   return (
     <div className="overflow-x-auto rounded-2xl border border-[#d5e0ff]">
       <table className="min-w-full bg-white/90 text-left text-sm text-[#4d5f99]">
-        <thead className="bg-[#eef3ff] text-[#2b3c7e]">
+        <thead className="bg-[#EFF9F8] text-[#2b3c7e]">
           <tr>
             <th className="px-4 py-3 font-semibold">Cookie</th>
             <th className="px-4 py-3 font-semibold">Purpose</th>
@@ -37,6 +37,8 @@ function CookiesTable({
     </div>
   );
 }
+
+import { CookiePreferencesButton } from "@/components/CookiePreferencesButton";
 
 export default function CookiesPolicyPage() {
   return (
@@ -118,7 +120,11 @@ export default function CookiesPolicyPage() {
           <p className="text-[#4d5f99]">
             Managing cookies: You can manage preferences through our cookie consent
             banner or browser settings. Disabling analytics/marketing cookies will
-            not affect website functionality. Contact:
+            not affect website functionality.
+          </p>
+          <CookiePreferencesButton />
+          <p className="text-[#4d5f99]">
+            Contact:
             <a
               href="mailto:info@skyensystem.com"
               className="font-medium text-[#3150bf] hover:text-[#25357d]"

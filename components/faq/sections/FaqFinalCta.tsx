@@ -26,7 +26,7 @@ export function FaqFinalCta() {
         <Reveal delay={0.1} className="md:col-span-4 md:text-right">
           <Link
             href="/contact-us"
-            className="inline-flex w-full items-center justify-center sm:w-auto sm:min-w-[200px] bg-[#6C63FF] px-8 py-4 text-sm font-semibold uppercase tracking-[0.14em] text-white transition-colors hover:bg-[#5A52E8]"
+            className="inline-flex w-full items-center justify-center sm:w-auto sm:min-w-[200px] bg-[#31C3C3] px-8 py-4 text-sm font-semibold uppercase tracking-[0.14em] text-white transition-colors hover:bg-[#2AB0B0]"
             style={{
               clipPath:
                 "polygon(0 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%)",
@@ -35,7 +35,7 @@ export function FaqFinalCta() {
             Book discovery
           </Link>
           <p className="mt-4 text-xs text-[#8A8A8A]">
-            <a href="mailto:info@skyensystems.com" className="hover:text-[#6C63FF]">
+            <a href="mailto:info@skyensystems.com" className="hover:text-[#31C3C3]">
               Info@skyensystems.com
             </a>
             {" · "}4h response standard

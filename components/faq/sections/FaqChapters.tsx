@@ -20,9 +20,9 @@ function ChapterItem({
 
   if (layout === 2) {
     return (
-      <article className={`border-l-4 border-[#6C63FF] ${dark ? "bg-[#0F0F0F]" : "bg-white"} p-6 md:p-8`}>
+      <article className={`border-l-4 border-[#31C3C3] ${dark ? "bg-[#0F0F0F]" : "bg-white"} p-6 md:p-8`}>
         <h4 className={`font-heading text-xl font-bold ${ink}`}>{item.q}</h4>
-        <div className={`mt-4 text-sm leading-relaxed md:text-base [&_a]:text-[#6C63FF] ${muted}`}>
+        <div className={`mt-4 text-sm leading-relaxed md:text-base [&_a]:text-[#31C3C3] ${muted}`}>
           {item.a}
         </div>
       </article>
@@ -33,7 +33,7 @@ function ChapterItem({
     return (
       <article className={`grid gap-4 border ${border} p-6 md:grid-cols-2 md:gap-8 md:p-8 ${dark ? "bg-[#141414]" : "bg-[#FAFAF8]"}`}>
         <h4 className={`font-heading text-lg font-bold ${ink} md:text-xl`}>{item.q}</h4>
-        <div className={`text-sm leading-relaxed md:text-base [&_a]:text-[#6C63FF] ${muted}`}>{item.a}</div>
+        <div className={`text-sm leading-relaxed md:text-base [&_a]:text-[#31C3C3] ${muted}`}>{item.a}</div>
       </article>
     );
   }
@@ -42,7 +42,7 @@ function ChapterItem({
     <article className={`border-t ${border} py-8 md:py-10`}>
       <div className="grid gap-3 md:grid-cols-12 md:gap-8">
         <h4 className={`font-heading text-lg font-bold md:col-span-5 md:text-xl ${ink}`}>{item.q}</h4>
-        <div className={`text-sm leading-relaxed md:col-span-7 md:text-base [&_a]:text-[#6C63FF] ${muted}`}>
+        <div className={`text-sm leading-relaxed md:col-span-7 md:text-base [&_a]:text-[#31C3C3] ${muted}`}>
           {item.a}
         </div>
       </div>

@@ -14,7 +14,7 @@ export type FaqChapter = {
 
 function Email() {
   return (
-    <a href="mailto:info@skyensystems.com" className="text-[#6C63FF] hover:underline">
+    <a href="mailto:info@skyensystems.com" className="text-[#31C3C3] hover:underline">
       Info@skyensystems.com
     </a>
   );
@@ -49,8 +49,8 @@ export const FAQ_FEATURED: FaqItem[] = [
       <p>
         Starter websites from PKR 420,000 (~USD 1,500). Growth-tier web applications from PKR 1,120,000 (~USD
         4,000). Scale and mobile platforms are quoted individually — always fixed price, never hourly billing.{" "}
-        <Link href="/pricing" className="text-[#6C63FF] hover:underline">
-          Full pricing frameworks →
+        <Link href="/pricing" className="text-[#31C3C3] hover:underline">
+          Full pricing frameworks
         </Link>
       </p>
     ),
@@ -72,8 +72,8 @@ export const FAQ_FEATURED: FaqItem[] = [
         Three operating models: <strong>project delivery</strong> for bounded launches,{" "}
         <strong>staff augmentation</strong> to extend your existing team, and{" "}
         <strong>dedicated teams</strong> for ongoing product evolution.{" "}
-        <Link href="/services" className="text-[#6C63FF] hover:underline">
-          Compare models →
+        <Link href="/services/web-design-development" className="text-[#31C3C3] hover:underline">
+          Compare models
         </Link>
       </p>
     ),
@@ -153,8 +153,8 @@ export const FAQ_CHAPTERS: FaqChapter[] = [
           <p>
             Next.js, React, TypeScript, Node.js, PostgreSQL, React Native, Flutter, Swift, Kotlin, and modern AI
             stacks (OpenAI, Claude, LangChain). We match the stack to your product — not the other way around.{" "}
-            <Link href="/services" className="text-[#6C63FF] hover:underline">
-              Technology landscape →
+            <Link href="/services/web-design-development" className="text-[#31C3C3] hover:underline">
+              Technology landscape
             </Link>
           </p>
         ),
@@ -335,8 +335,8 @@ export const FAQ_CHAPTERS: FaqChapter[] = [
           <p>
             Qismat Ventures W.L.L. (Bahrain CR 190698-1) with PSEB-registered operations in Lahore — verified for
             international software export.{" "}
-            <Link href="/about/who-we-are" className="text-[#6C63FF] hover:underline">
-              Company profile →
+            <Link href="/about/who-we-are" className="text-[#31C3C3] hover:underline">
+              Company profile
             </Link>
           </p>
         ),
@@ -346,7 +346,7 @@ export const FAQ_CHAPTERS: FaqChapter[] = [
         a: (
           <p>
             Standard analytics (GA4) and form submissions. We do not sell data. See our{" "}
-            <Link href="/privacy-policy" className="text-[#6C63FF] hover:underline">
+            <Link href="/privacy-policy" className="text-[#31C3C3] hover:underline">
               Privacy Policy
             </Link>
             .
@@ -392,8 +392,8 @@ export const FAQ_CHAPTERS: FaqChapter[] = [
           <p>
             Full refund if cancelled before work starts. Once work commences, you receive all completed work to date.
             If deliverables do not meet agreed specifications, we redo work or issue appropriate refunds.{" "}
-            <Link href="/refund-policy" className="text-[#6C63FF] hover:underline">
-              Refund Policy →
+            <Link href="/refund-policy" className="text-[#31C3C3] hover:underline">
+              Refund Policy
             </Link>
           </p>
         ),

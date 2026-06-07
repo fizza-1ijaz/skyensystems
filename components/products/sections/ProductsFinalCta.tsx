@@ -30,7 +30,7 @@ export function ProductsFinalCta() {
           >
             <Link
               href="/contact-us#inquiry"
-              className="inline-flex w-full items-center justify-center sm:w-auto sm:min-w-[240px] bg-[#6C63FF] px-10 py-4 text-sm font-semibold uppercase tracking-[0.14em] text-white transition-colors duration-200 hover:bg-[#5A52E8]"
+              className="inline-flex w-full items-center justify-center sm:w-auto sm:min-w-[240px] bg-[#31C3C3] px-10 py-4 text-sm font-semibold uppercase tracking-[0.14em] text-white transition-colors duration-200 hover:bg-[#2AB0B0]"
             >
               Start a project
             </Link>

@@ -18,10 +18,10 @@ export function PricingCostFactors() {
             <Reveal key={factor.title} delay={index * 0.04} className="min-h-0">
               <article className="group relative min-h-[10rem] bg-[#FAFAF8] p-8 transition-all duration-200 ease-out hover:-translate-y-1 md:min-h-[11rem] md:p-10">
                 <span
-                  className="absolute left-0 top-0 h-0 w-0.5 bg-[#6C63FF] transition-all duration-200 group-hover:h-full"
+                  className="absolute left-0 top-0 h-0 w-0.5 bg-[#31C3C3] transition-all duration-200 group-hover:h-full"
                   aria-hidden
                 />
-                <h3 className="font-heading text-xl font-bold tracking-tight text-[#141414] transition-colors duration-200 group-hover:text-[#6C63FF] md:text-2xl">
+                <h3 className="font-heading text-xl font-bold tracking-tight text-[#141414] transition-colors duration-200 group-hover:text-[#31C3C3] md:text-2xl">
                   {factor.title}
                 </h3>
                 <p className="mt-3 text-sm leading-relaxed text-[#5C5C5C]">{factor.description}</p>

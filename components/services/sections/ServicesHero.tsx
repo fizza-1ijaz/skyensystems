@@ -1,11 +1,11 @@
 "use client";
 
-import Link from "next/link";
 import {
   SERVICES_CAPABILITY_MATRIX,
   SERVICES_HERO_STATS,
 } from "@/lib/services-page-data";
 import { Reveal } from "@/components/landing/Reveal";
+import { EditorialBoxCta } from "@/components/ui/EditorialBoxCta";
 
 function SystemDiagram() {
   return (
@@ -23,13 +23,13 @@ function SystemDiagram() {
             y={64 + row * 68}
             width="92"
             height="52"
-            stroke={row === 1 && col === 1 ? "#6C63FF" : "#D4D4D4"}
+            stroke={row === 1 && col === 1 ? "#31C3C3" : "#D4D4D4"}
             fill={row === 1 && col === 1 ? "rgb(108 99 255 / 0.08)" : "#FAFAF8"}
           />
         )),
       )}
-      <path d="M128 90 L232 90 M180 116 L180 200" stroke="#6C63FF" strokeWidth="1" strokeDasharray="4 3" />
-      <circle cx="180" cy="156" r="8" fill="#6C63FF" />
+      <path d="M128 90 L232 90 M180 116 L180 200" stroke="#31C3C3" strokeWidth="1" strokeDasharray="4 3" />
+      <circle cx="180" cy="156" r="8" fill="#31C3C3" />
     </svg>
   );
 }
@@ -50,7 +50,7 @@ export function ServicesHero() {
               <br />
               business &amp;
               <br />
-              <span className="text-[#6C63FF]">technical</span>
+              <span className="text-[#31C3C3]">technical</span>
               <br />
               problems.
             </h1>
@@ -62,12 +62,9 @@ export function ServicesHero() {
             </p>
           </Reveal>
           <Reveal delay={0.14} className="mt-8">
-            <Link
-              href="/contact-us"
-              className="inline-flex border-b-2 border-[#141414] pb-1 text-sm font-semibold uppercase tracking-[0.14em] transition-colors hover:border-[#6C63FF] hover:text-[#6C63FF]"
-            >
-              Discuss your challenge →
-            </Link>
+            <EditorialBoxCta href="/contact-us" variant="neutral">
+              Discuss your challenge
+            </EditorialBoxCta>
           </Reveal>
         </div>
 

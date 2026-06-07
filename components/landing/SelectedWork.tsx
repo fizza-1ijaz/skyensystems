@@ -1,97 +1,68 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
+import { EditorialBoxCta } from "@/components/ui/EditorialBoxCta";
 import { SELECTED_WORK } from "@/components/landing/landing-data";
 import { Reveal } from "@/components/landing/Reveal";
 
 export function SelectedWork() {
   return (
-    <section className="overflow-hidden bg-[#141414] py-20 text-[#FAFAF8] md:py-28">
+    <section className="overflow-hidden bg-[#FAFAF8] py-20 md:py-28">
       <div className="mx-auto max-w-[1440px] px-6 md:px-10">
-        <Reveal>
-          <h2 className="editorial-section-title max-w-2xl text-balance">
+        <Reveal className="flex justify-center">
+          <h2 className="editorial-section-title max-w-2xl text-balance text-center text-[#141414]">
             Products we built. Standards we bring to every client.
           </h2>
         </Reveal>
 
-        <div className="mt-14 space-y-0">
-          {SELECTED_WORK.map((project, index) => {
-            const logoRight = index % 2 === 1;
-            return (
-              <Reveal key={project.name} delay={index * 0.06}>
-                <article className="border-t border-[#2E2E2E] py-12 md:py-16">
-                  <div className="grid gap-8 md:grid-cols-12 md:items-center md:gap-10">
-                    <div
-                      className={`flex justify-center px-4 md:col-span-5 md:px-0 ${
-                        logoRight
-                          ? "md:order-2 md:justify-end md:pr-10 lg:pr-16"
-                          : "md:justify-start md:pl-10 lg:pl-16"
-                      }`}
-                    >
-                      <div className="relative h-40 w-40 overflow-hidden rounded-[1.75rem] sm:h-48 sm:w-48 md:h-56 md:w-56">
-                        <Image
-                          src={project.logo}
-                          alt={`${project.name} logo`}
-                          fill
-                          className="object-contain"
-                          sizes="(max-width: 768px) 192px, 224px"
-                        />
-                      </div>
-                    </div>
+        <div className="mt-14 grid grid-cols-1 gap-5 md:grid-cols-3 md:gap-6">
+          {SELECTED_WORK.map((project, index) => (
+            <Reveal key={project.name} delay={index * 0.06} className="min-h-0">
+              <article className="group flex h-full flex-col border border-[#2E2E2E] bg-[#1A1A1A] p-6 transition-[border-color,box-shadow] duration-300 hover:border-[#31C3C3]/40 hover:shadow-[0_24px_60px_-40px_rgba(49,195,195,0.25)] md:p-8">
+                <div className="relative mx-auto h-20 w-20 overflow-hidden rounded-2xl border border-[#2E2E2E] bg-[#141414]">
+                  <Image
+                    src={project.logo}
+                    alt={`${project.name} logo`}
+                    fill
+                    className="object-contain p-2"
+                    sizes="80px"
+                  />
+                </div>
 
-                    <div
-                      className={
-                        logoRight
-                          ? "md:col-span-7 md:order-1 md:pl-10 lg:pl-16"
-                          : "md:col-span-7"
-                      }
-                    >
-                      <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#6C63FF]">
-                        {project.category}
-                      </p>
-                      <h3 className="mt-3 break-words font-heading text-2xl font-bold sm:text-3xl md:text-4xl">
-                        {project.name}
-                      </h3>
-                      <p className="mt-4 max-w-md text-sm leading-relaxed text-[#B8B8B8]">
-                        {project.description}
-                      </p>
-                      <div className="mt-8 inline-flex border-l-2 border-[#6C63FF] pl-5">
-                        <div>
-                          <p className="break-words font-heading text-xl font-bold sm:text-2xl md:text-3xl">
-                            {project.metric}
-                          </p>
-                          <p className="text-xs uppercase tracking-[0.16em] text-[#8A8A8A]">
-                            {project.metricLabel}
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                <p className="mt-6 text-center text-xs font-semibold uppercase tracking-[0.2em] text-[#31C3C3]">
+                  {project.category}
+                </p>
+                <h3 className="mt-2 text-center font-heading text-2xl font-bold text-[#FAFAF8]">
+                  {project.name}
+                </h3>
+                <p className="mt-4 flex-grow text-center text-sm leading-relaxed text-[#B8B8B8]">
+                  {project.description}
+                </p>
 
-                  <div className="mt-8 border-t border-[#2E2E2E] pt-6 text-center md:mt-10 md:pt-8">
-                    <Link
-                      href={project.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-block text-sm font-semibold uppercase tracking-[0.12em] text-[#FAFAF8] underline-offset-4 hover:text-[#6C63FF] hover:underline"
-                    >
-                      View project →
-                    </Link>
-                  </div>
-                </article>
-              </Reveal>
-            );
-          })}
+                <div className="mt-8 border-t border-[#2E2E2E] pt-6 text-center">
+                  <p className="font-heading text-lg font-bold text-[#FAFAF8]">{project.metric}</p>
+                  <p className="mt-1 text-xs uppercase tracking-[0.16em] text-[#8A8A8A]">
+                    {project.metricLabel}
+                  </p>
+                </div>
+
+                <div className="mt-6 flex justify-center">
+                  <EditorialBoxCta
+                    href={project.href}
+                    variant="primary"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    View product
+                  </EditorialBoxCta>
+                </div>
+              </article>
+            </Reveal>
+          ))}
         </div>
 
-        <Reveal className="mt-8">
-          <Link
-            href="/portfolio"
-            className="text-sm font-semibold uppercase tracking-[0.14em] text-[#6C63FF]"
-          >
-            Full portfolio →
-          </Link>
+        <Reveal className="mt-10 flex justify-center">
+          <EditorialBoxCta href="/products">View all products</EditorialBoxCta>
         </Reveal>
       </div>
     </section>

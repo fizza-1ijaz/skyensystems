@@ -115,12 +115,12 @@ export function AboutPageContent() {
       >
         {/* Blue paint ends above section bottom — content / Lottie stay in normal flow */}
         <div
-          className="pointer-events-none absolute inset-x-0 top-0 bottom-52 z-0 overflow-hidden bg-gradient-to-b from-sky-400 via-sky-500 to-sky-600 md:bottom-64"
+          className="pointer-events-none absolute inset-x-0 top-0 bottom-52 z-0 overflow-hidden bg-gradient-to-b from-brand-cyan-light via-brand-cyan to-[#2AB0B0] md:bottom-64"
           aria-hidden
         >
-          <div className="absolute -left-20 top-0 h-72 w-72 rounded-full bg-sky-200/35 blur-3xl" />
-          <div className="absolute -right-16 top-24 h-80 w-80 rounded-full bg-cyan-200/30 blur-3xl" />
-          <div className="absolute bottom-0 left-1/2 h-36 w-[100%] -translate-x-1/2 rounded-[100%] bg-sky-600/20 blur-2xl md:h-40 md:w-[105%]" />
+          <div className="absolute -left-20 top-0 h-72 w-72 rounded-full bg-brand-cyan-pale/35 blur-3xl" />
+          <div className="absolute -right-16 top-24 h-80 w-80 rounded-full bg-brand-cyan-light/30 blur-3xl" />
+          <div className="absolute bottom-0 left-1/2 h-36 w-[100%] -translate-x-1/2 rounded-[100%] bg-brand-cyan/20 blur-2xl md:h-40 md:w-[105%]" />
           <div
             className="absolute inset-0 opacity-[0.12] [background-size:40px_40px] [background-image:linear-gradient(to_right,rgba(255,255,255,0.35)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.35)_1px,transparent_1px)]"
             aria-hidden
@@ -128,7 +128,7 @@ export function AboutPageContent() {
         </div>
 
         <div className="relative z-10 mx-auto mt-10 max-w-4xl md:mt-20">
-          <p className="mb-4 text-xs font-semibold uppercase tracking-[0.22em] text-sky-100/95">
+          <p className="mb-4 text-xs font-semibold uppercase tracking-[0.22em] text-brand-cyan-tint/95">
             WHO WE ARE
           </p>
           <h1 className="text-balance text-4xl font-extrabold leading-[1.05] tracking-tight text-white drop-shadow-sm md:text-5xl lg:text-6xl">

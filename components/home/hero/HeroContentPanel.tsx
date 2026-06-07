@@ -32,7 +32,7 @@ export function HeroContentPanel({ children, motionStyle }: HeroContentPanelProp
 
       {/* Glow behind card */}
       <motion.div
-        className="pointer-events-none absolute inset-4 rounded-[2.5rem] bg-gradient-to-br from-[#6366f1]/20 via-[#22d3ee]/10 to-transparent blur-3xl lg:inset-8"
+        className="pointer-events-none absolute inset-4 rounded-[2.5rem] bg-gradient-to-br from-[#6366f1]/20 via-[#31C3C3]/10 to-transparent blur-3xl lg:inset-8"
         animate={{ opacity: [0.5, 0.85, 0.5] }}
         transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
         aria-hidden
@@ -43,7 +43,7 @@ export function HeroContentPanel({ children, motionStyle }: HeroContentPanelProp
         className="relative z-20 w-full max-w-xl rounded-[2rem] border border-white/80 bg-white/95 p-8 shadow-[0_32px_100px_-24px_rgba(15,23,42,0.22)] backdrop-blur-sm sm:max-w-2xl sm:p-10 lg:max-w-none lg:rounded-[2.75rem] lg:rounded-tl-[4rem] lg:rounded-bl-[2rem] lg:p-12 xl:p-14"
       >
         <motion.div
-          className="pointer-events-none absolute -right-6 -top-6 h-32 w-32 rounded-full bg-[#22d3ee]/10 blur-2xl"
+          className="pointer-events-none absolute -right-6 -top-6 h-32 w-32 rounded-full bg-[#31C3C3]/10 blur-2xl"
           animate={{ scale: [1, 1.08, 1] }}
           transition={{ duration: 9, repeat: Infinity }}
           aria-hidden

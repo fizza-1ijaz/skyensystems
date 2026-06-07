@@ -24,7 +24,7 @@ function CapabilityItem({ item, dark }: { item: string; dark?: boolean }) {
   return (
     <li className="flex gap-3">
       <span
-        className={`mt-2 h-px w-3 shrink-0 ${dark ? "bg-[#6C63FF]" : "bg-[#6C63FF]/70"}`}
+        className={`mt-2 h-px w-3 shrink-0 ${dark ? "bg-[#31C3C3]" : "bg-[#31C3C3]/70"}`}
         aria-hidden
       />
       <span className={`text-sm leading-relaxed ${dark ? "text-white/70" : "text-[#4A4A4A]"}`}>
@@ -58,7 +58,7 @@ export function ProductFeatureSection({
         index === 0 ? "pb-20 pt-10 md:pb-28 md:pt-14" : "py-20 md:py-28"
       } ${
         featured ? "bg-[#0F172A] text-[#FAFAF8]" : "bg-[#F4F4F2] text-[#141414]"
-      } ${highlighted ? "ring-2 ring-inset ring-[#6C63FF]/40" : ""}`}
+      } ${highlighted ? "ring-2 ring-inset ring-[#31C3C3]/40" : ""}`}
     >
       <ProductsBlueprintBackdrop variant={featured ? "dark" : "light"} parallax />
 
@@ -118,7 +118,7 @@ export function ProductFeatureSection({
               </p>
               <p
                 className={`mt-3 text-[11px] font-semibold uppercase tracking-[0.16em] ${
-                  featured ? "text-[#6C63FF]" : "text-[#6C63FF]"
+                  featured ? "text-[#31C3C3]" : "text-[#31C3C3]"
                 }`}
               >
                 {product.status}
@@ -163,7 +163,7 @@ export function ProductFeatureSection({
                   href={product.primaryCtaHref}
                   target={product.primaryExternal ? "_blank" : undefined}
                   rel={product.primaryExternal ? "noopener noreferrer" : undefined}
-                  className="inline-flex items-center justify-center bg-[#6C63FF] px-8 py-3.5 text-sm font-semibold uppercase tracking-[0.12em] text-white transition-colors duration-200 hover:bg-[#5A52E8]"
+                  className="inline-flex items-center justify-center bg-[#31C3C3] px-8 py-3.5 text-sm font-semibold uppercase tracking-[0.12em] text-white transition-colors duration-200 hover:bg-[#2AB0B0]"
                 >
                   {product.primaryCtaLabel}
                 </a>
@@ -205,8 +205,8 @@ export function ProductFeatureSection({
                       rel="noopener noreferrer"
                       className={`inline-flex items-center gap-2 border px-4 py-2.5 text-xs font-semibold uppercase tracking-[0.1em] transition-colors duration-200 ${
                         featured
-                          ? "border-white/20 text-white hover:border-[#6C63FF] hover:text-[#6C63FF]"
-                          : "border-[#DADAD8] text-[#141414] hover:border-[#6C63FF] hover:text-[#6C63FF]"
+                          ? "border-white/20 text-white hover:border-[#31C3C3] hover:text-[#31C3C3]"
+                          : "border-[#DADAD8] text-[#141414] hover:border-[#31C3C3] hover:text-[#31C3C3]"
                       }`}
                     >
                       App Store
@@ -217,8 +217,8 @@ export function ProductFeatureSection({
                       rel="noopener noreferrer"
                       className={`inline-flex items-center gap-2 border px-4 py-2.5 text-xs font-semibold uppercase tracking-[0.1em] transition-colors duration-200 ${
                         featured
-                          ? "border-white/20 text-white hover:border-[#6C63FF] hover:text-[#6C63FF]"
-                          : "border-[#DADAD8] text-[#141414] hover:border-[#6C63FF] hover:text-[#6C63FF]"
+                          ? "border-white/20 text-white hover:border-[#31C3C3] hover:text-[#31C3C3]"
+                          : "border-[#DADAD8] text-[#141414] hover:border-[#31C3C3] hover:text-[#31C3C3]"
                       }`}
                     >
                       Google Play

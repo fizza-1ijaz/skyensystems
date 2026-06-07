@@ -51,7 +51,7 @@ export function HeroCosmicPanel() {
           transition={{ duration: 14, repeat: Infinity, ease: "easeInOut" }}
         />
         <motion.div
-          className="absolute right-[10%] top-[15%] h-64 w-64 rounded-full bg-[#22d3ee]/20 blur-[90px]"
+          className="absolute right-[10%] top-[15%] h-64 w-64 rounded-full bg-[#31C3C3]/20 blur-[90px]"
           animate={{ opacity: [0.3, 0.55, 0.3], y: [0, -15, 0] }}
           transition={{ duration: 11, repeat: Infinity, ease: "easeInOut" }}
         />
@@ -71,7 +71,7 @@ export function HeroCosmicPanel() {
             <linearGradient id="mountain-grad" x1="0%" y1="0%" x2="100%" y2="0%">
               <stop offset="0%" stopColor="#1e3a8a" stopOpacity="0.6" />
               <stop offset="50%" stopColor="#4f46e5" stopOpacity="0.4" />
-              <stop offset="100%" stopColor="#22d3ee" stopOpacity="0.25" />
+              <stop offset="100%" stopColor="#31C3C3" stopOpacity="0.25" />
             </linearGradient>
           </defs>
           <path
@@ -98,7 +98,7 @@ export function HeroCosmicPanel() {
         {PARTICLES.map((p, i) => (
           <motion.span
             key={`particle-${i}`}
-            className="absolute h-1 w-1 rounded-full bg-cyan-300/60"
+            className="absolute h-1 w-1 rounded-full bg-brand-cyan-light/60"
             style={{ left: p.x, top: p.y }}
             animate={{ y: [0, -24, 0], opacity: [0.2, 0.8, 0.2] }}
             transition={{ duration: 5 + i, repeat: Infinity, delay: p.d, ease: "easeInOut" }}

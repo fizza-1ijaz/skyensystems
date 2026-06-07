@@ -3,10 +3,10 @@
 import Link from "next/link";
 import { useEffect, useId, useMemo, useRef, useState } from "react";
 import { motion } from "framer-motion";
-import { ArrowUpRight } from "lucide-react";
 import { useSearchParams } from "next/navigation";
 import Image from "next/image";
 import { SERVICE_CARD_THEMES } from "@/lib/service-card-themes";
+import { getServicePreviewImage } from "@/lib/service-preview-images";
 
 type ReelService = {
   id: string;
@@ -146,7 +146,7 @@ const SERVICES: ReelService[] = [
       "Next.js · React · TypeScript · Node.js · PostgreSQL · Tailwind CSS · Stripe · Shopify · WordPress",
     cta: "Explore Web Projects",
     href: "/contact-us",
-    previewImage: "/webdevelop.jfif",
+    previewImage: getServicePreviewImage("web").src,
   },
   {
     id: "mobile",
@@ -170,7 +170,7 @@ const SERVICES: ReelService[] = [
     stack: "React Native · Swift · Kotlin · Expo · Flutter · Firebase · REST APIs · Redux",
     cta: "Build a Mobile App",
     href: "/contact-us",
-    previewImage: "/mobapp.jfif",
+    previewImage: getServicePreviewImage("mobile").src,
   },
   {
     id: "uiux",
@@ -195,7 +195,7 @@ const SERVICES: ReelService[] = [
     stack: "Figma · Prototyping · InVision · Maze · Hotjar",
     cta: "Design Your Product Experience",
     href: "/contact-us",
-    previewImage: "/UIUX.png",
+    previewImage: getServicePreviewImage("design").src,
   },
   {
     id: "ai",
@@ -219,7 +219,7 @@ const SERVICES: ReelService[] = [
       "OpenAI · Claude API (Anthropic) · LangChain · Python · FastAPI · Vector Databases",
     cta: "Discuss AI for Your Business",
     href: "/contact-us",
-    previewImage: "/AI.jfif",
+    previewImage: getServicePreviewImage("ai").src,
   },
   {
     id: "marketing",
@@ -241,7 +241,7 @@ const SERVICES: ReelService[] = [
     ],
     cta: "Launch Growth Campaigns",
     href: "/contact-us",
-    previewImage: "/digitalmarketing.jfif",
+    previewImage: getServicePreviewImage("growth").src,
   },
   {
     id: "teams",
@@ -262,7 +262,7 @@ const SERVICES: ReelService[] = [
     ],
     cta: "Build Your Dedicated Team",
     href: "/contact-us",
-    previewImage: "/teams.jfif",
+    previewImage: getServicePreviewImage("teams").src,
   },
 ];
 
@@ -445,7 +445,7 @@ export function ServicesPageContent({ initialServiceSlug }: ServicesPageContentP
               </svg>
               <div className="absolute -left-8 top-10 h-56 w-56 rounded-full bg-[#8B5CF626] blur-3xl lg:-left-16" />
               <div className="absolute -right-8 top-16 h-64 w-64 rounded-full bg-[#1E3A8A1f] blur-3xl lg:-right-16" />
-              <div className="absolute inset-x-0 top-1/2 h-32 -translate-y-1/2 rounded-full bg-gradient-to-r from-[#6C63FF16] via-[#8B5CF61a] to-[#1E3A8A16] blur-3xl" />
+              <div className="absolute inset-x-0 top-1/2 h-32 -translate-y-1/2 rounded-full bg-gradient-to-r from-[#31C3C316] via-[#8B5CF61a] to-[#1E3A8A16] blur-3xl" />
             </div>
 
             <motion.div className="relative z-50 mx-auto flex w-full flex-col items-center px-3 pt-2 md:absolute md:inset-0 md:px-8 md:pt-0 xl:px-12">
@@ -457,8 +457,8 @@ export function ServicesPageContent({ initialServiceSlug }: ServicesPageContentP
                     onClick={() => setActiveIndex(stop.idx)}
                     className={`rounded-full border px-3 py-2 text-xs font-semibold tracking-wide transition-colors ${
                       activeIndex === stop.idx
-                        ? "border-[#6C63FF] bg-[#6C63FF] text-white shadow-sm"
-                        : "border-[#C5D4E3] bg-white/90 text-[#264766] hover:border-[#6C63FF]/50"
+                        ? "border-[#31C3C3] bg-[#31C3C3] text-white shadow-sm"
+                        : "border-[#C5D4E3] bg-white/90 text-[#264766] hover:border-[#31C3C3]/50"
                     }`}
                     aria-label={`Select ${stop.label}`}
                     aria-pressed={activeIndex === stop.idx}
@@ -481,7 +481,7 @@ export function ServicesPageContent({ initialServiceSlug }: ServicesPageContentP
                   transition={{ duration: 0.68, ease: [0.16, 1, 0.3, 1] }}
                 >
                   <div className="relative h-8 w-14 rounded-lg border border-[#3D3E8A] bg-gradient-to-b from-[#8FD4FF] via-[#7E8BFF] to-[#7C3AED] shadow-[0_10px_22px_-10px_rgba(0,0,0,0.65)]">
-                    <div className="absolute left-1.5 top-1.5 h-2.5 w-6 rounded bg-[#E6F7FF]" />
+                    <div className="absolute left-1.5 top-1.5 h-2.5 w-6 rounded bg-[#E0F5F5]" />
                     <div className="absolute right-1.5 top-1.5 h-2.5 w-4 rounded bg-[#DDD7FF]" />
                     <div className="absolute -bottom-1.5 left-2 h-3 w-3 rounded-full border border-[#0B1F31] bg-[#0F172A]" />
                     <div className="absolute -bottom-1.5 right-2 h-3 w-3 rounded-full border border-[#0B1F31] bg-[#0F172A]" />
@@ -505,7 +505,7 @@ export function ServicesPageContent({ initialServiceSlug }: ServicesPageContentP
                       opacity: item.nearFocal ? 1 : 0.82,
                       filter: item.nearFocal ? "blur(0px)" : "blur(0.2px)",
                       textShadow: item.nearFocal
-                        ? "0 0 18px rgba(108,99,255,0.35)"
+                        ? "0 0 18px rgba(49,195,195,0.35)"
                         : "0 0 0 rgba(0,0,0,0)",
                     }}
                     transition={{ duration: 0.74, ease: [0.16, 1, 0.3, 1] }}
@@ -597,7 +597,6 @@ export function ServicesPageContent({ initialServiceSlug }: ServicesPageContentP
                       className={`mt-6 inline-flex items-center gap-2 rounded-xl px-5 py-2.5 text-sm font-semibold transition-colors ${cardTheme.cta}`}
                     >
                       {activeService.cta}
-                      <ArrowUpRight className="h-4 w-4" />
                     </Link>
                   </div>
                   {activeService.previewImage && (

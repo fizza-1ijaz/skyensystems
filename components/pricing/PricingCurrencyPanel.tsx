@@ -43,24 +43,24 @@ export function PricingCurrencyPanel({
     <div className="relative">
       {/* Floating exchange rate card */}
       {formattedRate ? (
-        <div className="absolute -top-5 right-4 z-20 max-w-[calc(100%-2rem)] border border-[rgba(108,99,255,0.2)] bg-[#FAFAF8] px-5 py-4 shadow-[0_16px_40px_-24px_rgba(15,23,42,0.35)] sm:right-0 sm:max-w-none md:-right-4">
-          <div className="absolute left-0 top-0 h-full w-0.5 bg-[#6C63FF]" aria-hidden />
+        <div className="absolute -top-5 right-4 z-20 max-w-[calc(100%-2rem)] border border-[rgba(49,195,195,0.2)] bg-[#FAFAF8] px-5 py-4 shadow-[0_16px_40px_-24px_rgba(15,23,42,0.35)] sm:right-0 sm:max-w-none md:-right-4">
+          <div className="absolute left-0 top-0 h-full w-0.5 bg-[#31C3C3]" aria-hidden />
           <p className="text-[9px] font-semibold uppercase tracking-[0.2em] text-[#8A8A8A]">
             Current exchange rate
           </p>
           <p className="mt-2 font-heading text-xl font-bold tracking-tight text-[#141414] md:text-2xl">
             1 USD = {formattedRate} PKR
           </p>
-          <p className="mt-1.5 text-[10px] font-medium uppercase tracking-[0.14em] text-[#6C63FF]">
+          <p className="mt-1.5 text-[10px] font-medium uppercase tracking-[0.14em] text-[#31C3C3]">
             {formatRateUpdated(fx?.lastUpdateUtc ?? null)}
             {fx?.usedFallback ? " · Indicative" : ""}
           </p>
         </div>
       ) : null}
 
-      <div className="relative border-t-2 border-[#6C63FF] bg-[#0F172A] px-6 py-8 pt-10 md:px-8 md:py-10 md:pt-12">
+      <div className="relative border-t-2 border-[#31C3C3] bg-[#0F172A] px-6 py-8 pt-10 md:px-8 md:py-10 md:pt-12">
         <div className="flex items-start justify-between gap-4">
-          <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-[#6C63FF]">
+          <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-[#31C3C3]">
             Investment calculator
           </p>
           <button
@@ -82,7 +82,7 @@ export function PricingCurrencyPanel({
             >
               USD amount
             </label>
-            <div className="mt-3 flex items-center gap-3 border-b border-white/15 pb-3 transition-colors duration-200 focus-within:border-[#6C63FF]/60">
+            <div className="mt-3 flex items-center gap-3 border-b border-white/15 pb-3 transition-colors duration-200 focus-within:border-[#31C3C3]/60">
               <span className="font-heading text-sm font-bold text-white/50">USD</span>
               <input
                 id="pricing-usd-input"
@@ -100,16 +100,16 @@ export function PricingCurrencyPanel({
                 key={conversionKey}
                 className="flex h-10 w-10 items-center justify-center border border-white/10 bg-white/[0.04] animate-[estimatorPulse_0.5s_ease-out]"
               >
-                <ArrowDown className="h-4 w-4 text-[#6C63FF]" strokeWidth={1.5} />
+                <ArrowDown className="h-4 w-4 text-[#31C3C3]" strokeWidth={1.5} />
               </div>
             </div>
 
-            <div className="relative overflow-hidden rounded-sm bg-[rgba(108,99,255,0.08)] px-6 py-8 md:px-8 md:py-10">
+            <div className="relative overflow-hidden rounded-sm bg-[rgba(49,195,195,0.08)] px-6 py-8 md:px-8 md:py-10">
               <div
-                className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(108,99,255,0.18)_0%,transparent_70%)]"
+                className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(49,195,195,0.18)_0%,transparent_70%)]"
                 aria-hidden
               />
-              <p className="relative text-[10px] font-semibold uppercase tracking-[0.22em] text-[#6C63FF]">
+              <p className="relative text-[10px] font-semibold uppercase tracking-[0.22em] text-[#31C3C3]">
                 Estimated PKR
               </p>
               <p className="relative mt-3 font-heading text-[clamp(2.5rem,6vw,3.75rem)] font-bold leading-none tracking-tight text-white">

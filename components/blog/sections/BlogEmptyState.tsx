@@ -1,5 +1,7 @@
 "use client";
 
+import { EditorialBoxButton } from "@/components/ui/EditorialBoxCta";
+
 type BlogEmptyStateProps = {
   message: string;
   onReset: () => void;
@@ -14,13 +16,9 @@ export function BlogEmptyState({ message, onReset }: BlogEmptyStateProps) {
             No articles matched your search.
           </p>
           <p className="mt-4 text-sm leading-relaxed text-[#5C5C5C] md:text-base">{message}</p>
-          <button
-            type="button"
-            onClick={onReset}
-            className="mt-8 inline-flex items-center border-b-2 border-[#141414] pb-1 text-sm font-semibold uppercase tracking-[0.12em] text-[#141414] transition-colors duration-200 hover:border-[#6C63FF] hover:text-[#6C63FF]"
-          >
+          <EditorialBoxButton type="button" onClick={onReset} className="mt-8" variant="neutral">
             Reset filters
-          </button>
+          </EditorialBoxButton>
         </div>
       </div>
     </section>

@@ -1,7 +1,7 @@
 "use client";
 
-import Link from "next/link";
 import { ENGAGEMENT_MODELS } from "@/lib/services-page-data";
+import { EditorialBoxCta } from "@/components/ui/EditorialBoxCta";
 import { Reveal } from "@/components/landing/Reveal";
 
 export function EngagementModels() {
@@ -30,7 +30,7 @@ export function EngagementModels() {
                     : undefined
                 }
               >
-                <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#6C63FF]">
+                <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#31C3C3]">
                   {model.subtitle}
                 </p>
                 <h3 className="mt-4 font-heading text-2xl font-bold text-[#141414]">{model.title}</h3>
@@ -46,12 +46,7 @@ export function EngagementModels() {
         </div>
 
         <Reveal className="mt-10">
-          <Link
-            href="/pricing"
-            className="text-sm font-semibold uppercase tracking-[0.12em] text-[#6C63FF] hover:underline"
-          >
-            View pricing frameworks →
-          </Link>
+          <EditorialBoxCta href="/pricing">View pricing frameworks</EditorialBoxCta>
         </Reveal>
       </div>
     </section>

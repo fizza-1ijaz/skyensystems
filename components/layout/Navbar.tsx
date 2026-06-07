@@ -13,27 +13,99 @@ import {
 import { GlobalSearchModal } from "@/components/layout/GlobalSearchModal";
 
 const NAV_LINK_CLASS =
-  "whitespace-nowrap px-3 py-2 text-[13px] font-medium text-[#0F172A] transition-colors hover:text-[#6C63FF] xl:px-3.5 xl:text-sm";
+  "whitespace-nowrap px-2 py-2 text-[12px] font-medium transition-colors sm:px-2.5 sm:text-[13px] lg:px-3";
 
 const MOBILE_ICON_BUTTON =
-  "flex h-11 w-11 shrink-0 items-center justify-center rounded-md text-[#0F172A] transition-colors hover:bg-[#E8E8E6] active:bg-[#E0E0DE] hover:text-[#6C63FF] lg:h-full lg:w-auto lg:rounded-none lg:hover:bg-transparent lg:active:bg-transparent";
+  "flex h-11 w-11 shrink-0 items-center justify-center rounded-md transition-colors lg:h-full lg:w-auto lg:rounded-none";
 
-function NavDivider({ className = "" }: { className?: string }) {
+function NavDropdownLink({
+  child,
+  onClose,
+  onNavigate,
+  className = "",
+}: {
+  child: { label: string; href: string; description?: string };
+  onClose: () => void;
+  onNavigate?: () => void;
+  className?: string;
+}) {
   return (
-    <div
-      className={`hidden h-8 w-px shrink-0 bg-[#D4D4D4] lg:block ${className}`}
-      aria-hidden
-    />
+    <Link
+      href={child.href}
+      role="menuitem"
+      className={`group block px-5 py-4 transition-colors hover:bg-[#FAFAF8] ${className}`}
+      onClick={() => {
+        onClose();
+        onNavigate?.();
+      }}
+    >
+      <span className="font-heading text-lg font-bold text-[#141414] transition-colors group-hover:text-[#31C3C3]">
+        {child.label}
+      </span>
+      {child.description ? (
+        <span className="mt-1 block text-xs leading-relaxed text-[#8A8A8A]">{child.description}</span>
+      ) : null}
+    </Link>
   );
 }
 
-function AboutNavDropdown({
-  item,
-  isActive,
+function ServicesNavMenu({
+  items,
+  onClose,
   onNavigate,
 }: {
-  item: MainNavItem & { children: readonly { label: string; href: string }[] };
+  items: readonly { label: string; href: string; description?: string }[];
+  onClose: () => void;
+  onNavigate?: () => void;
+}) {
+  const leftColumn = items.slice(0, 3);
+  const rightColumn = items.slice(3, 6);
+
+  return (
+    <div className="border border-[#E5E5E3] bg-white shadow-[0_24px_64px_-16px_rgba(20,20,20,0.18)]">
+      <p className="border-b border-[#F0F0EE] px-5 py-3 text-[10px] font-semibold uppercase tracking-[0.22em] text-[#8A8A8A]">
+        Services
+      </p>
+
+      <div className="grid grid-cols-2 divide-x divide-[#F0F0EE]">
+        <div className="flex flex-col">
+          {leftColumn.map((child, index) => (
+            <NavDropdownLink
+              key={child.href}
+              child={child}
+              onClose={onClose}
+              onNavigate={onNavigate}
+              className={index < leftColumn.length - 1 ? "border-b border-[#F0F0EE]" : ""}
+            />
+          ))}
+        </div>
+        <div className="flex flex-col">
+          {rightColumn.map((child, index) => (
+            <NavDropdownLink
+              key={child.href}
+              child={child}
+              onClose={onClose}
+              onNavigate={onNavigate}
+              className={index < rightColumn.length - 1 ? "border-b border-[#F0F0EE]" : ""}
+            />
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function NavDropdown({
+  item,
+  isActive,
+  linkClass,
+  activeClass,
+  onNavigate,
+}: {
+  item: MainNavItem & { children: readonly { label: string; href: string; description?: string }[] };
   isActive: boolean;
+  linkClass: string;
+  activeClass: string;
   onNavigate?: () => void;
 }) {
   const [open, setOpen] = useState(false);
@@ -66,7 +138,7 @@ function AboutNavDropdown({
     >
       <button
         type="button"
-        className={`inline-flex items-center gap-0.5 ${NAV_LINK_CLASS} ${isActive ? "text-[#6C63FF]" : ""}`}
+        className={`inline-flex items-center gap-0.5 ${linkClass} ${isActive ? activeClass : ""}`}
         aria-expanded={open}
         aria-haspopup="true"
         onClick={() => setOpen((value) => !value)}
@@ -80,45 +152,47 @@ function AboutNavDropdown({
 
       {open ? (
         <div
-          className="absolute left-1/2 top-full z-[100] w-[min(100vw-2rem,20rem)] -translate-x-1/2 pt-2"
+          className={`absolute left-1/2 top-full z-[100] -translate-x-1/2 pt-2 ${
+            item.label === "Services"
+              ? "w-[min(100vw-2rem,40rem)]"
+              : "w-[min(100vw-2rem,20rem)]"
+          }`}
           role="menu"
         >
-          <div className="border border-[#E5E5E3] bg-white shadow-[0_24px_64px_-16px_rgba(20,20,20,0.18)]">
-            <p className="border-b border-[#F0F0EE] px-5 py-3 text-[10px] font-semibold uppercase tracking-[0.22em] text-[#8A8A8A]">
-              About
-            </p>
-            {item.children.map((child) => (
-              <Link
-                key={child.href}
-                href={child.href}
-                role="menuitem"
-                className="group block border-b border-[#F0F0EE] px-5 py-4 transition-colors last:border-b-0 hover:bg-[#FAFAF8]"
-                onClick={() => {
-                  setOpen(false);
-                  onNavigate?.();
-                }}
-              >
-                <span className="font-heading text-lg font-bold text-[#141414] transition-colors group-hover:text-[#6C63FF]">
-                  {child.label}
-                </span>
-                {child.description ? (
-                  <span className="mt-1 block text-xs text-[#8A8A8A]">{child.description}</span>
-                ) : null}
-              </Link>
-            ))}
-          </div>
+          {item.label === "Services" ? (
+            <ServicesNavMenu
+              items={item.children}
+              onClose={() => setOpen(false)}
+              onNavigate={onNavigate}
+            />
+          ) : (
+            <div className="border border-[#E5E5E3] bg-white shadow-[0_24px_64px_-16px_rgba(20,20,20,0.18)]">
+              <p className="border-b border-[#F0F0EE] px-5 py-3 text-[10px] font-semibold uppercase tracking-[0.22em] text-[#8A8A8A]">
+                {item.label}
+              </p>
+              {item.children.map((child, index) => (
+                <NavDropdownLink
+                  key={child.href}
+                  child={child}
+                  onClose={() => setOpen(false)}
+                  onNavigate={onNavigate}
+                  className={index < item.children.length - 1 ? "border-b border-[#F0F0EE]" : ""}
+                />
+              ))}
+            </div>
+          )}
         </div>
       ) : null}
     </div>
   );
 }
 
-function MobileAboutNavGroup({
+function MobileNavGroup({
   item,
   isActive,
   onNavigate,
 }: {
-  item: MainNavItem & { children: readonly { label: string; href: string }[] };
+  item: MainNavItem & { children: readonly { label: string; href: string; description?: string }[] };
   isActive: boolean;
   onNavigate: () => void;
 }) {
@@ -130,7 +204,7 @@ function MobileAboutNavGroup({
         type="button"
         className={`flex items-center justify-between rounded-lg px-3 py-2.5 text-left ${
           isActive
-            ? "bg-white font-semibold text-[#6C63FF]"
+            ? "bg-white font-semibold text-[#31C3C3]"
             : MAIN_NAV_LINK_MOBILE_CLASS
         }`}
         aria-expanded={expanded}
@@ -165,13 +239,30 @@ function MobileAboutNavGroup({
 
 export function Navbar() {
   const pathname = usePathname();
+  const isHome = pathname === "/";
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const [heroScrolled, setHeroScrolled] = useState(false);
 
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  useEffect(() => {
+    if (!isHome) {
+      setHeroScrolled(false);
+      return;
+    }
+
+    const onScroll = () => {
+      setHeroScrolled(window.scrollY > 72);
+    };
+
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, [isHome]);
 
   useEffect(() => {
     setIsMobileMenuOpen(false);
@@ -198,20 +289,39 @@ export function Navbar() {
   }, [isMobileMenuOpen]);
 
   const closeMobile = () => setIsMobileMenuOpen(false);
+  const transparent = isHome && !heroScrolled && !isMobileMenuOpen;
+
+  const navLinkClass = transparent
+    ? `${NAV_LINK_CLASS} text-white/88 hover:text-white`
+    : `${NAV_LINK_CLASS} text-[#0F172A] hover:text-[#31C3C3]`;
+
+  const activeNavClass = transparent ? "text-white" : "text-[#31C3C3]";
+
+  const mobileIconClass = transparent
+    ? `${MOBILE_ICON_BUTTON} text-white hover:bg-white/10 active:bg-white/15 hover:text-white lg:hover:bg-transparent lg:active:bg-transparent`
+    : `${MOBILE_ICON_BUTTON} text-[#0F172A] hover:bg-[#E8E8E6] active:bg-[#E0E0DE] hover:text-[#31C3C3] lg:hover:bg-transparent lg:active:bg-transparent`;
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 overflow-visible border-b border-[#E0E0E0] bg-[#F2F2F2]">
+    <header
+      className={`fixed inset-x-0 top-0 z-50 overflow-visible border-b transition-colors duration-300 ${
+        transparent
+          ? "border-transparent bg-transparent"
+          : "border-[#E0E0E0] bg-[#F2F2F2]"
+      }`}
+    >
       <div className="mx-auto flex h-14 max-w-[1440px] items-center overflow-visible px-4 sm:px-6 lg:items-stretch lg:px-8">
-        <div className="flex min-w-0 shrink-0 items-center lg:pr-6">
+        <div className="flex min-w-0 shrink-0 items-center lg:pr-4">
           <Link
             href="/"
-            className="truncate text-[15px] font-semibold tracking-tight text-[#0F172A] transition-colors hover:text-[#6C63FF] sm:text-base md:text-lg"
+            className={`truncate text-[15px] font-semibold tracking-tight transition-colors sm:text-base ${
+              transparent
+                ? "text-white hover:text-white/80"
+                : "text-[#0F172A] hover:text-[#31C3C3]"
+            }`}
           >
             Skyen <span className="font-bold">Systems</span>
           </Link>
         </div>
-
-        <NavDivider />
 
         <nav
           className="hidden min-w-0 flex-1 items-center justify-center gap-0 overflow-visible lg:flex"
@@ -222,10 +332,12 @@ export function Navbar() {
 
             if (item.children?.length) {
               return (
-                <AboutNavDropdown
+                <NavDropdown
                   key={item.href}
                   item={{ ...item, children: item.children }}
                   isActive={isActive}
+                  linkClass={navLinkClass}
+                  activeClass={activeNavClass}
                 />
               );
             }
@@ -234,7 +346,7 @@ export function Navbar() {
               <Link
                 key={item.href}
                 href={item.href}
-                className={`${NAV_LINK_CLASS} ${isActive ? "text-[#6C63FF]" : ""}`}
+                className={`${navLinkClass} ${isActive ? activeNavClass : ""}`}
                 aria-current={isActive ? "page" : undefined}
               >
                 {item.label}
@@ -243,21 +355,17 @@ export function Navbar() {
           })}
         </nav>
 
-        <NavDivider />
-
-        <div className="ml-auto flex shrink-0 items-center gap-0.5 lg:ml-0 lg:gap-0">
+        <div className="ml-auto flex shrink-0 items-center gap-1 lg:ml-4 lg:gap-2">
           <Link
             href="/contact-us"
-            className="hidden h-full items-center bg-[#6C63FF] px-5 text-[13px] font-semibold text-white transition-colors hover:bg-[#5A52E8] lg:inline-flex xl:px-6 xl:text-sm"
+            className="hidden h-full items-center rounded-full bg-[#31C3C3] px-4 text-[13px] font-semibold text-white transition-colors hover:bg-[#2AB0B0] lg:inline-flex lg:px-5"
           >
             Start Project
           </Link>
 
-          <NavDivider />
-
           <button
             type="button"
-            className={`${MOBILE_ICON_BUTTON} lg:px-5`}
+            className={`${mobileIconClass} lg:px-3`}
             aria-label="Search site"
             onClick={() => setIsSearchOpen(true)}
           >
@@ -266,7 +374,7 @@ export function Navbar() {
 
           <button
             type="button"
-            className={`${MOBILE_ICON_BUTTON} lg:hidden`}
+            className={`${mobileIconClass} lg:hidden`}
             onClick={() => setIsMobileMenuOpen((open) => !open)}
             aria-expanded={isMobileMenuOpen}
             aria-label="Toggle menu"
@@ -284,7 +392,7 @@ export function Navbar() {
 
               if (item.children?.length) {
                 return (
-                  <MobileAboutNavGroup
+                  <MobileNavGroup
                     key={item.href}
                     item={{ ...item, children: item.children }}
                     isActive={isActive}
@@ -299,7 +407,7 @@ export function Navbar() {
                   href={item.href}
                   className={`rounded-lg px-3 py-2.5 ${
                     isActive
-                      ? "bg-white font-semibold text-[#6C63FF]"
+                      ? "bg-white font-semibold text-[#31C3C3]"
                       : MAIN_NAV_LINK_MOBILE_CLASS
                   }`}
                   onClick={closeMobile}
@@ -310,7 +418,7 @@ export function Navbar() {
             })}
             <Link
               href="/contact-us"
-              className="mt-2 flex items-center justify-center bg-[#6C63FF] px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-[#5A52E8]"
+              className="mt-2 flex items-center justify-center bg-[#31C3C3] px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-[#2AB0B0]"
               onClick={closeMobile}
             >
               Start Project

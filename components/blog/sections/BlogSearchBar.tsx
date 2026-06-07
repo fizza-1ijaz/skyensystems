@@ -13,7 +13,7 @@ export function BlogSearchBar({ value, onChange }: BlogSearchBarProps) {
           <label htmlFor="blog-search" className="sr-only">
             Search articles
           </label>
-          <div className="border-b border-[#DADAD8] pb-4 transition-colors duration-200 focus-within:border-[#6C63FF]/60">
+          <div className="border-b border-[#DADAD8] pb-4 transition-colors duration-200 focus-within:border-[#31C3C3]/60">
             <input
               id="blog-search"
               type="search"

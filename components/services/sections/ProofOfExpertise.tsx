@@ -1,7 +1,7 @@
 "use client";
 
-import Link from "next/link";
 import { PROOF_BLOCKS } from "@/lib/services-page-data";
+import { EditorialBoxCta } from "@/components/ui/EditorialBoxCta";
 import { Reveal } from "@/components/landing/Reveal";
 
 export function ProofOfExpertise() {
@@ -25,7 +25,7 @@ export function ProofOfExpertise() {
               ) : null}
               {block.type === "case" ? (
                 <div className="flex h-full min-h-[10rem] flex-col justify-between border border-[#E5E5E3] bg-[#141414] p-6 text-[#FAFAF8] md:p-8">
-                  <p className="text-xs uppercase tracking-[0.14em] text-[#6C63FF]">Case</p>
+                  <p className="text-xs uppercase tracking-[0.14em] text-[#31C3C3]">Case</p>
                   <div>
                     <h3 className="font-heading text-2xl font-bold">{block.title}</h3>
                     <p className="mt-2 text-sm text-[#B8B8B8]">{block.description}</p>
@@ -33,7 +33,7 @@ export function ProofOfExpertise() {
                 </div>
               ) : null}
               {block.type === "quote" ? (
-                <div className="flex h-full min-h-[10rem] flex-col justify-center border-l-4 border-[#6C63FF] bg-white p-6 md:p-8">
+                <div className="flex h-full min-h-[10rem] flex-col justify-center border-l-4 border-[#31C3C3] bg-white p-6 md:p-8">
                   <p className="font-heading text-xl leading-snug text-[#141414] md:text-2xl">
                     &ldquo;{block.quote}&rdquo;
                   </p>
@@ -44,7 +44,7 @@ export function ProofOfExpertise() {
               ) : null}
               {block.type === "credential" ? (
                 <div className="flex h-full min-h-[10rem] flex-col justify-end border border-[#E5E5E3] bg-white p-6 md:p-8">
-                  <p className="text-xs uppercase tracking-[0.14em] text-[#6C63FF]">Credential</p>
+                  <p className="text-xs uppercase tracking-[0.14em] text-[#31C3C3]">Credential</p>
                   <h3 className="mt-2 font-heading text-2xl font-bold text-[#141414]">{block.title}</h3>
                   <p className="mt-2 text-sm text-[#5C5C5C]">{block.description}</p>
                 </div>
@@ -54,12 +54,10 @@ export function ProofOfExpertise() {
         </div>
 
         <Reveal className="mt-8 flex flex-wrap gap-6">
-          <Link href="/portfolio" className="text-sm font-semibold uppercase tracking-[0.12em] text-[#6C63FF]">
-            Portfolio →
-          </Link>
-          <Link href="/about/who-we-are" className="text-sm font-semibold uppercase tracking-[0.12em] text-[#141414] hover:text-[#6C63FF]">
-            About our practice →
-          </Link>
+          <EditorialBoxCta href="/portfolio">Portfolio</EditorialBoxCta>
+          <EditorialBoxCta href="/about/who-we-are" variant="neutral">
+            About our practice
+          </EditorialBoxCta>
         </Reveal>
       </div>
     </section>

@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
-import { ArrowRight, Search, X } from "lucide-react";
+import { Search, X } from "lucide-react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import {
   buildStaticSearchIndex,
@@ -247,13 +247,13 @@ export function GlobalSearchModal({ open, onClose }: GlobalSearchModalProps) {
                             onClick={() => handleSelect(item)}
                             onMouseEnter={() => setActiveIndex(itemIndex)}
                             className={`group flex w-full items-center justify-between gap-4 px-3 py-3 text-left transition-colors duration-150 md:py-3.5 ${
-                              isActive ? "bg-[rgba(108,99,255,0.08)]" : "hover:bg-[#F4F4F2]"
+                              isActive ? "bg-[rgba(49,195,195,0.08)]" : "hover:bg-[#F4F4F2]"
                             }`}
                           >
                             <div className="min-w-0">
                               <p
                                 className={`truncate font-heading text-base font-bold tracking-tight md:text-lg ${
-                                  isActive ? "text-[#6C63FF]" : "text-[#141414]"
+                                  isActive ? "text-[#31C3C3]" : "text-[#141414]"
                                 }`}
                               >
                                 {item.title}
@@ -262,13 +262,6 @@ export function GlobalSearchModal({ open, onClose }: GlobalSearchModalProps) {
                                 {item.subtitle}
                               </p>
                             </div>
-                            <ArrowRight
-                              className={`h-4 w-4 shrink-0 transition-all duration-150 ${
-                                isActive
-                                  ? "translate-x-0 text-[#6C63FF] opacity-100"
-                                  : "translate-x-1 text-[#8A8A8A] opacity-0 group-hover:translate-x-0 group-hover:opacity-100"
-                              }`}
-                            />
                           </button>
                         </li>
                       );

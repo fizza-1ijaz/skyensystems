@@ -51,7 +51,7 @@ export function ContactHero() {
                     delay={0.12 + index * 0.06}
                     className={`min-w-0 ${index > 0 ? "min-[400px]:border-l min-[400px]:border-[#DADAD8] min-[400px]:pl-6 lg:pl-0 lg:border-l-0" : ""}`}
                   >
-                    <p className="font-heading text-2xl font-bold tracking-tight text-[#141414] transition-colors duration-300 hover:text-[#6C63FF] md:text-3xl">
+                    <p className="font-heading text-2xl font-bold tracking-tight text-[#141414] transition-colors duration-300 hover:text-[#31C3C3] md:text-3xl">
                       {metric.value}
                     </p>
                     <p className="mt-1.5 text-[10px] font-medium uppercase tracking-[0.18em] text-[#8A8A8A]">
@@ -72,7 +72,7 @@ export function ContactHero() {
                 </p>
                 <Link
                   href={OFFICE_EMAIL_MAILTO}
-                  className="mt-2 inline-block break-all font-heading text-lg font-bold text-[#FAFAF8] transition-colors hover:text-[#6C63FF] sm:text-xl md:text-2xl"
+                  className="mt-2 inline-block break-all font-heading text-lg font-bold text-[#FAFAF8] transition-colors hover:text-[#31C3C3] sm:text-xl md:text-2xl"
                 >
                   {OFFICE_EMAIL}
                 </Link>

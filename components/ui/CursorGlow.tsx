@@ -85,14 +85,14 @@ export function CursorGlow() {
         aria-hidden
         className={`pointer-events-none fixed left-0 top-0 z-[80] h-12 w-12 rounded-full border border-[#9AA8FF66] bg-[radial-gradient(circle,rgba(139,92,246,0.28)_0%,rgba(30,58,138,0.18)_45%,rgba(30,58,138,0)_72%)] blur-[10px] transition-[width,height,opacity,filter,box-shadow,background] duration-200 ${
           isHoveringInteractive
-            ? "h-[68px] w-[68px] opacity-100 blur-[14px] shadow-[0_0_26px_6px_rgba(108,99,255,0.35),0_0_58px_14px_rgba(30,58,138,0.25)]"
-            : "opacity-90 shadow-[0_0_16px_3px_rgba(108,99,255,0.24),0_0_32px_10px_rgba(30,58,138,0.2)]"
+            ? "h-[68px] w-[68px] opacity-100 blur-[14px] shadow-[0_0_26px_6px_rgba(49,195,195,0.35),0_0_58px_14px_rgba(30,58,138,0.25)]"
+            : "opacity-90 shadow-[0_0_16px_3px_rgba(49,195,195,0.24),0_0_32px_10px_rgba(30,58,138,0.2)]"
         } ${isClicking ? "h-10 w-10" : ""}`}
       />
       <div
         ref={dotRef}
         aria-hidden
-        className={`pointer-events-none fixed left-0 top-0 z-[81] h-2 w-2 rounded-full bg-white shadow-[0_0_8px_rgba(255,255,255,0.95),0_0_16px_rgba(108,99,255,0.55)] transition-transform duration-100 ${
+        className={`pointer-events-none fixed left-0 top-0 z-[81] h-2 w-2 rounded-full bg-white shadow-[0_0_8px_rgba(255,255,255,0.95),0_0_16px_rgba(49,195,195,0.55)] transition-transform duration-100 ${
           isClicking ? "scale-75" : "scale-100"
         }`}
       />

@@ -20,7 +20,7 @@ const ILLUS_EMBEDDED_DEFAULT =
 const STEP_CARD_PALETTES = [
   "border-amber-300/60 bg-amber-100 shadow-[0_12px_40px_-20px_rgba(245,158,11,0.35)]",
   "border-pink-300/60 bg-pink-100 shadow-[0_12px_40px_-20px_rgba(236,72,153,0.3)]",
-  "border-sky-300/60 bg-sky-100 shadow-[0_12px_40px_-20px_rgba(14,165,233,0.32)]",
+  "border-brand-cyan-light/60 bg-brand-cyan-tint shadow-[0_12px_40px_-20px_rgba(49,195,195,0.32)]",
   "border-violet-300/60 bg-violet-100 shadow-[0_12px_40px_-20px_rgba(139,92,246,0.3)]",
   "border-orange-300/60 bg-orange-100 shadow-[0_12px_40px_-20px_rgba(249,115,22,0.32)]",
 ] as const;
@@ -28,7 +28,7 @@ const STEP_CARD_PALETTES = [
 const STEP_CARD_WATERMARKS = [
   "text-amber-900/[0.08]",
   "text-pink-900/[0.07]",
-  "text-sky-900/[0.08]",
+  "text-[#1A6B6B]/[0.08]",
   "text-violet-900/[0.07]",
   "text-orange-900/[0.07]",
 ] as const;
@@ -149,7 +149,7 @@ export function ProcessSection() {
     >
       {/* Base + purple depth */}
       <div
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_120%_80%_at_50%_-20%,rgba(124,77,255,0.22),transparent_55%),radial-gradient(ellipse_90%_60%_at_100%_50%,rgba(36,16,58,0.85),transparent_50%),radial-gradient(ellipse_80%_50%_at_0%_80%,rgba(56,189,248,0.08),transparent_45%),linear-gradient(180deg,#081120_0%,#24103a_42%,#081120_100%)]"
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_120%_80%_at_50%_-20%,rgba(124,77,255,0.22),transparent_55%),radial-gradient(ellipse_90%_60%_at_100%_50%,rgba(36,16,58,0.85),transparent_50%),radial-gradient(ellipse_80%_50%_at_0%_80%,rgba(49,195,195,0.08),transparent_45%),linear-gradient(180deg,#081120_0%,#24103a_42%,#081120_100%)]"
         aria-hidden
       />
 
@@ -164,7 +164,7 @@ export function ProcessSection() {
           />
           <motion.div
             aria-hidden
-            className="pointer-events-none absolute -right-24 bottom-[8%] h-[min(380px,50vw)] w-[min(380px,50vw)] rounded-full bg-[#38bdf8]/18 blur-[90px] will-change-transform"
+            className="pointer-events-none absolute -right-24 bottom-[8%] h-[min(380px,50vw)] w-[min(380px,50vw)] rounded-full bg-[#31C3C3]/18 blur-[90px] will-change-transform"
             animate={{ x: [0, -28, 0], y: [0, -32, 0] }}
             transition={{ duration: 18, repeat: Infinity, ease: "easeInOut", delay: 1 }}
           />
@@ -188,13 +188,13 @@ export function ProcessSection() {
         {particles.map((p) => (
           <motion.span
             key={p.id}
-            className="absolute rounded-full bg-[#38bdf8]"
+            className="absolute rounded-full bg-[#31C3C3]"
             style={{
               left: p.left,
               top: p.top,
               width: p.size,
               height: p.size,
-              boxShadow: "0 0 10px rgba(56,189,248,0.7)",
+              boxShadow: "0 0 10px rgba(49,195,195,0.7)",
             }}
             animate={
               reduceMotion
@@ -219,7 +219,7 @@ export function ProcessSection() {
           transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
           className="mb-14 text-center md:mb-20"
         >
-          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.32em] text-[#38bdf8]/90">
+          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.32em] text-[#31C3C3]/90">
             Our process
           </p>
           <h2
@@ -245,12 +245,12 @@ export function ProcessSection() {
             <defs>
               <linearGradient id="process-spine-base" x1="0%" y1="0%" x2="0%" y2="100%">
                 <stop offset="0%" stopColor="rgba(124,77,255,0.35)" />
-                <stop offset="45%" stopColor="rgba(56,189,248,0.45)" />
+                <stop offset="45%" stopColor="rgba(49,195,195,0.45)" />
                 <stop offset="100%" stopColor="rgba(244,114,182,0.25)" />
               </linearGradient>
               <linearGradient id="process-spine-flow" x1="0" y1="0" x2="400" y2="0" gradientUnits="userSpaceOnUse">
                 <stop offset="0%" stopColor="#7c4dff" stopOpacity="0.95" />
-                <stop offset="35%" stopColor="#38bdf8" stopOpacity="1" />
+                <stop offset="35%" stopColor="#31C3C3" stopOpacity="1" />
                 <stop offset="65%" stopColor="#f472b6" stopOpacity="0.9" />
                 <stop offset="100%" stopColor="#fbbf24" stopOpacity="0.75" />
                 {!reduceMotion && (
@@ -273,7 +273,7 @@ export function ProcessSection() {
               <radialGradient id="process-bead-fill" cx="32%" cy="32%" r="68%">
                 <stop offset="0%" stopColor="#fef9c7" />
                 <stop offset="45%" stopColor="#a78bfa" />
-                <stop offset="100%" stopColor="#38bdf8" />
+                <stop offset="100%" stopColor="#31C3C3" />
               </radialGradient>
               <filter id="process-bead-soft" x="-100%" y="-100%" width="300%" height="300%">
                 <feGaussianBlur stdDeviation="2.2" result="blur" />
@@ -313,7 +313,7 @@ export function ProcessSection() {
                     <motion.circle
                       cx={0}
                       cy={0}
-                      fill="rgba(56,189,248,0.45)"
+                      fill="rgba(49,195,195,0.45)"
                       initial={false}
                       animate={{ r: [10, 20, 10], opacity: [0.35, 0.65, 0.35] }}
                       transition={{ duration: 1.15, repeat: Infinity, ease: "easeInOut" }}
@@ -395,7 +395,7 @@ export function ProcessSection() {
         {/* Mobile: full-width cards, illustration inside each card */}
         <div className="relative w-full min-w-0 max-w-none md:hidden">
           <div
-            className="pointer-events-none absolute bottom-0 left-[22px] top-2 w-px bg-gradient-to-b from-[#7c4dff]/80 via-[#38bdf8]/60 to-[#f472b6]/40"
+            className="pointer-events-none absolute bottom-0 left-[22px] top-2 w-px bg-gradient-to-b from-[#7c4dff]/80 via-[#31C3C3]/60 to-[#f472b6]/40"
             aria-hidden
           />
           <ol className="relative m-0 list-none space-y-10 p-0 pl-2" aria-label="Process steps">
@@ -408,12 +408,12 @@ export function ProcessSection() {
                     className="absolute left-[14px] top-7 z-[1] h-4 w-4 -translate-x-1/2 rounded-full border-2 border-white/25"
                     style={{
                       background:
-                        "radial-gradient(circle at 30% 30%, #fef3c7, #7c4dff 45%, #38bdf8 100%)",
+                        "radial-gradient(circle at 30% 30%, #fef3c7, #7c4dff 45%, #31C3C3 100%)",
                       boxShadow: dotActive
-                        ? "0 0 0 5px rgba(124,77,255,0.35), 0 0 22px rgba(56,189,248,0.75)"
+                        ? "0 0 0 5px rgba(124,77,255,0.35), 0 0 22px rgba(49,195,195,0.75)"
                         : reduceMotion
-                          ? "0 0 14px rgba(56,189,248,0.4)"
-                          : "0 0 10px rgba(56,189,248,0.2)",
+                          ? "0 0 14px rgba(49,195,195,0.4)"
+                          : "0 0 10px rgba(49,195,195,0.2)",
                     }}
                     animate={reduceMotion ? {} : { scale: dotActive ? [1, 1.15, 1.05] : 1 }}
                     transition={{ duration: 0.8, ease: "easeOut" }}
@@ -480,7 +480,7 @@ function StepIllustration({
           alt=""
           width={240}
           height={240}
-          className="h-auto w-full object-contain opacity-[0.92] drop-shadow-[0_14px_36px_rgba(56,189,248,0.14)]"
+          className="h-auto w-full object-contain opacity-[0.92] drop-shadow-[0_14px_36px_rgba(49,195,195,0.14)]"
           loading="lazy"
           decoding="async"
         />
@@ -546,7 +546,7 @@ function ProcessCard({
 
         <div className="relative z-[1] flex items-start gap-4">
           <motion.div
-            className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-slate-300/50 bg-white/80 text-sky-700 shadow-inner shadow-slate-200/80"
+            className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-slate-300/50 bg-white/80 text-[#2A9E9E] shadow-inner shadow-slate-200/80"
             animate={
               reduceMotion
                 ? {}

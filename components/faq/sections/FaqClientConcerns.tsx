@@ -18,7 +18,7 @@ export function FaqClientConcerns() {
             <Reveal key={item.concern} delay={index * 0.06}>
               <article className="grid h-full gap-6 border border-[#E5E5E3] bg-white md:grid-cols-2">
                 <div className="border-b border-[#E5E5E3] p-6 md:border-b-0 md:border-r md:p-8">
-                  <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-[#6C63FF]">
+                  <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-[#31C3C3]">
                     Concern
                   </p>
                   <p className="mt-3 font-heading text-xl font-bold leading-snug text-[#141414] md:text-2xl">

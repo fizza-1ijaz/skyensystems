@@ -1,7 +1,7 @@
 "use client";
 
-import Link from "next/link";
 import { Reveal } from "@/components/landing/Reveal";
+import { EditorialBoxCta } from "@/components/ui/EditorialBoxCta";
 
 export function ProductsQuoteBand() {
   return (
@@ -17,12 +17,9 @@ export function ProductsQuoteBand() {
           </blockquote>
         </Reveal>
         <Reveal delay={0.08} className="mt-8 text-center">
-          <Link
-            href="/services"
-            className="inline-flex items-center border-b-2 border-[#141414] pb-1 text-sm font-semibold uppercase tracking-[0.12em] text-[#141414] transition-colors duration-200 hover:border-[#6C63FF] hover:text-[#6C63FF]"
-          >
-            See our mobile app service →
-          </Link>
+          <EditorialBoxCta href="/contact-us" variant="neutral">
+            See our mobile app service
+          </EditorialBoxCta>
         </Reveal>
       </div>
     </section>

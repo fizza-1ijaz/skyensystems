@@ -44,16 +44,16 @@ const HERO_ICON_COLORS = [BLUE_DEEP, BLUE_BRIGHT, BLUE_SKY, BLUE_BRIGHT, BLUE_DE
 
 /** Full brand palette for scroll service viewer */
 const SERVICE_SCROLL_ICON_COLORS = [
-  "#6C63FF",
+  "#31C3C3",
   "#1E3A8A",
   "#7C3AED",
-  "#22D3EE",
+  "#31C3C3",
   "#8B5CF6",
   "#EC4899",
-  "#06b6d4",
+  "#31C3C3",
   "#4f46e5",
   "#db2777",
-  "#0ea5e9",
+  "#71CBD1",
 ] as const;
 
 type TechIconConfig = {
@@ -417,7 +417,7 @@ export function HeroTechCornerIcons() {
 
 /** Accent colors per service card — matches service-card-themes */
 const SERVICE_CARD_ICON_COLORS: Record<string, readonly string[]> = {
-  web: ["#1E40AF", "#2563eb", "#3b82f6", "#1E3A8A", "#0ea5e9"],
+  web: ["#1E40AF", "#2563eb", "#31C3C3", "#1E3A8A", "#71CBD1"],
   mobile: ["#BE185D", "#DB2777", "#EC4899", "#9D174D", "#f472b6"],
   uiux: ["#6D28D9", "#7C3AED", "#8B5CF6", "#4C1D95", "#a78bfa"],
   ai: ["#B45309", "#D97706", "#F59E0B", "#C2410C", "#fbbf24"],

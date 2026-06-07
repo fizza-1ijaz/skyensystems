@@ -173,7 +173,7 @@ export function BlogReactionButtons({ blogId }: BlogReactionButtonsProps) {
               onClick={() => void submitReaction(item.type)}
               className={`inline-flex items-center gap-1 rounded-lg border px-3 py-2 text-sm font-semibold transition ${
                 active
-                  ? "border-[#1E3A8A66] bg-[#EEF3FF] text-[#0F2742]"
+                  ? "border-[#1E3A8A66] bg-[#EFF9F8] text-[#0F2742]"
                   : "border-slate-300 bg-white text-slate-700 hover:border-[#1E3A8A55]"
               } ${isSubmitting ? "cursor-not-allowed opacity-60" : ""}`}
             >

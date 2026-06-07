@@ -10,7 +10,7 @@ export function PricingBlueprintBackdrop({
   variant = "light",
 }: PricingBlueprintBackdropProps) {
   const ink = variant === "dark" ? "rgba(255, 255, 255, 1)" : "rgba(20, 20, 20, 1)";
-  const accent = variant === "dark" ? "rgba(108, 99, 255, 1)" : "rgba(108, 99, 255, 1)";
+  const accent = variant === "dark" ? "rgba(49,195,195, 1)" : "rgba(49,195,195, 1)";
 
   return (
     <div

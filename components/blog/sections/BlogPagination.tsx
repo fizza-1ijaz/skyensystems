@@ -34,7 +34,7 @@ export function BlogPagination({ page, totalPages, onPageChange }: BlogPaginatio
               onClick={() => onPageChange(p)}
               className={`border-b-2 pb-1 font-heading text-sm font-bold transition-colors duration-200 ${
                 p === page
-                  ? "border-[#6C63FF] text-[#141414]"
+                  ? "border-[#31C3C3] text-[#141414]"
                   : "border-transparent text-[#8A8A8A] hover:border-[#141414]/30 hover:text-[#141414]"
               }`}
             >

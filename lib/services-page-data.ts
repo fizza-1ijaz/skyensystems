@@ -283,3 +283,52 @@ export const PROOF_BLOCKS = [
     span: "lg:col-span-3",
   },
 ];
+
+export const PRIMARY_SERVICE_HREF = DETAILED_SERVICES[0].slug;
+
+export const SERVICE_NAV_LINKS = DETAILED_SERVICES.map((service) => ({
+  label: service.title,
+  href: service.slug,
+}));
+
+export function getServiceSlug(service: DetailedService): string {
+  return service.slug.replace(/^\/services\//, "");
+}
+
+export function getServiceBySlug(slug: string): DetailedService | undefined {
+  return DETAILED_SERVICES.find((service) => getServiceSlug(service) === slug);
+}
+
+export const SERVICE_PAGE_META: Record<string, { title: string; description: string }> = {
+  "web-design-development": {
+    title: "Web Development Services | Skyen Systems",
+    description:
+      "Marketing sites, SaaS platforms, and web applications built for speed, SEO, and conversion by Skyen Systems.",
+  },
+  "mobile-apps": {
+    title: "Mobile App Development | Skyen Systems",
+    description:
+      "iOS and Android product development with retention-focused UX, scalable architecture, and store launch support.",
+  },
+  "brand-ui-ux-design": {
+    title: "UI/UX Design Services | Skyen Systems",
+    description:
+      "Research-led UX, interface systems, and prototypes that improve behaviour before aesthetics.",
+  },
+  "ai-solutions": {
+    title: "AI Solutions | Skyen Systems",
+    description:
+      "Practical copilots, automation, and LLM integrations with guardrails your team can trust in production.",
+  },
+  "digital-marketing": {
+    title: "Digital Marketing Services | Skyen Systems",
+    description:
+      "Technical SEO, paid media, and analytics aligned with product goals — not vanity dashboards.",
+  },
+  "dedicated-teams": {
+    title: "Dedicated Teams | Skyen Systems",
+    description:
+      "Embedded engineers and designers with US timezone overlap, transparent delivery, and flexible scaling.",
+  },
+};
+

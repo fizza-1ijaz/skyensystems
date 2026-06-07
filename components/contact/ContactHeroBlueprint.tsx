@@ -3,7 +3,7 @@
 import { Reveal } from "@/components/landing/Reveal";
 
 const ink = "rgba(20, 20, 20, 0.08)";
-const accent = "rgba(108, 99, 255, 0.25)";
+const accent = "rgba(49,195,195, 0.25)";
 const grid = "rgba(20, 20, 20, 0.04)";
 
 type ContactHeroBlueprintProps = {

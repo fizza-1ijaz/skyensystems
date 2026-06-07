@@ -13,8 +13,8 @@ function DeliveryDiagram() {
         US · UK · GCC
       </text>
 
-      <rect x="220" y="40" width="120" height="64" stroke="#6C63FF" strokeWidth="2" fill="rgba(108,99,255,0.08)" />
-      <text x="280" y="68" textAnchor="middle" fill="#6C63FF" fontSize="8" fontFamily="ui-monospace, monospace">
+      <rect x="220" y="40" width="120" height="64" stroke="#31C3C3" strokeWidth="2" fill="rgba(49,195,195,0.08)" />
+      <text x="280" y="68" textAnchor="middle" fill="#31C3C3" fontSize="8" fontFamily="ui-monospace, monospace">
         HQ
       </text>
       <text x="280" y="88" textAnchor="middle" fill="#141414" fontSize="10" fontWeight="bold" fontFamily="system-ui">
@@ -37,11 +37,11 @@ function DeliveryDiagram() {
         Ship · Scale
       </text>
 
-      <path d="M136 140 L220 72" stroke="#6C63FF" strokeWidth="1.5" strokeDasharray="5 4" />
-      <path d="M136 140 L220 208" stroke="#6C63FF" strokeWidth="1.5" strokeDasharray="5 4" />
+      <path d="M136 140 L220 72" stroke="#31C3C3" strokeWidth="1.5" strokeDasharray="5 4" />
+      <path d="M136 140 L220 208" stroke="#31C3C3" strokeWidth="1.5" strokeDasharray="5 4" />
       <path d="M340 72 L424 140" stroke="#141414" strokeWidth="1" />
       <path d="M340 208 L424 140" stroke="#141414" strokeWidth="1" />
-      <circle cx="280" cy="140" r="8" fill="#6C63FF" />
+      <circle cx="280" cy="140" r="8" fill="#31C3C3" />
     </svg>
   );
 }

@@ -1,86 +1,103 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Check, Settings2 } from "lucide-react";
+import type { CookiePreference } from "@/components/ConsentAwareAnalytics";
 
-type CookiePreference = {
-  essential: boolean;
-  analytics: boolean;
-  marketing: boolean;
-  preferences: boolean;
+const ESSENTIAL_ONLY: CookiePreference = {
+  essential: true,
+  analytics: false,
+  marketing: false,
+  preferences: false,
 };
 
+function saveConsent(consent: CookiePreference) {
+  localStorage.setItem("cookie-consent", JSON.stringify(consent));
+  window.dispatchEvent(new CustomEvent("cookie-consent-updated", { detail: consent }));
+}
+
 export function CookieConsent() {
+  const [mounted, setMounted] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
-  const [preferences, setPreferences] = useState<CookiePreference>({
-    essential: true,
-    analytics: false,
-    marketing: false,
-    preferences: false,
-  });
+  const [preferences, setPreferences] = useState<CookiePreference>(ESSENTIAL_ONLY);
 
   useEffect(() => {
-    // Check if user has already made a choice
+    setMounted(true);
+
     const consent = localStorage.getItem("cookie-consent");
     if (!consent) {
-      // Small delay for better UX
       const timer = setTimeout(() => setIsVisible(true), 500);
       return () => clearTimeout(timer);
     }
   }, []);
 
-  const handleAllowAll = () => {
-    const allConsent = {
-      essential: true,
-      analytics: true,
-      marketing: true,
-      preferences: true,
+  useEffect(() => {
+    const openSettings = () => {
+      try {
+        const stored = localStorage.getItem("cookie-consent");
+        if (stored) {
+          setPreferences({ ...ESSENTIAL_ONLY, ...JSON.parse(stored) });
+        }
+      } catch {
+        setPreferences(ESSENTIAL_ONLY);
+      }
+      setIsVisible(true);
+      setShowSettings(true);
     };
-    localStorage.setItem("cookie-consent", JSON.stringify(allConsent));
-    setIsVisible(false);
-  };
 
-  const handleEssentialOnly = () => {
-    localStorage.setItem("cookie-consent", JSON.stringify(preferences));
-    setIsVisible(false);
-  };
+    window.addEventListener("open-cookie-settings", openSettings);
+    return () => window.removeEventListener("open-cookie-settings", openSettings);
+  }, []);
 
-  const handleCustomize = () => {
-    localStorage.setItem("cookie-consent", JSON.stringify(preferences));
+  const dismissBanner = (consent: CookiePreference) => {
+    saveConsent(consent);
     setShowSettings(false);
     setIsVisible(false);
   };
 
+  const handleAllowAll = () => {
+    dismissBanner({
+      essential: true,
+      analytics: true,
+      marketing: true,
+      preferences: true,
+    });
+  };
+
+  const handleEssentialOnly = () => {
+    dismissBanner(ESSENTIAL_ONLY);
+  };
+
+  const handleCustomize = () => {
+    dismissBanner(preferences);
+  };
+
   const togglePreference = (key: keyof CookiePreference) => {
-    if (key === "essential") return; // Essential cannot be toggled
+    if (key === "essential") return;
     setPreferences((prev) => ({ ...prev, [key]: !prev[key] }));
   };
 
-  if (!isVisible) return null;
+  if (!mounted) return null;
 
   return (
     <>
-      {/* Main Cookie Consent Dock */}
       <AnimatePresence>
-        {isVisible && (
+        {isVisible && !showSettings && (
           <motion.div
-            className="fixed bottom-0 left-0 right-0 z-50 flex items-end justify-center safe-area-bottom md:bottom-6 md:left-6 md:right-6"
+            className="fixed bottom-4 left-4 right-4 z-[90] flex items-end justify-center safe-area-bottom md:bottom-6 md:left-6 md:right-6"
             initial={{ opacity: 0, y: 100 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 100 }}
             transition={{ type: "spring", damping: 25, stiffness: 300 }}
           >
-            <div className="w-full px-4 md:w-full md:max-w-6xl md:px-0">
-              {/* Dock container */}
-              <div className="relative overflow-hidden rounded-3xl md:rounded-[2rem]">
-                {/* Background graphics */}
+            <div className="w-full md:max-w-6xl">
+              <div className="relative overflow-hidden rounded-3xl border border-[#1E3A8A]/10 shadow-[0_25px_50px_-20px_rgba(30,58,138,0.35)] md:rounded-[2rem]">
                 <div className="pointer-events-none absolute inset-0">
-                  {/* Base gradient */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-white/80 via-[#f4f8ff]/70 to-white/60 backdrop-blur-xl" />
+                  <div className="absolute inset-0 bg-gradient-to-br from-white/80 via-[#EFF8F8]/70 to-white/60 backdrop-blur-xl" />
 
-                  {/* Glowing orbs */}
                   <motion.div
                     className="absolute -right-20 -top-20 h-48 w-48 rounded-full bg-[radial-gradient(circle_at_50%_50%,rgba(34,211,238,0.12),transparent_70%)] blur-3xl"
                     animate={{ scale: [1, 1.1, 1] }}
@@ -92,7 +109,6 @@ export function CookieConsent() {
                     transition={{ duration: 5, repeat: Infinity, delay: 1 }}
                   />
 
-                  {/* Mesh grid */}
                   <svg className="absolute inset-0 h-full w-full opacity-[0.02]" preserveAspectRatio="none">
                     <defs>
                       <pattern id="mesh-grid" width="30" height="30" patternUnits="userSpaceOnUse">
@@ -102,23 +118,19 @@ export function CookieConsent() {
                     <rect width="100%" height="100%" fill="url(#mesh-grid)" />
                   </svg>
 
-                  {/* Animated top border glow */}
                   <motion.div
-                    className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#22D3EE] to-transparent opacity-40"
+                    className="absolute left-0 right-0 top-0 h-px bg-gradient-to-r from-transparent via-[#31C3C3] to-transparent opacity-40"
                     animate={{ opacity: [0.2, 0.6, 0.2] }}
                     transition={{ duration: 3, repeat: Infinity }}
                   />
                 </div>
 
-                {/* Content */}
-                <div className="relative flex flex-col gap-4 p-5 pr-12 md:flex-row md:gap-8 md:p-8 md:pr-8 md:items-center md:justify-between">
-                  {/* Left section - Animated cookie */}
+                <div className="relative flex flex-col gap-4 p-5 pr-12 md:flex-row md:items-center md:justify-between md:gap-8 md:p-8 md:pr-8">
                   <div className="flex flex-shrink-0 items-center justify-center md:order-first">
                     <AnimatedCookie />
                   </div>
 
-                  {/* Center section - Text content */}
-                  <div className="flex-1 md:flex-1 md:min-w-0">
+                  <div className="min-w-0 flex-1 md:min-w-0">
                     <motion.div
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
@@ -132,12 +144,15 @@ export function CookieConsent() {
                       </h3>
                       <p className="mt-2 text-xs leading-relaxed text-slate-600 md:text-sm">
                         Your data stays protected while helping us improve performance, analytics, and your
-                        experience.
+                        experience. Read our{" "}
+                        <Link href="/cookies-policy" className="font-semibold text-[#1E3A8A] underline-offset-2 hover:underline">
+                          Cookies Policy
+                        </Link>
+                        .
                       </p>
                     </motion.div>
                   </div>
 
-                  {/* Right section - Buttons */}
                   <div className="flex w-full flex-shrink-0 flex-col gap-2 sm:flex-row sm:flex-wrap sm:gap-3 md:order-last">
                     <motion.button
                       onClick={handleAllowAll}
@@ -153,7 +168,7 @@ export function CookieConsent() {
 
                     <motion.button
                       onClick={handleEssentialOnly}
-                      className="w-full rounded-lg border-2 border-[#1E3A8A] bg-white/50 px-4 py-2 text-xs font-semibold uppercase tracking-[0.1em] text-[#1E3A8A] transition-all hover:bg-[#f4f8ff] sm:w-auto"
+                      className="w-full rounded-lg border-2 border-[#1E3A8A] bg-white/50 px-4 py-2 text-xs font-semibold uppercase tracking-[0.1em] text-[#1E3A8A] transition-all hover:bg-[#EFF8F8] sm:w-auto"
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.98 }}
                       initial={{ opacity: 0, y: 10 }}
@@ -172,21 +187,22 @@ export function CookieConsent() {
                       animate={{ opacity: 1, scale: 1 }}
                       transition={{ delay: 0.4 }}
                       title="Customize preferences"
+                      aria-label="Customize cookie preferences"
                     >
                       <Settings2 className="h-4 w-4" />
                     </motion.button>
                   </div>
                 </div>
 
-                {/* Close button */}
                 <motion.button
-                  onClick={() => setIsVisible(false)}
+                  onClick={handleEssentialOnly}
                   className="absolute right-4 top-4 rounded-full bg-white/60 p-1.5 text-[#1E3A8A] transition-all hover:bg-white md:right-5 md:top-5"
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.9 }}
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.25 }}
+                  aria-label="Accept essential cookies only"
                 >
                   <X className="h-4 w-4" />
                 </motion.button>
@@ -196,29 +212,30 @@ export function CookieConsent() {
         )}
       </AnimatePresence>
 
-      {/* Settings Modal */}
       <AnimatePresence>
         {showSettings && (
           <motion.div
-            className="fixed inset-0 z-[60] flex items-center justify-center bg-black/40 backdrop-blur-sm md:p-4"
+            className="fixed inset-0 z-[100] flex items-center justify-center bg-black/40 p-4 backdrop-blur-sm safe-area-top safe-area-bottom"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setShowSettings(false)}
           >
             <motion.div
-              className="mx-4 w-[calc(100%-2rem)] max-h-[90vh] max-w-md overflow-y-auto overflow-hidden rounded-3xl bg-gradient-to-br from-white/90 via-[#f4f8ff]/85 to-white/80 backdrop-blur-xl shadow-[0_25px_50px_-25px_rgba(30,58,138,0.5)] md:mx-0 md:w-full"
+              className="mx-auto flex max-h-[min(90vh,640px)] w-full max-w-md flex-col overflow-hidden rounded-3xl bg-gradient-to-br from-white/90 via-[#EFF8F8]/85 to-white/80 shadow-[0_25px_50px_-25px_rgba(30,58,138,0.5)] backdrop-blur-xl"
               initial={{ opacity: 0, scale: 0.9, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.9, y: 20 }}
               transition={{ type: "spring", damping: 25, stiffness: 300 }}
               onClick={(e) => e.stopPropagation()}
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="cookie-settings-title"
             >
-              {/* Modal header */}
-              <div className="relative border-b border-[#1E3A8A]/10 px-6 py-5">
+              <div className="relative shrink-0 border-b border-[#1E3A8A]/10 px-6 py-5">
                 <div className="pointer-events-none absolute inset-0">
                   <motion.div
-                    className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#22D3EE] to-transparent opacity-40"
+                    className="absolute left-0 right-0 top-0 h-px bg-gradient-to-r from-transparent via-[#31C3C3] to-transparent opacity-40"
                     animate={{ opacity: [0.2, 0.6, 0.2] }}
                     transition={{ duration: 3, repeat: Infinity }}
                   />
@@ -228,21 +245,23 @@ export function CookieConsent() {
                     <p className="text-xs font-bold uppercase tracking-[0.15em] text-[#1E3A8A] opacity-60">
                       Privacy Control
                     </p>
-                    <h2 className="mt-2 text-xl font-bold text-[#0F172A]">Customize Preferences</h2>
+                    <h2 id="cookie-settings-title" className="mt-2 text-xl font-bold text-[#0F172A]">
+                      Customize Preferences
+                    </h2>
                   </div>
                   <motion.button
                     onClick={() => setShowSettings(false)}
                     className="rounded-full bg-white/60 p-2 text-[#1E3A8A] transition-all hover:bg-white"
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.9 }}
+                    aria-label="Close cookie settings"
                   >
                     <X className="h-4 w-4" />
                   </motion.button>
                 </div>
               </div>
 
-              {/* Settings content */}
-              <div className="space-y-3 px-6 py-6">
+              <div className="min-h-0 flex-1 space-y-3 overflow-y-auto px-6 py-6">
                 {[
                   {
                     key: "essential" as const,
@@ -273,9 +292,8 @@ export function CookieConsent() {
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: index * 0.1 }}
                   >
-                    {/* Hover glow */}
                     <motion.div
-                      className="pointer-events-none absolute inset-0 bg-gradient-to-r from-[#22D3EE] via-transparent to-transparent opacity-0"
+                      className="pointer-events-none absolute inset-0 bg-gradient-to-r from-[#31C3C3] via-transparent to-transparent opacity-0"
                       animate={{ opacity: 0 }}
                       whileHover={{ opacity: 0.05 }}
                     />
@@ -286,7 +304,6 @@ export function CookieConsent() {
                         <p className="mt-1 text-xs text-slate-600">{item.description}</p>
                       </div>
 
-                      {/* Toggle switch */}
                       <motion.button
                         onClick={() => !item.locked && togglePreference(item.key)}
                         disabled={item.locked}
@@ -295,6 +312,8 @@ export function CookieConsent() {
                             ? "bg-gradient-to-r from-[#1E3A8A] to-[#112B44]"
                             : "bg-slate-200"
                         } ${item.locked ? "cursor-not-allowed" : "cursor-pointer"}`}
+                        aria-pressed={preferences[item.key]}
+                        aria-label={`Toggle ${item.name}`}
                       >
                         <motion.div
                           className="inline-flex h-5 w-5 transform rounded-full bg-white shadow-md"
@@ -309,11 +328,10 @@ export function CookieConsent() {
                 ))}
               </div>
 
-              {/* Modal footer */}
-              <div className="flex gap-3 border-t border-[#1E3A8A]/10 px-6 py-4">
+              <div className="flex shrink-0 gap-3 border-t border-[#1E3A8A]/10 px-6 py-4">
                 <motion.button
                   onClick={() => setShowSettings(false)}
-                  className="flex-1 rounded-lg border-2 border-[#1E3A8A] bg-white/50 px-4 py-2 text-sm font-semibold text-[#1E3A8A] transition-all hover:bg-[#f4f8ff]"
+                  className="flex-1 rounded-lg border-2 border-[#1E3A8A] bg-white/50 px-4 py-2 text-sm font-semibold text-[#1E3A8A] transition-all hover:bg-[#EFF8F8]"
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                 >
@@ -321,7 +339,7 @@ export function CookieConsent() {
                 </motion.button>
                 <motion.button
                   onClick={handleCustomize}
-                  className="flex-1 flex items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-[#1E3A8A] to-[#112B44] px-4 py-2 text-sm font-semibold text-white shadow-[0_8px_16px_-4px_rgba(30,58,138,0.4)] transition-all hover:shadow-[0_12px_24px_-4px_rgba(30,58,138,0.6)]"
+                  className="flex flex-1 items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-[#1E3A8A] to-[#112B44] px-4 py-2 text-sm font-semibold text-white shadow-[0_8px_16px_-4px_rgba(30,58,138,0.4)] transition-all hover:shadow-[0_12px_24px_-4px_rgba(30,58,138,0.6)]"
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                 >
@@ -337,36 +355,34 @@ export function CookieConsent() {
   );
 }
 
-/* Animated Cookie Illustration */
 function AnimatedCookie() {
   const [isClicked, setIsClicked] = useState(false);
-  const [blobDirection, setBlobDirection] = useState(Math.random() > 0.5 ? 1 : -1);
+  const [blobDirection, setBlobDirection] = useState(1);
 
   useEffect(() => {
     if (isClicked) {
       const timer = setTimeout(() => {
         setIsClicked(false);
-      }, 1000); // Reappear after 1 second
+      }, 1000);
 
       return () => clearTimeout(timer);
     }
   }, [isClicked]);
 
   const handleCookieClick = () => {
-    setBlobDirection(Math.random() > 0.5 ? 1 : -1); // Generate new random direction
+    setBlobDirection(Math.random() > 0.5 ? 1 : -1);
     setIsClicked(true);
   };
 
   return (
     <div className="relative h-24 w-24 flex-shrink-0">
-      {/* Orbiting rings */}
       <motion.svg
         className="absolute inset-0 h-full w-full"
         viewBox="0 0 100 100"
         animate={{ rotate: isClicked ? 360 : 0, opacity: isClicked ? 0 : 1 }}
         transition={{ duration: isClicked ? 0.4 : 20, ease: isClicked ? "easeIn" : "linear", repeat: isClicked ? 0 : Infinity }}
       >
-        <circle cx="50" cy="50" r="45" fill="none" stroke="#22D3EE" strokeWidth="0.5" opacity="0.3" />
+        <circle cx="50" cy="50" r="45" fill="none" stroke="#31C3C3" strokeWidth="0.5" opacity="0.3" />
       </motion.svg>
 
       <motion.svg
@@ -378,9 +394,8 @@ function AnimatedCookie() {
         <circle cx="50" cy="50" r="35" fill="none" stroke="#1E3A8A" strokeWidth="0.5" opacity="0.2" />
       </motion.svg>
 
-      {/* Main cookie */}
       <motion.div
-        className="absolute inset-0 flex items-center justify-center cursor-pointer"
+        className="absolute inset-0 flex cursor-pointer items-center justify-center"
         animate={{
           x: isClicked ? blobDirection * 120 : 0,
           y: isClicked ? -80 : [0, -4, 0],
@@ -398,7 +413,6 @@ function AnimatedCookie() {
         onClick={handleCookieClick}
       >
         <svg className="h-16 w-16" viewBox="0 0 100 100" fill="none">
-          {/* Cookie body */}
           <motion.circle
             cx="50"
             cy="50"
@@ -408,10 +422,8 @@ function AnimatedCookie() {
             transition={{ duration: 2, repeat: Infinity }}
           />
 
-          {/* Cookie shine */}
           <ellipse cx="35" cy="35" rx="12" ry="12" fill="white" opacity="0.3" />
 
-          {/* Chocolate chips */}
           {[
             { cx: 45, cy: 40, r: 5 },
             { cx: 55, cy: 45, r: 4 },
@@ -430,16 +442,14 @@ function AnimatedCookie() {
             />
           ))}
 
-          {/* Cookie bite */}
           <path d="M 85 50 Q 90 45 90 50 Q 90 55 85 50" fill="white" opacity="0.8" />
         </svg>
       </motion.div>
 
-      {/* Floating particles around cookie */}
       {[...Array(6)].map((_, i) => (
         <motion.div
           key={`particle-${i}`}
-          className="absolute h-1 w-1 rounded-full bg-[#22D3EE]"
+          className="absolute h-1 w-1 rounded-full bg-[#31C3C3]"
           style={{
             left: "50%",
             top: "50%",

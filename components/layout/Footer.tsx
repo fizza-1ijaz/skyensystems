@@ -4,6 +4,7 @@ import type { ReactNode } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { BlogBlueprintBackdrop } from "@/components/blog/BlogBlueprintBackdrop";
+import { SERVICE_NAV_LINKS, PRIMARY_SERVICE_HREF } from "@/lib/services-page-data";
 import {
   HEAD_OFFICE_ADDRESS_BLOCK,
   HEAD_OFFICE_CR,
@@ -18,18 +19,11 @@ import {
   REGIONAL_OFFICE_PSEB_PLACEHOLDER,
 } from "@/lib/company-offices";
 
-const servicesLinks = [
-  { label: "Web Development", href: "/services" },
-  { label: "Mobile Apps", href: "/services" },
-  { label: "UI/UX Design", href: "/services" },
-  { label: "AI Solutions", href: "/services" },
-  { label: "Digital Marketing", href: "/services" },
-  { label: "Dedicated Teams", href: "/services" },
-] as const;
+const servicesLinks = SERVICE_NAV_LINKS;
 
 const companyLinks = [
   { label: "About Us", href: "/about/who-we-are" },
-  { label: "Services", href: "/services" },
+  { label: "Services", href: PRIMARY_SERVICE_HREF },
   { label: "Products", href: "/products" },
   { label: "Blog", href: "/blog" },
   { label: "FAQ", href: "/faq" },
@@ -76,7 +70,7 @@ function FooterLink({
         rel="noopener noreferrer"
         className={className}
       >
-        <span className="border-b border-transparent pb-0.5 transition-colors duration-200 group-hover:border-[#6C63FF]">
+        <span className="border-b border-transparent pb-0.5 transition-colors duration-200 group-hover:border-[#31C3C3]">
           {children}
         </span>
       </a>
@@ -85,7 +79,7 @@ function FooterLink({
 
   return (
     <Link href={href} className={className}>
-      <span className="border-b border-transparent pb-0.5 transition-colors duration-200 group-hover:border-[#6C63FF]">
+      <span className="border-b border-transparent pb-0.5 transition-colors duration-200 group-hover:border-[#31C3C3]">
         {children}
       </span>
     </Link>
@@ -95,7 +89,7 @@ function FooterLink({
 function FooterNavGroup({ title, links }: { title: string; links: readonly { label: string; href: string }[] }) {
   return (
     <div>
-      <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#6C63FF]">
+      <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#31C3C3]">
         {title}
       </p>
       <ul className="mt-5 space-y-3">
@@ -130,7 +124,7 @@ export function Footer() {
                 />
               </div>
               <span className="font-heading text-lg font-bold tracking-tight text-white">
-                SKYEN <span className="text-[#6C63FF]">SYSTEMS</span>
+                SKYEN <span className="text-[#31C3C3]">SYSTEMS</span>
               </span>
             </Link>
             <p className="mt-6 max-w-sm text-sm leading-relaxed text-white/55">
@@ -173,8 +167,8 @@ export function Footer() {
           </h3>
 
           <div className="mt-10 grid gap-6 lg:grid-cols-12 lg:gap-8">
-            <article className="border-t-2 border-[#6C63FF] bg-white/[0.03] p-8 transition-colors duration-200 hover:border-[#6C63FF]/80 hover:bg-white/[0.045] md:p-10 lg:col-span-7">
-              <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#6C63FF]">
+            <article className="border-t-2 border-[#31C3C3] bg-white/[0.03] p-8 transition-colors duration-200 hover:border-[#31C3C3]/80 hover:bg-white/[0.045] md:p-10 lg:col-span-7">
+              <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#31C3C3]">
                 Head office
               </p>
               <p className="mt-3 font-heading text-xl font-bold text-white md:text-2xl">
@@ -192,7 +186,7 @@ export function Footer() {
                   Phone:{" "}
                   <a
                     href={`tel:${HEAD_OFFICE_PHONE.replace(/\s/g, "")}`}
-                    className="text-white/75 transition-colors hover:text-[#6C63FF]"
+                    className="text-white/75 transition-colors hover:text-[#31C3C3]"
                   >
                     {HEAD_OFFICE_PHONE}
                   </a>
@@ -201,7 +195,7 @@ export function Footer() {
                   Email:{" "}
                   <a
                     href={OFFICE_EMAIL_MAILTO}
-                    className="text-white/75 transition-colors hover:text-[#6C63FF]"
+                    className="text-white/75 transition-colors hover:text-[#31C3C3]"
                   >
                     {OFFICE_EMAIL}
                   </a>
@@ -228,7 +222,7 @@ export function Footer() {
                   Phone:{" "}
                   <a
                     href={`tel:${REGIONAL_OFFICE_PHONE.replace(/\s/g, "")}`}
-                    className="text-white/75 transition-colors hover:text-[#6C63FF]"
+                    className="text-white/75 transition-colors hover:text-[#31C3C3]"
                   >
                     {REGIONAL_OFFICE_PHONE}
                   </a>
@@ -237,7 +231,7 @@ export function Footer() {
                   Email:{" "}
                   <a
                     href={OFFICE_EMAIL_MAILTO}
-                    className="text-white/75 transition-colors hover:text-[#6C63FF]"
+                    className="text-white/75 transition-colors hover:text-[#31C3C3]"
                   >
                     {OFFICE_EMAIL}
                   </a>

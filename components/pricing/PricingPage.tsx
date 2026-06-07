@@ -7,7 +7,6 @@ import { PricingEngagementOverview } from "@/components/pricing/sections/Pricing
 import { PricingEstimator } from "@/components/pricing/sections/PricingEstimator";
 import { PricingFaq } from "@/components/pricing/sections/PricingFaq";
 import { PricingFinalCta } from "@/components/pricing/sections/PricingFinalCta";
-import { PricingHero } from "@/components/pricing/sections/PricingHero";
 import { PricingTrust } from "@/components/pricing/sections/PricingTrust";
 
 export function PricingPage() {
@@ -15,7 +14,6 @@ export function PricingPage() {
 
   return (
     <div className="landing-editorial bg-[#F4F4F2] text-[#141414]">
-      <PricingHero />
       <PricingEstimator
         fx={fx}
         rateLoading={rateLoading}

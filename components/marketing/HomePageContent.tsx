@@ -139,10 +139,10 @@ export function HomePageContent() {
     <div ref={containerRef} className="pb-8 pt-0">
       <section className="relative mx-auto min-h-[88vh] w-full max-w-[1700px] overflow-hidden px-6 pb-14 pt-28 md:px-10 md:pb-16 md:pt-36">
         <div className="pointer-events-none absolute inset-0">
-          <div className="absolute -left-20 top-24 h-72 w-72 rounded-full bg-[#d6e5ff88] blur-3xl" />
+          <div className="absolute -left-20 top-24 h-72 w-72 rounded-full bg-[#D4EFF088] blur-3xl" />
           <div className="absolute right-8 top-12 h-80 w-80 rounded-full bg-[#ddd5ff70] blur-3xl" />
-          <div className="absolute bottom-8 left-1/2 h-64 w-[46rem] -translate-x-1/2 rounded-full bg-[#e4edff75] blur-3xl" />
-          <div className="absolute inset-0 bg-[linear-gradient(110deg,rgba(255,255,255,0.84),rgba(241,247,255,0.75)_44%,rgba(235,243,255,0.72))]" />
+          <div className="absolute bottom-8 left-1/2 h-64 w-[46rem] -translate-x-1/2 rounded-full bg-[#DEEFF075] blur-3xl" />
+          <div className="absolute inset-0 bg-[linear-gradient(110deg,rgba(255,255,255,0.84),rgba(232,246,245,0.75)_44%,rgba(224,245,245,0.72))]" />
           <div className="absolute inset-0 opacity-40 [background-size:38px_38px] [background-image:linear-gradient(to_right,rgba(123,140,175,0.12)_1px,transparent_1px),linear-gradient(to_bottom,rgba(123,140,175,0.12)_1px,transparent_1px)]" />
         </div>
 
@@ -206,14 +206,6 @@ export function HomePageContent() {
                 className="group inline-flex items-center gap-2 rounded-xl bg-[#112B44] px-6 py-3 text-sm font-semibold text-white shadow-[0_20px_45px_-24px_rgba(17,43,68,0.65)] transition duration-300 hover:-translate-y-0.5 hover:bg-[#1B3E5E]"
               >
                 Start Your Project
-                <motion.span
-                  className="inline-block"
-                  initial={{ x: 0 }}
-                  whileHover={{ x: 4 }}
-                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                >
-                  →
-                </motion.span>
               </Link>
               <Link
                 href="/products"
@@ -280,7 +272,7 @@ export function HomePageContent() {
           ref={whyRef}
           onPointerMove={onWhyPointerMove}
           onPointerLeave={onWhyPointerLeave}
-          className="relative mt-10 hidden min-h-[640px] overflow-hidden rounded-[2.5rem] border border-[#dce7ff] bg-[linear-gradient(160deg,rgba(255,255,255,0.9),rgba(241,247,255,0.84))] md:block"
+          className="relative mt-10 hidden min-h-[640px] overflow-hidden rounded-[2.5rem] border border-[#C8E8E6] bg-[linear-gradient(160deg,rgba(255,255,255,0.9),rgba(232,246,245,0.84))] md:block"
         >
           <div className="pointer-events-none absolute inset-0">
             <div className="absolute left-10 top-12 h-56 w-56 rounded-full bg-[#dce9ff88] blur-3xl" />
@@ -320,7 +312,7 @@ export function HomePageContent() {
               animate={{ scale: activeWhyNode ? [1, 1.03, 1] : 1 }}
               transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut" }}
             >
-              <div className="absolute inset-4 rounded-2xl border border-[#d9e9ff] bg-[radial-gradient(circle_at_30%_30%,#f4f8ff,rgba(223,236,255,0.8))]" />
+              <div className="absolute inset-4 rounded-2xl border border-[#d9e9ff] bg-[radial-gradient(circle_at_30%_30%,#EFF8F8,rgba(223,236,255,0.8))]" />
               <div className="absolute inset-0 z-10 flex items-center justify-center">
                 <Image
                   src="/logo.jpeg"
@@ -422,7 +414,7 @@ export function HomePageContent() {
               <h3 className="mt-2 text-2xl font-bold">{name}</h3>
               <p className="text-sm font-semibold text-gradient">{tag}</p>
               <p className="mt-3 text-sm text-slate-600">{desc}</p>
-              <Link href={href} className="mt-4 inline-block text-sm font-semibold text-[#6C63FF]">{cta} -&gt;</Link>
+              <Link href={href} className="mt-4 inline-block text-sm font-semibold text-[#31C3C3]">{cta} -&gt;</Link>
             </motion.article>
           ))}
         </div>
@@ -466,7 +458,7 @@ export function HomePageContent() {
               <h3 className="text-xl font-bold">{name}</h3>
               <p className="mt-1 text-3xl font-bold">{price}</p>
               <p className="mt-3 text-sm text-slate-600">{desc}</p>
-              <Link href="/pricing" className="mt-4 inline-block text-sm font-semibold text-[#6C63FF]">Get started -&gt;</Link>
+              <Link href="/pricing" className="mt-4 inline-block text-sm font-semibold text-[#31C3C3]">Get started -&gt;</Link>
             </article>
           ))}
         </div>
@@ -500,7 +492,7 @@ export function HomePageContent() {
           <p className="mb-3 text-sm font-semibold uppercase tracking-[0.14em] text-slate-500">What clients say</p>
           <h2 className="text-3xl font-bold md:text-4xl">Early results. Real businesses.</h2>
         </div>
-        <div className="mt-6 rounded-3xl border border-dashed border-[#6C63FF55] bg-white/70 p-8 text-center">
+        <div className="mt-6 rounded-3xl border border-dashed border-[#31C3C355] bg-white/70 p-8 text-center">
           <h3 className="text-2xl font-bold">Tell us about your project.</h3>
           <p className="mx-auto mt-3 max-w-2xl text-slate-600">
             Share what you are building — we reply within 24 hours with an honest scope and quote.
@@ -537,7 +529,7 @@ export function HomePageContent() {
             <p className="mb-3 text-sm font-semibold uppercase tracking-[0.14em] text-slate-500">From our team</p>
             <h2 className="text-3xl font-bold md:text-4xl">Thinking out loud.</h2>
           </div>
-          <Link href="/blog" className="text-sm font-semibold text-[#6C63FF] whitespace-nowrap">All posts -&gt;</Link>
+          <Link href="/blog" className="text-sm font-semibold text-[#31C3C3] whitespace-nowrap">All posts -&gt;</Link>
         </div>
         <div className="grid gap-5 md:grid-cols-3">
           {[
@@ -546,7 +538,7 @@ export function HomePageContent() {
             ["Social Media", "Management vs Marketing - What Is the Difference?", "A clear framework to choose what your business actually needs now."],
           ].map(([category, title, excerpt]) => (
             <article key={title} className="rounded-2xl border border-white/50 bg-white/75 p-6">
-              <p className="text-xs font-semibold uppercase tracking-[0.12em] text-[#6C63FF]">{category}</p>
+              <p className="text-xs font-semibold uppercase tracking-[0.12em] text-[#31C3C3]">{category}</p>
               <h3 className="mt-2 text-lg font-bold">{title}</h3>
               <p className="mt-3 text-sm text-slate-600">{excerpt}</p>
             </article>
@@ -555,7 +547,7 @@ export function HomePageContent() {
       </section>
 
       <section className="px-0 py-14">
-        <div className="w-full rounded-none border-y border-white/50 bg-white/75 px-8 py-12 text-center shadow-[0_20px_60px_-32px_rgba(108,99,255,0.6)] md:px-16">
+        <div className="w-full rounded-none border-y border-white/50 bg-white/75 px-8 py-12 text-center shadow-[0_20px_60px_-32px_rgba(49,195,195,0.6)] md:px-16">
           <p className="text-sm font-semibold uppercase tracking-[0.14em] text-slate-500">Let us work together</p>
           <h2 className="text-4xl font-bold">
             Ready to build something <span className="text-gradient">that actually works?</span>

@@ -8,23 +8,23 @@ export type ServiceCardTheme = {
   emphasis: string;
   cta: string;
   imageBorder: string;
-  /** RGB triplet for corner border glow, e.g. "56, 189, 248" */
+  /** RGB triplet for corner border glow, e.g. "49, 195, 195" */
   glowRgb: string;
 };
 
 export const SERVICE_CARD_THEMES: Record<string, ServiceCardTheme> = {
   web: {
-    card: "border-sky-300/90 bg-gradient-to-br from-sky-100 via-sky-50 to-cyan-50 shadow-[0_35px_75px_-40px_rgba(14,165,233,0.28)]",
+    card: "border-brand-cyan-light/90 bg-gradient-to-br from-brand-cyan-tint via-brand-cyan-tint-soft to-brand-cyan-tint shadow-[0_35px_75px_-40px_rgba(49,195,195,0.28)]",
     overlay:
-      "bg-[radial-gradient(circle_at_12%_18%,rgba(56,189,248,0.28),transparent_52%),radial-gradient(circle_at_88%_72%,rgba(14,165,233,0.14),transparent_48%)]",
+      "bg-[radial-gradient(circle_at_12%_18%,rgba(49,195,195,0.28),transparent_52%),radial-gradient(circle_at_88%_72%,rgba(49,195,195,0.14),transparent_48%)]",
     headline: "text-[#0B1F4A]",
     body: "text-[#1E3A5F]",
     label: "text-[#1E40AF]",
-    highlight: "border-sky-200/95 bg-white/75 text-[#1E3353]",
+    highlight: "border-brand-cyan-pale/95 bg-white/75 text-[#1E3353]",
     emphasis: "text-[#0B1F4A]",
     cta: "bg-[#1E3A8A] text-white hover:bg-[#172554]",
-    imageBorder: "border-sky-200/90",
-    glowRgb: "56, 189, 248",
+    imageBorder: "border-brand-cyan-pale/90",
+    glowRgb: "49, 195, 195",
   },
   mobile: {
     card: "border-pink-300/90 bg-gradient-to-br from-pink-100 via-pink-50 to-rose-50 shadow-[0_35px_75px_-40px_rgba(236,72,153,0.26)]",

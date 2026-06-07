@@ -30,7 +30,7 @@ export function PricingFaq() {
                     <span className="font-heading text-lg font-bold text-[#141414] md:text-xl">
                       {item.question}
                     </span>
-                    <span className="mt-1 shrink-0 text-sm font-semibold text-[#6C63FF]">
+                    <span className="mt-1 shrink-0 text-sm font-semibold text-[#31C3C3]">
                       {open ? "−" : "+"}
                     </span>
                   </button>

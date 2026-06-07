@@ -1,7 +1,7 @@
 "use client";
 
-import Link from "next/link";
 import { Reveal } from "@/components/landing/Reveal";
+import { EditorialBoxCta } from "@/components/ui/EditorialBoxCta";
 import type { LaunchOrRetainerPlan } from "@/components/marketing/pricingPanelsData";
 
 function PriceHighlight({
@@ -14,7 +14,7 @@ function PriceHighlight({
   return (
     <div className="flex items-stretch gap-3">
       <span
-        className={`w-0.5 shrink-0 ${featured ? "bg-[#6C63FF]" : "bg-[#6C63FF]/70"}`}
+        className={`w-0.5 shrink-0 ${featured ? "bg-[#31C3C3]" : "bg-[#31C3C3]/70"}`}
         aria-hidden
       />
       <div>
@@ -28,7 +28,7 @@ function PriceHighlight({
           {price}
         </p>
         <span
-          className={`mt-2 block h-px ${featured ? "w-full bg-[#6C63FF]/50" : "w-full max-w-[9rem] bg-[#6C63FF]/35"}`}
+          className={`mt-2 block h-px ${featured ? "w-full bg-[#31C3C3]/50" : "w-full max-w-[9rem] bg-[#31C3C3]/35"}`}
           aria-hidden
         />
       </div>
@@ -51,7 +51,7 @@ export function PricingTierCardsEditorial({
             <article
               className={`group flex w-full flex-col border transition-all duration-200 ease-out hover:-translate-y-1 ${
                 featured
-                  ? "relative z-10 border-[#0F172A] border-t-2 border-t-[#6C63FF] bg-[#0F172A] p-8 shadow-[0_28px_56px_-32px_rgba(15,23,42,0.55)] md:p-10 lg:-my-2 lg:py-12 hover:border-[#6C63FF]/40 hover:shadow-[0_32px_64px_-28px_rgba(15,23,42,0.65)]"
+                  ? "relative z-10 border-[#0F172A] border-t-2 border-t-[#31C3C3] bg-[#0F172A] p-8 shadow-[0_28px_56px_-32px_rgba(15,23,42,0.55)] md:p-10 lg:-my-2 lg:py-12 hover:border-[#31C3C3]/40 hover:shadow-[0_32px_64px_-28px_rgba(15,23,42,0.65)]"
                   : "border-[#DADAD8] bg-white p-8 hover:border-[#141414]/25 md:p-10"
               }`}
             >
@@ -62,7 +62,7 @@ export function PricingTierCardsEditorial({
               >
                 <div>
                   {featured ? (
-                    <p className="mb-3 text-[10px] font-semibold uppercase tracking-[0.22em] text-[#6C63FF]">
+                    <p className="mb-3 text-[10px] font-semibold uppercase tracking-[0.22em] text-[#31C3C3]">
                       Recommended
                     </p>
                   ) : null}
@@ -102,7 +102,7 @@ export function PricingTierCardsEditorial({
                     }`}
                   >
                     <span
-                      className={`mt-2 h-px w-3 shrink-0 ${featured ? "bg-[#6C63FF]" : "bg-[#6C63FF]/55"}`}
+                      className={`mt-2 h-px w-3 shrink-0 ${featured ? "bg-[#31C3C3]" : "bg-[#31C3C3]/55"}`}
                       aria-hidden
                     />
                     <span>{line}</span>
@@ -111,16 +111,13 @@ export function PricingTierCardsEditorial({
               </ul>
 
               <div className="mt-10">
-                <Link
+                <EditorialBoxCta
                   href={plan.cta}
-                  className={`inline-flex w-full items-center justify-center py-3 text-sm font-semibold uppercase tracking-[0.12em] transition-colors duration-200 ${
-                    featured
-                      ? "bg-[#6C63FF] text-white hover:bg-[#5A52E8]"
-                      : "border-b-2 border-[#141414] text-[#141414] hover:border-[#6C63FF] hover:text-[#6C63FF]"
-                  }`}
+                  variant={featured ? "primary" : "neutral"}
+                  className="w-full justify-center py-3"
                 >
-                  Get started →
-                </Link>
+                  Get started
+                </EditorialBoxCta>
               </div>
             </article>
           </Reveal>

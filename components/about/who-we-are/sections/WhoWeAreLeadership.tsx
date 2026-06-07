@@ -22,7 +22,7 @@ export function WhoWeAreLeadership() {
               <Reveal key={d.label} delay={index * 0.06}>
                 <article className="flex h-full flex-col justify-between bg-white p-6 md:p-8">
                   <div>
-                    <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-[#6C63FF]">
+                    <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-[#31C3C3]">
                       {d.years}
                     </p>
                     <h3 className="mt-2 font-heading text-2xl font-bold text-[#141414]">{d.label}</h3>

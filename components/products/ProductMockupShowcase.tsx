@@ -67,7 +67,7 @@ export function ProductMockupShowcase({
       />
 
       <div className="relative z-10 mb-8 border-b border-white/10 pb-6">
-        <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#6C63FF]">
+        <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#31C3C3]">
           {product.mockupLabel}
         </p>
         <p className="mt-2 text-sm text-white/50">{product.mockupNote}</p>

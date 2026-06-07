@@ -41,7 +41,7 @@ export function HeroBackground() {
       />
       <div className="absolute inset-0 bg-gradient-to-b from-[#030712]/92 via-[#0B1220]/78 to-[#0F172A]/94" />
       <motion.div
-        className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_20%,rgba(108,99,255,0.18),transparent_55%)]"
+        className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_20%,rgba(49,195,195,0.18),transparent_55%)]"
         animate={{ opacity: [0.6, 0.9, 0.6] }}
         transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
       />
@@ -49,12 +49,12 @@ export function HeroBackground() {
 
       {/* Blur regions for depth */}
       <motion.div
-        className="absolute -left-32 top-1/4 h-[min(480px,60vw)] w-[min(480px,60vw)] rounded-full bg-[#6C63FF]/20 blur-[100px]"
+        className="absolute -left-32 top-1/4 h-[min(480px,60vw)] w-[min(480px,60vw)] rounded-full bg-[#31C3C3]/20 blur-[100px]"
         animate={{ x: [0, 24, 0], y: [0, -16, 0] }}
         transition={{ duration: 14, repeat: Infinity, ease: "easeInOut" }}
       />
       <motion.div
-        className="absolute -right-24 top-[10%] h-[min(420px,55vw)] w-[min(420px,55vw)] rounded-full bg-[#22D3EE]/15 blur-[90px]"
+        className="absolute -right-24 top-[10%] h-[min(420px,55vw)] w-[min(420px,55vw)] rounded-full bg-[#31C3C3]/15 blur-[90px]"
         animate={{ x: [0, -20, 0], y: [0, 20, 0] }}
         transition={{ duration: 16, repeat: Infinity, ease: "easeInOut", delay: 1 }}
       />
@@ -71,8 +71,8 @@ export function HeroBackground() {
             <path d="M 64 0 L 0 0 0 64" fill="none" stroke="rgba(148,163,184,0.35)" strokeWidth="0.5" />
           </pattern>
           <linearGradient id="hero-line-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#6C63FF" stopOpacity="0.5" />
-            <stop offset="50%" stopColor="#22D3EE" stopOpacity="0.35" />
+            <stop offset="0%" stopColor="#31C3C3" stopOpacity="0.5" />
+            <stop offset="50%" stopColor="#31C3C3" stopOpacity="0.35" />
             <stop offset="100%" stopColor="#8B5CF6" stopOpacity="0.25" />
           </linearGradient>
         </defs>
@@ -83,8 +83,8 @@ export function HeroBackground() {
       <svg className="absolute inset-0 h-full w-full" viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid slice">
         <defs>
           <linearGradient id="hero-curve-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#6C63FF" stopOpacity="0.5" />
-            <stop offset="50%" stopColor="#22D3EE" stopOpacity="0.35" />
+            <stop offset="0%" stopColor="#31C3C3" stopOpacity="0.5" />
+            <stop offset="50%" stopColor="#31C3C3" stopOpacity="0.35" />
             <stop offset="100%" stopColor="#8B5CF6" stopOpacity="0.25" />
           </linearGradient>
         </defs>
@@ -110,7 +110,7 @@ export function HeroBackground() {
           cy="280"
           r="90"
           fill="none"
-          stroke="rgba(108,99,255,0.35)"
+          stroke="rgba(49,195,195,0.35)"
           strokeWidth="1"
           animate={{ scale: [1, 1.03, 1], opacity: [0.25, 0.4, 0.25] }}
           transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
@@ -148,7 +148,7 @@ export function HeroBackground() {
         transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
       />
       <motion.div
-        className="absolute right-[15%] top-[38%] h-16 w-16 rounded-full border border-cyan-400/20"
+        className="absolute right-[15%] top-[38%] h-16 w-16 rounded-full border border-brand-cyan/20"
         animate={{ y: [0, 10, 0], opacity: [0.25, 0.45, 0.25] }}
         transition={{ duration: 11, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
       />
@@ -208,7 +208,7 @@ export function HeroBackground() {
       />
       <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-[#030712]/80 to-transparent" />
       <motion.div
-        className="absolute inset-0 bg-[radial-gradient(circle_at_50%_30%,rgba(108,99,255,0.12),transparent_50%)]"
+        className="absolute inset-0 bg-[radial-gradient(circle_at_50%_30%,rgba(49,195,195,0.12),transparent_50%)]"
         animate={{ opacity: [0.7, 1, 0.7] }}
         transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
       />

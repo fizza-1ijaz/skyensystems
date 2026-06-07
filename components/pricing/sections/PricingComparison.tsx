@@ -51,7 +51,7 @@ export function PricingComparison() {
                 Contact us for a PKR quote:{" "}
                 <Link
                   href="mailto:info@skyensystems.com"
-                  className="font-semibold text-[#141414] underline-offset-2 transition-colors duration-200 hover:text-[#6C63FF] hover:underline"
+                  className="font-semibold text-[#141414] underline-offset-2 transition-colors duration-200 hover:text-[#31C3C3] hover:underline"
                 >
                   Info@skyensystems.com
                 </Link>

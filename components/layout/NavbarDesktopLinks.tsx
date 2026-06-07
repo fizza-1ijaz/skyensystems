@@ -19,7 +19,7 @@ export function NavbarDesktopLinks({ linkClassName }: NavbarDesktopLinksProps) {
         ) : (
           <Link key={item.href} href={item.href} className={linkClass}>
             {item.label}
-            <span className="absolute -bottom-1 left-0 h-0.5 w-0 bg-gradient-to-r from-[#6C63FF] to-[#22D3EE] transition-all group-hover:w-full" />
+            <span className="absolute -bottom-1 left-0 h-0.5 w-0 bg-gradient-to-r from-[#31C3C3] to-[#31C3C3] transition-all group-hover:w-full" />
           </Link>
         ),
       )}

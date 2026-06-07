@@ -23,18 +23,18 @@ export function WhoWeAreMethodology() {
         </Reveal>
 
         <div className="relative mx-auto mt-16 max-w-4xl">
-          <div className="absolute left-1/2 top-8 bottom-8 hidden w-px -translate-x-1/2 bg-[#6C63FF]/40 md:block" aria-hidden />
+          <div className="absolute left-1/2 top-8 bottom-8 hidden w-px -translate-x-1/2 bg-[#31C3C3]/40 md:block" aria-hidden />
           <ol className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4 lg:gap-4">
             {METHODOLOGY_STEPS.map((step, index) => (
               <Reveal key={step.id} delay={index * 0.07}>
                 <li className="relative border border-[#3A3A3A] bg-[#0F0F0F] p-6 text-center md:pt-10">
-                  <span className="mx-auto mb-4 flex h-10 w-10 items-center justify-center border border-[#6C63FF] text-sm font-bold text-[#6C63FF]">
+                  <span className="mx-auto mb-4 flex h-10 w-10 items-center justify-center border border-[#31C3C3] text-sm font-bold text-[#31C3C3]">
                     {String(index + 1).padStart(2, "0")}
                   </span>
                   <h3 className="font-heading text-xl font-bold">{step.title}</h3>
                   <p className="mt-3 text-xs leading-relaxed text-[#B8B8B8]">{step.detail}</p>
                   {index < METHODOLOGY_STEPS.length - 1 ? (
-                    <span className="absolute -right-3 top-1/2 z-10 hidden -translate-y-1/2 text-[#6C63FF] md:block" aria-hidden>
+                    <span className="absolute -right-3 top-1/2 z-10 hidden -translate-y-1/2 text-[#31C3C3] md:block" aria-hidden>
                       →
                     </span>
                   ) : null}

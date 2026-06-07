@@ -18,7 +18,7 @@ export function GlobalModel() {
             <Reveal key={pillar.title} delay={index * 0.06} className="min-h-0">
               <article className="group relative flex h-full min-h-[12rem] flex-col justify-between overflow-hidden bg-[#FAFAF8] p-6 md:min-h-[14rem] md:p-8">
                 <div
-                  className="absolute inset-x-0 bottom-0 z-0 h-0 bg-[#6C63FF] transition-[height] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] [@media(hover:hover)]:group-hover:h-full motion-reduce:[@media(hover:hover)]:group-hover:h-0"
+                  className="absolute inset-x-0 bottom-0 z-0 h-0 bg-[#31C3C3] transition-[height] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] [@media(hover:hover)]:group-hover:h-full motion-reduce:[@media(hover:hover)]:group-hover:h-0"
                   aria-hidden
                 />
                 <div className="relative z-10 flex h-full flex-col justify-between transition-colors duration-300 [@media(hover:hover)]:group-hover:text-white">

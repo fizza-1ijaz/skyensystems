@@ -18,13 +18,13 @@ function ArchitectureVisual() {
           y={72 + Math.floor(i / 2) * 120}
           width="160"
           height="96"
-          stroke={i === 1 ? "#6C63FF" : "#D4D4D4"}
+          stroke={i === 1 ? "#31C3C3" : "#D4D4D4"}
           strokeWidth={i === 1 ? 2 : 1}
-          fill={i === 1 ? "rgba(108,99,255,0.08)" : "#FAFAF8"}
+          fill={i === 1 ? "rgba(49,195,195,0.08)" : "#FAFAF8"}
         />
       ))}
-      <path d="M112 120 L288 120 M200 168 L200 264" stroke="#6C63FF" strokeWidth="1.5" strokeDasharray="5 4" />
-      <circle cx="200" cy="192" r="10" fill="#6C63FF" />
+      <path d="M112 120 L288 120 M200 168 L200 264" stroke="#31C3C3" strokeWidth="1.5" strokeDasharray="5 4" />
+      <circle cx="200" cy="192" r="10" fill="#31C3C3" />
       <rect x="32" y="288" width="120" height="8" fill="#141414" />
       <rect x="32" y="304" width="200" height="6" fill="#D4D4D4" />
     </svg>

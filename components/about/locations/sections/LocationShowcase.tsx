@@ -33,7 +33,7 @@ export function LocationShowcase() {
                   <ul className={`mt-6 space-y-2 text-sm ${muted}`}>
                     {loc.capabilities.map((cap) => (
                       <li key={cap} className="flex gap-2">
-                        <span className="text-[#6C63FF]">—</span>
+                        <span className="text-[#31C3C3]">—</span>
                         {cap}
                       </li>
                     ))}

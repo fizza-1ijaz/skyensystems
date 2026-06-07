@@ -17,7 +17,7 @@ export function PricingTrust() {
           {PRICING_TRUST_ITEMS.map((item, index) => (
             <Reveal key={item.label} delay={index * 0.05}>
               <div className="h-full bg-[#0F172A] p-8 md:p-10">
-                <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#6C63FF]">
+                <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#31C3C3]">
                   {item.label}
                 </p>
                 <p className="mt-4 text-sm leading-relaxed text-white/65">{item.body}</p>

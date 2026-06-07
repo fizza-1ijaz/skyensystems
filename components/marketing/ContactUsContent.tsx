@@ -220,7 +220,6 @@ export default function ContactUsContent() {
                           className="flex items-center gap-2 rounded-lg bg-[#112B44] px-8 py-2 text-sm font-semibold text-white transition-all hover:scale-[1.01] hover:bg-[#1B3E5E] disabled:opacity-50 whitespace-nowrap"
                         >
                           {status === "submitting" ? "Sending..." : "Send"}
-                          <span className="text-lg leading-none">→</span>
                         </button>
                       </div>
                     </div>
@@ -230,7 +229,7 @@ export default function ContactUsContent() {
             </div>
 
             {/* Info card below the form - visually enhanced */}
-            <div className="rounded-3xl bg-gradient-to-br from-[#e6f7ff] to-[#d6efff] p-6 shadow-lg border border-transparent">
+            <div className="rounded-3xl bg-gradient-to-br from-[#E0F5F5] to-[#D0F0F0] p-6 shadow-lg border border-transparent">
               <div className="mb-6 text-center lg:text-left">
                 <h2 className="text-2xl font-extrabold text-[#0F172A]">Send us a message</h2>
                 <p className="mt-2 text-slate-700">Share your requirements below and our team will reply by email.</p>

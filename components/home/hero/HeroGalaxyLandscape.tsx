@@ -32,12 +32,12 @@ export function HeroGalaxyLandscape() {
       <div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-white/10 md:to-white/25" />
 
       <motion.div
-        className="absolute -left-20 top-[8%] h-[min(520px,70vw)] w-[min(520px,70vw)] rounded-full bg-[#6C63FF]/18 blur-[110px]"
+        className="absolute -left-20 top-[8%] h-[min(520px,70vw)] w-[min(520px,70vw)] rounded-full bg-[#31C3C3]/18 blur-[110px]"
         animate={{ x: [0, 30, 0], y: [0, -20, 0] }}
         transition={{ duration: 16, repeat: Infinity, ease: "easeInOut" }}
       />
       <motion.div
-        className="absolute left-[30%] top-[2%] h-64 w-64 rounded-full bg-[#22D3EE]/12 blur-[90px]"
+        className="absolute left-[30%] top-[2%] h-64 w-64 rounded-full bg-[#31C3C3]/12 blur-[90px]"
         animate={{ opacity: [0.4, 0.7, 0.4] }}
         transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
       />

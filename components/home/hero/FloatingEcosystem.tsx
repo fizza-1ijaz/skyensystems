@@ -21,8 +21,8 @@ export function FloatingEcosystem() {
       <InfrastructureLines />
 
       {/* Atmospheric Particles - Enhanced visibility */}
-      <Sparkles count={200} scale={25} size={2} speed={0.6} opacity={0.8} color="#6C63FF" noise={[2, 2, 2]} />
-      <Sparkles count={150} scale={22} size={3} speed={0.4} opacity={0.6} color="#22D3EE" noise={[2, 2, 2]} />
+      <Sparkles count={200} scale={25} size={2} speed={0.6} opacity={0.8} color="#31C3C3" noise={[2, 2, 2]} />
+      <Sparkles count={150} scale={22} size={3} speed={0.4} opacity={0.6} color="#31C3C3" noise={[2, 2, 2]} />
       <Sparkles count={100} scale={20} size={1.5} speed={0.3} opacity={0.5} color="#1E3A8A" noise={[2, 2, 2]} />
     </group>
   );
@@ -86,7 +86,7 @@ function SystemCore() {
           color="#f8fafc"
           metalness={1}
           roughness={0.1}
-          emissive="#6C63FF"
+          emissive="#31C3C3"
           emissiveIntensity={0.5}
         />
       </mesh>
@@ -98,7 +98,7 @@ function SystemCore() {
             color="#f8fafc"
             metalness={1}
             roughness={0.1}
-            emissive="#6C63FF"
+            emissive="#31C3C3"
             emissiveIntensity={0.3}
           />
         </mesh>
@@ -108,8 +108,8 @@ function SystemCore() {
             <mesh key={i} rotation={[i * Math.PI / 3, 0, 0]}>
               <torusGeometry args={[2.5 + i * 0.6, 0.02, 16, 100]} />
               <meshStandardMaterial 
-                color={i === 1 ? "#22D3EE" : "#6C63FF"} 
-                emissive={i === 1 ? "#22D3EE" : "#6C63FF"} 
+                color={i === 1 ? "#31C3C3" : "#31C3C3"} 
+                emissive={i === 1 ? "#31C3C3" : "#31C3C3"} 
                 emissiveIntensity={3} 
                 transparent 
                 opacity={0.6} 
@@ -124,8 +124,8 @@ function SystemCore() {
           <mesh key={i} position={frag.position} rotation={frag.rotation} scale={frag.scale}>
             <boxGeometry args={[1, 1, 1]} />
             <meshStandardMaterial 
-              color={i % 2 === 0 ? "#6C63FF" : "#22D3EE"} 
-              emissive={i % 2 === 0 ? "#6C63FF" : "#22D3EE"} 
+              color={i % 2 === 0 ? "#31C3C3" : "#31C3C3"} 
+              emissive={i % 2 === 0 ? "#31C3C3" : "#31C3C3"} 
               emissiveIntensity={1} 
               transparent 
               opacity={0.4} 
@@ -135,8 +135,8 @@ function SystemCore() {
       </group>
 
       {/* Volumetric Lights */}
-      <pointLight position={[2, 2, 2]} intensity={10} color="#6C63FF" />
-      <pointLight position={[-2, -2, 2]} intensity={10} color="#22D3EE" />
+      <pointLight position={[2, 2, 2]} intensity={10} color="#31C3C3" />
+      <pointLight position={[-2, -2, 2]} intensity={10} color="#31C3C3" />
     </group>
   );
 }
@@ -182,7 +182,7 @@ function InterfacePanel({ position, rotation, type, title, scale = 1 }: any) {
         {/* Glow Edge */}
         <mesh position={[0, 0, -0.01]}>
           <boxGeometry args={[type === "mobile" ? 1.25 : 2.55, type === "mobile" ? 2.25 : 1.55, 0.01]} />
-          <meshStandardMaterial color="#22D3EE" emissive="#22D3EE" emissiveIntensity={1} transparent opacity={0.2} />
+          <meshStandardMaterial color="#31C3C3" emissive="#31C3C3" emissiveIntensity={1} transparent opacity={0.2} />
         </mesh>
 
         {/* Text Content */}
@@ -222,9 +222,9 @@ function AIVisual() {
     <group position={[0, -0.4, 0.03]}>
       <mesh>
         <circleGeometry args={[0.2, 32]} />
-        <meshStandardMaterial color="#6C63FF" transparent opacity={0.2} />
+        <meshStandardMaterial color="#31C3C3" transparent opacity={0.2} />
       </mesh>
-      <Sparkles count={10} scale={0.4} size={1} speed={1} color="#6C63FF" />
+      <Sparkles count={10} scale={0.4} size={1} speed={1} color="#31C3C3" />
     </group>
   );
 }
@@ -271,7 +271,7 @@ function DataFlowLine({ start, end }: { start: THREE.Vector3, end: THREE.Vector3
   return (
     <mesh ref={ref}>
       <tubeGeometry args={[curve, 20, 0.005, 8, false]} />
-      <meshStandardMaterial color="#6C63FF" transparent opacity={0.3} emissive="#6C63FF" emissiveIntensity={2} />
+      <meshStandardMaterial color="#31C3C3" transparent opacity={0.3} emissive="#31C3C3" emissiveIntensity={2} />
     </mesh>
   );
 }

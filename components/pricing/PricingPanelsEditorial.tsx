@@ -14,7 +14,7 @@ const TABS: { key: TabKey; label: string }[] = [
 function PriceCell({ value }: { value: string }) {
   return (
     <div className="flex items-stretch gap-2.5">
-      <span className="w-0.5 shrink-0 self-stretch bg-[#6C63FF]/60" aria-hidden />
+      <span className="w-0.5 shrink-0 self-stretch bg-[#31C3C3]/60" aria-hidden />
       <span className="font-heading text-base font-bold tracking-tight text-[#141414] md:text-lg">
         {value}
       </span>
@@ -41,12 +41,12 @@ export function PricingPanelsEditorial({
               onClick={() => setSelectedTab(tab.key)}
               className={`-mb-px flex shrink-0 items-center gap-2 border-b-2 pb-3 text-xs font-semibold uppercase tracking-[0.1em] transition-colors duration-200 sm:text-sm sm:tracking-[0.12em] ${
                 isOn
-                  ? "border-[#6C63FF] text-[#141414]"
+                  ? "border-[#31C3C3] text-[#141414]"
                   : "border-transparent text-[#8A8A8A] hover:text-[#141414]"
               }`}
             >
               {isOn ? (
-                <span className="h-1.5 w-1.5 rounded-full bg-[#6C63FF]" aria-hidden />
+                <span className="h-1.5 w-1.5 rounded-full bg-[#31C3C3]" aria-hidden />
               ) : null}
               {tab.label}
             </button>
@@ -82,7 +82,7 @@ export function PricingPanelsEditorial({
                       <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-[#8A8A8A]">
                         You save
                       </p>
-                      <p className="mt-1 font-heading text-sm font-bold text-[#6C63FF]">{row.save}</p>
+                      <p className="mt-1 font-heading text-sm font-bold text-[#31C3C3]">{row.save}</p>
                     </div>
                   </div>
                   <p className="mt-3 border-t border-[#E5E5E3] pt-3 text-sm text-[#5C5C5C]">
@@ -117,7 +117,7 @@ export function PricingPanelsEditorial({
                 {INDIVIDUAL.map((row, index) => (
                   <tr
                     key={row.name}
-                    className={`border-b border-[#E5E5E3] transition-colors duration-200 last:border-b-0 hover:bg-[rgba(108,99,255,0.05)] ${
+                    className={`border-b border-[#E5E5E3] transition-colors duration-200 last:border-b-0 hover:bg-[rgba(49,195,195,0.05)] ${
                       index % 2 === 0 ? "bg-white" : "bg-[#FAFAF8]"
                     }`}
                   >
@@ -127,8 +127,8 @@ export function PricingPanelsEditorial({
                     </td>
                     <td className="px-6 py-5 text-sm text-[#5C5C5C]">{row.us}</td>
                     <td className="px-6 py-5">
-                      <span className="inline-flex items-center gap-2 font-heading text-sm font-bold text-[#6C63FF] md:text-base">
-                        <span className="h-1.5 w-1.5 rounded-full bg-[#6C63FF]" aria-hidden />
+                      <span className="inline-flex items-center gap-2 font-heading text-sm font-bold text-[#31C3C3] md:text-base">
+                        <span className="h-1.5 w-1.5 rounded-full bg-[#31C3C3]" aria-hidden />
                         {row.save}
                       </span>
                     </td>

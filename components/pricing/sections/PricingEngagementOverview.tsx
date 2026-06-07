@@ -26,13 +26,13 @@ export function PricingEngagementOverview() {
                 <article
                   className={`group border p-8 transition-all duration-200 ease-out hover:-translate-y-1 md:p-10 ${
                     variantB
-                      ? "border-[rgba(108,99,255,0.15)] bg-[rgba(108,99,255,0.04)] hover:border-[rgba(108,99,255,0.28)]"
+                      ? "border-[rgba(49,195,195,0.15)] bg-[rgba(49,195,195,0.04)] hover:border-[rgba(49,195,195,0.28)]"
                       : "border-[#DADAD8] bg-[#FAFAF8] hover:border-[#141414]/20"
                   }`}
                 >
                   <div className="relative pl-0 transition-all duration-200 group-hover:pl-4">
                     <span
-                      className="absolute left-0 top-0 h-0 w-0.5 bg-[#6C63FF] transition-all duration-200 group-hover:h-full"
+                      className="absolute left-0 top-0 h-0 w-0.5 bg-[#31C3C3] transition-all duration-200 group-hover:h-full"
                       aria-hidden
                     />
                     <h3 className="font-heading text-xl font-bold tracking-tight text-[#141414] md:text-2xl">

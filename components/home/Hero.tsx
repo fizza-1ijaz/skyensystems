@@ -4,10 +4,11 @@ import Link from "next/link";
 import dynamic from "next/dynamic";
 import { useRef, useState, useEffect } from "react";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
-import { ArrowRight, ArrowUpRight, Globe, Zap, Terminal, Cpu, Database, Layout } from "lucide-react";
+import { Globe, Zap, Terminal, Cpu, Database, Layout } from "lucide-react";
 import { ServiceCard } from "./hero/ServiceCard";
 import { HeroLandscapeComposition } from "./hero/HeroLandscapeComposition";
 import { useMotionProfile } from "@/hooks/useMotionProfile";
+import { getServicePreviewImage } from "@/lib/service-preview-images";
 
 const ServiceScrollCornerIcons = dynamic(
   () =>
@@ -32,7 +33,7 @@ const services = [
     desc: "Custom websites, web applications, and e-commerce stores built to convert visitors into customers. Fast, secure, and built to grow with you.",
     features: "Next.js · React · WordPress · Shopify · API Integration",
     icon: Globe,
-    previewImage: "/webdevelop.jfif",
+    previewImage: getServicePreviewImage("web").src,
   },
   {
     id: "mobile",
@@ -41,7 +42,7 @@ const services = [
     desc: "iOS and Android apps that your users will actually use. From MVP to full launch — we handle everything including App Store submission.",
     features: "React Native · Swift · Kotlin · App Store · Play Store",
     icon: Cpu,
-    previewImage: "/mobapp.jfif",
+    previewImage: getServicePreviewImage("mobile").src,
   },
   {
     id: "uiux",
@@ -50,7 +51,7 @@ const services = [
     desc: "Beautiful, intuitive interfaces that make your product a joy to use. Research-backed design that reduces churn and drives engagement.",
     features: "Figma · Prototyping · User Research · Design Systems",
     icon: Layout,
-    previewImage: "/UIUX.png",
+    previewImage: getServicePreviewImage("design").src,
   },
   {
     id: "ai",
@@ -59,7 +60,7 @@ const services = [
     desc: "Practical AI that solves real business problems. Chatbots, automation, intelligent features — without the complexity.",
     features: "LLM Integration · Chatbots · Automation · Custom Models",
     icon: Zap,
-    previewImage: "/AI.jfif",
+    previewImage: getServicePreviewImage("ai").src,
   },
   {
     id: "marketing",
@@ -68,7 +69,7 @@ const services = [
     desc: "More of the right customers finding your business. SEO, paid ads, content — all tied to measurable results.",
     features: "SEO · Google Ads · Meta Ads · Content Marketing",
     icon: Database,
-    previewImage: "/digitalmarketing.jfif",
+    previewImage: getServicePreviewImage("growth").src,
   },
   {
     id: "teams",
@@ -77,7 +78,7 @@ const services = [
     desc: "Your own extended team of developers and designers — working exclusively on your projects, in your timezone.",
     features: "Full-time Devs · Project Managers · Designers · Agile",
     icon: Terminal,
-    previewImage: "/teams.jfif",
+    previewImage: getServicePreviewImage("teams").src,
   },
 ];
 
@@ -135,8 +136,8 @@ export function Hero() {
             className="inline-flex items-center justify-center gap-1.5 rounded-full border border-slate-200/80 bg-white/60 px-2.5 py-1 text-center text-[6px] font-bold uppercase tracking-[0.14em] text-slate-500 sm:gap-2 sm:px-3 sm:py-1.5 sm:text-[7px] md:text-xs"
           >
             <span className="relative flex h-1.5 w-1.5 shrink-0">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#6C63FF] opacity-75" />
-              <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-[#6C63FF]" />
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#31C3C3] opacity-75" />
+              <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-[#31C3C3]" />
             </span>
             <motion.span
               key={textIndex}
@@ -183,10 +184,9 @@ export function Hero() {
           >
             <Link
               href="/contact-us"
-              className="group relative inline-flex items-center gap-2 overflow-hidden rounded-full bg-[#6C63FF] px-7 py-3.5 text-sm font-bold text-white transition-all duration-300 hover:bg-pink-100 hover:text-pink-900 hover:shadow-[0_0_32px_-4px_rgba(236,72,153,0.4)] sm:px-8 sm:py-4 sm:text-base"
+              className="group relative inline-flex items-center gap-2 overflow-hidden rounded-full bg-[#31C3C3] px-7 py-3.5 text-sm font-bold text-white transition-all duration-300 hover:bg-pink-100 hover:text-pink-900 hover:shadow-[0_0_32px_-4px_rgba(236,72,153,0.4)] sm:px-8 sm:py-4 sm:text-base"
             >
               Start Your Project
-              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
               <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/10 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
             </Link>
             <Link
@@ -194,7 +194,6 @@ export function Hero() {
               className="group inline-flex items-center gap-2 rounded-full border-2 border-slate-300 bg-transparent px-7 py-3.5 text-sm font-bold text-slate-700 transition-all duration-300 hover:border-amber-300 hover:bg-amber-100 hover:text-amber-900 hover:shadow-[0_0_28px_-4px_rgba(245,158,11,0.35)] sm:px-8 sm:py-4 sm:text-base"
             >
               View Our Work
-              <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
             </Link>
           </motion.div>
         </motion.div>

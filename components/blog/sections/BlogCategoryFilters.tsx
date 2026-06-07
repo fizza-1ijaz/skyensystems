@@ -24,7 +24,7 @@ export function BlogCategoryFilters({
             onClick={() => onChange(null)}
             className={`-mb-px border-b-2 pb-3 text-[10px] font-semibold uppercase tracking-[0.18em] transition-colors duration-200 ${
               activeSlug === null
-                ? "border-[#6C63FF] text-[#141414]"
+                ? "border-[#31C3C3] text-[#141414]"
                 : "border-transparent text-[#8A8A8A] hover:text-[#141414]"
             }`}
           >
@@ -39,7 +39,7 @@ export function BlogCategoryFilters({
                 onClick={() => onChange(category.slug)}
                 className={`-mb-px border-b-2 pb-3 text-[10px] font-semibold uppercase tracking-[0.18em] transition-colors duration-200 ${
                   isActive
-                    ? "border-[#6C63FF] text-[#141414]"
+                    ? "border-[#31C3C3] text-[#141414]"
                     : "border-transparent text-[#8A8A8A] hover:text-[#141414]"
                 }`}
               >

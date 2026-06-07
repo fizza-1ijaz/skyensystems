@@ -4,7 +4,6 @@ import { useReducedMotion } from "framer-motion";
 import { useEffect, useRef, useState, type CSSProperties } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { getServiceCardTheme } from "@/lib/service-card-themes";
 import { useRevealOnce } from "@/hooks/useRevealOnce";
@@ -156,7 +155,6 @@ export function ServiceCard({
           className={`group/link mt-6 inline-flex items-center gap-2 text-sm font-semibold transition-all duration-300 hover:gap-3 ${theme.label}`}
         >
           <span>See more</span>
-          <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover/link:translate-x-1 group-hover/link:-translate-y-1" />
         </Link>
       </div>
 
@@ -195,7 +193,6 @@ export function ServiceCard({
           className={`inline-flex items-center gap-3 rounded-2xl px-8 py-4 text-base font-bold shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl ${theme.cta}`}
         >
           <span>View Service</span>
-          <ArrowUpRight className="h-5 w-5 transition-transform duration-300" />
         </Link>
       </div>
     </div>

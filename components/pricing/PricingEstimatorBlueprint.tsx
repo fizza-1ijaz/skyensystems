@@ -5,7 +5,7 @@ type PricingEstimatorBlueprintProps = {
 /** Financial grid + graph motif for the estimator left column. */
 export function PricingEstimatorBlueprint({ className = "" }: PricingEstimatorBlueprintProps) {
   const ink = "rgba(20, 20, 20, 1)";
-  const accent = "rgba(108, 99, 255, 1)";
+  const accent = "rgba(49,195,195, 1)";
 
   return (
     <div

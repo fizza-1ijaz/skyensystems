@@ -148,7 +148,7 @@ export function PricingSection() {
           style={{ transform: "translateY(-15px)" }}
           onPointerLeave={() => setActivePillar(null)}
         >
-          <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(160deg,rgba(255,255,255,0.94),rgba(241,247,255,0.9))]" />
+          <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(160deg,rgba(255,255,255,0.94),rgba(232,246,245,0.9))]" />
           <div className="pointer-events-none absolute inset-0">
             <div className="absolute left-8 top-10 h-56 w-56 rounded-full bg-[#dce9ff88] blur-3xl" />
             <div className="absolute right-10 top-12 h-64 w-64 rounded-full bg-[#e0d9ff85] blur-3xl" />
@@ -196,7 +196,7 @@ export function PricingSection() {
 
           <div className="absolute left-1/2 top-1/2 z-[22] h-36 w-36 -translate-x-1/2 -translate-y-[calc(50%+10px)] rounded-[1.8rem] border border-[#d8e6ff] bg-white/75 shadow-[0_25px_70px_-30px_rgba(74,111,192,0.8)] backdrop-blur-2xl">
             <motion.div
-              className="absolute inset-4 rounded-2xl border border-[#d9e9ff] bg-[radial-gradient(circle_at_30%_30%,#f4f8ff,rgba(223,236,255,0.8))]"
+              className="absolute inset-4 rounded-2xl border border-[#d9e9ff] bg-[radial-gradient(circle_at_30%_30%,#EFF8F8,rgba(223,236,255,0.8))]"
               animate={{ scale: [1, 1.05, 1] }}
               transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
             >

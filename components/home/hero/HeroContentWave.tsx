@@ -32,13 +32,13 @@ export function HeroContentWave({ children, motionStyle }: HeroContentWaveProps)
           }}
         >
           <motion.div
-            className="pointer-events-none absolute -left-12 top-0 h-full w-32 bg-gradient-to-r from-[#6C63FF]/10 via-[#8B5CF6]/05 to-transparent"
+            className="pointer-events-none absolute -left-12 top-0 h-full w-32 bg-gradient-to-r from-[#31C3C3]/10 via-[#8B5CF6]/05 to-transparent"
             animate={{ opacity: [0.35, 0.65, 0.35] }}
             transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
             aria-hidden
           />
           <motion.div
-            className="pointer-events-none absolute -top-6 right-[18%] h-28 w-28 rounded-full bg-[#22D3EE]/08 blur-2xl"
+            className="pointer-events-none absolute -top-6 right-[18%] h-28 w-28 rounded-full bg-[#31C3C3]/08 blur-2xl"
             animate={{ y: [0, -8, 0], scale: [1, 1.06, 1] }}
             transition={{ duration: 11, repeat: Infinity, ease: "easeInOut" }}
             aria-hidden

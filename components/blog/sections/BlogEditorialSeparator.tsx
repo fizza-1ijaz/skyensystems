@@ -23,7 +23,7 @@ export function BlogEditorialSeparator({ index }: BlogEditorialSeparatorProps) {
               backgroundSize: "40px 40px",
             }}
           />
-          <p className="relative text-[10px] font-semibold uppercase tracking-[0.2em] text-[#6C63FF]">
+          <p className="relative text-[10px] font-semibold uppercase tracking-[0.2em] text-[#31C3C3]">
             {item.label}
           </p>
           <p className="relative mt-4 max-w-3xl font-heading text-2xl font-bold leading-snug tracking-tight text-[#141414] md:text-3xl">
@@ -40,7 +40,7 @@ export function BlogEditorialSeparator({ index }: BlogEditorialSeparatorProps) {
         className={`border px-8 py-10 md:px-12 md:py-12 ${
           item.type === "quote"
             ? "border-[#DADAD8] bg-[#F4F4F2]"
-            : "border-[rgba(108,99,255,0.15)] bg-[rgba(108,99,255,0.04)]"
+            : "border-[rgba(49,195,195,0.15)] bg-[rgba(49,195,195,0.04)]"
         }`}
       >
         <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#8A8A8A]">

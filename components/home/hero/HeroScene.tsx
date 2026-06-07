@@ -32,8 +32,8 @@ export function HeroScene() {
 
             <ambientLight intensity={1.5} />
             <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} intensity={2} castShadow />
-            <pointLight position={[-10, -10, -10]} intensity={1} color="#6C63FF" />
-            <pointLight position={[10, 5, -5]} intensity={1} color="#22D3EE" />
+            <pointLight position={[-10, -10, -10]} intensity={1} color="#31C3C3" />
+            <pointLight position={[10, 5, -5]} intensity={1} color="#31C3C3" />
 
             <FloatingEcosystem />
 

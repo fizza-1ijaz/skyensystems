@@ -28,7 +28,7 @@ export function ContactProcess() {
               <li
                 className={`grid gap-4 border-b border-[#DADAD8] py-8 md:grid-cols-12 md:items-baseline md:py-10 ${PROCESS_STAGGER[index] ?? ""}`}
               >
-                <span className="font-heading text-4xl font-bold text-[#6C63FF]/30 sm:text-5xl md:col-span-2 md:text-6xl">
+                <span className="font-heading text-4xl font-bold text-[#31C3C3]/30 sm:text-5xl md:col-span-2 md:text-6xl">
                   {step.phase}
                 </span>
                 <h3 className="font-heading text-2xl font-bold text-[#141414] md:col-span-3">

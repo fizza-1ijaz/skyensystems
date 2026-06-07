@@ -9,8 +9,8 @@ type ServiceModuleVisualProps = {
   className?: string;
 };
 
-const accent = "#6C63FF";
-const accentSoft = "rgba(108, 99, 255, 0.22)";
+const accent = "#31C3C3";
+const accentSoft = "rgba(49,195,195, 0.22)";
 
 function palette(dark?: boolean) {
   return {
@@ -53,7 +53,7 @@ function Frame({
             dark ? "border-[#3A3A3A] bg-[#141414]" : "border-[#E5E5E3] bg-white"
           }`}
         >
-          <span className="font-mono text-[10px] font-medium uppercase tracking-[0.2em] text-[#6C63FF]">
+          <span className="font-mono text-[10px] font-medium uppercase tracking-[0.2em] text-[#31C3C3]">
             {label}
           </span>
           <span className={`font-mono text-[10px] ${dark ? "text-[#6A6A6A]" : "text-[#B0B0B0]"}`}>

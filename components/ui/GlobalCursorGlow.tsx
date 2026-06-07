@@ -49,7 +49,7 @@ export function GlobalCursorGlow() {
     };
   }, [cursorX, cursorY]);
 
-  const glow = useMotionTemplate`radial-gradient(180px circle at ${smoothX}px ${smoothY}px, rgba(108,99,255,0.18), rgba(108,99,255,0.06) 28%, rgba(30,58,138,0.04) 42%, transparent 64%)`;
+  const glow = useMotionTemplate`radial-gradient(180px circle at ${smoothX}px ${smoothY}px, rgba(49,195,195,0.18), rgba(49,195,195,0.06) 28%, rgba(30,58,138,0.04) 42%, transparent 64%)`;
 
   if (!enabled) return null;
 

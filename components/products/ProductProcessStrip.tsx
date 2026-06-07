@@ -26,7 +26,7 @@ export function ProductProcessStrip({ dark = false }: ProductProcessStripProps) 
             </span>
             {index < PRODUCT_PROCESS_STEPS.length - 1 ? (
               <span
-                className={`text-xs ${dark ? "text-[#6C63FF]/70" : "text-[#6C63FF]/55"}`}
+                className={`text-xs ${dark ? "text-[#31C3C3]/70" : "text-[#31C3C3]/55"}`}
                 aria-hidden
               >
                 ↓

@@ -2,7 +2,7 @@
 
 import type { CapabilityVisualId } from "@/components/landing/landing-data";
 
-const accent = "#6C63FF";
+const accent = "#31C3C3";
 const ink = "#141414";
 const muted = "#8A8A8A";
 const line = "#D4D4D4";

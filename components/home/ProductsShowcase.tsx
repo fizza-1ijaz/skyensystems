@@ -93,7 +93,7 @@ export function ProductsShowcase() {
                 href={product.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-6 inline-block rounded-full bg-sky-200 px-5 py-2.5 text-sm font-semibold text-sky-800 shadow-[0_10px_28px_-10px_rgba(14,165,233,0.55)] ring-1 ring-sky-300/60 transition-all duration-300 hover:bg-sky-300 hover:shadow-[0_12px_32px_-10px_rgba(14,165,233,0.65)]"
+                className="mt-6 inline-block rounded-full bg-brand-cyan-pale px-5 py-2.5 text-sm font-semibold text-[#1A6B6B] shadow-[0_10px_28px_-10px_rgba(49,195,195,0.55)] ring-1 ring-brand-cyan-light/60 transition-all duration-300 hover:bg-brand-cyan-light hover:shadow-[0_12px_32px_-10px_rgba(49,195,195,0.65)]"
               >
                 {product.cta}
               </Link>

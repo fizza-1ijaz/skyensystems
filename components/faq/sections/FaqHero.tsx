@@ -13,13 +13,13 @@ function FrameworkVisual() {
       </text>
       {["SCOPE", "COST", "TIME", "TEAM"].map((label, i) => (
         <g key={label}>
-          <rect x={36 + i * 88} y={80} width="72" height="56" stroke={i === 1 ? "#6C63FF" : "#D4D4D4"} strokeWidth={i === 1 ? 2 : 1} fill={i === 1 ? "rgba(108,99,255,0.08)" : "#FAFAF8"} />
+          <rect x={36 + i * 88} y={80} width="72" height="56" stroke={i === 1 ? "#31C3C3" : "#D4D4D4"} strokeWidth={i === 1 ? 2 : 1} fill={i === 1 ? "rgba(49,195,195,0.08)" : "#FAFAF8"} />
           <text x={72 + i * 88} y="112" textAnchor="middle" fill="#8A8A8A" fontSize="8" fontFamily="ui-monospace, monospace">
             {label}
           </text>
         </g>
       ))}
-      <path d="M72 136 L200 200 L328 136" stroke="#6C63FF" strokeWidth="1.5" strokeDasharray="5 4" />
+      <path d="M72 136 L200 200 L328 136" stroke="#31C3C3" strokeWidth="1.5" strokeDasharray="5 4" />
       <rect x="120" y="220" width="160" height="80" stroke="#141414" strokeWidth="1.5" fill="white" />
       <text x="200" y="252" textAnchor="middle" fill="#141414" fontSize="10" fontWeight="bold" fontFamily="system-ui">
         PROPOSAL

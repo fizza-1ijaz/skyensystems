@@ -17,7 +17,7 @@ export function WhoWeAreCulture() {
           {CULTURE_BLOCKS.map((block, index) => (
             <Reveal key={index} delay={index * 0.04} className={block.span}>
               {block.type === "statement" ? (
-                <div className="flex h-full min-h-[10rem] items-end border-l-4 border-[#6C63FF] bg-[#FAFAF8] p-6 md:p-8">
+                <div className="flex h-full min-h-[10rem] items-end border-l-4 border-[#31C3C3] bg-[#FAFAF8] p-6 md:p-8">
                   <p className="font-heading text-2xl font-bold leading-snug text-[#141414] md:text-3xl">
                     {block.quote}
                   </p>
@@ -31,7 +31,7 @@ export function WhoWeAreCulture() {
               ) : null}
               {block.type === "credential" ? (
                 <div className="flex h-full min-h-[10rem] flex-col justify-end border border-[#E5E5E3] bg-[#141414] p-6 text-[#FAFAF8] md:p-8">
-                  <p className="text-xs uppercase tracking-[0.14em] text-[#6C63FF]">Credential</p>
+                  <p className="text-xs uppercase tracking-[0.14em] text-[#31C3C3]">Credential</p>
                   <h3 className="mt-2 font-heading text-2xl font-bold">{block.title}</h3>
                   <p className="mt-2 text-sm text-[#B8B8B8]">{block.description}</p>
                 </div>

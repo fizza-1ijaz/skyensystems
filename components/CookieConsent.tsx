@@ -125,13 +125,14 @@ export function CookieConsent() {
                   />
                 </div>
 
-                <div className="relative flex flex-col gap-4 p-5 pr-12 md:flex-row md:items-center md:justify-between md:gap-8 md:p-8 md:pr-8">
-                  <div className="flex flex-shrink-0 items-center justify-center md:order-first">
+                <div className="relative flex flex-col gap-5 p-5 pt-12 md:flex-row md:items-start md:gap-6 md:p-8 md:pt-8">
+                  <div className="hidden shrink-0 lg:block">
                     <AnimatedCookie />
                   </div>
 
-                  <div className="min-w-0 flex-1 md:min-w-0">
+                  <div className="flex w-full min-w-0 flex-1 flex-col gap-4">
                     <motion.div
+                      className="w-full"
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.2 }}
@@ -139,10 +140,10 @@ export function CookieConsent() {
                       <p className="text-[11px] font-bold uppercase tracking-[0.15em] text-[#1E3A8A] opacity-60">
                         Privacy Preferences
                       </p>
-                      <h3 className="mt-2 text-base font-bold text-[#0F172A] md:text-lg">
-                        We use cookies to enhance experience
+                      <h3 className="mt-2 text-base font-bold leading-snug text-[#0F172A] md:text-lg">
+                        We use cookies to enhance your experience
                       </h3>
-                      <p className="mt-2 text-xs leading-relaxed text-slate-600 md:text-sm">
+                      <p className="mt-2 max-w-none text-sm leading-relaxed text-slate-600">
                         Your data stays protected while helping us improve performance, analytics, and your
                         experience. Read our{" "}
                         <Link href="/cookies-policy" className="font-semibold text-[#1E3A8A] underline-offset-2 hover:underline">
@@ -151,46 +152,46 @@ export function CookieConsent() {
                         .
                       </p>
                     </motion.div>
-                  </div>
 
-                  <div className="flex w-full flex-shrink-0 flex-col gap-2 sm:flex-row sm:flex-wrap sm:gap-3 md:order-last">
-                    <motion.button
-                      onClick={handleAllowAll}
-                      className="w-full rounded-lg bg-gradient-to-r from-[#1E3A8A] to-[#112B44] px-4 py-2 text-xs font-semibold uppercase tracking-[0.1em] text-white shadow-[0_8px_16px_-4px_rgba(30,58,138,0.4)] transition-all hover:shadow-[0_12px_24px_-4px_rgba(30,58,138,0.6)] sm:w-auto"
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.98 }}
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.3 }}
-                    >
-                      Allow All
-                    </motion.button>
+                    <div className="flex w-full flex-col gap-2 sm:flex-row sm:flex-wrap sm:items-center">
+                      <motion.button
+                        onClick={handleAllowAll}
+                        className="w-full rounded-lg bg-gradient-to-r from-[#1E3A8A] to-[#112B44] px-4 py-2.5 text-xs font-semibold uppercase tracking-[0.1em] text-white shadow-[0_8px_16px_-4px_rgba(30,58,138,0.4)] transition-all hover:shadow-[0_12px_24px_-4px_rgba(30,58,138,0.6)] sm:w-auto"
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.98 }}
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.3 }}
+                      >
+                        Allow All
+                      </motion.button>
 
-                    <motion.button
-                      onClick={handleEssentialOnly}
-                      className="w-full rounded-lg border-2 border-[#1E3A8A] bg-white/50 px-4 py-2 text-xs font-semibold uppercase tracking-[0.1em] text-[#1E3A8A] transition-all hover:bg-[#EFF8F8] sm:w-auto"
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.98 }}
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.35 }}
-                    >
-                      Essential
-                    </motion.button>
+                      <motion.button
+                        onClick={handleEssentialOnly}
+                        className="w-full rounded-lg border-2 border-[#1E3A8A] bg-white/50 px-4 py-2.5 text-xs font-semibold uppercase tracking-[0.1em] text-[#1E3A8A] transition-all hover:bg-[#EFF8F8] sm:w-auto"
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.98 }}
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.35 }}
+                      >
+                        Essential
+                      </motion.button>
 
-                    <motion.button
-                      onClick={() => setShowSettings(true)}
-                      className="flex items-center justify-center rounded-lg bg-white/60 p-2 text-[#1E3A8A] transition-all hover:bg-white md:p-2.5"
-                      whileHover={{ scale: 1.1 }}
-                      whileTap={{ scale: 0.9 }}
-                      initial={{ opacity: 0, scale: 0.8 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      transition={{ delay: 0.4 }}
-                      title="Customize preferences"
-                      aria-label="Customize cookie preferences"
-                    >
-                      <Settings2 className="h-4 w-4" />
-                    </motion.button>
+                      <motion.button
+                        onClick={() => setShowSettings(true)}
+                        className="flex w-full items-center justify-center rounded-lg bg-white/60 p-2.5 text-[#1E3A8A] transition-all hover:bg-white sm:w-auto"
+                        whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.9 }}
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ delay: 0.4 }}
+                        title="Customize preferences"
+                        aria-label="Customize cookie preferences"
+                      >
+                        <Settings2 className="h-4 w-4" />
+                      </motion.button>
+                    </div>
                   </div>
                 </div>
 

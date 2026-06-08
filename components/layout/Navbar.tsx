@@ -313,13 +313,10 @@ export function Navbar() {
         <div className="flex min-w-0 shrink-0 items-center lg:pr-4">
           <Link
             href="/"
-            className={`truncate text-[15px] font-semibold tracking-tight transition-colors sm:text-base ${
-              transparent
-                ? "text-white hover:text-white/80"
-                : "text-[#0F172A] hover:text-[#31C3C3]"
-            }`}
+            className="inline-flex truncate font-heading text-[15px] font-bold tracking-tight transition-opacity hover:opacity-80 sm:text-base"
           >
-            Skyen <span className="font-bold">Systems</span>
+            <span className={transparent ? "text-white" : "text-[#141414]"}>SKYEN</span>
+            <span className="text-[#31C3C3]">&nbsp;SYSTEMS</span>
           </Link>
         </div>
 

@@ -1,0 +1,74 @@
+"use client";
+
+import { useState } from "react";
+import Link from "next/link";
+import { HOME_FAQ_ITEMS } from "@/lib/homepage-data";
+import { Reveal } from "@/components/landing/Reveal";
+
+export function HomeFaqSection() {
+  const [openFaq, setOpenFaq] = useState<number | null>(0);
+
+  return (
+    <section className="border-t border-[#DADAD8] bg-[#FAFAF8] py-20 md:py-28">
+      <div className="mx-auto max-w-[1440px] px-6 md:px-10">
+        <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
+          <Reveal className="lg:col-span-4">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#31C3C3]">
+              FAQ
+            </p>
+            <h2 className="editorial-section-title mt-4 text-balance text-[#141414]">
+              Things people ask before they reach out.
+            </h2>
+            <p className="mt-4 text-sm leading-relaxed text-[#5C5C5C]">
+              Straight answers on pricing, location, payments, and how we work.
+            </p>
+            <Link
+              href="/faq"
+              className="mt-6 inline-block text-sm font-semibold text-[#31C3C3] hover:underline"
+            >
+              View all FAQs →
+            </Link>
+          </Reveal>
+
+          <div className="lg:col-span-8">
+            <div className="divide-y divide-[#DADAD8] border-y border-[#DADAD8]">
+              {HOME_FAQ_ITEMS.map((item, index) => {
+                const open = openFaq === index;
+                return (
+                  <Reveal key={item.question} delay={index * 0.04}>
+                    <div>
+                      <button
+                        type="button"
+                        onClick={() => setOpenFaq(open ? null : index)}
+                        className="flex w-full items-start justify-between gap-6 py-6 text-left"
+                        aria-expanded={open}
+                      >
+                        <span className="font-heading text-base font-bold text-[#141414] md:text-lg">
+                          {item.question}
+                        </span>
+                        <span className="mt-1 shrink-0 text-sm font-semibold text-[#31C3C3]">
+                          {open ? "−" : "+"}
+                        </span>
+                      </button>
+                      <div
+                        className={`grid transition-[grid-template-rows] duration-300 ease-in-out ${
+                          open ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
+                        }`}
+                      >
+                        <div className="min-h-0 overflow-hidden">
+                          <p className="pb-6 text-sm leading-relaxed text-[#5C5C5C]">
+                            {item.answer}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </Reveal>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}

@@ -18,13 +18,6 @@ export function CapabilitiesGrid() {
           {CAPABILITIES.map((item, index) => (
               <Reveal key={item.num} delay={index * 0.05} className="min-w-0">
                 <article className="group relative flex h-full min-h-[18rem] flex-col overflow-hidden border border-[#E5E5E3] bg-white transition-[border-color,box-shadow] duration-300 hover:border-[#141414] hover:shadow-[0_24px_60px_-40px_rgba(20,20,20,0.2)]">
-                  <span
-                    className="absolute right-4 top-4 z-20 font-heading text-[clamp(2.5rem,6vw,4.5rem)] font-bold leading-none text-[#EFEFED] transition-colors duration-300 group-hover:text-[#31C3C3]/20"
-                    aria-hidden
-                  >
-                    {item.num}
-                  </span>
-
                   <div className="relative z-10 flex flex-1 items-stretch overflow-hidden px-3 pt-4 md:px-4 md:pt-5">
                     <CapabilityPreview
                       id={item.visual}
@@ -34,7 +27,7 @@ export function CapabilitiesGrid() {
                     />
                   </div>
                   <div className="relative z-20 mt-auto border-t border-[#F0F0EE] bg-white px-5 py-4 md:px-6 md:py-5">
-                    <h3 className="pr-14 font-heading text-lg font-bold tracking-tight text-[#141414] md:text-xl">
+                    <h3 className="font-heading text-lg font-bold tracking-tight text-[#141414] md:text-xl">
                       {item.title}
                     </h3>
                     <p className="mt-1.5 max-w-md text-sm leading-relaxed text-[#5C5C5C]">

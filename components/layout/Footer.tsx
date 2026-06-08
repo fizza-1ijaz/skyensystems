@@ -203,7 +203,7 @@ export function Footer() {
               </div>
             </article>
 
-            <article className="border border-white/[0.08] bg-white/[0.03] p-8 transition-colors duration-200 hover:border-white/15 hover:bg-white/[0.045] md:p-10 lg:col-span-5">
+            <article className="border-t-2 border-[#31C3C3] bg-white/[0.03] p-8 transition-colors duration-200 hover:border-[#31C3C3]/80 hover:bg-white/[0.045] md:p-10 lg:col-span-5">
               <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-white/45">
                 Regional office
               </p>

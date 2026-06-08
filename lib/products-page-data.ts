@@ -101,7 +101,7 @@ export const PRODUCTS: ProductScene[] = [
     mockupNote: "Live previews from our latest release.",
     mockup1Src: "/makemylesson-mockup.jpeg",
     mockup2Src: "/makemylesson-mockup2.jpeg",
-    logoSrc: "/logo-makemylesson.png",
+    logoSrc: "/logo-makemylesson2.png",
     primaryCtaLabel: "Visit Make My Lesson",
     primaryCtaHref: "https://makemylesson.ai",
     primaryExternal: true,

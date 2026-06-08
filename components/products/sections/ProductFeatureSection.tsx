@@ -199,30 +199,34 @@ export function ProductFeatureSection({
                     Download and see it now
                   </p>
                   <div className="flex flex-wrap gap-3">
-                    <a
-                      href={product.appStoreHref}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={`inline-flex items-center gap-2 border px-4 py-2.5 text-xs font-semibold uppercase tracking-[0.1em] transition-colors duration-200 ${
-                        featured
-                          ? "border-white/20 text-white hover:border-[#31C3C3] hover:text-[#31C3C3]"
-                          : "border-[#DADAD8] text-[#141414] hover:border-[#31C3C3] hover:text-[#31C3C3]"
-                      }`}
-                    >
-                      App Store
-                    </a>
-                    <a
-                      href={product.playStoreHref}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={`inline-flex items-center gap-2 border px-4 py-2.5 text-xs font-semibold uppercase tracking-[0.1em] transition-colors duration-200 ${
-                        featured
-                          ? "border-white/20 text-white hover:border-[#31C3C3] hover:text-[#31C3C3]"
-                          : "border-[#DADAD8] text-[#141414] hover:border-[#31C3C3] hover:text-[#31C3C3]"
-                      }`}
-                    >
-                      Google Play
-                    </a>
+                    {product.appStoreHref ? (
+                      <a
+                        href={product.appStoreHref}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={`inline-flex items-center gap-2 border px-4 py-2.5 text-xs font-semibold uppercase tracking-[0.1em] transition-colors duration-200 ${
+                          featured
+                            ? "border-white/20 text-white hover:border-[#31C3C3] hover:text-[#31C3C3]"
+                            : "border-[#DADAD8] text-[#141414] hover:border-[#31C3C3] hover:text-[#31C3C3]"
+                        }`}
+                      >
+                        App Store
+                      </a>
+                    ) : null}
+                    {product.playStoreHref ? (
+                      <a
+                        href={product.playStoreHref}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={`inline-flex items-center gap-2 border px-4 py-2.5 text-xs font-semibold uppercase tracking-[0.1em] transition-colors duration-200 ${
+                          featured
+                            ? "border-white/20 text-white hover:border-[#31C3C3] hover:text-[#31C3C3]"
+                            : "border-[#DADAD8] text-[#141414] hover:border-[#31C3C3] hover:text-[#31C3C3]"
+                        }`}
+                      >
+                        Google Play
+                      </a>
+                    ) : null}
                   </div>
                 </div>
               ) : null}

@@ -67,32 +67,35 @@ export function EditorialHero() {
       </div>
 
       <div className="editorial-hero-content pointer-events-none relative z-10 flex min-h-[calc(100svh+var(--site-nav-height)-1in)] flex-col md:absolute md:inset-0 md:min-h-0">
-        <div className="pointer-events-auto relative flex flex-1 flex-col items-center gap-10 px-6 pb-12 sm:px-8 md:h-full md:w-full md:items-stretch md:justify-start md:gap-0 md:px-12 md:pb-20 md:pt-52">
-          <Reveal className="w-full shrink-0 pt-[calc(var(--site-nav-height)+0.5in)] text-center md:-mt-5 md:mb-4 md:pt-0">
-            <p className="editorial-hero-eyebrow font-semibold uppercase text-white/65">
-              Software house · Bahrain & Pakistan
-            </p>
-          </Reveal>
+        <Reveal className="pointer-events-auto w-full shrink-0 pt-[calc(var(--site-nav-height)+0.5in)] text-center md:absolute md:inset-x-0 md:top-[calc(var(--site-nav-height)+1in)] md:z-20 md:pt-0">
+          <p className="editorial-hero-eyebrow font-semibold uppercase text-white/65">
+            Software house · Bahrain & Pakistan
+          </p>
+        </Reveal>
 
-          <div className="-mt-[2in] flex w-full flex-col items-center gap-10 md:mt-0 md:contents">
+        <div className="pointer-events-auto relative flex flex-1 flex-col items-center gap-10 px-6 pb-12 sm:px-8 md:h-full md:w-full md:justify-start md:gap-0 md:px-12 md:pb-20 md:pt-52">
+          <div className="-mt-[2in] flex w-full flex-col items-center gap-10 md:mt-0 md:w-full">
             <div className="w-full min-h-[24vh] shrink-0 md:hidden" aria-hidden />
-            <div className="w-full max-w-4xl shrink-0 pl-4 sm:pl-6 md:max-w-4xl md:pl-12 lg:pl-16">
-              <Reveal delay={0.06} className="shrink-0">
-                <h1 className="editorial-hero-headline text-left font-heading font-bold text-white">
-                  We engineer
-                  <br />
-                  digital <span className="text-[#31C3C3]">products</span>
-                  <br />
-                  that hold up.
-                </h1>
-              </Reveal>
 
-              <Reveal delay={0.12} className="mt-10 w-full md:mt-6">
-                <p className="editorial-hero-body w-full max-w-lg text-justify text-white/82 md:max-w-2xl md:text-left">
-                  Skyen Systems is a PSEB-registered software company building websites, apps, and
-                  AI systems for businesses that need one accountable team — not seven vendors.
-                </p>
-              </Reveal>
+            <div className="flex w-full justify-center md:px-6">
+              <div className="w-full max-w-4xl shrink-0 px-4 text-center sm:px-6 md:px-0">
+                <Reveal delay={0.06} className="shrink-0">
+                  <h1 className="editorial-hero-headline text-center font-heading font-bold text-white">
+                    We engineer
+                    <br />
+                    digital <span className="text-[#31C3C3]">products</span>
+                    <br />
+                    that hold up.
+                  </h1>
+                </Reveal>
+
+                <Reveal delay={0.12} className="mt-10 w-full md:mt-6">
+                  <p className="editorial-hero-body mx-auto w-full max-w-lg !text-center text-white/82 md:max-w-2xl">
+                    Skyen Systems is a PSEB-registered software company building websites, apps, and
+                    AI systems for businesses that need one accountable team — not seven vendors.
+                  </p>
+                </Reveal>
+              </div>
             </div>
 
             <motion.div

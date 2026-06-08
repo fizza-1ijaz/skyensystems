@@ -21,7 +21,7 @@ const products = [
     tag: "AI lesson plan generator for teachers.",
     blurb:
       "Curriculum-aligned, time-saving, editable. For educators who have enough on their plate.",
-    logo: "/logo-makemylesson.png",
+    logo: "/logo-makemylesson2.png",
     href: "https://makemylesson.ai",
     cta: "Visit me",
   },

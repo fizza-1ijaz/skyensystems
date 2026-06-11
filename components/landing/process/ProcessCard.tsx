@@ -1,8 +1,8 @@
 "use client";
 
-import Image from "next/image";
 import { memo } from "react";
 import { motion } from "framer-motion";
+import { ProcessStageImage } from "@/components/landing/process/ProcessStageImage";
 import { PROCESS_MOTION, PROCESS_STYLES } from "@/components/landing/process/process-constants";
 import type { ProcessStage } from "@/components/landing/process/types";
 
@@ -34,14 +34,7 @@ function ProcessCardComponent({
     >
       {isActive && (
         <div className={PROCESS_STYLES.mobilePreview}>
-          <Image
-            src={stage.image}
-            alt={stage.imageAlt}
-            fill
-            className="object-cover"
-            sizes="100vw"
-            loading="lazy"
-          />
+          <ProcessStageImage stage={stage} sizes="100vw" loading="lazy" />
           <div
             className="absolute inset-0 bg-gradient-to-t from-[#141414]/50 via-transparent to-[#141414]/10"
             aria-hidden

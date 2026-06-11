@@ -33,7 +33,7 @@ export function BlogFeaturedArticle({ post }: BlogFeaturedArticleProps) {
                   "Read the full article for engineering perspectives and practical takeaways from our team."}
               </p>
               <div className="mt-6 flex flex-wrap items-center gap-x-4 gap-y-2 text-[10px] font-semibold uppercase tracking-[0.16em] text-[#8A8A8A]">
-                <span>{formatPublishDate(post.display_date)}</span>
+                <span>{formatPublishDate(post.date_published)}</span>
                 <span aria-hidden>·</span>
                 <span>{readingTime} min read</span>
               </div>

@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
-import { SELECTED_WORK } from "@/components/landing/landing-data";
+import { FEATURED_PRODUCTS, FEATURED_PRODUCTS_CARDS } from "@/lib/homepage-data";
 import { Reveal } from "@/components/landing/Reveal";
 
 const CARD_GLOW_SPRING = { type: "spring" as const, stiffness: 360, damping: 28, mass: 0.52 };
@@ -68,7 +68,7 @@ function ProductCard({
   project,
   index,
 }: {
-  project: (typeof SELECTED_WORK)[number];
+  project: (typeof FEATURED_PRODUCTS_CARDS)[number];
   index: number;
 }) {
   const reduceMotion = useReducedMotion();
@@ -89,7 +89,7 @@ function ProductCard({
                 "0 0 48px -6px rgba(49,195,195,0.55), 0 28px 64px -32px rgba(49,195,195,0.4)",
             }
       }
-      className="group relative flex h-full flex-col overflow-hidden border border-[#2E2E2E] bg-[#1A1A1A] p-6 transition-[border-color] duration-300 hover:border-[#31C3C3]/55 md:p-8"
+      className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-[#2E2E2E] bg-[#1A1A1A] p-6 transition-[border-color] duration-300 hover:border-[#31C3C3]/55 md:rounded-3xl md:p-8"
     >
       <div
         className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100 motion-reduce:group-hover:opacity-0"
@@ -103,7 +103,7 @@ function ProductCard({
       <div className="relative z-10 mx-auto h-20 w-20 overflow-hidden rounded-2xl border border-[#2E2E2E] bg-[#141414] transition-[border-color,transform,box-shadow] duration-300 group-hover:scale-105 group-hover:border-[#31C3C3]/45 group-hover:shadow-[0_0_28px_-4px_rgba(49,195,195,0.5)] motion-reduce:group-hover:scale-100">
         <Image
           src={project.logo}
-          alt={`${project.name} logo`}
+          alt={`${project.name.split(" — ")[0]} logo`}
           fill
           className="object-contain p-2"
           sizes="80px"
@@ -138,14 +138,17 @@ export function SelectedWork() {
   return (
     <section className="overflow-hidden bg-[#FAFAF8] py-20 md:py-28">
       <div className="mx-auto max-w-[1440px] px-6 md:px-10">
-        <Reveal className="flex justify-center">
-          <h2 className="editorial-section-title max-w-2xl text-balance text-center text-[#141414]">
-            Products we built. Standards we bring to every client.
+        <Reveal className="mx-auto max-w-3xl text-center">
+          <h2 className="editorial-section-title text-balance text-[#141414]">
+            {FEATURED_PRODUCTS.heading}
           </h2>
+          <p className="mt-4 text-sm leading-relaxed text-[#5C5C5C] md:text-base">
+            {FEATURED_PRODUCTS.subheading}
+          </p>
         </Reveal>
 
         <div className="mt-14 grid grid-cols-1 gap-5 md:grid-cols-3 md:gap-6">
-          {SELECTED_WORK.map((project, index) => (
+          {FEATURED_PRODUCTS_CARDS.map((project, index) => (
             <Reveal key={project.name} delay={index * 0.06} className="min-h-0">
               <ProductCard project={project} index={index} />
             </Reveal>

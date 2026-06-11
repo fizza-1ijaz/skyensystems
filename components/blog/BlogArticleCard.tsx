@@ -67,7 +67,7 @@ export function BlogArticleCard({
               {post.description ?? "Practical perspectives from our engineering and product teams."}
             </p>
             <div className="mt-6 flex flex-wrap items-center gap-x-3 gap-y-1 text-[10px] font-semibold uppercase tracking-[0.14em] text-[#8A8A8A]">
-              <span>{formatPublishDate(post.display_date)}</span>
+              <span>{formatPublishDate(post.date_published)}</span>
               <span aria-hidden>·</span>
               <span>{readingTime} min read</span>
             </div>

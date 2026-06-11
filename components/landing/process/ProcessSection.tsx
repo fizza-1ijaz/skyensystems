@@ -5,6 +5,7 @@ import { StickyPreview } from "@/components/landing/process/StickyPreview";
 import { Timeline } from "@/components/landing/process/Timeline";
 import { PROCESS_STAGES } from "@/components/landing/process/process-data";
 import { PROCESS_MOTION, PROCESS_STYLES } from "@/components/landing/process/process-constants";
+import { PROCESS_SECTION } from "@/lib/homepage-data";
 import { useActiveProcessStage } from "@/hooks/useActiveProcessStage";
 
 export function ProcessSection() {
@@ -28,9 +29,17 @@ export function ProcessSection() {
       }}
     >
       <div className={PROCESS_STYLES.container}>
-        <h2 className={PROCESS_STYLES.heading}>
-          Our product <span className={PROCESS_STYLES.accent}>development process</span>
-        </h2>
+        <div className="mx-auto max-w-3xl text-center">
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#31C3C3]">
+            {PROCESS_SECTION.label}
+          </p>
+          <h2 className={`${PROCESS_STYLES.heading} mt-4 max-w-none text-[#FAFAF8]`}>
+            {PROCESS_SECTION.heading}
+          </h2>
+          <p className="mt-4 text-sm leading-relaxed text-[#B8B8B8] md:text-base">
+            {PROCESS_SECTION.subheading}
+          </p>
+        </div>
 
         <div className={PROCESS_STYLES.grid}>
           <Timeline

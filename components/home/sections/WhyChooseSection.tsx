@@ -1,21 +1,22 @@
 "use client";
 
-import { WHY_CHOOSE_ITEMS } from "@/lib/homepage-data";
+import { WHY_CHOOSE_ITEMS, WHY_CHOOSE_SECTION } from "@/lib/homepage-data";
 import { Reveal } from "@/components/landing/Reveal";
+import { EditorialBoxCta } from "@/components/ui/EditorialBoxCta";
 
 export function WhyChooseSection() {
   return (
     <section className="bg-[#141414] py-20 text-[#FAFAF8] md:py-28">
       <div className="mx-auto max-w-[1440px] px-6 md:px-10">
-        <Reveal className="max-w-2xl">
+        <Reveal className="max-w-3xl">
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#31C3C3]">
-            Why choose Skyen Systems
+            {WHY_CHOOSE_SECTION.label}
           </p>
           <h2 className="editorial-section-title mt-4 text-balance text-[#FAFAF8]">
-            The agency that works like part of your team.
+            {WHY_CHOOSE_SECTION.heading}
           </h2>
           <p className="mt-4 text-sm leading-relaxed text-[#B8B8B8] md:text-base">
-            Built for outcomes, accountability, and long-term growth — not one-off deliverables.
+            {WHY_CHOOSE_SECTION.paragraph}
           </p>
         </Reveal>
 
@@ -42,6 +43,12 @@ export function WhyChooseSection() {
             </Reveal>
           ))}
         </div>
+
+        <Reveal className="mt-12 flex justify-center md:mt-14">
+          <EditorialBoxCta href={WHY_CHOOSE_SECTION.cta.href} variant="primary">
+            {WHY_CHOOSE_SECTION.cta.label}
+          </EditorialBoxCta>
+        </Reveal>
       </div>
     </section>
   );

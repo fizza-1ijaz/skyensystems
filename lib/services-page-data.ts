@@ -75,9 +75,9 @@ export const DETAILED_SERVICES: DetailedService[] = [
   {
     num: "01",
     title: "Web Development",
-    headline: "Websites and web applications that work commercially — not just visually.",
+    headline: "Web Development Company for Australian Businesses",
     description:
-      "Your site is always on. We build marketing properties, SaaS platforms, and portals where speed, SEO structure, and conversion paths are engineered from day one.",
+      "Skyen Systems helps Australian and US businesses build fast, secure, responsive, and SEO-ready websites, SaaS platforms, dashboards, portals, and custom web applications.",
     deliverables: [
       "Marketing sites & landing systems",
       "Web applications & SaaS products",
@@ -93,9 +93,9 @@ export const DETAILED_SERVICES: DetailedService[] = [
   {
     num: "02",
     title: "App Development",
-    headline: "Mobile products users keep — not delete in thirty seconds.",
+    headline: "Mobile App Development Company for Australian Businesses",
     description:
-      "We prototype flows before code, ship performant native and cross-platform apps, and support store launch with the same team that built Studiely.",
+      "Skyen Systems helps Australian and US businesses turn mobile app ideas into scalable Android, iOS, and cross-platform products with strategy, UI/UX, backend systems, analytics, and launch support.",
     deliverables: [
       "iOS & Android applications",
       "Cross-platform MVPs",
@@ -112,9 +112,9 @@ export const DETAILED_SERVICES: DetailedService[] = [
   {
     num: "03",
     title: "UI/UX Design",
-    headline: "Design that changes behaviour — then makes it beautiful.",
+    headline: "UI UX Design Services for Australian Businesses",
     description:
-      "Research, journey mapping, and clickable prototypes precede pixels. We deliver design systems your engineering team can actually implement.",
+      "Skyen Systems helps Australian and US businesses design clean, user-focused digital experiences for websites, mobile apps, SaaS platforms, dashboards, and AI-powered products with Figma and developer-ready handoff.",
     deliverables: [
       "UX research & journey maps",
       "Wireframes to high-fidelity UI",
@@ -130,9 +130,9 @@ export const DETAILED_SERVICES: DetailedService[] = [
   {
     num: "04",
     title: "AI Solutions",
-    headline: "Practical AI embedded in operations — not demo theatre.",
+    headline: "AI Automation Services for Australian Businesses",
     description:
-      "We identify where models create real leverage, then build assistants, automations, and integrations with guardrails your team can trust.",
+      "Skyen Systems helps Australian and US businesses use AI to automate work, build chatbots, integrate LLMs, and develop smarter digital products with strategy, backend systems, and long-term support.",
     deliverables: [
       "Customer-facing copilots",
       "Internal knowledge assistants",
@@ -149,9 +149,9 @@ export const DETAILED_SERVICES: DetailedService[] = [
   {
     num: "05",
     title: "Digital Marketing",
-    headline: "Growth systems tied to pipeline — not vanity dashboards.",
+    headline: "SEO Services for Australian Businesses",
     description:
-      "Technical SEO, paid media, and content operate as one system aligned with your product and sales motion.",
+      "Skyen Systems helps Australian and US businesses grow online with SEO, content strategy, technical optimization, AEO, GEO, app store optimization, analytics, and digital marketing systems.",
     deliverables: [
       "Technical & content SEO",
       "Google & Meta campaigns",
@@ -167,9 +167,9 @@ export const DETAILED_SERVICES: DetailedService[] = [
   {
     num: "06",
     title: "Dedicated Teams",
-    headline: "Senior talent embedded in your roadmap — without hiring overhead.",
+    headline: "Dedicated Software Development Team for Australian Businesses",
     description:
-      "Full-time engineers and designers on your timezone, with transparent delivery rhythm and month-to-month flexibility.",
+      "Skyen Systems helps Australian and US businesses extend product capacity with dedicated remote developers, designers, AI engineers, backend support, QA, and long-term product delivery teams.",
     deliverables: [
       "Dedicated developers",
       "Design & QA support",
@@ -301,34 +301,34 @@ export function getServiceBySlug(slug: string): DetailedService | undefined {
 
 export const SERVICE_PAGE_META: Record<string, { title: string; description: string }> = {
   "web-design-development": {
-    title: "Web Development Services | Skyen Systems",
+    title: "Web Development Company Australia | Skyen Systems",
     description:
-      "Marketing sites, SaaS platforms, and web applications built for speed, SEO, and conversion by Skyen Systems.",
+      "Skyen Systems helps Australian and US businesses build fast, secure, SEO-ready websites, SaaS platforms, dashboards, and custom web applications with strategy, UI/UX, and long-term support.",
   },
   "mobile-apps": {
-    title: "Mobile App Development | Skyen Systems",
+    title: "Mobile App Development Company Australia | Skyen Systems",
     description:
-      "iOS and Android product development with retention-focused UX, scalable architecture, and store launch support.",
+      "Skyen Systems helps Australian and US businesses build Android apps, iOS apps, cross-platform apps, MVP apps, AI-powered mobile apps, and SaaS mobile products with strategy, UI/UX, and long-term support.",
   },
   "brand-ui-ux-design": {
-    title: "UI/UX Design Services | Skyen Systems",
+    title: "UI UX Design Services Australia | Skyen Systems",
     description:
-      "Research-led UX, interface systems, and prototypes that improve behaviour before aesthetics.",
+      "Skyen Systems provides UI/UX design services for Australian and US businesses, including app UI/UX design, website UI/UX design, SaaS UI/UX design, Figma design services, and product design.",
   },
   "ai-solutions": {
-    title: "AI Solutions | Skyen Systems",
+    title: "AI Automation Services Australia | Skyen Systems",
     description:
-      "Practical copilots, automation, and LLM integrations with guardrails your team can trust in production.",
+      "Skyen Systems helps Australian and US businesses build AI chatbots, AI assistants, workflow automation, LLM integrations, OpenAI integrations, and custom AI business automation systems.",
   },
   "digital-marketing": {
-    title: "Digital Marketing Services | Skyen Systems",
+    title: "SEO Services Australia | Skyen Systems",
     description:
-      "Technical SEO, paid media, and analytics aligned with product goals — not vanity dashboards.",
+      "Skyen Systems provides SEO and digital marketing services for Australian and US businesses, including website SEO, technical SEO, AEO, GEO, content marketing, ASO, analytics, and digital growth support.",
   },
   "dedicated-teams": {
-    title: "Dedicated Teams | Skyen Systems",
+    title: "Dedicated Software Development Team Australia | Skyen Systems",
     description:
-      "Embedded engineers and designers with US timezone overlap, transparent delivery, and flexible scaling.",
+      "Skyen Systems provides dedicated software development teams for Australian and US businesses, including remote developers, app developers, web developers, AI developers, UI/UX designers, and long-term product delivery support.",
   },
 };
 

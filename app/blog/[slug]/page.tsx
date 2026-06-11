@@ -104,7 +104,7 @@ export default async function BlogSlugPage({ params }: BlogSlugPageProps) {
           meta_title: null,
           meta_description: null,
           cover_image_url: null,
-          display_date: null,
+          date_published: null,
           author_name: null,
           keywords: null,
           article_section: null,

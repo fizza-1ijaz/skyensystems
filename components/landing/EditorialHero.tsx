@@ -81,18 +81,17 @@ export function EditorialHero() {
               <div className="w-full max-w-4xl shrink-0 px-4 text-center sm:px-6 md:px-0">
                 <Reveal delay={0.06} className="shrink-0">
                   <h1 className="editorial-hero-headline text-center font-heading font-bold text-white">
-                    We engineer
+                    Custom Software Development &amp;
                     <br />
-                    digital <span className="text-[#31C3C3]">products</span>
-                    <br />
-                    that hold up.
+                    <span className="text-[#31C3C3]">AI Solutions</span> for Australian Businesses
                   </h1>
                 </Reveal>
 
                 <Reveal delay={0.12} className="mt-10 w-full md:mt-6">
                   <p className="editorial-hero-body mx-auto w-full max-w-lg !text-center text-white/82 md:max-w-2xl">
-                    Skyen Systems is a PSEB-registered software company building websites, apps, and
-                    AI systems for businesses that need one accountable team — not seven vendors.
+                    Skyen Systems helps Australian and US businesses build custom websites, mobile
+                    apps, AI automation systems, SaaS platforms, UI/UX designs, and digital growth
+                    solutions with one accountable remote team.
                   </p>
                 </Reveal>
               </div>
@@ -125,10 +124,10 @@ export function EditorialHero() {
             <Link
               href="/contact-us"
               className="editorial-hero-cta group relative flex items-center justify-center rounded-full bg-[#31C3C3] text-center shadow-[0_24px_48px_-16px_rgba(49,195,195,0.65)]"
-              aria-label="Discuss your project with Skyen Systems"
+              aria-label="Book a free consultation with Skyen Systems"
             >
-              <span className="editorial-hero-cta-label max-w-[9rem] shrink-0 px-4 font-semibold text-white">
-                Let&apos;s Discuss Your Idea
+              <span className="editorial-hero-cta-label max-w-[10.5rem] shrink-0 px-3 font-semibold text-white">
+                Book a Free Consultation
               </span>
             </Link>
             </motion.div>

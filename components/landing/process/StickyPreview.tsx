@@ -1,8 +1,8 @@
 "use client";
 
-import Image from "next/image";
 import { memo, useMemo } from "react";
 import { motion } from "framer-motion";
+import { ProcessStageImage } from "@/components/landing/process/ProcessStageImage";
 import { PROCESS_MOTION, PROCESS_STYLES } from "@/components/landing/process/process-constants";
 import type { ProcessStage } from "@/components/landing/process/types";
 
@@ -40,12 +40,9 @@ function StickyPreviewComponent({ stages, activeIndex, reduceMotion }: StickyPre
               key={stage.id}
               className={`relative shrink-0 ${PROCESS_STYLES.previewSize}`}
             >
-              <Image
-                src={stage.image}
-                alt={stage.imageAlt}
-                fill
-                className="object-cover"
-                sizes="(min-width: 1024px) 300px, 240px"
+              <ProcessStageImage
+                stage={stage}
+                sizes="(min-width: 1024px) 560px, 448px"
                 priority={stage.id === 1}
                 loading={stage.id === 1 ? undefined : "lazy"}
               />

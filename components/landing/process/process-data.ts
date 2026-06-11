@@ -6,9 +6,8 @@ export const PROCESS_STAGES: ProcessStage[] = [
     step: "01",
     title: "Discovery",
     description:
-      "Scope, constraints, and success metrics defined in a structured workshop — so every build starts with clarity, not assumptions.",
-    image:
-      "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=520&h=640&q=80",
+      "We define your business goals, target users, project scope, required features, timeline, budget, and success metrics before planning the build.",
+    image: "/roadmap/Discover.png",
     imageAlt: "Team collaboration during discovery workshop",
   },
   {
@@ -16,39 +15,36 @@ export const PROCESS_STAGES: ProcessStage[] = [
     step: "02",
     title: "Architecture",
     description:
-      "Technical blueprint, milestones, and delivery model agreed before a single line of code — reducing rework and surprise scope.",
-    image:
-      "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=520&h=640&q=80",
+      "We create the technical blueprint, user flows, system structure, milestones, integrations, and delivery roadmap before development starts.",
+    image: "/roadmap/architecture.jpeg",
     imageAlt: "Technical planning and system architecture",
+    imageRotation: 90,
   },
   {
     id: 3,
     step: "03",
-    title: "Build",
+    title: "Design & Build",
     description:
-      "Design and engineering in parallel with weekly visibility and demos — you see progress, not just status updates.",
-    image:
-      "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=520&h=640&q=80",
+      "Our UI/UX designers and developers work together to create clean interfaces, reliable frontend and backend systems, AI features, and product-ready functionality.",
+    image: "/roadmap/Build.png",
     imageAlt: "Software engineering and product build",
   },
   {
     id: 4,
     step: "04",
-    title: "Launch",
+    title: "Test & Launch",
     description:
-      "QA, deployment, analytics, and handover with documentation — production-ready delivery with nothing left undocumented.",
-    image:
-      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=520&h=640&q=80",
+      "We test performance, mobile responsiveness, forms, user flows, integrations, SEO basics, analytics, and deployment before your website, app, or software product goes live.",
+    image: "/roadmap/launch.png",
     imageAlt: "Product analytics dashboard at launch",
   },
   {
     id: 5,
     step: "05",
-    title: "Scale",
+    title: "Grow & Improve",
     description:
-      "Retainers, feature roadmaps, and growth support as your product matures — the same team that shipped v1 supports what comes next.",
-    image:
-      "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=520&h=640&q=80",
+      "After launch, we support your product with updates, SEO, digital marketing, analytics, new features, automation improvements, and long-term scaling.",
+    image: "/roadmap/Scale.png",
     imageAlt: "Growing team supporting product scale",
   },
 ];

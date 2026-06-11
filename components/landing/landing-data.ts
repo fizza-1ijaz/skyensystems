@@ -148,45 +148,6 @@ export const ENGAGEMENT_PHASES = [
 
 export { PROCESS_STAGES as PROCESS_ROADMAP_STEPS } from "@/components/landing/process/process-data";
 
-export const INDUSTRIES = [
-  {
-    label: "Education",
-    tagline: "LMS tools, platforms, and student-facing products.",
-    description:
-      "Platforms, LMS tools, and student-facing products — built for engagement, accessibility, and outcomes schools can measure.",
-  },
-  {
-    label: "Professional Services",
-    tagline: "Credibility-led sites and client portals.",
-    description:
-      "Credibility-led websites, client portals, and intake flows that position your firm as the obvious choice.",
-  },
-  {
-    label: "SaaS & Startups",
-    tagline: "MVPs through scale-up engineering.",
-    description:
-      "From MVP validation to scale-up engineering — architecture, design, and delivery tuned for speed without rework.",
-  },
-  {
-    label: "Healthcare",
-    tagline: "Compliant interfaces and workflow tools.",
-    description:
-      "Compliant interfaces, appointment systems, and workflow tools that respect privacy and reduce operational friction.",
-  },
-  {
-    label: "E-commerce",
-    tagline: "Storefronts and integrations built to convert.",
-    description:
-      "Conversion-focused storefronts, catalog integrations, and checkout experiences optimized for mobile buyers.",
-  },
-  {
-    label: "GCC & US SMBs",
-    tagline: "Cross-border delivery with local market nuance.",
-    description:
-      "Cross-border delivery with US market nuance, GCC business culture, and one team accountable from brief to launch.",
-  },
-] as const;
-
 export const TRUST_STATS = [
   { value: "20+", label: "Projects delivered" },
   { value: "4h", label: "Response guarantee" },

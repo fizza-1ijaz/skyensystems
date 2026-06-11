@@ -58,7 +58,7 @@ export function mapBlogToFeaturedPost(row: BlogListRow): FeaturedBlogPost {
     title: row.title,
     featuredImage: row.cover_image_url,
     category: row.category?.name ?? "Blog",
-    publishedAt: row.display_date ?? "",
+    publishedAt: row.date_published ?? "",
     excerpt:
       row.description?.trim() ||
       "Practical perspectives from our engineering and product teams.",

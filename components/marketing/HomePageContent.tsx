@@ -250,7 +250,7 @@ export function HomePageContent() {
           <div className="space-y-4 text-slate-600">
             <p>You have seen the quotes. $5,000 for a five-page website. $2,000 a month to post three times a week on Instagram.</p>
             <p>We removed agency overhead and kept capability. What is left is a fast, honest team delivering the same standard for a fraction of the price.</p>
-            <Link href="/about/who-we-are" className="inline-block rounded-xl border border-white/60 bg-white/70 px-5 py-2.5 text-sm font-semibold">How we work</Link>
+            <Link href="/about" className="inline-block rounded-xl border border-white/60 bg-white/70 px-5 py-2.5 text-sm font-semibold">How we work</Link>
           </div>
         </div>
       </section>

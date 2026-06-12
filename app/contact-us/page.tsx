@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import { ContactPage } from "@/components/contact/ContactPage";
 
 export const metadata: Metadata = {
-  title: "Contact | Start a Project with Skyen Systems",
+  title: "Contact Skyen Systems | Start Your Project",
   description:
-    "Reach Skyen Systems to discuss SaaS platforms, enterprise software, AI solutions, and custom product development. Bahrain head office · Pakistan delivery centre.",
+    "Contact Skyen Systems for web development, mobile app development, AI automation, UI/UX design, SEO, digital marketing, and dedicated development teams.",
   alternates: {
     canonical: "/contact-us",
   },

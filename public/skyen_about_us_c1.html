@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>About Skyen Systems | Digital Product & AI Development Company</title>
+<meta name="description" content="Skyen Systems is a digital product company helping Australian and US businesses build websites, mobile apps, AI solutions, UI/UX designs, SEO systems, and dedicated software development teams." />
+
+<style>
+:root{
+  --navy:#07111f;
+  --navy2:#0d1f34;
+  --teal:#35d0ca;
+  --text:#101828;
+  --muted:#667085;
+  --line:#e6edf3;
+  --soft:#f7fbfc;
+  --white:#ffffff;
+  --shadow:0 18px 55px rgba(10,24,42,.08);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  font-family:Inter,Arial,sans-serif;
+  color:var(--text);
+  background:#fff;
+  line-height:1.55;
+}
+a{text-decoration:none;color:inherit}
+.container{
+  width:min(1120px,calc(100% - 36px));
+  margin:auto;
+}
+.header{
+  height:72px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  border-bottom:1px solid var(--line);
+}
+.logo{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  font-weight:900;
+}
+.logo-mark{
+  width:38px;
+  height:38px;
+  border-radius:13px;
+  background:var(--teal);
+  display:grid;
+  place-items:center;
+  color:#061014;
+}
+.nav{
+  display:flex;
+  gap:20px;
+  align-items:center;
+  font-size:14px;
+  font-weight:700;
+  color:#344054;
+}
+.nav a:last-child{
+  background:var(--navy);
+  color:#fff;
+  padding:10px 16px;
+  border-radius:999px;
+}
+section{padding:70px 0}
+.soft{background:var(--soft)}
+.label{
+  font-size:12px;
+  font-weight:900;
+  color:#0b9895;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  margin-bottom:12px;
+}
+h1{
+  font-size:clamp(46px,7vw,92px);
+  line-height:.92;
+  letter-spacing:-.07em;
+  margin-bottom:22px;
+}
+h2{
+  font-size:clamp(32px,4.5vw,58px);
+  line-height:1.02;
+  letter-spacing:-.055em;
+  margin-bottom:16px;
+}
+h3{
+  font-size:22px;
+  line-height:1.18;
+  letter-spacing:-.035em;
+  margin-bottom:9px;
+}
+p{color:var(--muted);font-size:16px}
+.lead{font-size:18px;line-height:1.75}
+.hero{
+  padding:82px 0 62px;
+  background:
+    radial-gradient(circle at 15% 85%,rgba(53,208,202,.15),transparent 26%),
+    radial-gradient(circle at 85% 18%,rgba(53,208,202,.12),transparent 26%),
+    linear-gradient(180deg,#fff,#f7fbfc);
+}
+.hero-grid{
+  display:grid;
+  grid-template-columns:1fr .82fr;
+  gap:44px;
+  align-items:center;
+}
+.hero p{
+  font-size:19px;
+  line-height:1.75;
+  max-width:720px;
+}
+.actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+  margin-top:28px;
+}
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:50px;
+  padding:13px 20px;
+  border-radius:999px;
+  font-size:14px;
+  font-weight:900;
+}
+.btn-dark{background:var(--navy);color:#fff}
+.btn-light{background:#fff;border:1px solid var(--line);color:#344054}
+.hero-visual{
+  min-height:430px;
+  border-radius:34px;
+  background:
+    linear-gradient(135deg,rgba(7,17,31,.94),rgba(13,31,52,.75)),
+    url('https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=1200&q=80');
+  background-size:cover;
+  background-position:center;
+  color:#fff;
+  padding:28px;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  box-shadow:var(--shadow);
+  overflow:hidden;
+  position:relative;
+}
+.hero-visual:before{
+  content:"";
+  width:260px;height:260px;border-radius:50%;
+  background:rgba(53,208,202,.22);
+  position:absolute;right:-80px;top:-80px;
+}
+.hero-visual>*{position:relative}
+.visual-title{
+  font-size:34px;
+  line-height:1.05;
+  letter-spacing:-.055em;
+  font-weight:950;
+  max-width:360px;
+}
+.stat-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+}
+.stat{
+  border:1px solid rgba(255,255,255,.14);
+  background:rgba(255,255,255,.07);
+  border-radius:20px;
+  padding:16px;
+}
+.stat strong{display:block;color:#fff;font-size:28px}
+.stat span{display:block;color:#cbd8e7;font-size:13px}
+.story{
+  display:grid;
+  grid-template-columns:.9fr 1.1fr;
+  gap:44px;
+  align-items:start;
+}
+.story-card{
+  background:var(--navy);
+  color:#fff;
+  border-radius:30px;
+  padding:30px;
+  min-height:330px;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+}
+.story-card h3{
+  font-size:34px;
+  letter-spacing:-.05em;
+}
+.story-card p{color:#cbd8e7}
+.pill-row{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-top:24px;
+}
+.pill{
+  padding:10px 13px;
+  border-radius:999px;
+  background:#fff;
+  border:1px solid var(--line);
+  font-size:13px;
+  font-weight:850;
+  color:#344054;
+}
+.head{max-width:850px;margin-bottom:30px}
+.grid3{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:16px;
+}
+.grid2{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:16px;
+}
+.card{
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:24px;
+  padding:24px;
+  box-shadow:0 12px 34px rgba(16,24,40,.045);
+}
+.card p{font-size:15px;line-height:1.68}
+.icon{
+  width:44px;height:44px;
+  border-radius:15px;
+  background:#e8fbfa;
+  display:grid;place-items:center;
+  margin-bottom:14px;
+}
+.values{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:12px;
+}
+.value{
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:22px;
+  padding:22px;
+  min-height:165px;
+}
+.value strong{
+  display:block;
+  font-size:19px;
+  letter-spacing:-.03em;
+  margin-bottom:8px;
+}
+.value p{font-size:14px}
+.banner{
+  min-height:390px;
+  border-radius:34px;
+  background:
+    linear-gradient(90deg,rgba(7,17,31,.88),rgba(7,17,31,.48)),
+    url('https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1400&q=80');
+  background-size:cover;
+  background-position:center;
+  display:flex;
+  align-items:flex-end;
+  padding:34px;
+  color:#fff;
+  box-shadow:var(--shadow);
+}
+.banner h2{color:#fff;max-width:760px}
+.banner p{color:#dce8f3;max-width:680px}
+.work-card{padding:0;overflow:hidden}
+.work-img{
+  height:180px;
+  background-size:cover;
+  background-position:center;
+}
+.work-body{padding:22px}
+.logo-strip{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:14px;
+}
+.logo-box{
+  height:86px;
+  border:1px solid var(--line);
+  border-radius:22px;
+  background:#fff;
+  display:grid;
+  place-items:center;
+  font-weight:950;
+  color:#344054;
+  box-shadow:0 10px 26px rgba(16,24,40,.035);
+}
+.people-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:20px;
+  align-items:center;
+}
+.people-img{
+  min-height:360px;
+  border-radius:30px;
+  background:
+    linear-gradient(135deg,rgba(7,17,31,.65),rgba(7,17,31,.2)),
+    url('https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=1200&q=80');
+  background-size:cover;
+  background-position:center;
+}
+.people-points{
+  display:grid;
+  gap:14px;
+}
+.point{
+  border:1px solid var(--line);
+  border-radius:20px;
+  padding:18px;
+  background:#fff;
+}
+.final{
+  background:linear-gradient(135deg,#07111f,#0d1f34);
+  color:#fff;
+}
+.cta{
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:24px;
+  align-items:center;
+}
+.final h2{color:#fff}
+.final p{color:#cbd8e7;max-width:760px}
+.footer{
+  background:#05080d;
+  color:#98a6b8;
+  padding:24px 0;
+  font-size:14px;
+}
+@media(max-width:980px){
+  .nav a:not(:last-child){display:none}
+  .hero-grid,.story,.people-grid,.cta{grid-template-columns:1fr}
+  .grid3,.grid2,.logo-strip{grid-template-columns:1fr 1fr}
+  .values{grid-template-columns:1fr 1fr}
+}
+@media(max-width:640px){
+  .container{width:min(100% - 28px,1120px)}
+  section,.hero{padding:48px 0}
+  h1{font-size:42px}
+  .grid3,.grid2,.logo-strip,.values,.stat-grid{grid-template-columns:1fr}
+  .hero-visual,.banner,.people-img{min-height:300px}
+}
+</style>
+</head>
+
+<body>
+<header class="container header">
+  <a href="/" class="logo">
+    <span class="logo-mark">S</span>
+    <span>Skyen Systems</span>
+  </a>
+  <nav class="nav">
+    <a href="/services/web-development">Services</a>
+    <a href="/about">About</a>
+    <a href="/contact">Start Project</a>
+  </nav>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="container hero-grid">
+      <div>
+        <div class="label">About Skyen Systems</div>
+        <h1>Brilliant Digital Products, Built With Purpose.</h1>
+        <p>Skyen Systems is a product-focused software company helping Australian and US businesses build websites, mobile apps, AI solutions, SaaS platforms, UI/UX experiences, SEO systems, and dedicated software teams.</p>
+        <div class="actions">
+          <a class="btn btn-dark" href="/contact">Start Your Project</a>
+          <a class="btn btn-light" href="/services/web-development">Explore Services</a>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div>
+          <div class="label" style="color:#7cf0ea">Product Team</div>
+          <div class="visual-title">Strategy, design, development, AI and growth under one roof.</div>
+        </div>
+        <div class="stat-grid">
+          <div class="stat"><strong>Web</strong><span>Websites & platforms</span></div>
+          <div class="stat"><strong>App</strong><span>Mobile products</span></div>
+          <div class="stat"><strong>AI</strong><span>Automation systems</span></div>
+          <div class="stat"><strong>SEO</strong><span>Digital growth</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container story">
+      <div class="story-card">
+        <div>
+          <div class="label" style="color:#7cf0ea">Who We Are</div>
+          <h3>A team built for modern digital product growth.</h3>
+        </div>
+        <p>We help businesses move from idea to launch with a clear plan, clean design, strong development, smart automation, and long-term growth support.</p>
+      </div>
+
+      <div>
+        <div class="label">Our Story</div>
+        <h2>Building software that supports real business value</h2>
+        <p class="lead">Skyen Systems combines web development, mobile app development, AI automation, UI/UX design, SEO, digital marketing, and dedicated software team support in one connected process.</p>
+        <p class="lead" style="margin-top:14px">We support businesses that want to launch new digital products, improve existing platforms, automate workflows, redesign user experiences, increase search visibility, or extend development capacity with a reliable remote team.</p>
+        <div class="pill-row">
+          <span class="pill">Product Strategy</span>
+          <span class="pill">UI/UX Design</span>
+          <span class="pill">Web Development</span>
+          <span class="pill">Mobile Apps</span>
+          <span class="pill">AI Automation</span>
+          <span class="pill">SEO Growth</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="soft">
+    <div class="container">
+      <div class="head">
+        <div class="label">Our Vision</div>
+        <h2>To create digital products that are useful, scalable and ready for growth.</h2>
+        <p class="lead">We believe a strong digital product should look professional, solve a real problem, work smoothly for users, support business goals, and keep improving after launch.</p>
+      </div>
+
+      <div class="values">
+        <div class="value"><strong>Creativity</strong><p>Fresh ideas shaped into practical digital products.</p></div>
+        <div class="value"><strong>Quality</strong><p>Clean design, reliable development and strong execution.</p></div>
+        <div class="value"><strong>Teamwork</strong><p>Strategy, design, development and growth working together.</p></div>
+        <div class="value"><strong>Transparency</strong><p>Clear planning, honest updates and delivery visibility.</p></div>
+        <div class="value"><strong>Growth</strong><p>Products built with long-term improvement in mind.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="banner">
+        <div>
+          <div class="label" style="color:#7cf0ea">Our Culture</div>
+          <h2>Great products happen when smart teams solve real business problems together.</h2>
+          <p>At Skyen Systems, our work connects product thinking, technology, AI, design, marketing, and long-term support so businesses can build with more clarity and confidence.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="soft">
+    <div class="container">
+      <div class="head">
+        <div class="label">What We Do</div>
+        <h2>Digital services that connect product strategy, technology and growth.</h2>
+      </div>
+
+      <div class="grid3">
+        <article class="card"><div class="icon">🌐</div><h3>Web Development</h3><p>Business websites, landing pages, SaaS websites, dashboards, portals, and custom web applications.</p></article>
+        <article class="card"><div class="icon">📱</div><h3>Mobile App Development</h3><p>Android, iOS, cross-platform, MVP, SaaS, business, and AI-powered mobile apps.</p></article>
+        <article class="card"><div class="icon">🤖</div><h3>AI Solutions</h3><p>AI chatbots, assistants, workflow automation, LLM integrations, and AI-powered product features.</p></article>
+        <article class="card"><div class="icon">🎨</div><h3>UI/UX Design</h3><p>Modern app, website, SaaS and dashboard interfaces with Figma and developer-ready handoff.</p></article>
+        <article class="card"><div class="icon">📈</div><h3>SEO & Marketing</h3><p>SEO, technical SEO, content marketing, AEO, GEO, analytics, ASO and growth support.</p></article>
+        <article class="card"><div class="icon">👥</div><h3>Dedicated Teams</h3><p>Remote developers, designers, AI developers, backend engineers, QA support and product teams.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container people-grid">
+      <div>
+        <div class="label">Our People</div>
+        <h2>Product thinkers, designers, developers and growth specialists working together.</h2>
+        <p class="lead">Our team approach helps businesses avoid disconnected design, development, AI and marketing work. We keep planning, execution and improvement connected from the start.</p>
+
+        <div class="people-points" style="margin-top:22px">
+          <div class="point"><h3>Product-focused communication</h3><p>We focus on clear goals, scope, priorities, and practical next steps.</p></div>
+          <div class="point"><h3>Remote delivery support</h3><p>We support Australian and US businesses with structured remote collaboration.</p></div>
+          <div class="point"><h3>Long-term improvement</h3><p>We support products after launch with updates, SEO, AI, analytics, and growth work.</p></div>
+        </div>
+      </div>
+      <div class="people-img"></div>
+    </div>
+  </section>
+
+  <section class="soft">
+    <div class="container">
+      <div class="head">
+        <div class="label">Our Work</div>
+        <h2>Digital products we build and grow.</h2>
+      </div>
+
+      <div class="grid3">
+        <article class="card work-card">
+          <div class="work-img" style="background-image:url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1000&q=80')"></div>
+          <div class="work-body"><h3>Studiely</h3><p>AI-powered study app supported by app development, UI/UX, SEO, ASO, and growth systems.</p></div>
+        </article>
+        <article class="card work-card">
+          <div class="work-img" style="background-image:url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1000&q=80')"></div>
+          <div class="work-body"><h3>Make My Lesson</h3><p>AI teaching assistant platform supported by product strategy, web development, SEO and marketing.</p></div>
+        </article>
+        <article class="card work-card">
+          <div class="work-img" style="background-image:url('https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?auto=format&fit=crop&w=1000&q=80')"></div>
+          <div class="work-body"><h3>Linguatude</h3><p>AI language learning platform supported by design, website development, SEO and growth marketing.</p></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="head">
+        <div class="label">Technology Focus</div>
+        <h2>We work across modern product, web, app, AI and growth systems.</h2>
+      </div>
+
+      <div class="logo-strip">
+        <div class="logo-box">React / Next.js</div>
+        <div class="logo-box">Flutter / Apps</div>
+        <div class="logo-box">AI / LLM APIs</div>
+        <div class="logo-box">SEO / Analytics</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="final">
+    <div class="container cta">
+      <div>
+        <div class="label" style="color:#7cf0ea">Ready to Build?</div>
+        <h2>Let’s build your next website, app, AI product or software platform.</h2>
+        <p>Tell us what you want to build, improve, or scale. Skyen Systems will help you plan the right digital product direction and development roadmap.</p>
+      </div>
+      <a class="btn btn-light" href="/contact">Start Your Project</a>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="container">© 2026 Skyen Systems. About Us Cubix-Inspired Preview.</div>
+</footer>
+</body>
+</html>

@@ -114,7 +114,7 @@ export const PROBLEM_SOLUTION = {
     "You have seen the quotes. $5,000 for a five-page website. $2,000 a month to post three times a week on Instagram. Agencies add overhead; freelancers disappear mid-project.",
   solution:
     "We removed agency overhead and kept capability. One accountable team delivers websites, apps, AI, and growth — at a fraction of typical US agency cost, with the standards of a product company.",
-  cta: { label: "How we work", href: "/about/who-we-are" },
+  cta: { label: "How we work", href: "/about" },
 } as const;
 
 export const INDUSTRIES_SECTION = {

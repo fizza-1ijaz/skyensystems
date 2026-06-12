@@ -22,7 +22,7 @@ import {
 const servicesLinks = SERVICE_NAV_LINKS;
 
 const companyLinks = [
-  { label: "About Us", href: "/about/who-we-are" },
+  { label: "About Us", href: "/about" },
   { label: "Services", href: PRIMARY_SERVICE_HREF },
   { label: "Products", href: "/products" },
   { label: "Blog", href: "/blog" },

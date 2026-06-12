@@ -1,4 +1,4 @@
-import { ABOUT_NAV_CHILDREN, MAIN_NAV_ITEMS } from "@/lib/main-nav";
+import { MAIN_NAV_ITEMS } from "@/lib/main-nav";
 import { PRODUCTS } from "@/lib/products-page-data";
 
 export type SearchResultType = "product" | "blog" | "page";
@@ -68,7 +68,15 @@ function buildPageItems(): SearchIndexItem[] {
     }
   }
 
-  for (const child of ABOUT_NAV_CHILDREN) {
+  const extraPages = [
+    {
+      href: "/about/locations",
+      label: "Locations",
+      description: "Global delivery network",
+    },
+  ] as const;
+
+  for (const child of extraPages) {
     if (!pages.some((page) => page.href === child.href)) {
       pages.push({
         id: `page-${child.href}`,
@@ -76,7 +84,7 @@ function buildPageItems(): SearchIndexItem[] {
         title: child.label,
         subtitle: "About · Page",
         href: child.href,
-        searchText: [child.label, child.description ?? ""].join(" ").toLowerCase(),
+        searchText: [child.label, child.description].join(" ").toLowerCase(),
       });
     }
   }

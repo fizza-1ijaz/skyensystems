@@ -55,7 +55,7 @@ export function ProofOfExpertise() {
 
         <Reveal className="mt-8 flex flex-wrap gap-6">
           <EditorialBoxCta href="/portfolio">Portfolio</EditorialBoxCta>
-          <EditorialBoxCta href="/about/who-we-are" variant="neutral">
+          <EditorialBoxCta href="/about" variant="neutral">
             About our practice
           </EditorialBoxCta>
         </Reveal>

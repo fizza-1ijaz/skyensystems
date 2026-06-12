@@ -30,32 +30,6 @@ export type MainNavItem = {
 
 
 
-export const ABOUT_NAV_CHILDREN = [
-
-  {
-
-    label: "Who we are",
-
-    href: "/about/who-we-are",
-
-    description: "Story, principles & culture",
-
-  },
-
-  {
-
-    label: "Locations",
-
-    href: "/about/locations",
-
-    description: "Global delivery network",
-
-  },
-
-] as const satisfies readonly NavChildItem[];
-
-
-
 export const SERVICES_NAV_CHILDREN = DETAILED_SERVICES.map((service) => ({
 
   label: service.title,
@@ -72,7 +46,7 @@ export const MAIN_NAV_ITEMS: readonly MainNavItem[] = [
 
   { label: "Home", href: "/" },
 
-  { label: "About us", href: "/about/who-we-are", children: ABOUT_NAV_CHILDREN },
+  { label: "About us", href: "/about" },
 
   { label: "Services", href: PRIMARY_SERVICE_HREF, children: SERVICES_NAV_CHILDREN },
 

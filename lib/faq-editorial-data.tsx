@@ -335,7 +335,7 @@ export const FAQ_CHAPTERS: FaqChapter[] = [
           <p>
             Qismat Ventures W.L.L. (Bahrain CR 190698-1) with PSEB-registered operations in Lahore — verified for
             international software export.{" "}
-            <Link href="/about/who-we-are" className="text-[#31C3C3] hover:underline">
+            <Link href="/about" className="text-[#31C3C3] hover:underline">
               Company profile
             </Link>
           </p>

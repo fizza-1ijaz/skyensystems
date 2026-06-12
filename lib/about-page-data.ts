@@ -1,5 +1,13 @@
 import { PRIMARY_SERVICE_HREF } from "@/lib/services-page-data";
 
+export type AboutServiceAccent = {
+  iconBg: string;
+  iconColor: string;
+  glow: string;
+  border: string;
+  bar: string;
+};
+
 export const ABOUT_HERO_STATS = [
   { value: "Web", label: "Websites & platforms" },
   { value: "App", label: "Mobile products" },
@@ -41,46 +49,94 @@ export const ABOUT_VALUES = [
 
 export const ABOUT_SERVICES = [
   {
-    icon: "🌐",
+    id: "web",
     title: "Web Development",
+    tag: "Websites · SaaS · Portals",
     description:
       "Business websites, landing pages, SaaS websites, dashboards, portals, and custom web applications.",
     href: "/services/web-design-development",
+    accent: {
+      iconBg: "from-[#E8F6F5] via-[#D4F0EF] to-[#B8E8E6]",
+      iconColor: "text-[#0F766E]",
+      glow: "from-[#31C3C3]/20 via-[#31C3C3]/5 to-transparent",
+      border: "group-hover:border-[#31C3C3]/45",
+      bar: "from-[#31C3C3] via-[#71CBD1] to-transparent",
+    },
   },
   {
-    icon: "📱",
+    id: "mobile",
     title: "Mobile App Development",
+    tag: "iOS · Android · Cross-platform",
     description:
       "Android, iOS, cross-platform, MVP, SaaS, business, and AI-powered mobile apps.",
     href: "/services/mobile-apps",
+    accent: {
+      iconBg: "from-[#EDE9FE] via-[#E0E7FF] to-[#C7D2FE]",
+      iconColor: "text-[#4338CA]",
+      glow: "from-[#6366F1]/18 via-[#818CF8]/6 to-transparent",
+      border: "group-hover:border-[#6366F1]/40",
+      bar: "from-[#6366F1] via-[#818CF8] to-transparent",
+    },
   },
   {
-    icon: "🤖",
+    id: "ai",
     title: "AI Solutions",
+    tag: "Chatbots · Automation · LLMs",
     description:
       "AI chatbots, assistants, workflow automation, LLM integrations, and AI-powered product features.",
     href: "/services/ai-solutions",
+    accent: {
+      iconBg: "from-[#F3E8FF] via-[#EDE9FE] to-[#DDD6FE]",
+      iconColor: "text-[#7C3AED]",
+      glow: "from-[#A855F7]/18 via-[#C084FC]/6 to-transparent",
+      border: "group-hover:border-[#A855F7]/40",
+      bar: "from-[#A855F7] via-[#C084FC] to-transparent",
+    },
   },
   {
-    icon: "🎨",
+    id: "design",
     title: "UI/UX Design",
+    tag: "Figma · Product UI · Handoff",
     description:
       "Modern app, website, SaaS and dashboard interfaces with Figma and developer-ready handoff.",
     href: "/services/brand-ui-ux-design",
+    accent: {
+      iconBg: "from-[#FFF1F2] via-[#FFE4E6] to-[#FECDD3]",
+      iconColor: "text-[#E11D48]",
+      glow: "from-[#FB7185]/16 via-[#FDA4AF]/5 to-transparent",
+      border: "group-hover:border-[#FB7185]/40",
+      bar: "from-[#F43F5E] via-[#FB7185] to-transparent",
+    },
   },
   {
-    icon: "📈",
+    id: "marketing",
     title: "SEO & Marketing",
+    tag: "SEO · Content · Analytics",
     description:
       "SEO, technical SEO, content marketing, AEO, GEO, analytics, ASO and growth support.",
     href: "/services/digital-marketing",
+    accent: {
+      iconBg: "from-[#ECFDF5] via-[#D1FAE5] to-[#A7F3D0]",
+      iconColor: "text-[#059669]",
+      glow: "from-[#10B981]/16 via-[#34D399]/5 to-transparent",
+      border: "group-hover:border-[#10B981]/40",
+      bar: "from-[#10B981] via-[#34D399] to-transparent",
+    },
   },
   {
-    icon: "👥",
+    id: "teams",
     title: "Dedicated Teams",
+    tag: "Developers · Designers · QA",
     description:
       "Remote developers, designers, AI developers, backend engineers, QA support and product teams.",
     href: "/services/dedicated-teams",
+    accent: {
+      iconBg: "from-[#EFF6FF] via-[#DBEAFE] to-[#BFDBFE]",
+      iconColor: "text-[#1D4ED8]",
+      glow: "from-[#3B82F6]/16 via-[#60A5FA]/5 to-transparent",
+      border: "group-hover:border-[#3B82F6]/40",
+      bar: "from-[#3B82F6] via-[#60A5FA] to-transparent",
+    },
   },
 ] as const;
 
@@ -124,10 +180,42 @@ export const ABOUT_WORK = [
 ] as const;
 
 export const ABOUT_TECH_STACK = [
-  "React / Next.js",
-  "Flutter / Apps",
-  "AI / LLM APIs",
-  "SEO / Analytics",
+  {
+    id: "react",
+    label: "React / Next.js",
+    bubbleA: "bg-[#31C3C3]/35",
+    bubbleB: "bg-[#71CBD1]/30",
+    bubbleC: "bg-[#A9E7E2]/45",
+    surface: "from-[#E8F6F5]/90 via-white to-[#EFF9F8]/80",
+    border: "border-[#31C3C3]/25 group-hover:border-[#31C3C3]/50",
+  },
+  {
+    id: "flutter",
+    label: "Flutter / Apps",
+    bubbleA: "bg-[#6366F1]/30",
+    bubbleB: "bg-[#818CF8]/28",
+    bubbleC: "bg-[#C7D2FE]/40",
+    surface: "from-[#EEF2FF]/90 via-white to-[#E0E7FF]/75",
+    border: "border-[#6366F1]/22 group-hover:border-[#6366F1]/45",
+  },
+  {
+    id: "ai",
+    label: "AI / LLM APIs",
+    bubbleA: "bg-[#A855F7]/28",
+    bubbleB: "bg-[#C084FC]/26",
+    bubbleC: "bg-[#DDD6FE]/42",
+    surface: "from-[#FAF5FF]/90 via-white to-[#F3E8FF]/78",
+    border: "border-[#A855F7]/22 group-hover:border-[#A855F7]/45",
+  },
+  {
+    id: "seo",
+    label: "SEO / Analytics",
+    bubbleA: "bg-[#10B981]/28",
+    bubbleB: "bg-[#34D399]/24",
+    bubbleC: "bg-[#A7F3D0]/42",
+    surface: "from-[#ECFDF5]/90 via-white to-[#D1FAE5]/75",
+    border: "border-[#10B981]/22 group-hover:border-[#10B981]/45",
+  },
 ] as const;
 
 export const ABOUT_PRIMARY_SERVICE_HREF = PRIMARY_SERVICE_HREF;

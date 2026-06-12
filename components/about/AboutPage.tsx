@@ -1,14 +1,14 @@
 "use client";
 
 import Link from "next/link";
+import { AboutTechFocusSection } from "@/components/about/sections/AboutTechFocusSection";
+import { AboutWhatWeDoSection } from "@/components/about/sections/AboutWhatWeDoSection";
 import { Reveal } from "@/components/landing/Reveal";
 import {
   ABOUT_HERO_STATS,
   ABOUT_PEOPLE_POINTS,
   ABOUT_PRIMARY_SERVICE_HREF,
-  ABOUT_SERVICES,
   ABOUT_STORY_PILLS,
-  ABOUT_TECH_STACK,
   ABOUT_VALUES,
   ABOUT_WORK,
 } from "@/lib/about-page-data";
@@ -209,36 +209,7 @@ export function AboutPage() {
         </div>
       </section>
 
-      {/* What we do */}
-      <section className="bg-[#F4F4F2] py-16 md:py-[4.375rem]">
-        <div className="mx-auto max-w-[1120px] px-6">
-          <Reveal className="max-w-3xl">
-            <p className={eyebrowClass}>What We Do</p>
-            <h2 className="editorial-section-title mt-3 text-[#141414]">
-              Digital services that connect product strategy, technology and growth.
-            </h2>
-          </Reveal>
-
-          <div className="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-            {ABOUT_SERVICES.map((service, index) => (
-              <Reveal key={service.title} delay={0.04 * index}>
-                <Link
-                  href={service.href}
-                  className="block rounded-3xl border border-[#DADAD8] bg-white p-6 shadow-[0_12px_34px_rgba(16,24,40,0.045)] transition-colors hover:border-[#31C3C3]/40"
-                >
-                  <div className="mb-3.5 flex h-11 w-11 items-center justify-center rounded-[0.9375rem] bg-[#E8F6F5] text-xl">
-                    {service.icon}
-                  </div>
-                  <h3 className="font-heading text-xl font-bold tracking-[-0.02em] text-[#141414]">
-                    {service.title}
-                  </h3>
-                  <p className={`mt-2 ${bodyMuted}`}>{service.description}</p>
-                </Link>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
+      <AboutWhatWeDoSection />
 
       {/* People */}
       <section className="py-16 md:py-[4.375rem]">
@@ -295,11 +266,13 @@ export function AboutPage() {
           <div className="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
             {ABOUT_WORK.map((project, index) => (
               <Reveal key={project.title} delay={0.04 * index}>
-                <article className="overflow-hidden rounded-3xl border border-[#DADAD8] bg-white shadow-[0_12px_34px_rgba(16,24,40,0.045)]">
-                  <div
-                    className="h-44 bg-cover bg-center"
-                    style={{ backgroundImage: `url('${project.image}')` }}
-                  />
+                <article className="group overflow-hidden rounded-3xl border border-[#DADAD8] bg-white shadow-[0_12px_34px_rgba(16,24,40,0.045)] transition-shadow duration-300 hover:shadow-[0_20px_44px_rgba(16,24,40,0.12)]">
+                  <div className="h-44 overflow-hidden">
+                    <div
+                      className="h-full w-full scale-100 bg-cover bg-center transition-transform duration-500 ease-out group-hover:scale-110"
+                      style={{ backgroundImage: `url('${project.image}')` }}
+                    />
+                  </div>
                   <div className="p-5 md:p-6">
                     <h3 className="font-heading text-xl font-bold tracking-[-0.02em] text-[#141414]">
                       {project.title}
@@ -313,27 +286,7 @@ export function AboutPage() {
         </div>
       </section>
 
-      {/* Tech */}
-      <section className="py-16 md:py-[4.375rem]">
-        <div className="mx-auto max-w-[1120px] px-6">
-          <Reveal className="max-w-3xl">
-            <p className={eyebrowClass}>Technology Focus</p>
-            <h2 className="editorial-section-title mt-3 text-[#141414]">
-              We work across modern product, web, app, AI and growth systems.
-            </h2>
-          </Reveal>
-
-          <div className="mt-8 grid gap-3.5 sm:grid-cols-2 lg:grid-cols-4">
-            {ABOUT_TECH_STACK.map((item, index) => (
-              <Reveal key={item} delay={0.04 * index}>
-                <div className="flex h-[5.375rem] items-center justify-center rounded-[1.375rem] border border-[#DADAD8] bg-white font-heading text-sm font-bold text-[#141414] shadow-[0_10px_26px_rgba(16,24,40,0.035)] md:text-base">
-                  {item}
-                </div>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
+      <AboutTechFocusSection />
 
       {/* Final CTA */}
       <section className="bg-[#141414] py-16 md:py-20">

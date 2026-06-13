@@ -17,7 +17,11 @@ export function ProductsQuoteBand() {
           </blockquote>
         </Reveal>
         <Reveal delay={0.08} className="mt-8 text-center">
-          <EditorialBoxCta href="/contact-us" variant="neutral">
+          <EditorialBoxCta
+            href="/contact-us"
+            variant="neutral"
+            className="transition-colors duration-300 hover:border-[#31C3C3] hover:bg-[#31C3C3] hover:!text-white"
+          >
             See our mobile app service
           </EditorialBoxCta>
         </Reveal>

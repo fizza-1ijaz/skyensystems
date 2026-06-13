@@ -325,8 +325,8 @@ h6 {
 }
 
 .editorial-hero-content .editorial-hero-body {
-  font-size: 22px !important;
-  line-height: 28px !important;
+  font-size: 19px !important;
+  line-height: 26px !important;
   letter-spacing: -0.01em;
   text-align: center;
   transform: none !important;
@@ -352,8 +352,8 @@ h6 {
   }
 
   .editorial-hero-content .editorial-hero-body {
-    font-size: 1rem !important;
-    line-height: 1.55 !important;
+    font-size: 0.9375rem !important;
+    line-height: 1.5 !important;
   }
 
   .editorial-hero-content .editorial-hero-eyebrow {

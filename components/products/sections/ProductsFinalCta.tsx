@@ -1,8 +1,47 @@
 "use client";
 
 import Link from "next/link";
+import { motion, useReducedMotion } from "framer-motion";
 import { ProductsBlueprintBackdrop } from "@/components/products/ProductsBlueprintBackdrop";
 import { Reveal } from "@/components/landing/Reveal";
+
+const MotionLink = motion.create(Link);
+
+const CTA_SPRING = { type: "spring" as const, stiffness: 380, damping: 26, mass: 0.45 };
+
+function FinalCtaLink({
+  href,
+  className,
+  hoverShadow,
+  children,
+}: {
+  href: string;
+  className: string;
+  hoverShadow: string;
+  children: React.ReactNode;
+}) {
+  const reduceMotion = useReducedMotion();
+
+  return (
+    <MotionLink
+      href={href}
+      className={className}
+      whileHover={
+        reduceMotion
+          ? undefined
+          : {
+              y: -6,
+              scale: 1.02,
+              boxShadow: hoverShadow,
+            }
+      }
+      whileTap={reduceMotion ? undefined : { y: -2, scale: 0.98 }}
+      transition={CTA_SPRING}
+    >
+      {children}
+    </MotionLink>
+  );
+}
 
 export function ProductsFinalCta() {
   return (
@@ -28,18 +67,20 @@ export function ProductsFinalCta() {
             delay={0.14}
             className="mt-12 flex flex-col items-center gap-4 sm:flex-row sm:justify-center sm:gap-5"
           >
-            <Link
+            <FinalCtaLink
               href="/contact-us#inquiry"
               className="inline-flex w-full items-center justify-center sm:w-auto sm:min-w-[240px] bg-[#31C3C3] px-10 py-4 text-sm font-semibold uppercase tracking-[0.14em] text-white transition-colors duration-200 hover:bg-[#2AB0B0]"
+              hoverShadow="0 18px 44px -14px rgba(49,195,195,0.55)"
             >
               Start a project
-            </Link>
-            <Link
+            </FinalCtaLink>
+            <FinalCtaLink
               href="/contact-us"
               className="inline-flex w-full items-center justify-center sm:w-auto sm:min-w-[240px] border border-white/40 bg-transparent px-10 py-4 text-sm font-semibold uppercase tracking-[0.14em] text-white transition-all duration-200 hover:border-white hover:bg-white/5"
+              hoverShadow="0 18px 44px -14px rgba(255,255,255,0.2)"
             >
               Schedule a consultation
-            </Link>
+            </FinalCtaLink>
           </Reveal>
         </div>
       </div>

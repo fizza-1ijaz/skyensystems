@@ -207,7 +207,8 @@ export function AboutPageContent() {
 
         <section className="relative mx-auto w-full max-w-7xl overflow-hidden rounded-[2.5rem] px-6 py-7 md:px-10 md:py-9">
           <div
-            className="pointer-events-none absolute inset-0 bg-[url('/bgs/universe.jfif')] bg-cover bg-center"
+            className="pointer-events-none absolute inset-0 bg-cover bg-center"
+            style={{ backgroundImage: `url("${encodeURI("/images/About Us ( Top img).png")}")` }}
             aria-hidden
           />
           <div className="pointer-events-none absolute inset-0 bg-white/45 backdrop-blur-[1px]" aria-hidden />

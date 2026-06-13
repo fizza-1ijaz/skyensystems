@@ -103,7 +103,7 @@ export const SELECTED_WORK = [
     metricLabel: "Distribution",
     description:
       "Curriculum-aligned lesson planning for educators — saving hours every week.",
-    logo: "/logo-makemylesson2.png",
+    logo: "/logo-makemylesson.png",
     href: "https://makemylesson.ai",
   },
   {

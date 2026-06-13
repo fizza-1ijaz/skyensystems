@@ -8,14 +8,14 @@ export function WhyChooseSection() {
   return (
     <section className="bg-[#141414] py-20 text-[#FAFAF8] md:py-28">
       <div className="mx-auto max-w-[1440px] px-6 md:px-10">
-        <Reveal className="max-w-3xl">
+        <Reveal className="w-full text-center">
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#31C3C3]">
             {WHY_CHOOSE_SECTION.label}
           </p>
-          <h2 className="editorial-section-title mt-4 text-balance text-[#FAFAF8]">
+          <h2 className="editorial-section-title mx-auto mt-4 w-full max-w-none text-balance text-[#FAFAF8]">
             {WHY_CHOOSE_SECTION.heading}
           </h2>
-          <p className="mt-4 text-sm leading-relaxed text-[#B8B8B8] md:text-base">
+          <p className="mx-auto mt-4 w-full max-w-none text-sm leading-relaxed text-[#B8B8B8] md:text-base">
             {WHY_CHOOSE_SECTION.paragraph}
           </p>
         </Reveal>

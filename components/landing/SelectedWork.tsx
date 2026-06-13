@@ -89,7 +89,12 @@ function ProductCard({
                 "0 0 48px -6px rgba(49,195,195,0.55), 0 28px 64px -32px rgba(49,195,195,0.4)",
             }
       }
-      className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-[#2E2E2E] bg-[#1A1A1A] p-6 transition-[border-color] duration-300 hover:border-[#31C3C3]/55 md:rounded-3xl md:p-8"
+      className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-[#2E2E2E] bg-[#141414] p-6 transition-[border-color] duration-300 hover:border-[#31C3C3]/55 md:rounded-3xl md:p-8"
+      style={{
+        backgroundImage: `linear-gradient(135deg,rgba(20,20,20,0.94),rgba(15,23,42,0.75)),url("${encodeURI(project.backgroundImage)}")`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}
     >
       <div
         className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100 motion-reduce:group-hover:opacity-0"

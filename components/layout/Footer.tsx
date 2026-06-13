@@ -43,13 +43,6 @@ const legalLinks = [
   { label: "Refund Policy", href: "/refund-policy" },
 ] as const;
 
-const FOOTER_METRICS = [
-  { value: "Software", label: "Engineering" },
-  { value: "AI", label: "Solutions" },
-  { value: "Bahrain", label: "HQ" },
-  { value: "Pakistan", label: "Delivery Centre" },
-] as const;
-
 function FooterLink({
   href,
   children,
@@ -141,22 +134,6 @@ export function Footer() {
           <div className="grid gap-10 sm:grid-cols-2 md:col-span-4">
             <FooterNavGroup title="Products" links={productsLinks} />
             <FooterNavGroup title="Legal" links={legalLinks} />
-          </div>
-        </section>
-
-        {/* Metrics strip */}
-        <section className="border-b border-white/10 py-12 md:py-14">
-          <div className="grid gap-px bg-white/10 sm:grid-cols-2 lg:grid-cols-4">
-            {FOOTER_METRICS.map((metric) => (
-              <div key={metric.label} className="bg-[#111827] px-6 py-6 md:px-8 md:py-7">
-                <p className="font-heading text-2xl font-bold tracking-tight text-[#FAFAF8] md:text-[1.75rem]">
-                  {metric.value}
-                </p>
-                <p className="mt-1.5 text-[10px] font-semibold uppercase tracking-[0.18em] text-white/45">
-                  {metric.label}
-                </p>
-              </div>
-            ))}
           </div>
         </section>
 

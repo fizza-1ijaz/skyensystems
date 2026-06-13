@@ -2,7 +2,7 @@ import Image from "next/image";
 import type { ProcessStage } from "@/components/landing/process/types";
 
 /** Local roadmap assets are served at full resolution to avoid upscaling blur. */
-const LOCAL_ROADMAP_PREFIX = "/roadmap/";
+const LOCAL_ROADMAP_PREFIXES = ["/roadmap/", "/images/"];
 
 type ProcessStageImageProps = {
   stage: ProcessStage;
@@ -20,14 +20,14 @@ export function ProcessStageImage({
   loading,
 }: ProcessStageImageProps) {
   const rotation = stage.imageRotation ?? 0;
-  const isLocalAsset = stage.image.startsWith(LOCAL_ROADMAP_PREFIX);
+  const isLocalAsset = LOCAL_ROADMAP_PREFIXES.some((prefix) => stage.image.startsWith(prefix));
 
   if (rotation !== 0) {
     return (
       <div className="absolute inset-0 overflow-hidden">
         <div
           className="absolute left-1/2 top-1/2 h-[142%] w-[142%]"
-          style={{ transform: "translate(-50%, -50%) rotate(90deg)" }}
+          style={{ transform: `translate(-50%, -50%) rotate(${rotation}deg)` }}
         >
           <Image
             src={stage.image}
@@ -37,7 +37,7 @@ export function ProcessStageImage({
             sizes={sizes}
             priority={priority}
             loading={loading}
-            quality={90}
+            quality={100}
             unoptimized={isLocalAsset}
           />
         </div>
@@ -54,7 +54,7 @@ export function ProcessStageImage({
       sizes={sizes}
       priority={priority}
       loading={loading}
-      quality={90}
+      quality={100}
       unoptimized={isLocalAsset}
     />
   );

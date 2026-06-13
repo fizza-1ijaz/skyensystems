@@ -80,7 +80,7 @@ export function EditorialHero() {
             <div className="flex w-full justify-center md:px-6">
               <div className="w-full max-w-4xl shrink-0 px-4 text-center sm:px-6 md:px-0">
                 <Reveal delay={0.06} className="shrink-0">
-                  <h1 className="editorial-hero-headline text-center font-heading font-bold text-white">
+                  <h1 className="editorial-hero-headline text-left font-heading font-bold text-white">
                     Custom Software Development &amp;
                     <br />
                     <span className="text-[#31C3C3]">AI Solutions</span> for Australian Businesses

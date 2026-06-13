@@ -48,7 +48,7 @@ export function AboutPage() {
   return (
     <div className="bg-white text-[#141414]">
       {/* Hero */}
-      <section className="bg-[linear-gradient(180deg,#fff,#F4F4F2)] pb-14 pt-[calc(var(--site-nav-height)+3rem)] md:pb-16 md:pt-[calc(var(--site-nav-height)+4rem)]">
+      <section className="bg-[linear-gradient(180deg,#fff,#F4F4F2)] pb-14 pt-10 md:pb-16 md:pt-14">
         <div className="mx-auto grid max-w-[1120px] items-center gap-10 px-6 lg:grid-cols-[1fr_0.82fr] lg:gap-11">
           <Reveal>
             <p className={eyebrowClass}>About Skyen Systems</p>
@@ -71,7 +71,7 @@ export function AboutPage() {
               className="relative flex min-h-[22rem] flex-col justify-between overflow-hidden rounded-[2rem] bg-[#141414] p-7 shadow-[0_18px_55px_rgba(10,24,42,0.08)] md:min-h-[26rem] md:rounded-[2.125rem] md:p-8"
               style={{
                 backgroundImage:
-                  "linear-gradient(135deg,rgba(20,20,20,0.94),rgba(15,23,42,0.75)),url('https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=1200&q=80')",
+                  `linear-gradient(135deg,rgba(20,20,20,0.94),rgba(15,23,42,0.75)),url("${encodeURI("/images/About Us ( Top img).png")}")`,
                 backgroundSize: "cover",
                 backgroundPosition: "center",
               }}

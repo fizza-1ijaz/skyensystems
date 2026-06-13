@@ -7,8 +7,8 @@ export function PricingTrust() {
   return (
     <section className="bg-[#0F172A] py-20 text-[#FAFAF8] md:py-28">
       <div className="mx-auto max-w-[1440px] px-6 md:px-10">
-        <Reveal>
-          <h2 className="editorial-section-title max-w-2xl text-balance text-[#FAFAF8]">
+        <Reveal className="w-full text-center">
+          <h2 className="editorial-section-title mx-auto w-full max-w-none text-balance text-[#FAFAF8]">
             Built for long-term partnerships.
           </h2>
         </Reveal>

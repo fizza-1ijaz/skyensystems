@@ -54,6 +54,53 @@ function droopyNodeBlobPath(cx = 100, cy = 100, baseR = 82, segments = 96) {
 
 const WHY_NODE_BLOB_D = droopyNodeBlobPath();
 
+const services = [
+  {
+    title: "Web Design & Development",
+    description: "Fast, beautiful websites built to convert visitors into customers.",
+    href: "/pricing",
+    image: "/images/Web Development ( Services).jpeg",
+    imageAlt: "Web development service illustration",
+  },
+  {
+    title: "Mobile Apps - iOS & Android",
+    description: "Native-quality apps with modern cross-platform delivery.",
+    href: "/pricing",
+    image: "/images/App development (Services).jpeg",
+    imageAlt: "App development service illustration",
+  },
+  {
+    title: "Social Media Management",
+    description: "Consistent, on-brand presence managed end to end.",
+    href: "/pricing",
+    image: "/images/Marketing ( Services).png",
+    imageAlt: "Marketing service illustration",
+  },
+  {
+    title: "Digital Marketing & SEO",
+    description: "Organic growth and paid strategy tuned to measurable outcomes.",
+    href: "/pricing",
+    image: "/images/Team (Services).png",
+    imageAlt: "Team service illustration",
+  },
+  {
+    title: "Brand & UI/UX Design",
+    description: "Identity systems and interfaces your customers remember.",
+    href: "/pricing",
+    image: "/images/UI UX Design ( Services).jpeg",
+    imageAlt: "UI and UX design service illustration",
+  },
+  {
+    title: "Web Applications & SaaS",
+    description: "Custom dashboards, tools, and SaaS MVPs built for scale.",
+    href: "/pricing",
+    image: "/images/AI Solution (Services).jpeg",
+    imageAlt: "AI solution service illustration",
+  },
+] as const;
+
+const resolveAssetSrc = (src: string) => encodeURI(src);
+
 export function HomePageContent() {
   const containerRef = useRef<HTMLDivElement>(null);
   const whyRef = useRef<HTMLDivElement>(null);
@@ -470,21 +517,36 @@ export function HomePageContent() {
           <h2 className="text-3xl font-bold md:text-4xl">Built by builders. Backed by experience.</h2>
           <p className="mx-auto mt-4 max-w-3xl text-slate-600">
             Skyen Systems is the digital services arm of the Skyen Group. We built Studiely in-house and bring that same product thinking to client work.
-          </p>
-        </div>
-        <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {[
-            ["3+", "Live products built in-house"],
-            ["2", "International offices"],
-            ["6", "Core service areas"],
-            ["3-4", "Week avg. website delivery"],
-          ].map(([value, label]) => (
-            <div key={label} className="rounded-2xl border border-white/50 bg-white/75 p-5">
-              <p className="text-3xl font-bold">{value}</p>
-              <p className="text-sm text-slate-600">{label}</p>
-            </div>
+        <div className="mt-8 grid gap-5">
+          {services.map((service) => (
+            <article
+              key={service.title}
+              data-service-card
+              className="group overflow-hidden rounded-3xl border border-white/50 bg-white/80 shadow-[0_18px_50px_-36px_rgba(49,195,195,0.45)] backdrop-blur-xl transition-transform duration-300 hover:-translate-y-1"
+            >
+              <div className="flex flex-col md:flex-row">
+                <div className="relative min-h-[210px] md:w-[36%] lg:w-[32%]">
+                  <Image
+                    src={resolveAssetSrc(service.image)}
+                    alt={service.imageAlt}
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    sizes="(min-width: 1024px) 320px, (min-width: 768px) 36vw, 100vw"
+                    quality={100}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-r from-[#0f2544]/10 via-transparent to-transparent md:bg-gradient-to-t md:from-[#0f2544]/12 md:via-transparent" />
+                </div>
+
+                <div className="flex-1 p-6 md:p-7 lg:p-8">
+                  <h3 className="text-lg font-semibold text-[#0f2544] md:text-xl">{service.title}</h3>
+                  <p className="mt-3 text-sm text-slate-600 md:text-base">{service.description}</p>
+                  <Link href={service.href} className="mt-5 inline-block text-sm font-semibold text-[#31C3C3]">
+                    Get started -&gt;
+                  </Link>
+                </div>
+              </div>
+            </article>
           ))}
-        </div>
       </section>
 
       <section className="mx-auto max-w-7xl px-6 py-14 md:px-10">

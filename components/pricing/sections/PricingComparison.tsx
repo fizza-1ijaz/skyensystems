@@ -16,11 +16,11 @@ export function PricingComparison() {
       <PricingBlueprintBackdrop className="opacity-[0.035]" />
 
       <div className="relative z-10 mx-auto max-w-[1440px] px-6 md:px-10">
-        <Reveal>
-          <h2 className="editorial-section-title max-w-2xl text-balance text-[#141414]">
+        <Reveal className="w-full text-center">
+          <h2 className="editorial-section-title mx-auto w-full max-w-none text-balance text-[#141414]">
             Package comparison.
           </h2>
-          <p className="mt-4 max-w-2xl text-sm leading-relaxed text-[#5C5C5C] md:text-base">
+          <p className="mx-auto mt-4 w-full max-w-none text-sm leading-relaxed text-[#5C5C5C] md:text-base">
             Select a category to review launch packages, monthly retainers, or individual service
             rates. All figures are starting points — final quotes are fixed after discovery.
           </p>

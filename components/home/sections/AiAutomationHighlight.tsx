@@ -4,6 +4,32 @@ import { AI_AUTOMATION_HIGHLIGHT } from "@/lib/homepage-data";
 import { Reveal } from "@/components/landing/Reveal";
 import { EditorialBoxCta } from "@/components/ui/EditorialBoxCta";
 
+function CapabilityCard({
+  capability,
+  index,
+}: {
+  capability: string;
+  index: number;
+}) {
+  return (
+    <li className="group relative overflow-hidden border border-[#E5E5E3] bg-white transition-[border-color,box-shadow] duration-300 hover:border-[#31C3C3]/50 hover:shadow-[0_20px_50px_-35px_rgba(49,195,195,0.35)]">
+      <div
+        className="absolute inset-x-0 bottom-0 z-0 h-0 bg-[#31C3C3] transition-[height] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] [@media(hover:hover)]:group-hover:h-full motion-reduce:[@media(hover:hover)]:group-hover:h-0"
+        aria-hidden
+      />
+
+      <div className="relative z-10 p-5 transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:translate-y-0 [@media(hover:hover)]:group-hover:-translate-y-1 md:p-6">
+        <span className="font-heading text-sm font-bold text-[#31C3C3] transition-colors duration-300 [@media(hover:hover)]:group-hover:text-white">
+          {String(index + 1).padStart(2, "0")}
+        </span>
+        <p className="mt-3 font-heading text-base font-bold text-[#141414] transition-colors duration-300 [@media(hover:hover)]:group-hover:text-white md:text-lg">
+          {capability}
+        </p>
+      </div>
+    </li>
+  );
+}
+
 export function AiAutomationHighlight() {
   return (
     <section className="relative overflow-hidden bg-[#FAFAF8] py-20 md:py-28">
@@ -38,17 +64,7 @@ export function AiAutomationHighlight() {
           <Reveal delay={0.08} className="lg:col-span-7">
             <ul className="grid gap-4 sm:grid-cols-2">
               {AI_AUTOMATION_HIGHLIGHT.capabilities.map((capability, index) => (
-                <li
-                  key={capability}
-                  className="border border-[#E5E5E3] bg-white p-5 transition-[border-color,box-shadow] duration-300 hover:border-[#31C3C3]/50 hover:shadow-[0_20px_50px_-35px_rgba(49,195,195,0.35)] md:p-6"
-                >
-                  <span className="font-heading text-sm font-bold text-[#31C3C3]">
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
-                  <p className="mt-3 font-heading text-base font-bold text-[#141414] md:text-lg">
-                    {capability}
-                  </p>
-                </li>
+                <CapabilityCard key={capability} capability={capability} index={index} />
               ))}
             </ul>
           </Reveal>

@@ -55,14 +55,14 @@ export function IndustriesSection() {
   return (
     <section className="bg-[#FAFAF8] py-20 md:py-28">
       <div className="mx-auto max-w-[1440px] px-6 md:px-10">
-        <Reveal className="max-w-3xl">
+        <Reveal className="w-full text-center">
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#31C3C3]">
             {INDUSTRIES_SECTION.label}
           </p>
-          <h2 className="editorial-section-title mt-4 text-balance text-[#141414]">
+          <h2 className="editorial-section-title mx-auto mt-4 w-full max-w-none text-balance text-[#141414]">
             {INDUSTRIES_SECTION.heading}
           </h2>
-          <p className="mt-4 text-sm leading-relaxed text-[#5C5C5C] md:text-base">
+          <p className="mx-auto mt-4 w-full max-w-none text-sm leading-relaxed text-[#5C5C5C] md:text-base">
             {INDUSTRIES_SECTION.paragraph}
           </p>
         </Reveal>
@@ -75,16 +75,14 @@ export function IndustriesSection() {
           </div>
 
           {CENTERED_INDUSTRY_CARDS.length > 0 ? (
-            <div className="mt-px flex justify-center bg-[#E5E5E3]">
-              <div className="grid w-full gap-px bg-[#E5E5E3] md:grid-cols-2 lg:w-2/3 lg:grid-cols-2">
-                {CENTERED_INDUSTRY_CARDS.map((industry, index) => (
-                  <IndustryCard
-                    key={industry.title}
-                    industry={industry}
-                    index={MAIN_INDUSTRY_CARDS.length + index}
-                  />
-                ))}
-              </div>
+            <div className="mt-px grid w-full grid-cols-1 gap-px bg-[#E5E5E3] md:grid-cols-2">
+              {CENTERED_INDUSTRY_CARDS.map((industry, index) => (
+                <IndustryCard
+                  key={industry.title}
+                  industry={industry}
+                  index={MAIN_INDUSTRY_CARDS.length + index}
+                />
+              ))}
             </div>
           ) : null}
         </div>

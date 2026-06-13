@@ -180,42 +180,10 @@ export const ABOUT_WORK = [
 ] as const;
 
 export const ABOUT_TECH_STACK = [
-  {
-    id: "react",
-    label: "React / Next.js",
-    bubbleA: "bg-[#31C3C3]/35",
-    bubbleB: "bg-[#71CBD1]/30",
-    bubbleC: "bg-[#A9E7E2]/45",
-    surface: "from-[#E8F6F5]/90 via-white to-[#EFF9F8]/80",
-    border: "border-[#31C3C3]/25 group-hover:border-[#31C3C3]/50",
-  },
-  {
-    id: "flutter",
-    label: "Flutter / Apps",
-    bubbleA: "bg-[#6366F1]/30",
-    bubbleB: "bg-[#818CF8]/28",
-    bubbleC: "bg-[#C7D2FE]/40",
-    surface: "from-[#EEF2FF]/90 via-white to-[#E0E7FF]/75",
-    border: "border-[#6366F1]/22 group-hover:border-[#6366F1]/45",
-  },
-  {
-    id: "ai",
-    label: "AI / LLM APIs",
-    bubbleA: "bg-[#A855F7]/28",
-    bubbleB: "bg-[#C084FC]/26",
-    bubbleC: "bg-[#DDD6FE]/42",
-    surface: "from-[#FAF5FF]/90 via-white to-[#F3E8FF]/78",
-    border: "border-[#A855F7]/22 group-hover:border-[#A855F7]/45",
-  },
-  {
-    id: "seo",
-    label: "SEO / Analytics",
-    bubbleA: "bg-[#10B981]/28",
-    bubbleB: "bg-[#34D399]/24",
-    bubbleC: "bg-[#A7F3D0]/42",
-    surface: "from-[#ECFDF5]/90 via-white to-[#D1FAE5]/75",
-    border: "border-[#10B981]/22 group-hover:border-[#10B981]/45",
-  },
+  { id: "react", label: "React / Next.js" },
+  { id: "flutter", label: "Flutter / Apps" },
+  { id: "ai", label: "AI / LLM APIs" },
+  { id: "seo", label: "SEO / Analytics" },
 ] as const;
 
 export const ABOUT_PRIMARY_SERVICE_HREF = PRIMARY_SERVICE_HREF;

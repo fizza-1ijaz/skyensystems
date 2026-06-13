@@ -94,29 +94,30 @@ export function PricingEstimator({
               Typical investment ranges
             </p>
             <div className="mt-6 grid gap-px bg-[#DADAD8] md:grid-cols-3">
-              {INVESTMENT_RANGES.map((item, index) => (
+              {INVESTMENT_RANGES.map((item) => (
                 <div
                   key={item.label}
-                  className={`group bg-[#FAFAF8] p-6 transition-colors duration-200 md:p-8 ${
-                    index % 2 === 1 ? "md:bg-[rgba(49,195,195,0.03)]" : ""
-                  }`}
+                  className="group relative overflow-hidden bg-white p-6 md:p-8"
                 >
-                  <div className="relative pl-0 transition-all duration-200 group-hover:pl-3">
-                    <span
-                      className="absolute left-0 top-0 h-0 w-0.5 bg-[#31C3C3] transition-all duration-200 group-hover:h-full"
-                      aria-hidden
-                    />
-                    <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#8A8A8A]">
+                  <div
+                    className="absolute inset-x-0 bottom-0 z-0 h-0 bg-[#31C3C3] transition-[height] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] [@media(hover:hover)]:group-hover:h-full motion-reduce:[@media(hover:hover)]:group-hover:h-0"
+                    aria-hidden
+                  />
+
+                  <div className="relative z-10 transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:translate-y-0 [@media(hover:hover)]:group-hover:-translate-y-1">
+                    <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#8A8A8A] transition-colors duration-300 [@media(hover:hover)]:group-hover:text-white/70">
                       {item.label}
                     </p>
-                    <p className="mt-3 font-heading text-2xl font-bold tracking-tight text-[#141414] md:text-[1.75rem]">
+                    <p className="mt-3 font-heading text-2xl font-bold tracking-tight text-[#141414] transition-colors duration-300 md:text-[1.75rem] [@media(hover:hover)]:group-hover:text-white">
                       {item.range}
                     </p>
                     <span
-                      className="mt-2 block h-px w-full max-w-[6rem] bg-[#31C3C3]/35"
+                      className="mt-2 block h-px w-full max-w-[6rem] bg-[#31C3C3]/35 transition-colors duration-300 [@media(hover:hover)]:group-hover:bg-white/30"
                       aria-hidden
                     />
-                    <p className="mt-3 text-xs leading-relaxed text-[#5C5C5C]">{item.note}</p>
+                    <p className="mt-3 text-xs leading-relaxed text-[#5C5C5C] transition-colors duration-300 [@media(hover:hover)]:group-hover:text-white/85">
+                      {item.note}
+                    </p>
                   </div>
                 </div>
               ))}

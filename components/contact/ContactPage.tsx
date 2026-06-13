@@ -11,7 +11,7 @@ const eyebrowClass =
 export function ContactPage() {
   return (
     <div className="bg-white text-[#141414]">
-      <section className="px-6 pb-8 pt-[calc(var(--site-nav-height)+2.5rem)] text-center md:pb-10 md:pt-[calc(var(--site-nav-height)+3.5rem)]">
+      <section className="px-6 pb-8 pt-10 text-center md:pb-10 md:pt-14">
         <div className="mx-auto max-w-[980px]">
           <Reveal>
             <p className={eyebrowClass}>Contact Skyen Systems</p>

@@ -7,11 +7,11 @@ export function PricingEngagementOverview() {
   return (
     <section className="border-t border-[#DADAD8] bg-[#F4F4F2] pt-20 pb-10 md:pt-28 md:pb-12">
       <div className="mx-auto max-w-[1440px] px-6 md:px-10">
-        <Reveal>
-          <h2 className="editorial-section-title max-w-2xl text-balance text-[#141414]">
+        <Reveal className="w-full text-center">
+          <h2 className="editorial-section-title mx-auto w-full max-w-none text-balance text-[#141414]">
             How we typically engage.
           </h2>
-          <p className="mt-4 max-w-2xl text-sm leading-relaxed text-[#5C5C5C] md:text-base">
+          <p className="mx-auto mt-4 w-full max-w-none text-sm leading-relaxed text-[#5C5C5C] md:text-base">
             Engagement models define how we embed, deliver, and remain accountable — before package
             scope or retainer cadence is selected.
           </p>

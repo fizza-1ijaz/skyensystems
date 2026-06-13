@@ -69,6 +69,7 @@ export const FEATURED_PRODUCTS_CARDS = [
     metricLabel: "Distribution",
     logo: "/logo-studiely.jpeg",
     href: "https://studiely.com",
+    backgroundImage: "/images/Studiely img.jpeg",
   },
   {
     name: "Make My Lesson — AI Teaching Assistant",
@@ -77,8 +78,9 @@ export const FEATURED_PRODUCTS_CARDS = [
       "Make My Lesson helps teachers and professors create lesson plans, worksheets, quizzes, tests, assessments, presentations, and classroom activities faster with AI-powered teaching tools.",
     metric: "App Store & Play Store",
     metricLabel: "Distribution",
-    logo: "/logo-makemylesson2.png",
+    logo: "/logo-makemylesson.png",
     href: "https://makemylesson.ai",
+    backgroundImage: "/images/MML img.png",
   },
   {
     name: "Linguatude — AI Language Learning Platform",
@@ -89,6 +91,7 @@ export const FEATURED_PRODUCTS_CARDS = [
     metricLabel: "Client reach",
     logo: "/logo-linguatude.jpg",
     href: "https://linguatude.com",
+    backgroundImage: "/images/linguatude img.png",
   },
 ] as const;
 

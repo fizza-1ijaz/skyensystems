@@ -517,6 +517,8 @@ export function HomePageContent() {
           <h2 className="text-3xl font-bold md:text-4xl">Built by builders. Backed by experience.</h2>
           <p className="mx-auto mt-4 max-w-3xl text-slate-600">
             Skyen Systems is the digital services arm of the Skyen Group. We built Studiely in-house and bring that same product thinking to client work.
+          </p>
+        </div>
         <div className="mt-8 grid gap-5">
           {services.map((service) => (
             <article
@@ -547,6 +549,7 @@ export function HomePageContent() {
               </div>
             </article>
           ))}
+        </div>
       </section>
 
       <section className="mx-auto max-w-7xl px-6 py-14 md:px-10">

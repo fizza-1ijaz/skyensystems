@@ -19,8 +19,6 @@ import {
   Send,
   Users,
 } from "lucide-react";
-import aboutUsAnimation from "@/public/anims/about us.json";
-import { PricingPageLottie } from "./PricingPageLottie";
 
 const STORY_CIRCLE_COPY = [
   "We operate a regional delivery office in Lahore, Pakistan, registered with the Pakistan Software Export Board (PSEB). Our Lahore office is our primary development centre, staffed with senior developers, designers, AI engineers, and digital marketers working full-time on client projects.",
@@ -136,19 +134,12 @@ export function AboutPageContent() {
           </h1>
         </div>
 
-        <div className="relative z-20 mx-auto mt-3 flex w-full max-w-screen-2xl flex-col items-stretch gap-6 sm:mt-4 sm:gap-7 md:mt-5 md:flex-row md:items-start md:justify-start md:gap-6 lg:gap-8">
-          <div className="relative aspect-video w-full max-w-[min(92vw,22rem)] shrink-0 grow-0 basis-auto self-start sm:max-w-[min(92vw,26rem)] md:max-w-[min(58%,28rem)] lg:max-w-[min(52%,34rem)] xl:max-w-[min(48%,40rem)] 2xl:max-w-[44rem]">
-            <PricingPageLottie
-              animationData={aboutUsAnimation}
-              className="absolute inset-0 h-full w-full"
-            />
-          </div>
-
+        <div className="relative z-20 mx-auto mt-3 max-w-3xl sm:mt-4 md:mt-8">
           <motion.article
             initial={{ opacity: 0, y: 18 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
-            className="z-30 mt-2 w-full min-w-0 flex-1 rounded-lg border border-slate-200/90 bg-white/95 p-4 text-left text-sm leading-relaxed text-slate-600 shadow-lg shadow-slate-900/10 ring-1 ring-slate-200/50 backdrop-blur-sm sm:mt-3 sm:rounded-xl sm:p-5 sm:text-base sm:leading-relaxed md:mt-14 md:w-auto md:min-w-0 md:flex-1 md:basis-0 md:max-w-none md:rounded-2xl md:p-6 md:text-[0.9375rem] md:leading-7 lg:mt-16 lg:p-6 lg:text-base lg:leading-8"
+            className="w-full rounded-lg border border-slate-200/90 bg-white/95 p-4 text-left text-sm leading-relaxed text-slate-600 shadow-lg shadow-slate-900/10 ring-1 ring-slate-200/50 backdrop-blur-sm sm:rounded-xl sm:p-5 sm:text-base sm:leading-relaxed md:rounded-2xl md:p-6 md:text-[0.9375rem] md:leading-7 lg:p-6 lg:text-base lg:leading-8"
           >
             <p className="mb-3 text-center text-xs font-bold uppercase tracking-[0.2em] text-[#0F172A]">
               Company Story

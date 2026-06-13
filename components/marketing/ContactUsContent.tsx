@@ -2,9 +2,6 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import Lottie from "lottie-react";
-import contactBoardAnimation from "@/public/anims/Man with contact us board.json";
-import arrowDownAnimation from "@/public/anims/Arrow down.json";
 
 const OFFICE_EMAIL = "Info@skyensystems.com";
 
@@ -80,10 +77,7 @@ export default function ContactUsContent() {
 
   return (
     <div className="pb-8 pt-12">
-      <section className="relative px-6 py-16 md:px-16 overflow-hidden">
-        <div className="fixed right-[-20px] top-24 md:top-28 lg:top-32 w-32 h-32 sm:w-40 sm:h-40 md:w-56 md:h-56 lg:w-72 lg:h-72 pointer-events-none z-10">
-          <Lottie animationData={contactBoardAnimation} loop={true} />
-        </div>
+      <section className="relative overflow-hidden px-6 py-16 md:px-16">
         <div className="mx-auto max-w-6xl text-center">
           <p className="mb-3 text-xs font-semibold uppercase tracking-[0.14em] text-slate-500">Get in touch</p>
           <h1 className="text-4xl font-extrabold text-[#0F172A] md:text-6xl">Let&apos;s talk. No pitch. No pressure.</h1>
@@ -237,13 +231,9 @@ export default function ContactUsContent() {
 
               <div className="grid gap-4 lg:grid-cols-3 lg:items-start lg:gap-6">
                 <div className="flex flex-col gap-4">
-                  <div className="w-full rounded-xl bg-white p-4 shadow-sm relative overflow-visible text-center lg:text-left">
+                  <div className="w-full rounded-xl bg-white p-4 shadow-sm text-center lg:text-left">
                     <p className="text-xs text-slate-400 uppercase tracking-wider">Email</p>
                     <p className="mt-1 font-semibold text-[#0F172A]">{OFFICE_EMAIL}</p>
-
-                    <div className="absolute right-4 top-1 md:top-1/2 md:-translate-y-1/2 w-8 h-8 pointer-events-none transform rotate-90 hidden sm:block">
-                      <Lottie animationData={arrowDownAnimation} loop={true} />
-                    </div>
                   </div>
 
                   <div className="w-full rounded-xl bg-white p-4 shadow-sm text-center lg:text-left">

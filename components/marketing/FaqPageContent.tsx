@@ -1,8 +1,6 @@
 ﻿"use client";
 
 import type { ReactNode } from "react";
-import { useEffect, useState } from "react";
-import Lottie from "lottie-react";
 import { FAQ_SECTIONS, type FaqSection } from "./faq-page-data";
 
 const SECTION_BACKGROUNDS: Partial<Record<string, string>> = {
@@ -44,21 +42,6 @@ function FaqSectionBand({ bgImage, children }: { bgImage: string; children: Reac
 }
 
 export function FaqPageContent() {
-  const [leftAnim, setLeftAnim] = useState<unknown>(null);
-  const [rightAnim, setRightAnim] = useState<unknown>(null);
-
-  useEffect(() => {
-    fetch(encodeURI("/anims/Frequently Asked Question (FAQ).json"))
-      .then((r) => r.json())
-      .then((data) => setLeftAnim(data))
-      .catch(() => {});
-
-    fetch(encodeURI("/anims/Questions.json"))
-      .then((r) => r.json())
-      .then((data) => setRightAnim(data))
-      .catch(() => {});
-  }, []);
-
   return (
     <div className="text-[#1a2050]">
       <main className="relative mx-auto flex w-full max-w-4xl flex-col gap-10 px-6 pb-16 pt-28 md:px-10 md:pt-32">
@@ -81,33 +64,11 @@ export function FaqPageContent() {
           }
 
           if (section.id === "services") {
-            return (
-              <div key={section.id} className="relative">
-                <div className="pointer-events-none absolute -left-72 top-1/2 z-0 hidden -translate-y-1/2 md:block lg:-left-80">
-                  <div className="w-80">
-                    {leftAnim ? (
-                      <Lottie animationData={leftAnim} loop style={{ width: "auto", height: 520 }} />
-                    ) : null}
-                  </div>
-                </div>
-                <FaqSectionCard section={section} />
-              </div>
-            );
+            return <FaqSectionCard key={section.id} section={section} />;
           }
 
           if (section.id === "refunds") {
-            return (
-              <div key={section.id} className="relative">
-                <div className="pointer-events-none absolute -right-56 top-1/2 z-0 hidden -translate-y-1/2 md:block lg:-right-64">
-                  <div className="w-56">
-                    {rightAnim ? (
-                      <Lottie animationData={rightAnim} loop style={{ width: "auto", height: 320 }} />
-                    ) : null}
-                  </div>
-                </div>
-                <FaqSectionCard section={section} />
-              </div>
-            );
+            return <FaqSectionCard key={section.id} section={section} />;
           }
 
           return <FaqSectionCard key={section.id} section={section} />;

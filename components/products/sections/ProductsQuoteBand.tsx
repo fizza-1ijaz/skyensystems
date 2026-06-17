@@ -1,7 +1,7 @@
 "use client";
 
 import { Reveal } from "@/components/landing/Reveal";
-import { EditorialBoxCta } from "@/components/ui/EditorialBoxCta";
+import { PRODUCTS_QUOTE } from "@/lib/products-page-data";
 
 export function ProductsQuoteBand() {
   return (
@@ -10,20 +10,12 @@ export function ProductsQuoteBand() {
         <Reveal>
           <blockquote className="mx-auto max-w-4xl text-center">
             <p className="font-heading text-2xl font-bold leading-snug tracking-tight text-[#141414] md:text-3xl">
-              &ldquo;Studiely isn&apos;t a demo. It isn&apos;t a portfolio piece. It&apos;s a live
-              product with real users — built entirely by our in-house team. When we say we can build
-              your app, this is what we mean.&rdquo;
+              &ldquo;{PRODUCTS_QUOTE.quote}&rdquo;
+            </p>
+            <p className="mx-auto mt-6 max-w-2xl text-sm leading-relaxed text-[#5C5C5C] md:text-base">
+              {PRODUCTS_QUOTE.supportingText}
             </p>
           </blockquote>
-        </Reveal>
-        <Reveal delay={0.08} className="mt-8 text-center">
-          <EditorialBoxCta
-            href="/contact-us"
-            variant="neutral"
-            className="transition-colors duration-300 hover:border-[#31C3C3] hover:bg-[#31C3C3] hover:!text-white"
-          >
-            See our mobile app service
-          </EditorialBoxCta>
         </Reveal>
       </div>
     </section>

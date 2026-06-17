@@ -3,17 +3,23 @@ export type ProductMetric = {
   label: string;
 };
 
+export type ProductFeature = {
+  title: string;
+  description: string;
+};
+
 export type ProductScene = {
   id: string;
   name: string;
   eyebrow: string;
   status: string;
   tagline: string;
-  paragraphs: string[];
-  platforms: string[];
-  tech: string[];
+  description: string;
+  featuresLabel: string;
+  features: readonly ProductFeature[];
   mockupLabel: string;
   mockupNote: string;
+  previewLabels: readonly string[];
   mockup1Src?: string;
   mockup2Src?: string;
   logoSrc: string;
@@ -22,14 +28,40 @@ export type ProductScene = {
   primaryExternal?: boolean;
   secondaryCtaLabel?: string;
   secondaryCtaHref?: string;
-  waitlistPlaceholder?: string;
-  waitlistButtonLabel?: string;
   waitlistNote?: string;
   showStoreButtons?: boolean;
   appStoreHref?: string;
   playStoreHref?: string;
   metrics: readonly ProductMetric[];
 };
+
+export const PRODUCTS_HERO = {
+  label: "Products",
+  heading: "Digital Products Built, Launched and Improved by Skyen Systems",
+  paragraph:
+    "Skyen Systems designs and engineers in-house software products across AI learning, education, productivity and language technology. These products use the same strategy, design, engineering, AI integration and growth standards we bring to client projects.",
+  primaryCta: { label: "Explore Products", href: "#product-studiely" },
+  secondaryCta: { label: "Build Something Similar", href: "/contact-us#inquiry" },
+} as const;
+
+export const PRODUCTS_HERO_PROOF_CARDS = [
+  {
+    title: "AI Products",
+    description: "Smart tools and AI-assisted workflows.",
+  },
+  {
+    title: "Mobile Apps",
+    description: "App store ready product experiences.",
+  },
+  {
+    title: "Web Platforms",
+    description: "Product websites, dashboards and portals.",
+  },
+  {
+    title: "Growth Systems",
+    description: "SEO, ASO, analytics and product improvement.",
+  },
+] as const;
 
 export const PRODUCT_PROCESS_STEPS = [
   "Concept",
@@ -38,6 +70,20 @@ export const PRODUCT_PROCESS_STEPS = [
   "Deployment",
 ] as const;
 
+export const PRODUCTS_QUOTE = {
+  quote: "These are not demo projects — they are real products built by our in-house team.",
+  supportingText:
+    "Our products show how Skyen Systems thinks, designs, develops, launches and improves digital platforms over time.",
+} as const;
+
+export const PRODUCTS_FINAL_CTA = {
+  label: "Custom Product Solutions",
+  heading: "Looking for a Custom Product Solution?",
+  paragraph:
+    "Discuss bespoke software, mobile apps, AI platforms, SaaS products and product engineering with our team. We apply the same product standards behind our own products to every client engagement.",
+  cta: { label: "Start a Project", href: "/contact-us#inquiry" },
+} as const;
+
 /** Index of the product section that receives dark featured treatment. */
 export const FEATURED_PRODUCT_INDEX = 1;
 
@@ -45,109 +91,152 @@ export const PRODUCTS: ProductScene[] = [
   {
     id: "studiely",
     name: "Studiely",
-    eyebrow: "AI STUDY TOOL",
+    eyebrow: "AI Study Tool",
     status: "LIVE — Available on App Store and Play Store",
     tagline: "Study smarter. Not harder.",
-    paragraphs: [
-      "Studiely uses AI to turn your notes and textbooks into smart flashcards, adaptive quizzes, and personalised revision plans. Designed for students who want to make every study hour count.",
+    description:
+      "Studiely uses AI to turn notes and textbooks into smart flashcards, adaptive quizzes and personalised revision plans. It is designed for students who want to make every study hour more focused, organised and productive.",
+    featuresLabel: "Core Features",
+    features: [
+      {
+        title: "Smart Flashcard Generation",
+        description: "Upload notes and let AI build useful flashcard decks automatically.",
+      },
+      {
+        title: "Adaptive Quizzes",
+        description: "Practice questions adjust around weak and strong topics.",
+      },
+      {
+        title: "Personalised Revision Plans",
+        description:
+          "Study schedules are built around exam dates, subject difficulty and revision goals.",
+      },
+      {
+        title: "Progress Tracking",
+        description: "Students can see mastered topics, weaker areas and revision progress.",
+      },
     ],
-    platforms: ["Core Features"],
-    tech: [
-      "Smart Flashcard Generation: Upload your notes — Studiely AI extracts key concepts and builds flashcard decks automatically.",
-      "Adaptive Quizzes: Questions adjust to your performance in real time. Harder on what you struggle with, lighter on what you know.",
-      "Personalised Revision Plans: Tell Studiely your exam date. It builds a revision schedule covering everything, prioritised by difficulty.",
-      "Progress Tracking: See what you've mastered and what needs more work — at a glance.",
-      "Study Groups: Share decks and compete with classmates on quiz leaderboards.",
+    mockupLabel: "Studiely Mobile App",
+    mockupNote: "Preview area for latest release screenshots.",
+    previewLabels: [
+      "Study Planner",
+      "Exam Focus",
+      "Flashcards",
+      "Quiz Practice",
+      "Revision Plan",
+      "Progress",
     ],
-    mockupLabel: "Studiely - Mobile App",
-    mockupNote: "Live previews from our latest release.",
     mockup1Src: "/studiely-mockup.jpeg",
     mockup2Src: "/studiely-mockup2.jpeg",
     logoSrc: "/logo-studiely.jpeg",
     primaryCtaLabel: "Visit Studiely",
-    primaryCtaHref: "https://studiely.com",
+    primaryCtaHref: "https://studiely.com/",
     primaryExternal: true,
-    secondaryCtaLabel: "Build something similar",
-    secondaryCtaHref: "/contact-us?service=mobile-app",
+    secondaryCtaLabel: "Build Something Similar",
+    secondaryCtaHref: "/contact-us#inquiry",
     showStoreButtons: true,
     appStoreHref: "https://apps.apple.com/us/app/studiely-your-daily-study-app/id6758246110",
     playStoreHref:
       "https://play.google.com/store/apps/details?id=com.skyensolutions.eduplayce.eduplayce",
     metrics: [
-      { value: "Live", label: "Production" },
-      { value: "24/7", label: "Availability" },
-      { value: "AI", label: "Core engine" },
-      { value: "99.9%", label: "Uptime target" },
+      { value: "Live", label: "Product" },
+      { value: "AI", label: "Core Engine" },
+      { value: "App", label: "iOS & Android" },
+      { value: "Growth", label: "SEO & ASO" },
     ],
   },
   {
     id: "make-my-lesson",
     name: "Make My Lesson",
-    eyebrow: "AI LESSON PLANNER",
+    eyebrow: "AI Lesson Planner",
     status: "LIVE — Available on App Store and Play Store",
     tagline: "Great lessons. Half the planning time.",
-    paragraphs: [
-      "An AI-powered lesson plan generator built for teachers. Input your topic, grade level, curriculum standard, and available time — get a complete, editable lesson plan in seconds.",
+    description:
+      "Make My Lesson is an AI-powered lesson planning platform for teachers and educators. It helps generate structured lesson plans, worksheets, quizzes, assessments and classroom resources faster.",
+    featuresLabel: "Core Features",
+    features: [
+      {
+        title: "Curriculum-Aligned Plans",
+        description: "Generate lesson plans based on topic, grade, standard and duration.",
+      },
+      {
+        title: "Full Lesson Structure",
+        description: "Objectives, activities, notes, assessments and exit tasks in one clear flow.",
+      },
+      {
+        title: "Editable Content",
+        description: "Generated plans can be edited and adjusted by the educator.",
+      },
+      {
+        title: "Teaching Resources",
+        description: "Worksheets, quizzes and activity ideas support classroom planning.",
+      },
     ],
-    platforms: ["Core Features"],
-    tech: [
-      "Curriculum-Aligned Plans: Compatible with Common Core, UK National Curriculum, and other major frameworks.",
-      "Full Lesson Structure: Objectives, warm-up, main activity, differentiation notes, exit ticket — complete.",
-      "One-Click Editable: Every generated plan is fully editable. Your plan, your voice — just faster.",
-      "Resource Suggestions: Linked worksheets, videos, and discussion prompts relevant to your topic.",
-      "Lesson Bank: Save and reuse past plans. Build your own library over time.",
-    ],
-    mockupLabel: "Make My Lesson - AI Platform",
-    mockupNote: "Live previews from our latest release.",
+    mockupLabel: "Make My Lesson Platform",
+    mockupNote: "Preview area for lesson planner screens.",
+    previewLabels: ["Lesson Plan", "Quiz Maker", "Objectives", "Activities", "Worksheet", "Assessment"],
     mockup1Src: "/makemylesson-mockup.jpeg",
     mockup2Src: "/makemylesson-mockup2.jpeg",
     logoSrc: "/logo-makemylesson2.png",
     primaryCtaLabel: "Visit Make My Lesson",
-    primaryCtaHref: "https://makemylesson.ai",
+    primaryCtaHref: "https://www.makemylesson.ai/",
     primaryExternal: true,
+    secondaryCtaLabel: "Build Education Product",
+    secondaryCtaHref: "/contact-us#inquiry",
     showStoreButtons: true,
-    appStoreHref: "https://makemylesson.ai",
+    appStoreHref: "https://www.makemylesson.ai/",
     playStoreHref:
       "https://play.google.com/store/apps/details?id=com.skyensolutions.makemylesson.make_my_lesson",
     metrics: [
-      { value: "Live", label: "Production" },
-      { value: "<60s", label: "Plan generation" },
-      { value: "Multi", label: "Curriculum support" },
-      { value: "Full", label: "Lesson structure" },
+      { value: "Live", label: "Product" },
+      { value: "<60s", label: "Plan Flow" },
+      { value: "AI", label: "Content System" },
+      { value: "Full", label: "Lesson Structure" },
     ],
   },
   {
     id: "linguatude",
     name: "Linguatude",
-    eyebrow: "AI LANGUAGE LEARNING",
+    eyebrow: "AI Language Learning",
     status: "In Development",
     tagline: "Finally become fluent. Not just functional.",
-    paragraphs: [
-      "Linguatude combines AI conversation practice, spaced repetition vocabulary, and real-world context to take you from beginner to confident speaker — at your own pace.",
+    description:
+      "Linguatude combines AI conversation practice, vocabulary learning and real-world language scenarios to help learners build confidence at their own pace.",
+    featuresLabel: "Core Features Planned",
+    features: [
+      {
+        title: "AI Conversation Partner",
+        description:
+          "Practice with an AI tutor that responds naturally and adjusts to the learner's level.",
+      },
+      {
+        title: "Spaced Repetition Vocabulary",
+        description: "Words return at useful moments to improve long-term retention.",
+      },
+      {
+        title: "Real-World Scenarios",
+        description: "Practice travel, business, restaurant and daily conversations.",
+      },
+      {
+        title: "Progress Milestones",
+        description: "Clear achievement levels support motivation and consistency.",
+      },
     ],
-    platforms: ["Core Features (Planned)"],
-    tech: [
-      "AI Conversation Partner: Practice speaking with an AI tutor that responds naturally, corrects gently, and adjusts to your level.",
-      "Spaced Repetition Vocabulary: Words surface at the scientifically optimal moment for long-term retention.",
-      "Real-World Scenarios: Restaurant conversations. Business meetings. Travel situations. Practical language from day one.",
-      "Pronunciation Feedback: Real-time analysis with specific, actionable improvement cues.",
-      "Progress Milestones: Clear levels and achievements to keep you motivated.",
-    ],
-    mockupLabel: "Linguatude - Coming soon",
-    mockupNote: "Be the first to access Linguatude at launch.",
+    mockupLabel: "Linguatude Coming Soon",
+    mockupNote: "Preview area for product concept screens.",
+    previewLabels: ["AI Tutor", "Fluency Path", "Conversation", "Vocabulary", "Scenarios", "Milestones"],
     mockup1Src: "/linguatude-mockup1.jpeg",
     mockup2Src: "/linguatude-mockup2.jpeg",
     logoSrc: "/logo-linguatude.jpg",
     primaryCtaLabel: "Visit Linguatude",
-    primaryCtaHref: "https://linguatude.com",
+    primaryCtaHref: "https://linguatude.com/",
     primaryExternal: true,
-    waitlistPlaceholder: "Your email address",
-    waitlistButtonLabel: "Notify me",
-    waitlistNote: "Be the first to access Linguatude at launch.",
+    secondaryCtaLabel: "Discuss AI Product",
+    secondaryCtaHref: "/contact-us#inquiry",
     metrics: [
       { value: "AI", label: "Conversation" },
       { value: "Adaptive", label: "Difficulty" },
-      { value: "Speech", label: "Analysis" },
+      { value: "Speech", label: "Practice" },
       { value: "Progress", label: "Milestones" },
     ],
   },

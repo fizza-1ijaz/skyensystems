@@ -6,7 +6,6 @@ import { TrustCredibilityStrip } from "@/components/home/sections/TrustCredibili
 import { ServicesOverviewSection } from "@/components/home/sections/ServicesOverviewSection";
 import { ProblemSolutionSection } from "@/components/home/sections/ProblemSolutionSection";
 import { FeaturedProductsSection } from "@/components/home/sections/FeaturedProductsSection";
-import { CaseStudiesSection } from "@/components/home/sections/CaseStudiesSection";
 import { HomeProcessSection } from "@/components/home/sections/ProcessSection";
 import { WhyChooseSection } from "@/components/home/sections/WhyChooseSection";
 import { AiAutomationHighlight } from "@/components/home/sections/AiAutomationHighlight";
@@ -32,34 +31,31 @@ export function LandingPage() {
       {/* 5. Featured Products */}
       <FeaturedProductsSection />
 
-      {/* 6. Case Studies */}
-      <CaseStudiesSection />
-
-      {/* 7. Industries We Serve */}
+      {/* 6. Industries We Serve */}
       <IndustriesSection />
 
-      {/* 8. Process */}
+      {/* 7. Process */}
       <HomeProcessSection />
 
-      {/* 9. Why Choose Skyen Systems */}
+      {/* 8. Why Choose Skyen Systems */}
       <WhyChooseSection />
 
-      {/* 10. AI & Automation Highlight */}
+      {/* 9. AI & Automation Highlight */}
       <AiAutomationHighlight />
 
-      {/* 11. Technology Stack */}
+      {/* 10. Technology Stack */}
       <TechnologyStackSection />
 
-      {/* 12. Testimonials / Client Outcomes */}
+      {/* 11. Testimonials / Client Outcomes */}
       <TestimonialsSection />
 
-      {/* 13. Blog */}
+      {/* 12. Blog */}
       <FeaturedBlogs />
 
-      {/* 14. FAQ */}
+      {/* 13. FAQ */}
       <HomeFaqSection />
 
-      {/* 15. Final CTA */}
+      {/* 14. Final CTA */}
       <LandingCta />
     </div>
   );

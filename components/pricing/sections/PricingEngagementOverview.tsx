@@ -1,20 +1,19 @@
 "use client";
 
 import { Reveal } from "@/components/landing/Reveal";
-import { ENGAGEMENT_MODELS } from "@/lib/pricing-page-data";
+import { ENGAGEMENT_MODELS, ENGAGEMENT_MODELS_SECTION } from "@/lib/pricing-page-data";
 
 export function PricingEngagementOverview() {
   return (
     <section className="border-t border-[#DADAD8] bg-[#F4F4F2] pt-20 pb-10 md:pt-28 md:pb-12">
       <div className="mx-auto max-w-[1440px] px-6 md:px-10">
         <Reveal className="w-full text-center">
-          <h2 className="editorial-section-title mx-auto w-full max-w-none text-balance text-[#141414]">
-            How we typically engage.
-          </h2>
-          <p className="mx-auto mt-4 w-full max-w-none text-sm leading-relaxed text-[#5C5C5C] md:text-base">
-            Engagement models define how we embed, deliver, and remain accountable — before package
-            scope or retainer cadence is selected.
+          <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-[#8A8A8A]">
+            {ENGAGEMENT_MODELS_SECTION.label}
           </p>
+          <h2 className="editorial-section-title mx-auto mt-4 w-full max-w-none text-balance text-[#141414]">
+            {ENGAGEMENT_MODELS_SECTION.heading}
+          </h2>
         </Reveal>
 
         <div className="mt-12 grid gap-5 md:grid-cols-2">

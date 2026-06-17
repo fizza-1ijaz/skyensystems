@@ -24,11 +24,11 @@ export function CapabilitiesGrid() {
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5">
           {SERVICES_OVERVIEW_CARDS.map((item, index) => (
             <Reveal key={item.title} delay={index * 0.05} className="min-w-0">
-              <article className="group relative flex h-full min-h-[18rem] flex-col overflow-hidden border border-[#E5E5E3] bg-white transition-[border-color,box-shadow] duration-300 hover:border-[#141414] hover:shadow-[0_24px_60px_-40px_rgba(20,20,20,0.2)] md:flex-row">
+              <article className="group relative flex h-full min-h-[18rem] flex-col overflow-hidden rounded-xl border border-[#E5E5E3] bg-white transition-[border-color,box-shadow] duration-300 hover:border-[#141414] hover:shadow-[0_24px_60px_-40px_rgba(20,20,20,0.2)] md:flex-row">
                 <div className="relative z-10 min-h-[14rem] overflow-hidden md:w-[40%] md:min-h-0">
                   <CapabilityPreview
                     id={item.visual}
-                    className="h-full w-full rounded-none"
+                    className="h-full w-full"
                     sizes="(max-width: 767px) 100vw, 40vw"
                     priority={index === 0}
                   />

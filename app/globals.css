@@ -318,8 +318,8 @@ h6 {
 }
 
 .editorial-hero-content .editorial-hero-headline {
-  font-size: 80px !important;
-  line-height: 78px !important;
+  font-size: 72px !important;
+  line-height: 70px !important;
   letter-spacing: -0.04em;
   transform: none !important;
 }
@@ -347,7 +347,7 @@ h6 {
 
 @media (max-width: 767px) {
   .editorial-hero-content .editorial-hero-headline {
-    font-size: clamp(2.25rem, 10vw, 2.75rem) !important;
+    font-size: clamp(2rem, 9vw, 2.5rem) !important;
     line-height: 1.08 !important;
   }
 

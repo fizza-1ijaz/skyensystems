@@ -1,5 +1,4 @@
 import type { CapabilityVisualId } from "@/components/landing/landing-data";
-import { FAQ_TEAM_LOCATION_ANSWER } from "@/lib/company-offices";
 
 export const SERVICES_OVERVIEW = {
   label: "Our Services",
@@ -117,7 +116,7 @@ export const PROBLEM_SOLUTION = {
     "You have seen the quotes. $5,000 for a five-page website. $2,000 a month to post three times a week on Instagram. Agencies add overhead; freelancers disappear mid-project.",
   solution:
     "We removed agency overhead and kept capability. One accountable team delivers websites, apps, AI, and growth — at a fraction of typical US agency cost, with the standards of a product company.",
-  cta: { label: "How we work", href: "/about" },
+  cta: { label: "About us", href: "/about" },
 } as const;
 
 export const INDUSTRIES_SECTION = {
@@ -353,34 +352,50 @@ export const LANDING_CTA = {
   },
 } as const;
 
+export const HOME_FAQ_SECTION = {
+  label: "FAQ",
+  heading: "Questions About Skyen Systems, Answered Clearly",
+} as const;
+
 export const HOME_FAQ_ITEMS = [
   {
-    question: "Do your prices include ad spend?",
+    question: "What does Skyen Systems do?",
     answer:
-      "No. Management fees cover our work; ad spend is paid directly by you to the platforms.",
+      "Skyen Systems is a digital product and software development company that helps businesses plan, design, develop, launch and grow websites, mobile apps, AI solutions, SaaS platforms, UI/UX experiences, SEO systems and dedicated software development teams.",
   },
   {
-    question: "Where is your team located?",
-    answer: FAQ_TEAM_LOCATION_ANSWER,
+    question: "Who does Skyen Systems work with?",
+    answer:
+      "Skyen Systems works with startups, growing businesses, agencies and companies in Australia, the USA and other global markets that need web development, mobile app development, AI automation, UI/UX design, digital marketing or dedicated development support.",
   },
   {
-    question: "How do payments work?",
+    question: "Can Skyen Systems build a complete digital product?",
     answer:
-      "Packages are typically 50% upfront and 50% on delivery; retainers are billed monthly.",
+      "Yes. Skyen Systems can support the full digital product journey, including product strategy, UI/UX design, web development, mobile app development, backend development, AI integration, testing, launch support, SEO, ASO and long-term growth.",
   },
   {
-    question: "How is this different from a freelancer?",
+    question: "Does Skyen Systems provide web development services?",
     answer:
-      "You get a full multidisciplinary team with one point of contact, documented delivery, and long-term support.",
+      "Yes. Skyen Systems provides web development services for business websites, landing pages, SaaS websites, dashboards, portals, admin panels and custom web applications designed for performance, search visibility and business growth.",
   },
   {
-    question: "How much does a software project cost?",
+    question: "Does Skyen Systems develop mobile apps?",
     answer:
-      "Starter websites from PKR 420,000 (~USD 1,500). Growth-tier web applications from PKR 1,120,000 (~USD 4,000). Complex platforms are quoted individually — always fixed price.",
+      "Yes. Skyen Systems develops Android apps, iOS apps, cross-platform mobile apps, MVP apps, SaaS mobile products, AI-powered apps, EdTech apps and business mobile applications for different industries and use cases.",
   },
   {
-    question: "How long does a project take?",
+    question: "Can Skyen Systems build AI solutions for businesses?",
     answer:
-      "A standard business website typically ships in 3–5 weeks. Growth-tier web applications run 6–10 weeks. Mobile apps receive a specific timeline in every proposal before work begins.",
+      "Yes. Skyen Systems builds AI assistants, AI chatbots, workflow automation systems, AI content tools, smart recommendations, LLM integrations and AI-powered features for websites, mobile apps, SaaS platforms and business workflows.",
+  },
+  {
+    question: "Can Skyen Systems help with SEO and digital growth?",
+    answer:
+      "Yes. Skyen Systems supports SEO, technical SEO, content planning, AEO, GEO, ASO, analytics setup, conversion tracking and digital marketing strategies to help businesses improve online visibility, search performance and growth.",
+  },
+  {
+    question: "How can I start a project with Skyen Systems?",
+    answer:
+      "You can start by sharing your project idea, business goals, required features, timeline and budget through the contact page. Skyen Systems will review your requirements and recommend the right roadmap, scope, technology direction and next step.",
   },
 ] as const;

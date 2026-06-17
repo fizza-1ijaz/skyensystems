@@ -3,7 +3,8 @@ import { ProductsPageContent } from "@/components/marketing/ProductsPageContent"
 
 export const metadata: Metadata = {
   title: "Products | Skyen Systems",
-  description: "Explore Skyen products: Studiely, Make My Lesson, and Linguatude.",
+  description:
+    "Explore Skyen Systems products including Studiely, Make My Lesson, and Linguatude digital products built, launched, and improved by our in-house team.",
   alternates: {
     canonical: "/products",
   },

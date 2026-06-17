@@ -66,11 +66,23 @@ export function ProductMockupShowcase({
         }}
       />
 
-      <div className="relative z-10 mb-8 border-b border-white/10 pb-6">
+      <div className="relative z-10 mb-6 border-b border-white/10 pb-6">
         <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#31C3C3]">
           {product.mockupLabel}
         </p>
         <p className="mt-2 text-sm text-white/50">{product.mockupNote}</p>
+        {product.previewLabels.length > 0 ? (
+          <div className="mt-4 flex flex-wrap gap-2">
+            {product.previewLabels.map((label) => (
+              <span
+                key={label}
+                className="border border-white/10 bg-white/5 px-2.5 py-1 text-[10px] font-medium uppercase tracking-[0.12em] text-white/55"
+              >
+                {label}
+              </span>
+            ))}
+          </div>
+        ) : null}
       </div>
 
       <motion.div

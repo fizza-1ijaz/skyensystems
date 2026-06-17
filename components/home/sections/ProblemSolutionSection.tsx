@@ -1,8 +1,34 @@
 "use client";
 
+import Link from "next/link";
+import { motion, useReducedMotion } from "framer-motion";
 import { PROBLEM_SOLUTION } from "@/lib/homepage-data";
 import { Reveal } from "@/components/landing/Reveal";
-import { EditorialBoxCta } from "@/components/ui/EditorialBoxCta";
+
+const CTA_SPRING = { type: "spring" as const, stiffness: 440, damping: 24, mass: 0.4 };
+const MotionLink = motion.create(Link);
+
+function AboutUsCta() {
+  const reduceMotion = useReducedMotion();
+
+  return (
+    <MotionLink
+      href={PROBLEM_SOLUTION.cta.href}
+      whileHover={reduceMotion ? undefined : { y: -3, scale: 1.02 }}
+      whileTap={reduceMotion ? undefined : { y: 0, scale: 0.99 }}
+      transition={CTA_SPRING}
+      className="group/about relative inline-flex items-center justify-center overflow-hidden rounded-xl border border-[#DADAD8] bg-white px-6 py-3 text-sm font-semibold uppercase tracking-[0.12em] text-[#141414] shadow-[0_12px_32px_-24px_rgba(20,20,20,0.2)] transition-[border-color,box-shadow] duration-300 hover:border-[#31C3C3] hover:shadow-[0_16px_40px_-20px_rgba(49,195,195,0.4)] motion-reduce:hover:bg-[#31C3C3] motion-reduce:hover:text-white"
+    >
+      <span
+        className="absolute inset-0 origin-left scale-x-0 bg-[#31C3C3] transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover/about:scale-x-100 motion-reduce:group-hover/about:scale-x-0"
+        aria-hidden
+      />
+      <span className="relative z-10 transition-colors duration-300 group-hover/about:text-white">
+        {PROBLEM_SOLUTION.cta.label}
+      </span>
+    </MotionLink>
+  );
+}
 
 export function ProblemSolutionSection() {
   return (
@@ -38,9 +64,7 @@ export function ProblemSolutionSection() {
             </div>
 
             <div className="mt-8">
-              <EditorialBoxCta href={PROBLEM_SOLUTION.cta.href} variant="neutral">
-                {PROBLEM_SOLUTION.cta.label}
-              </EditorialBoxCta>
+              <AboutUsCta />
             </div>
           </Reveal>
         </div>

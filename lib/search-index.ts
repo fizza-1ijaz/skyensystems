@@ -35,7 +35,13 @@ function buildProductItems(): SearchIndexItem[] {
     title: product.name,
     subtitle: product.eyebrow,
     href: `/products/${product.id}`,
-    searchText: [product.name, product.tagline, product.eyebrow, ...product.paragraphs]
+    searchText: [
+      product.name,
+      product.tagline,
+      product.eyebrow,
+      product.description,
+      ...product.features.map((f) => `${f.title} ${f.description}`),
+    ]
       .join(" ")
       .toLowerCase(),
   }));

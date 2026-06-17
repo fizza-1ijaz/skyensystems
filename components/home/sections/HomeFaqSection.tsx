@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { HOME_FAQ_ITEMS } from "@/lib/homepage-data";
+import { HOME_FAQ_ITEMS, HOME_FAQ_SECTION } from "@/lib/homepage-data";
 import { Reveal } from "@/components/landing/Reveal";
 
 export function HomeFaqSection() {
@@ -14,14 +14,11 @@ export function HomeFaqSection() {
         <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
           <Reveal className="lg:col-span-4">
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#31C3C3]">
-              FAQ
+              {HOME_FAQ_SECTION.label}
             </p>
             <h2 className="editorial-section-title mt-4 text-balance text-[#141414]">
-              Things people ask before they reach out.
+              {HOME_FAQ_SECTION.heading}
             </h2>
-            <p className="mt-4 text-sm leading-relaxed text-[#5C5C5C]">
-              Straight answers on pricing, location, payments, and how we work.
-            </p>
             <Link
               href="/faq"
               className="mt-6 inline-block text-sm font-semibold text-[#31C3C3] hover:underline"

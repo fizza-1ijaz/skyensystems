@@ -7,7 +7,7 @@ import { ProductMockupShowcase } from "@/components/products/ProductMockupShowca
 import { ProductProcessStrip } from "@/components/products/ProductProcessStrip";
 import { ProductsBlueprintBackdrop } from "@/components/products/ProductsBlueprintBackdrop";
 import { Reveal } from "@/components/landing/Reveal";
-import type { ProductScene } from "@/lib/products-page-data";
+import type { ProductFeature, ProductScene } from "@/lib/products-page-data";
 
 type ProductFeatureSectionProps = {
   product: ProductScene;
@@ -16,11 +16,7 @@ type ProductFeatureSectionProps = {
   highlighted?: boolean;
 };
 
-function CapabilityItem({ item, dark }: { item: string; dark?: boolean }) {
-  const colonIndex = item.indexOf(":");
-  const title = colonIndex > -1 ? item.slice(0, colonIndex) : item;
-  const body = colonIndex > -1 ? item.slice(colonIndex + 1).trim() : "";
-
+function FeatureItem({ feature, dark }: { feature: ProductFeature; dark?: boolean }) {
   return (
     <li className="flex gap-3">
       <span
@@ -28,16 +24,11 @@ function CapabilityItem({ item, dark }: { item: string; dark?: boolean }) {
         aria-hidden
       />
       <span className={`text-sm leading-relaxed ${dark ? "text-white/70" : "text-[#4A4A4A]"}`}>
-        {body ? (
-          <>
-            <span className={`font-semibold ${dark ? "text-white/90" : "text-[#141414]"}`}>
-              {title}:
-            </span>{" "}
-            {body}
-          </>
-        ) : (
-          item
-        )}
+        <span className={`font-semibold ${dark ? "text-white/90" : "text-[#141414]"}`}>
+          {feature.title}
+        </span>
+        {": "}
+        {feature.description}
       </span>
     </li>
   );
@@ -63,15 +54,8 @@ export function ProductFeatureSection({
       <ProductsBlueprintBackdrop variant={featured ? "dark" : "light"} parallax />
 
       <div className="relative z-10 mx-auto max-w-[1440px] px-6 md:px-10">
-        <div
-          className={`grid items-center gap-12 lg:grid-cols-12 lg:gap-14 xl:gap-16 ${
-            mockupLeft ? "" : ""
-          }`}
-        >
-          {/* Content column */}
-          <div
-            className={`lg:col-span-6 ${mockupLeft ? "lg:order-2" : "lg:order-1"}`}
-          >
+        <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-14 xl:gap-16">
+          <div className={`lg:col-span-6 ${mockupLeft ? "lg:order-2" : "lg:order-1"}`}>
             <Reveal>
               <p
                 className={`text-[10px] font-semibold uppercase tracking-[0.2em] ${
@@ -110,31 +94,29 @@ export function ProductFeatureSection({
 
             <Reveal delay={0.08}>
               <p
-                className={`mt-6 text-lg font-semibold leading-snug sm:text-xl md:text-2xl ${
-                  featured ? "text-white/85" : "text-[#141414]"
-                }`}
-              >
-                {product.tagline}
-              </p>
-              <p
                 className={`mt-3 text-[11px] font-semibold uppercase tracking-[0.16em] ${
                   featured ? "text-[#31C3C3]" : "text-[#31C3C3]"
                 }`}
               >
                 {product.status}
               </p>
+              <p
+                className={`mt-6 text-lg font-semibold leading-snug sm:text-xl md:text-2xl ${
+                  featured ? "text-white/85" : "text-[#141414]"
+                }`}
+              >
+                {product.tagline}
+              </p>
             </Reveal>
 
             <Reveal delay={0.1}>
-              <div
-                className={`mt-6 space-y-4 text-base leading-relaxed ${
+              <p
+                className={`mt-6 text-base leading-relaxed ${
                   featured ? "text-white/60" : "text-[#5C5C5C]"
                 }`}
               >
-                {product.paragraphs.map((paragraph) => (
-                  <p key={paragraph}>{paragraph}</p>
-                ))}
-              </div>
+                {product.description}
+              </p>
             </Reveal>
 
             <Reveal delay={0.12}>
@@ -144,11 +126,11 @@ export function ProductFeatureSection({
                     featured ? "text-white/40" : "text-[#8A8A8A]"
                   }`}
                 >
-                  {product.platforms[0] ?? "Key capabilities"}
+                  {product.featuresLabel}
                 </p>
                 <ul className="mt-5 flex flex-col gap-3.5">
-                  {product.tech.map((item) => (
-                    <CapabilityItem key={item} item={item} dark={featured} />
+                  {product.features.map((feature) => (
+                    <FeatureItem key={feature.title} feature={feature} dark={featured} />
                   ))}
                 </ul>
               </div>
@@ -180,12 +162,6 @@ export function ProductFeatureSection({
                   </Link>
                 ) : null}
               </div>
-
-              {product.waitlistNote ? (
-                <p className={`mt-4 text-xs ${featured ? "text-white/40" : "text-[#8A8A8A]"}`}>
-                  {product.waitlistNote}
-                </p>
-              ) : null}
 
               {product.showStoreButtons ? (
                 <div
@@ -233,7 +209,6 @@ export function ProductFeatureSection({
             </Reveal>
           </div>
 
-          {/* Mockup column */}
           <Reveal delay={0.1} className={`lg:col-span-6 ${mockupLeft ? "lg:order-1" : "lg:order-2"}`}>
             <ProductMockupShowcase
               product={product}

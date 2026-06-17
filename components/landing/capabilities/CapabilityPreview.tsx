@@ -20,7 +20,7 @@ export function CapabilityPreview({
   const { src, alt } = getServicePreviewImage(id);
 
   return (
-    <div className={`relative overflow-hidden rounded-xl bg-[#0F172A] ${className}`}>
+    <div className={`relative overflow-hidden bg-[#0F172A] ${className}`}>
       <Image
         src={src}
         alt={alt}

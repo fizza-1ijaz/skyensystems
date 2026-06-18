@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { FaqReveal } from "@/components/faq/FaqReveal";
 import { Reveal } from "@/components/landing/Reveal";
 import { MOBILE_APP_FAQ } from "@/lib/mobile-app-service-data";
 
@@ -32,7 +33,7 @@ export function MobileAppFaqSection() {
               {MOBILE_APP_FAQ.items.map((item, index) => {
                 const open = openFaq === index;
                 return (
-                  <Reveal key={item.question} delay={index * 0.04}>
+                  <FaqReveal key={item.question} delay={index * 0.06}>
                     <div>
                       <button
                         type="button"
@@ -59,7 +60,7 @@ export function MobileAppFaqSection() {
                         </div>
                       </div>
                     </div>
-                  </Reveal>
+                  </FaqReveal>
                 );
               })}
             </div>

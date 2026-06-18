@@ -2,6 +2,7 @@
 
 import type { ReactNode } from "react";
 import { FAQ_CHAPTERS } from "@/lib/faq-editorial-data";
+import { FaqReveal } from "@/components/faq/FaqReveal";
 import { Reveal } from "@/components/landing/Reveal";
 
 function ChapterItem({
@@ -76,9 +77,9 @@ export function FaqChapters() {
 
               <div className="mt-12 space-y-6">
                 {chapter.items.map((item, index) => (
-                  <Reveal key={item.q} delay={index * 0.04}>
+                  <FaqReveal key={item.q} delay={index * 0.06}>
                     <ChapterItem item={item} index={index} dark={dark} />
-                  </Reveal>
+                  </FaqReveal>
                 ))}
               </div>
             </div>

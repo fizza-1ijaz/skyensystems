@@ -3,12 +3,18 @@
 import { Reveal } from "@/components/landing/Reveal";
 import { DEDICATED_TEAMS_PROBLEM_SOLUTION } from "@/lib/dedicated-teams-service-data";
 
-function PointList({ points }: { points: readonly string[] }) {
+function PointList({
+  points,
+  dotClassName = "bg-[#31C3C3]",
+}: {
+  points: readonly string[];
+  dotClassName?: string;
+}) {
   return (
     <ul className="mt-5 space-y-3">
       {points.map((point) => (
         <li key={point} className="flex items-start gap-3 text-sm leading-relaxed text-[#5C5C5C] md:text-base">
-          <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#31C3C3]" aria-hidden />
+          <span className={`mt-2 h-1.5 w-1.5 shrink-0 rounded-full ${dotClassName}`} aria-hidden />
           {point}
         </li>
       ))}
@@ -20,11 +26,11 @@ export function DedicatedTeamsProblemSolution() {
   return (
     <section className="border-b border-[#E5E5E3] bg-white py-20 md:py-28">
       <div className="mx-auto max-w-[1440px] px-6 md:px-10">
-        <Reveal className="max-w-3xl">
+        <Reveal className="w-full text-center">
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#31C3C3]">
             {DEDICATED_TEAMS_PROBLEM_SOLUTION.label}
           </p>
-          <h2 className="editorial-section-title mt-4 text-balance text-[#141414]">
+          <h2 className="editorial-section-title mx-auto mt-4 w-full max-w-none text-balance text-[#141414]">
             {DEDICATED_TEAMS_PROBLEM_SOLUTION.heading}
           </h2>
         </Reveal>
@@ -35,7 +41,10 @@ export function DedicatedTeamsProblemSolution() {
               <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#8A8A8A]">
                 {DEDICATED_TEAMS_PROBLEM_SOLUTION.problemHeading}
               </p>
-              <PointList points={DEDICATED_TEAMS_PROBLEM_SOLUTION.problemPoints} />
+              <PointList
+                points={DEDICATED_TEAMS_PROBLEM_SOLUTION.problemPoints}
+                dotClassName="bg-red-500"
+              />
             </article>
           </Reveal>
 

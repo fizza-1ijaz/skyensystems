@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { FaqReveal } from "@/components/faq/FaqReveal";
 import { Reveal } from "@/components/landing/Reveal";
 import { DIGITAL_MARKETING_FAQ } from "@/lib/digital-marketing-service-data";
 
@@ -32,7 +33,7 @@ export function DigitalMarketingFaqSection() {
               {DIGITAL_MARKETING_FAQ.items.map((item, index) => {
                 const open = openFaq === index;
                 return (
-                  <Reveal key={item.question} delay={index * 0.04}>
+                  <FaqReveal key={item.question} delay={index * 0.06}>
                     <div>
                       <button
                         type="button"
@@ -59,7 +60,7 @@ export function DigitalMarketingFaqSection() {
                         </div>
                       </div>
                     </div>
-                  </Reveal>
+                  </FaqReveal>
                 );
               })}
             </div>

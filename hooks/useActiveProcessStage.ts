@@ -5,35 +5,69 @@ import { PROCESS_OBSERVER } from "@/components/landing/process/process-constants
 
 type UseActiveProcessStageOptions = {
   stageCount: number;
-  rootMargin?: string;
-  thresholds?: readonly number[];
 };
 
+function getFocusY() {
+  if (typeof window === "undefined") return 0;
+  return window.innerHeight * PROCESS_OBSERVER.focusRatio;
+}
+
 /**
- * Tracks which process stage is closest to the viewport focus band.
- * Uses a single IntersectionObserver instance with per-stage ratio tracking
- * so scroll handlers are not needed.
+ * Tracks which process stage aligns with the viewport focus line while scrolling.
  */
-export function useActiveProcessStage({
-  stageCount,
-  rootMargin = PROCESS_OBSERVER.rootMargin,
-  thresholds = PROCESS_OBSERVER.thresholds,
-}: UseActiveProcessStageOptions) {
+export function useActiveProcessStage({ stageCount }: UseActiveProcessStageOptions) {
   const [activeIndex, setActiveIndex] = useState(0);
-  const ratiosRef = useRef<number[]>(Array.from({ length: stageCount }, () => 0));
   const elementsRef = useRef<(HTMLElement | null)[]>(
     Array.from({ length: stageCount }, () => null),
   );
-  const observerRef = useRef<IntersectionObserver | null>(null);
+  const rafRef = useRef<number | null>(null);
 
-  const pickActiveIndex = useCallback(() => {
-    const ratios = ratiosRef.current;
-    let bestIndex = 0;
-    let bestRatio = -1;
+  const updateActiveIndex = useCallback(() => {
+    const focusY = getFocusY();
+    const elements = elementsRef.current;
 
     for (let index = 0; index < stageCount; index += 1) {
-      if (ratios[index] > bestRatio) {
-        bestRatio = ratios[index];
+      const element = elements[index];
+      if (!element) continue;
+
+      const rect = element.getBoundingClientRect();
+      if (rect.top <= focusY && rect.bottom > focusY) {
+        setActiveIndex(index);
+        return;
+      }
+    }
+
+    const first = elements[0];
+    const last = elements[stageCount - 1];
+
+    if (first && last) {
+      const firstRect = first.getBoundingClientRect();
+      const lastRect = last.getBoundingClientRect();
+
+      if (focusY < firstRect.top) {
+        setActiveIndex(0);
+        return;
+      }
+
+      if (focusY >= lastRect.bottom) {
+        setActiveIndex(stageCount - 1);
+        return;
+      }
+    }
+
+    let bestIndex = 0;
+    let bestDistance = Infinity;
+
+    for (let index = 0; index < stageCount; index += 1) {
+      const element = elements[index];
+      if (!element) continue;
+
+      const rect = element.getBoundingClientRect();
+      const centerY = rect.top + rect.height * 0.5;
+      const distance = Math.abs(centerY - focusY);
+
+      if (distance < bestDistance) {
+        bestDistance = distance;
         bestIndex = index;
       }
     }
@@ -41,54 +75,40 @@ export function useActiveProcessStage({
     setActiveIndex(bestIndex);
   }, [stageCount]);
 
+  const scheduleUpdate = useCallback(() => {
+    if (rafRef.current !== null) return;
+    rafRef.current = window.requestAnimationFrame(() => {
+      rafRef.current = null;
+      updateActiveIndex();
+    });
+  }, [updateActiveIndex]);
+
   const setStageRef = useCallback(
     (index: number) => (element: HTMLElement | null) => {
-      const observer = observerRef.current;
-      const previous = elementsRef.current[index];
-
-      if (previous === element) return;
-
-      if (observer && previous) {
-        observer.unobserve(previous);
-      }
-
       elementsRef.current[index] = element;
-
-      if (observer && element) {
-        observer.observe(element);
-      }
+      scheduleUpdate();
     },
-    [],
+    [scheduleUpdate],
   );
 
   useEffect(() => {
-    ratiosRef.current = Array.from({ length: stageCount }, () => 0);
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          const index = elementsRef.current.indexOf(entry.target as HTMLElement);
-          if (index === -1) continue;
-          ratiosRef.current[index] = entry.isIntersecting
-            ? entry.intersectionRatio
-            : 0;
-        }
-        pickActiveIndex();
-      },
-      { rootMargin, threshold: [...thresholds] },
+    elementsRef.current = Array.from(
+      { length: stageCount },
+      (_, index) => elementsRef.current[index] ?? null,
     );
+    updateActiveIndex();
 
-    observerRef.current = observer;
-
-    for (const element of elementsRef.current) {
-      if (element) observer.observe(element);
-    }
+    window.addEventListener("scroll", scheduleUpdate, { passive: true });
+    window.addEventListener("resize", scheduleUpdate, { passive: true });
 
     return () => {
-      observer.disconnect();
-      observerRef.current = null;
+      window.removeEventListener("scroll", scheduleUpdate);
+      window.removeEventListener("resize", scheduleUpdate);
+      if (rafRef.current !== null) {
+        window.cancelAnimationFrame(rafRef.current);
+      }
     };
-  }, [stageCount, rootMargin, thresholds, pickActiveIndex]);
+  }, [stageCount, scheduleUpdate, updateActiveIndex]);
 
   return { activeIndex, setStageRef };
 }

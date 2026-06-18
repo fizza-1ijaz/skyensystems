@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { FaqReveal } from "@/components/faq/FaqReveal";
 import { Reveal } from "@/components/landing/Reveal";
 import { WEB_DEV_FAQ } from "@/lib/web-development-service-data";
 
@@ -32,7 +33,7 @@ export function WebDevFaqSection() {
               {WEB_DEV_FAQ.items.map((item, index) => {
                 const open = openFaq === index;
                 return (
-                  <Reveal key={item.question} delay={index * 0.04}>
+                  <FaqReveal key={item.question} delay={index * 0.06}>
                     <div>
                       <button
                         type="button"
@@ -59,7 +60,7 @@ export function WebDevFaqSection() {
                         </div>
                       </div>
                     </div>
-                  </Reveal>
+                  </FaqReveal>
                 );
               })}
             </div>

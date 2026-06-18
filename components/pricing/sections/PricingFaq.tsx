@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { FaqReveal } from "@/components/faq/FaqReveal";
 import { Reveal } from "@/components/landing/Reveal";
 import { PRICING_FAQ_ITEMS, PRICING_FAQ_SECTION } from "@/lib/pricing-page-data";
 
@@ -23,7 +24,7 @@ export function PricingFaq() {
           {PRICING_FAQ_ITEMS.map((item, index) => {
             const open = openFaq === index;
             return (
-              <Reveal key={item.question} delay={index * 0.04}>
+              <FaqReveal key={item.question} delay={index * 0.06}>
                 <div>
                   <button
                     type="button"
@@ -47,7 +48,7 @@ export function PricingFaq() {
                     </div>
                   </div>
                 </div>
-              </Reveal>
+              </FaqReveal>
             );
           })}
         </div>

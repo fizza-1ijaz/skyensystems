@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { HOME_FAQ_ITEMS, HOME_FAQ_SECTION } from "@/lib/homepage-data";
+import { FaqReveal } from "@/components/faq/FaqReveal";
 import { Reveal } from "@/components/landing/Reveal";
 
 export function HomeFaqSection() {
@@ -32,7 +33,7 @@ export function HomeFaqSection() {
               {HOME_FAQ_ITEMS.map((item, index) => {
                 const open = openFaq === index;
                 return (
-                  <Reveal key={item.question} delay={index * 0.04}>
+                  <FaqReveal key={item.question} delay={index * 0.06}>
                     <div>
                       <button
                         type="button"
@@ -59,7 +60,7 @@ export function HomeFaqSection() {
                         </div>
                       </div>
                     </div>
-                  </Reveal>
+                  </FaqReveal>
                 );
               })}
             </div>

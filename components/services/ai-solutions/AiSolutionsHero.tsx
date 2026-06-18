@@ -1,6 +1,6 @@
 "use client";
 
-import { ServiceModuleVisual } from "@/components/services/ServiceModuleVisual";
+import { ServiceHeroPreview } from "@/components/services/ServiceHeroPreview";
 import { Reveal } from "@/components/landing/Reveal";
 import { EditorialBoxCta } from "@/components/ui/EditorialBoxCta";
 import { AI_SOLUTIONS_HERO } from "@/lib/ai-solutions-service-data";
@@ -43,12 +43,9 @@ export function AiSolutionsHero() {
               ))}
             </ul>
           </Reveal>
-          <Reveal delay={0.22} className="mt-8 max-w-2xl">
-            <div className="border-l-4 border-[#31C3C3] bg-white px-5 py-4 md:px-6 md:py-5">
-              <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#31C3C3]">
-                Direct answer
-              </p>
-              <p className="mt-3 text-sm leading-relaxed text-[#5C5C5C] md:text-base">
+          <Reveal delay={0.22} className="mx-auto mt-8 max-w-2xl">
+            <div className="border-l-4 border-[#31C3C3] bg-white px-5 py-4 text-center md:px-6 md:py-5">
+              <p className="text-sm leading-relaxed text-[#5C5C5C] md:text-base">
                 {AI_SOLUTIONS_HERO.directAnswer}
               </p>
             </div>
@@ -56,12 +53,7 @@ export function AiSolutionsHero() {
         </div>
 
         <Reveal delay={0.12} className="lg:col-span-5">
-          <div className="border border-[#E5E5E3] bg-white p-4 md:p-5">
-            <ServiceModuleVisual
-              id="ai"
-              className="h-[min(320px,42vw)] min-h-[240px] w-full sm:min-h-[280px]"
-            />
-          </div>
+          <ServiceHeroPreview id="ai" />
         </Reveal>
       </div>
     </section>

@@ -296,13 +296,15 @@ export const UI_UX_RELATED_WORK = {
       description:
         "Studiely is an AI-powered study platform supported by mobile app UI/UX design, app development, website presence, SEO content, app store optimization, and digital marketing systems.",
       logo: "/logo-studiely.jpeg",
+      backgroundImage: "/images/Studiely img.jpeg",
       href: "https://studiely.com",
     },
     {
       title: "Make My Lesson — AI Teaching Platform UI/UX, Website & Marketing",
       description:
         "Make My Lesson is an AI teaching assistant platform for educators, supported by product UI/UX design, AI content systems, web development, SEO content, and digital growth campaigns.",
-      logo: "/logo-makemylesson2.png",
+      logo: "/logo-makemylesson.png",
+      backgroundImage: "/images/MML img.png",
       href: "https://makemylesson.ai",
     },
     {
@@ -310,6 +312,7 @@ export const UI_UX_RELATED_WORK = {
       description:
         "Linguatude is an AI language learning and test preparation platform supported by product design, website development, SEO strategy, blog content, and marketing systems.",
       logo: "/logo-linguatude.jpg",
+      backgroundImage: "/images/linguatude img.png",
       href: "https://linguatude.com",
     },
   ],

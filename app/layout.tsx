@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Footer } from "@/components/layout/Footer";
+import { GlobalPresenceSection } from "@/components/layout/GlobalPresenceSection";
 import { Inter, Space_Grotesk } from "next/font/google";
 import { MainContent } from "@/components/layout/MainContent";
 import { Navbar } from "@/components/layout/Navbar";
@@ -92,6 +93,7 @@ export default function RootLayout({
         <SmoothScrollProvider>
           <Navbar />
           <MainContent>{children}</MainContent>
+          <GlobalPresenceSection />
           <Footer />
         </SmoothScrollProvider>
         <CookieConsent />

@@ -258,10 +258,22 @@ export const AI_AUTOMATION_HIGHLIGHT = {
   description:
     "We integrate LLMs, workflow automation, and intelligent features into products your team actually uses. From customer-facing copilots to back-office automation, every build is scoped for measurable ROI.",
   capabilities: [
-    "LLM integration & custom copilots",
-    "Workflow automation & data pipelines",
-    "AI-powered search, chat, and support",
-    "Document processing & intelligent routing",
+    {
+      title: "LLM integration & custom copilots",
+      image: "/images/LLM.png",
+    },
+    {
+      title: "Workflow automation & data pipelines",
+      image: "/images/Pipeline.png",
+    },
+    {
+      title: "AI-powered search, chat, and support",
+      image: "/images/AIchatbot.png",
+    },
+    {
+      title: "Document processing & intelligent routing",
+      image: "/images/Docprocessing.png",
+    },
   ],
   cta: { label: "Explore AI solutions", href: "/services/ai-solutions" },
 } as const;

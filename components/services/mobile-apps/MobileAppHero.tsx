@@ -1,6 +1,6 @@
 "use client";
 
-import { ServiceModuleVisual } from "@/components/services/ServiceModuleVisual";
+import { ServiceHeroPreview } from "@/components/services/ServiceHeroPreview";
 import { Reveal } from "@/components/landing/Reveal";
 import { EditorialBoxCta } from "@/components/ui/EditorialBoxCta";
 import { MOBILE_APP_HERO } from "@/lib/mobile-app-service-data";
@@ -46,12 +46,7 @@ export function MobileAppHero() {
         </div>
 
         <Reveal delay={0.12} className="lg:col-span-5">
-          <div className="border border-[#E5E5E3] bg-white p-4 md:p-5">
-            <ServiceModuleVisual
-              id="mobile"
-              className="h-[min(320px,42vw)] min-h-[240px] w-full sm:min-h-[280px]"
-            />
-          </div>
+          <ServiceHeroPreview id="mobile" />
         </Reveal>
       </div>
     </section>

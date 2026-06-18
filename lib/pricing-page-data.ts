@@ -32,6 +32,13 @@ export const SERVICE_PRICING_SECTION = {
     "These starting prices help with early planning. Final quotes are confirmed after reviewing project scope, features, timeline and support needs.",
 } as const;
 
+export const CURRENCY_CONVERTER_SECTION = {
+  label: "USD to PKR",
+  heading: "Estimate Local Investment in Pakistani Rupees",
+  paragraph:
+    "For Pakistan-based clients, use this calculator to convert USD starting prices into indicative PKR amounts. Final amounts are confirmed at engagement and invoice stage.",
+} as const;
+
 export type ServicePricingCard = {
   title: string;
   description: string;

@@ -1,6 +1,7 @@
 "use client";
 
 import { FAQ_CLIENT_CONCERNS } from "@/lib/faq-editorial-data";
+import { FaqReveal } from "@/components/faq/FaqReveal";
 import { Reveal } from "@/components/landing/Reveal";
 
 export function FaqClientConcerns() {
@@ -15,7 +16,7 @@ export function FaqClientConcerns() {
 
         <div className="mt-14 grid gap-5 md:grid-cols-2">
           {FAQ_CLIENT_CONCERNS.map((item, index) => (
-            <Reveal key={item.concern} delay={index * 0.06}>
+            <FaqReveal key={item.concern} delay={index * 0.06}>
               <article className="grid h-full gap-6 border border-[#E5E5E3] bg-white md:grid-cols-2">
                 <div className="border-b border-[#E5E5E3] p-6 md:border-b-0 md:border-r md:p-8">
                   <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-[#31C3C3]">
@@ -32,7 +33,7 @@ export function FaqClientConcerns() {
                   <p className="mt-3 text-sm leading-relaxed text-[#5C5C5C] md:text-base">{item.solution}</p>
                 </div>
               </article>
-            </Reveal>
+            </FaqReveal>
           ))}
         </div>
       </div>

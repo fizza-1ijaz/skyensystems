@@ -21,9 +21,14 @@ export const PROCESS_MOTION = {
 
 /** Intersection Observer band — stages near the upper-middle of the viewport become active. */
 export const PROCESS_OBSERVER = {
+  /** Viewport Y ratio used as the scroll focus line (timeline progress + active stage). */
+  focusRatio: 0.38,
   rootMargin: "-25% 0px -55% 0px",
   thresholds: [0, 0.15, 0.3, 0.45, 0.6, 0.75, 0.9, 1] as number[],
 } as const;
+
+/** Extra scroll room after the last stage so sticky preview + final step stay in view. */
+export const PROCESS_SCROLL_SPACER = "min(58vh, 520px)";
 
 /** Layout + reusable surface classes for the process section. */
 export const PROCESS_STYLES = {
@@ -33,12 +38,12 @@ export const PROCESS_STYLES = {
     "mx-auto max-w-2xl text-center font-heading text-[clamp(1.85rem,3.8vw,3rem)] font-bold leading-[1.08] tracking-[-0.03em]",
   accent: "text-brand-cyan",
   grid: "mt-14 grid grid-cols-1 items-start gap-12 md:mt-16 md:gap-14 lg:grid-cols-[minmax(0,1.1fr)_minmax(220px,300px)] lg:gap-16",
-  timelineTrack: "relative pl-10 md:pl-16 lg:pl-20",
-  timelineLine:
-    "absolute bottom-0 left-10 top-0 w-px bg-[#2E2E2E] md:left-16 lg:left-20",
+  timelineTrack: "relative pl-6 md:pl-10 lg:pl-12",
+  timelineLine: "absolute bottom-0 left-0 top-0 w-px bg-[#2E2E2E]",
   timelineProgress:
-    "absolute left-10 top-0 w-[2px] -translate-x-[0.5px] origin-top bg-brand-cyan shadow-[0_0_12px_rgba(49,195,195,0.65)] md:left-16 lg:left-20",
+    "absolute left-0 top-0 w-[2px] origin-top bg-brand-cyan shadow-[0_0_12px_rgba(49,195,195,0.65)]",
   stageList: "relative flex flex-col gap-16 md:gap-20 lg:gap-24",
+  timelineSpacer: "shrink-0 w-full pointer-events-none",
   previewSticky:
     "sticky top-[calc(var(--site-nav-height)+2rem)] hidden self-start md:block",
   previewFrame:

@@ -82,6 +82,8 @@ export const ProcessCard = memo(
   ProcessCardComponent,
   (previous, next) =>
     previous.isActive === next.isActive &&
+    previous.index === next.index &&
     previous.stage.id === next.stage.id &&
+    previous.totalStages === next.totalStages &&
     previous.reduceMotion === next.reduceMotion,
 );

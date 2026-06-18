@@ -1,5 +1,6 @@
 "use client";
 
+import { FaqReveal } from "@/components/faq/FaqReveal";
 import { Reveal } from "@/components/landing/Reveal";
 import { ContactSimpleForm } from "@/components/contact/sections/ContactSimpleForm";
 import { OFFICE_EMAIL } from "@/lib/company-offices";
@@ -57,7 +58,7 @@ export function ContactPage() {
 
           <div className="mx-auto mt-6 max-w-3xl space-y-2.5">
             {CONTACT_SIMPLE_FAQ.map((item, index) => (
-              <Reveal key={item.question} delay={0.04 * index}>
+              <FaqReveal key={item.question} delay={0.06 * index}>
                 <details
                   className="rounded-2xl border border-[#DADAD8] bg-white px-4 py-4 md:px-5"
                   open={index === 0}
@@ -67,7 +68,7 @@ export function ContactPage() {
                   </summary>
                   <p className="mt-2 text-sm leading-relaxed text-[#5C5C5C]">{item.answer}</p>
                 </details>
-              </Reveal>
+              </FaqReveal>
             ))}
           </div>
         </div>

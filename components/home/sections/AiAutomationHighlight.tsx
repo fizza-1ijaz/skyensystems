@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { AI_AUTOMATION_HIGHLIGHT } from "@/lib/homepage-data";
 import { Reveal } from "@/components/landing/Reveal";
 import { EditorialBoxCta } from "@/components/ui/EditorialBoxCta";
@@ -8,23 +9,35 @@ function CapabilityCard({
   capability,
   index,
 }: {
-  capability: string;
+  capability: (typeof AI_AUTOMATION_HIGHLIGHT.capabilities)[number];
   index: number;
 }) {
   return (
-    <li className="group relative overflow-hidden border border-[#E5E5E3] bg-white transition-[border-color,box-shadow] duration-300 hover:border-[#31C3C3]/50 hover:shadow-[0_20px_50px_-35px_rgba(49,195,195,0.35)]">
-      <div
-        className="absolute inset-x-0 bottom-0 z-0 h-0 bg-[#31C3C3] transition-[height] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] [@media(hover:hover)]:group-hover:h-full motion-reduce:[@media(hover:hover)]:group-hover:h-0"
-        aria-hidden
-      />
+    <li className="group flex flex-col overflow-hidden border border-[#E5E5E3] bg-white transition-[border-color,box-shadow] duration-300 hover:border-[#31C3C3]/50 hover:shadow-[0_20px_50px_-35px_rgba(49,195,195,0.35)]">
+      <div className="relative h-36 w-full overflow-hidden bg-[#F4F4F2] sm:h-40">
+        <Image
+          src={capability.image}
+          alt=""
+          fill
+          className="object-cover transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] [@media(hover:hover)]:group-hover:scale-105 motion-reduce:group-hover:scale-100"
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+        />
+      </div>
 
-      <div className="relative z-10 p-5 transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:translate-y-0 [@media(hover:hover)]:group-hover:-translate-y-1 md:p-6">
-        <span className="font-heading text-sm font-bold text-[#31C3C3] transition-colors duration-300 [@media(hover:hover)]:group-hover:text-white">
-          {String(index + 1).padStart(2, "0")}
-        </span>
-        <p className="mt-3 font-heading text-base font-bold text-[#141414] transition-colors duration-300 [@media(hover:hover)]:group-hover:text-white md:text-lg">
-          {capability}
-        </p>
+      <div className="relative min-h-0 flex-1 overflow-hidden">
+        <div
+          className="absolute inset-x-0 bottom-0 z-0 h-0 bg-[#31C3C3] transition-[height] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] [@media(hover:hover)]:group-hover:h-full motion-reduce:[@media(hover:hover)]:group-hover:h-0"
+          aria-hidden
+        />
+
+        <div className="relative z-10 p-5 transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:translate-y-0 [@media(hover:hover)]:group-hover:-translate-y-1 md:p-6">
+          <span className="font-heading text-sm font-bold text-[#31C3C3] transition-colors duration-300 [@media(hover:hover)]:group-hover:text-white">
+            {String(index + 1).padStart(2, "0")}
+          </span>
+          <p className="mt-3 font-heading text-base font-bold text-[#141414] transition-colors duration-300 [@media(hover:hover)]:group-hover:text-white md:text-lg">
+            {capability.title}
+          </p>
+        </div>
       </div>
     </li>
   );
@@ -64,7 +77,7 @@ export function AiAutomationHighlight() {
           <Reveal delay={0.08} className="lg:col-span-7">
             <ul className="grid gap-4 sm:grid-cols-2">
               {AI_AUTOMATION_HIGHLIGHT.capabilities.map((capability, index) => (
-                <CapabilityCard key={capability} capability={capability} index={index} />
+                <CapabilityCard key={capability.title} capability={capability} index={index} />
               ))}
             </ul>
           </Reveal>

@@ -1,5 +1,6 @@
 "use client";
 
+import { PricingCurrencyConverter } from "@/components/pricing/sections/PricingCurrencyConverter";
 import { PricingCostFactors } from "@/components/pricing/sections/PricingCostFactors";
 import { PricingEngagementOverview } from "@/components/pricing/sections/PricingEngagementOverview";
 import { PricingImportantNote } from "@/components/pricing/sections/PricingImportantNote";
@@ -14,6 +15,7 @@ export function PricingPage() {
     <div className="landing-editorial bg-[#F4F4F2] text-[#141414]">
       <PricingHero />
       <PricingServiceCards />
+      <PricingCurrencyConverter />
       <PricingPackageDirection />
       <PricingEngagementOverview />
       <PricingCostFactors />

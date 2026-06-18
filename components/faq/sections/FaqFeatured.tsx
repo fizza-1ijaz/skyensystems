@@ -1,6 +1,7 @@
 "use client";
 
 import { FAQ_FEATURED } from "@/lib/faq-editorial-data";
+import { FaqReveal } from "@/components/faq/FaqReveal";
 import { Reveal } from "@/components/landing/Reveal";
 
 export function FaqFeatured() {
@@ -15,7 +16,7 @@ export function FaqFeatured() {
 
         <div className="mt-14 space-y-px bg-[#E5E5E3]">
           {FAQ_FEATURED.map((item, index) => (
-            <Reveal key={item.q} delay={index * 0.06}>
+            <FaqReveal key={item.q} delay={index * 0.06}>
               <article
                 className={`grid gap-6 bg-[#FAFAF8] p-8 md:grid-cols-12 md:gap-10 md:p-10 ${
                   index % 2 === 1 ? "md:[&>div:first-child]:order-2" : ""
@@ -35,7 +36,7 @@ export function FaqFeatured() {
                   </div>
                 </div>
               </article>
-            </Reveal>
+            </FaqReveal>
           ))}
         </div>
       </div>

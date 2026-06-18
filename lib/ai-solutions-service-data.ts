@@ -293,13 +293,15 @@ export const AI_SOLUTIONS_RELATED_WORK = {
       description:
         "Studiely is an AI-powered study platform supported by mobile app development, AI study tools, website presence, SEO content, app store optimization, and digital marketing systems.",
       logo: "/logo-studiely.jpeg",
+      backgroundImage: "/images/Studiely img.jpeg",
       href: "https://studiely.com",
     },
     {
       title: "Make My Lesson — AI Teaching Platform, Website & Marketing",
       description:
         "Make My Lesson is an AI teaching assistant platform for educators, supported by AI content generation, product strategy, web development, SEO content, and digital growth campaigns.",
-      logo: "/logo-makemylesson2.png",
+      logo: "/logo-makemylesson.png",
+      backgroundImage: "/images/MML img.png",
       href: "https://makemylesson.ai",
     },
     {
@@ -307,6 +309,7 @@ export const AI_SOLUTIONS_RELATED_WORK = {
       description:
         "Linguatude is an AI language learning and test preparation platform supported by AI-powered learning features, website development, SEO strategy, blog content, and marketing systems.",
       logo: "/logo-linguatude.jpg",
+      backgroundImage: "/images/linguatude img.png",
       href: "https://linguatude.com",
     },
   ],

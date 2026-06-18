@@ -7,14 +7,14 @@ export function AiSolutionsWhatWeBuild() {
   return (
     <section className="border-b border-[#E5E5E3] bg-white py-20 md:py-28">
       <div className="mx-auto max-w-[1440px] px-6 md:px-10">
-        <Reveal className="max-w-3xl">
+        <Reveal className="w-full text-center">
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#31C3C3]">
             {AI_SOLUTIONS_WHAT_WE_BUILD.label}
           </p>
-          <h2 className="editorial-section-title mt-4 text-balance text-[#141414]">
+          <h2 className="editorial-section-title mx-auto mt-4 w-full max-w-none text-balance text-[#141414]">
             {AI_SOLUTIONS_WHAT_WE_BUILD.heading}
           </h2>
-          <p className="mt-4 text-sm leading-relaxed text-[#5C5C5C] md:text-base">
+          <p className="mx-auto mt-4 w-full max-w-none text-sm leading-relaxed text-[#5C5C5C] md:text-base">
             {AI_SOLUTIONS_WHAT_WE_BUILD.paragraph}
           </p>
         </Reveal>

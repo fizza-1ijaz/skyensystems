@@ -30,7 +30,7 @@ export function ContactHero() {
           <div className="relative min-h-[22rem] lg:col-span-7 lg:min-h-[34rem]">
             <ContactHeroBlueprint className="pointer-events-none absolute -bottom-6 left-0 z-[1] h-[min(48vw,22rem)] w-[min(100%,480px)] md:-bottom-10 md:h-[min(42vw,26rem)] md:w-[min(92%,520px)] lg:h-[min(50%,28rem)] lg:w-[85%]" />
 
-            <div className="relative z-10">
+            <div className="page-hero-copy relative z-10">
               <Reveal>
                 <h1 className="max-w-[14ch] font-heading text-[clamp(2.75rem,7vw,5.25rem)] font-bold leading-[0.92] tracking-[-0.04em] text-[#141414]">
                   Let&apos;s discuss what&apos;s next.

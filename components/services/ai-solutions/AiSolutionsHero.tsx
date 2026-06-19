@@ -9,7 +9,7 @@ export function AiSolutionsHero() {
   return (
     <section className="relative overflow-hidden border-b border-[#E5E5E3] bg-[#F4F4F2]">
       <div className="mx-auto grid max-w-[1440px] gap-10 px-6 pb-16 pt-10 md:gap-12 md:px-10 md:pb-20 md:pt-14 lg:grid-cols-12 lg:items-center">
-        <div className="lg:col-span-7">
+        <div className="page-hero-copy lg:col-span-7">
           <Reveal>
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#31C3C3]">
               {AI_SOLUTIONS_HERO.label}
@@ -25,7 +25,7 @@ export function AiSolutionsHero() {
               {AI_SOLUTIONS_HERO.paragraph}
             </p>
           </Reveal>
-          <Reveal delay={0.14} className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+          <Reveal delay={0.14} className="page-hero-cta-row mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
             <EditorialBoxCta href={AI_SOLUTIONS_HERO.primaryCta.href} variant="primary">
               {AI_SOLUTIONS_HERO.primaryCta.label}
             </EditorialBoxCta>
@@ -44,7 +44,7 @@ export function AiSolutionsHero() {
             </ul>
           </Reveal>
           <Reveal delay={0.22} className="mx-auto mt-8 max-w-2xl">
-            <div className="border-l-4 border-[#31C3C3] bg-white px-5 py-4 text-center md:px-6 md:py-5">
+            <div className="page-hero-callout border-l-4 border-[#31C3C3] bg-white px-5 py-4 text-center md:px-6 md:py-5">
               <p className="text-sm leading-relaxed text-[#5C5C5C] md:text-base">
                 {AI_SOLUTIONS_HERO.directAnswer}
               </p>

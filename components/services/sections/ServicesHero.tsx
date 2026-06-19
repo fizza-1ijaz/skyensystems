@@ -38,7 +38,7 @@ export function ServicesHero() {
   return (
     <section className="relative overflow-hidden border-b border-[#E5E5E3] bg-[#F4F4F2]">
       <div className="mx-auto grid max-w-[1440px] gap-12 px-6 pb-16 pt-10 md:px-10 md:pb-20 md:pt-14 lg:grid-cols-12 lg:gap-8">
-        <div className="lg:col-span-7">
+        <div className="page-hero-copy lg:col-span-7">
           <Reveal>
             <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-[#8A8A8A]">
               Services
@@ -61,7 +61,7 @@ export function ServicesHero() {
               AI, and growth under one accountable team for US, UK, and GCC clients.
             </p>
           </Reveal>
-          <Reveal delay={0.14} className="mt-8">
+          <Reveal delay={0.14} className="page-hero-cta-row mt-8">
             <EditorialBoxCta href="/contact-us" variant="neutral">
               Discuss your challenge
             </EditorialBoxCta>

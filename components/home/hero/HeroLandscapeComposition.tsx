@@ -4,6 +4,7 @@ import type { MotionStyle } from "framer-motion";
 import { motion, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
 import { useRef } from "react";
+import { SITE_IMAGE_QUALITY, shouldBypassImageOptimization } from "@/lib/site-image";
 import { HeroTechCornerIcons } from "./HeroTechCornerIcons";
 
 type HeroLandscapeCompositionProps = {
@@ -87,8 +88,8 @@ export function HeroLandscapeComposition({
           fill
           priority
           sizes="100vw"
-          quality={lite ? 70 : 82}
-          unoptimized
+          quality={lite ? SITE_IMAGE_QUALITY.thumb : SITE_IMAGE_QUALITY.hero}
+          unoptimized={shouldBypassImageOptimization(HERO_LEFT_BG)}
           className="object-cover object-[center_40%]"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-[#93c5fd]/15 via-transparent to-[#1e3a8a]/10" />

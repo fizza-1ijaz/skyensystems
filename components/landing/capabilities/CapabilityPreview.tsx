@@ -3,6 +3,7 @@
 import Image from "next/image";
 import type { CapabilityVisualId } from "@/components/landing/landing-data";
 import { getServicePreviewImage } from "@/lib/service-preview-images";
+import { SITE_IMAGE_QUALITY, shouldBypassImageOptimization } from "@/lib/site-image";
 
 type CapabilityPreviewProps = {
   id: CapabilityVisualId;
@@ -28,6 +29,8 @@ export function CapabilityPreview({
         sizes={sizes}
         priority={priority}
         loading={priority ? undefined : "lazy"}
+        quality={SITE_IMAGE_QUALITY.content}
+        unoptimized={shouldBypassImageOptimization(src)}
         className="object-cover transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.05]"
       />
       <div

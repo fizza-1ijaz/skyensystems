@@ -3,6 +3,7 @@
 import Image from "next/image";
 import type { CapabilityVisualId } from "@/components/landing/landing-data";
 import { getServicePreviewImage } from "@/lib/service-preview-images";
+import { SITE_IMAGE_QUALITY, shouldBypassImageOptimization } from "@/lib/site-image";
 
 type ServiceHeroPreviewProps = {
   id: CapabilityVisualId;
@@ -10,7 +11,6 @@ type ServiceHeroPreviewProps = {
 
 export function ServiceHeroPreview({ id }: ServiceHeroPreviewProps) {
   const { src, alt } = getServicePreviewImage(id);
-  const isLocalAsset = src.startsWith("/images/");
 
   return (
     <div className="-mt-4 overflow-hidden border border-[#E5E5E3] bg-[#FAFAF8] md:-mt-6 lg:-mt-8">
@@ -22,8 +22,8 @@ export function ServiceHeroPreview({ id }: ServiceHeroPreviewProps) {
         priority
         sizes="(min-width: 1024px) 42vw, 100vw"
         className="h-auto w-full object-contain"
-        quality={100}
-        unoptimized={isLocalAsset}
+        quality={SITE_IMAGE_QUALITY.hero}
+        unoptimized={shouldBypassImageOptimization(src)}
       />
     </div>
   );

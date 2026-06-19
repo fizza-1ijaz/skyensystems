@@ -6,7 +6,7 @@ import { EditorialBoxCta } from "@/components/ui/EditorialBoxCta";
 
 export function WhyChooseSection() {
   return (
-    <section className="bg-[#141414] py-20 text-[#FAFAF8] md:py-28">
+    <section className="bg-[#141414] pt-20 pb-12 text-[#FAFAF8] md:pt-28 md:pb-16">
       <div className="mx-auto max-w-[1440px] px-6 md:px-10">
         <Reveal className="w-full text-center">
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#31C3C3]">

@@ -27,12 +27,9 @@ export const PROCESS_OBSERVER = {
   thresholds: [0, 0.15, 0.3, 0.45, 0.6, 0.75, 0.9, 1] as number[],
 } as const;
 
-/** Extra scroll room after the last stage so sticky preview + final step stay in view. */
-export const PROCESS_SCROLL_SPACER = "min(58vh, 520px)";
-
 /** Layout + reusable surface classes for the process section. */
 export const PROCESS_STYLES = {
-  section: "bg-[#141414] py-20 text-[#FAFAF8] md:py-28",
+  section: "bg-[#141414] pt-20 pb-12 text-[#FAFAF8] md:pt-28 md:pb-16",
   container: "mx-auto max-w-[1440px] px-6 md:px-10",
   heading:
     "mx-auto max-w-2xl text-center font-heading text-[clamp(1.85rem,3.8vw,3rem)] font-bold leading-[1.08] tracking-[-0.03em]",
@@ -43,7 +40,7 @@ export const PROCESS_STYLES = {
   timelineProgress:
     "absolute left-0 top-0 w-[2px] origin-top bg-brand-cyan shadow-[0_0_12px_rgba(49,195,195,0.65)]",
   stageList: "relative flex flex-col gap-16 md:gap-20 lg:gap-24",
-  timelineSpacer: "shrink-0 w-full pointer-events-none",
+  timelineSpacer: "shrink-0 w-full pointer-events-none h-0 md:h-[min(22vh,200px)]",
   previewSticky:
     "sticky top-[calc(var(--site-nav-height)+2rem)] hidden self-start md:block",
   previewFrame:

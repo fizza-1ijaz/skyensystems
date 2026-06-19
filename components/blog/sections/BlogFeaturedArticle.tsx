@@ -5,6 +5,7 @@ import Link from "next/link";
 import { BlogBlueprintBackdrop } from "@/components/blog/BlogBlueprintBackdrop";
 import { estimateReadingTime, formatPublishDate } from "@/components/blog/blog-ui-utils";
 import { Reveal } from "@/components/landing/Reveal";
+import { SITE_IMAGE_QUALITY } from "@/lib/site-image";
 import type { BlogListRow } from "@/lib/blogs";
 
 type BlogFeaturedArticleProps = {
@@ -49,6 +50,8 @@ export function BlogFeaturedArticle({ post }: BlogFeaturedArticleProps) {
                   alt=""
                   fill
                   sizes="(max-width: 1024px) 100vw, 640px"
+                  quality={SITE_IMAGE_QUALITY.hero}
+                  priority
                   className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
                 />
               ) : (

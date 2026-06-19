@@ -8,6 +8,7 @@ import { ProductProcessStrip } from "@/components/products/ProductProcessStrip";
 import { ProductsBlueprintBackdrop } from "@/components/products/ProductsBlueprintBackdrop";
 import { Reveal } from "@/components/landing/Reveal";
 import type { ProductFeature, ProductScene } from "@/lib/products-page-data";
+import { SITE_IMAGE_QUALITY } from "@/lib/site-image";
 
 type ProductFeatureSectionProps = {
   product: ProductScene;
@@ -78,7 +79,8 @@ export function ProductFeatureSection({
                     alt={`${product.name} logo`}
                     fill
                     sizes="64px"
-                    quality={85}
+                    quality={SITE_IMAGE_QUALITY.thumb}
+                    loading="lazy"
                     className="object-contain p-2"
                   />
                 </div>

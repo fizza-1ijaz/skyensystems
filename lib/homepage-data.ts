@@ -60,7 +60,8 @@ export const FEATURED_PRODUCTS = {
 
 export const FEATURED_PRODUCTS_CARDS = [
   {
-    name: "Studiely — AI Study App for Students",
+    name: "Studiely",
+    tagline: "Study smarter. Not harder.",
     category: "EdTech · Live",
     description:
       "Studiely is an AI-powered study app that helps students plan daily learning, prepare for exams, generate notes, practice quizzes, and improve study consistency.",
@@ -71,7 +72,8 @@ export const FEATURED_PRODUCTS_CARDS = [
     backgroundImage: "/images/Studiely img.jpeg",
   },
   {
-    name: "Make My Lesson — AI Teaching Assistant",
+    name: "Make My Lesson",
+    tagline: "Great lessons. Half the planning time.",
     category: "EdTech · Live",
     description:
       "Make My Lesson helps teachers and professors create lesson plans, worksheets, quizzes, tests, assessments, presentations, and classroom activities faster with AI-powered teaching tools.",
@@ -82,7 +84,8 @@ export const FEATURED_PRODUCTS_CARDS = [
     backgroundImage: "/images/MML img.png",
   },
   {
-    name: "Linguatude — AI Language Learning Platform",
+    name: "Linguatude",
+    tagline: "Finally become fluent. Not just functional.",
     category: "Language · In development",
     description:
       "Linguatude supports learners with English test preparation, speaking practice, writing support, vocabulary improvement, and AI-powered language learning tools.",

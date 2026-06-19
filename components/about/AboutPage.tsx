@@ -4,6 +4,8 @@ import Link from "next/link";
 import { AboutTechFocusSection } from "@/components/about/sections/AboutTechFocusSection";
 import { AboutWhatWeDoSection } from "@/components/about/sections/AboutWhatWeDoSection";
 import { Reveal } from "@/components/landing/Reveal";
+import { OptimizedPhoto } from "@/components/ui/OptimizedPhoto";
+import { SITE_IMAGE_QUALITY } from "@/lib/site-image";
 import {
   ABOUT_HERO_STATS,
   ABOUT_PEOPLE_POINTS,
@@ -50,7 +52,7 @@ export function AboutPage() {
       {/* Hero */}
       <section className="bg-[linear-gradient(180deg,#fff,#F4F4F2)] pb-14 pt-10 md:pb-16 md:pt-14">
         <div className="mx-auto grid max-w-[1120px] items-center gap-10 px-6 lg:grid-cols-[1fr_0.82fr] lg:gap-11">
-          <Reveal>
+          <Reveal className="page-hero-copy">
             <p className={eyebrowClass}>About Skyen Systems</p>
             <h1 className="mt-3 font-heading text-[clamp(2.5rem,7vw,5.75rem)] font-bold leading-[0.92] tracking-[-0.04em] text-[#141414]">
               Brilliant Digital Products, Built With Purpose.
@@ -60,22 +62,21 @@ export function AboutPage() {
               businesses build websites, mobile apps, AI solutions, SaaS platforms, UI/UX
               experiences, SEO systems, and dedicated software teams.
             </p>
-            <div className="mt-7 flex flex-wrap gap-3">
+            <div className="page-hero-cta-row mt-7 flex flex-wrap gap-3">
               <PrimaryCta href="/contact-us">Start Your Project</PrimaryCta>
               <SecondaryCta href={ABOUT_PRIMARY_SERVICE_HREF}>Explore Services</SecondaryCta>
             </div>
           </Reveal>
 
           <Reveal delay={0.08}>
-            <div
-              className="relative flex min-h-[22rem] flex-col justify-between overflow-hidden rounded-[2rem] bg-[#141414] p-7 shadow-[0_18px_55px_rgba(10,24,42,0.08)] md:min-h-[26rem] md:rounded-[2.125rem] md:p-8"
-              style={{
-                backgroundImage:
-                  `linear-gradient(135deg,rgba(20,20,20,0.94),rgba(15,23,42,0.75)),url("${encodeURI("/images/About Us ( Top img).png")}")`,
-                backgroundSize: "cover",
-                backgroundPosition: "center",
-              }}
-            >
+            <div className="relative flex min-h-[22rem] flex-col justify-between overflow-hidden rounded-[2rem] bg-[#141414] p-7 shadow-[0_18px_55px_rgba(10,24,42,0.08)] md:min-h-[26rem] md:rounded-[2.125rem] md:p-8">
+              <OptimizedPhoto
+                src="/images/About Us ( Top img).png"
+                sizes="(max-width: 1024px) 100vw, 42vw"
+                priority
+                quality={SITE_IMAGE_QUALITY.hero}
+              />
+              <div className="absolute inset-0 bg-gradient-to-br from-[#141414]/94 via-[#0f172a]/75 to-[#0f172a]/75" aria-hidden />
               <div
                 className="pointer-events-none absolute -right-20 -top-20 h-64 w-64 rounded-full bg-[#31C3C3]/20"
                 aria-hidden
@@ -109,7 +110,7 @@ export function AboutPage() {
         <div className="mx-auto grid max-w-[1120px] items-start gap-10 px-6 lg:grid-cols-[0.9fr_1.1fr] lg:gap-11">
           <Reveal>
             <div className="flex min-h-[20rem] flex-col justify-between rounded-[1.875rem] bg-[#141414] p-7 text-white md:min-h-[20.5rem] md:p-8">
-              <div>
+              <div className="relative">
                 <p className={`${eyebrowClass} text-[#A9E7E2]`}>Who We Are</p>
                 <h2 className="mt-3 font-heading text-[clamp(1.75rem,3vw,2.125rem)] font-bold leading-[1.1] tracking-[-0.03em]">
                   A team built for modern digital product growth.
@@ -184,16 +185,18 @@ export function AboutPage() {
       <section className="py-16 md:py-[4.375rem]">
         <div className="mx-auto max-w-[1120px] px-6">
           <Reveal>
-            <div
-              className="flex min-h-[18rem] items-end rounded-[2.125rem] bg-[#141414] p-7 shadow-[0_18px_55px_rgba(10,24,42,0.08)] md:min-h-[24rem] md:p-9"
-              style={{
-                backgroundImage:
-                  "linear-gradient(90deg,rgba(20,20,20,0.88),rgba(20,20,20,0.48)),url('https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1400&q=80')",
-                backgroundSize: "cover",
-                backgroundPosition: "center",
-              }}
-            >
-              <div>
+            <div className="relative flex min-h-[18rem] items-end overflow-hidden rounded-[2.125rem] bg-[#141414] p-7 shadow-[0_18px_55px_rgba(10,24,42,0.08)] md:min-h-[24rem] md:p-9">
+              <OptimizedPhoto
+                src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1400&q=80"
+                sizes="(max-width: 1024px) 100vw, 1120px"
+                quality={SITE_IMAGE_QUALITY.content}
+                className="object-cover"
+              />
+              <div
+                className="absolute inset-0 bg-gradient-to-r from-[#141414]/88 to-[#141414]/48"
+                aria-hidden
+              />
+              <div className="relative">
                 <p className={`${eyebrowClass} text-[#A9E7E2]`}>Our Culture</p>
                 <h2 className="mt-3 max-w-3xl font-heading text-[clamp(1.75rem,4vw,3rem)] font-bold leading-[1.05] tracking-[-0.03em] text-white">
                   Great products happen when smart teams solve real business problems together.
@@ -239,16 +242,18 @@ export function AboutPage() {
           </Reveal>
 
           <Reveal delay={0.08}>
-            <div
-              className="min-h-[18rem] rounded-[1.875rem] md:min-h-[22.5rem]"
-              style={{
-                backgroundImage:
-                  "linear-gradient(135deg,rgba(20,20,20,0.65),rgba(20,20,20,0.2)),url('https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=1200&q=80')",
-                backgroundSize: "cover",
-                backgroundPosition: "center",
-              }}
-              aria-hidden
-            />
+            <div className="relative min-h-[18rem] overflow-hidden rounded-[1.875rem] md:min-h-[22.5rem]">
+              <OptimizedPhoto
+                src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=1200&q=80"
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                quality={SITE_IMAGE_QUALITY.content}
+                className="object-cover"
+              />
+              <div
+                className="absolute inset-0 bg-gradient-to-br from-[#141414]/65 to-[#141414]/20"
+                aria-hidden
+              />
+            </div>
           </Reveal>
         </div>
       </section>
@@ -273,10 +278,12 @@ export function AboutPage() {
                   }}
                   className="group block overflow-hidden rounded-3xl border border-[#DADAD8] bg-white shadow-[0_12px_34px_rgba(16,24,40,0.045)] transition-shadow duration-300 hover:shadow-[0_20px_44px_rgba(16,24,40,0.12)]"
                 >
-                  <div className="h-44 overflow-hidden">
-                    <div
-                      className="h-full w-full scale-100 bg-cover bg-center transition-transform duration-500 ease-out group-hover:scale-110"
-                      style={{ backgroundImage: `url('${encodeURI(project.image)}')` }}
+                  <div className="relative h-44 overflow-hidden">
+                    <OptimizedPhoto
+                      src={project.image}
+                      sizes="(max-width: 768px) 100vw, 33vw"
+                      quality={SITE_IMAGE_QUALITY.content}
+                      className="object-cover transition-transform duration-500 ease-out group-hover:scale-110"
                     />
                   </div>
                   <div className="p-5 md:p-6">

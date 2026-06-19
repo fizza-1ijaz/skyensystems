@@ -5,6 +5,7 @@ import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { estimateReadingTime, formatPublishDate } from "@/components/blog/blog-ui-utils";
 import { Reveal } from "@/components/landing/Reveal";
+import { SITE_IMAGE_QUALITY, shouldBypassImageOptimization } from "@/lib/site-image";
 import type { FeaturedBlogPost } from "@/lib/featured-blogs";
 
 type BlogCardProps = {
@@ -42,6 +43,9 @@ function BlogCardImage({
         fill
         sizes={sizes}
         priority={priority}
+        quality={SITE_IMAGE_QUALITY.content}
+        loading={priority ? undefined : "lazy"}
+        unoptimized={shouldBypassImageOptimization(src)}
         className={`object-cover transition-transform duration-700 ease-out group-hover:scale-105 ${className}`}
       />
     );

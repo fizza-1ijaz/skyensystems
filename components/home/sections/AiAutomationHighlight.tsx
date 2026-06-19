@@ -4,6 +4,7 @@ import Image from "next/image";
 import { AI_AUTOMATION_HIGHLIGHT } from "@/lib/homepage-data";
 import { Reveal } from "@/components/landing/Reveal";
 import { EditorialBoxCta } from "@/components/ui/EditorialBoxCta";
+import { SITE_IMAGE_QUALITY, shouldBypassImageOptimization } from "@/lib/site-image";
 
 function CapabilityCard({
   capability,
@@ -21,6 +22,9 @@ function CapabilityCard({
           fill
           className="object-cover transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] [@media(hover:hover)]:group-hover:scale-105 motion-reduce:group-hover:scale-100"
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+          quality={SITE_IMAGE_QUALITY.content}
+          loading="lazy"
+          unoptimized={shouldBypassImageOptimization(capability.image)}
         />
       </div>
 
@@ -57,7 +61,7 @@ export function AiAutomationHighlight() {
 
       <div className="relative mx-auto max-w-[1440px] px-6 md:px-10">
         <div className="grid gap-12 lg:grid-cols-12 lg:items-center lg:gap-16">
-          <Reveal className="lg:col-span-5">
+          <Reveal className="page-hero-copy lg:col-span-5">
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#31C3C3]">
               {AI_AUTOMATION_HIGHLIGHT.eyebrow}
             </p>
@@ -67,7 +71,7 @@ export function AiAutomationHighlight() {
             <p className="mt-4 text-sm leading-relaxed text-[#5C5C5C] md:text-base">
               {AI_AUTOMATION_HIGHLIGHT.description}
             </p>
-            <div className="mt-8">
+            <div className="page-hero-cta-row mt-8">
               <EditorialBoxCta href={AI_AUTOMATION_HIGHLIGHT.cta.href} variant="primary">
                 {AI_AUTOMATION_HIGHLIGHT.cta.label}
               </EditorialBoxCta>

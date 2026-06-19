@@ -4,6 +4,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
 import { Reveal } from "@/components/landing/Reveal";
+import { OptimizedPhoto } from "@/components/ui/OptimizedPhoto";
+import { SITE_IMAGE_QUALITY } from "@/lib/site-image";
 
 export type ServiceRelatedWorkData = {
   label: string;
@@ -46,12 +48,16 @@ function RelatedWorkCard({
             }
       }
       className="group relative flex h-full flex-col items-center overflow-hidden rounded-2xl border border-[#2E2E2E] bg-[#141414] p-6 text-center transition-[border-color] duration-300 hover:border-[#31C3C3]/55 md:rounded-3xl md:p-8"
-      style={{
-        backgroundImage: `linear-gradient(135deg,rgba(20,20,20,0.94),rgba(15,23,42,0.75)),url("${encodeURI(card.backgroundImage)}")`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-      }}
     >
+      <div className="pointer-events-none absolute inset-0" aria-hidden>
+        <OptimizedPhoto
+          src={card.backgroundImage}
+          sizes="(max-width: 768px) 100vw, 33vw"
+          quality={SITE_IMAGE_QUALITY.content}
+          className="object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-br from-[#141414]/94 via-[#0f172a]/75 to-[#0f172a]/75" />
+      </div>
       <div
         className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100 motion-reduce:group-hover:opacity-0"
         aria-hidden
@@ -62,7 +68,7 @@ function RelatedWorkCard({
       />
 
       <div className="relative z-10 mx-auto h-20 w-20 overflow-hidden rounded-2xl border border-[#2E2E2E] bg-[#141414] transition-[border-color,transform,box-shadow] duration-300 group-hover:scale-105 group-hover:border-[#31C3C3]/45 group-hover:shadow-[0_0_28px_-4px_rgba(49,195,195,0.5)] motion-reduce:group-hover:scale-100">
-        <Image src={card.logo} alt="" fill className="object-contain p-2" sizes="80px" />
+        <Image src={card.logo} alt="" fill className="object-contain p-2" sizes="80px" quality={SITE_IMAGE_QUALITY.thumb} loading="lazy" />
       </div>
 
       <h3 className="relative z-10 mt-6 w-full font-heading text-xl font-bold leading-snug text-[#FAFAF8] md:text-2xl">

@@ -12,7 +12,7 @@ export function ProductsHero() {
 
       <div className="relative z-10 mx-auto max-w-[1440px] px-6 md:px-10">
         <div className="lg:grid lg:grid-cols-12 lg:items-start lg:gap-10 xl:gap-14">
-          <div className="lg:col-span-7">
+          <div className="page-hero-copy lg:col-span-7">
             <Reveal>
               <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-[#8A8A8A]">
                 {PRODUCTS_HERO.label}
@@ -28,7 +28,7 @@ export function ProductsHero() {
               </p>
             </Reveal>
 
-            <Reveal delay={0.1} className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
+            <Reveal delay={0.1} className="page-hero-cta-row mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
               <EditorialBoxCta href={PRODUCTS_HERO.primaryCta.href} variant="primary">
                 {PRODUCTS_HERO.primaryCta.label}
               </EditorialBoxCta>

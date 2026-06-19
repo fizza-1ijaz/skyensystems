@@ -5,7 +5,6 @@ import { motion } from "framer-motion";
 import { ProcessCard } from "@/components/landing/process/ProcessCard";
 import {
   PROCESS_MOTION,
-  PROCESS_SCROLL_SPACER,
   PROCESS_OBSERVER,
   PROCESS_STYLES,
 } from "@/components/landing/process/process-constants";
@@ -106,11 +105,7 @@ export function Timeline({ stages, activeIndex, setStageRef, reduceMotion }: Tim
         </div>
       </div>
 
-      <div
-        className={PROCESS_STYLES.timelineSpacer}
-        style={{ height: PROCESS_SCROLL_SPACER }}
-        aria-hidden
-      />
+      <div className={PROCESS_STYLES.timelineSpacer} aria-hidden />
     </div>
   );
 }

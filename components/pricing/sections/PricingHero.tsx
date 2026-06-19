@@ -13,7 +13,7 @@ export function PricingHero() {
           <div className="relative lg:col-span-7">
             <PricingEstimatorBlueprint />
 
-            <div className="relative z-10">
+            <div className="page-hero-copy relative z-10">
               <Reveal>
                 <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-[#8A8A8A]">
                   {PRICING_HERO.label}
@@ -29,7 +29,7 @@ export function PricingHero() {
                 </p>
               </Reveal>
 
-              <Reveal delay={0.1} className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
+              <Reveal delay={0.1} className="page-hero-cta-row mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
                 <EditorialBoxCta href={PRICING_HERO.primaryCta.href} variant="primary">
                   {PRICING_HERO.primaryCta.label}
                 </EditorialBoxCta>

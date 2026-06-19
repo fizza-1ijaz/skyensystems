@@ -5,6 +5,8 @@ import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
 import { FEATURED_PRODUCTS, FEATURED_PRODUCTS_CARDS } from "@/lib/homepage-data";
 import { Reveal } from "@/components/landing/Reveal";
+import { OptimizedPhoto } from "@/components/ui/OptimizedPhoto";
+import { SITE_IMAGE_QUALITY } from "@/lib/site-image";
 
 const CARD_GLOW_SPRING = { type: "spring" as const, stiffness: 360, damping: 28, mass: 0.52 };
 const BTN_SPRING = { type: "spring" as const, stiffness: 440, damping: 24, mass: 0.4 };
@@ -90,12 +92,16 @@ function ProductCard({
             }
       }
       className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-[#2E2E2E] bg-[#141414] p-6 transition-[border-color] duration-300 hover:border-[#31C3C3]/55 md:rounded-3xl md:p-8"
-      style={{
-        backgroundImage: `linear-gradient(135deg,rgba(20,20,20,0.94),rgba(15,23,42,0.75)),url("${encodeURI(project.backgroundImage)}")`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-      }}
     >
+      <div className="pointer-events-none absolute inset-0" aria-hidden>
+        <OptimizedPhoto
+          src={project.backgroundImage}
+          sizes="(max-width: 768px) 100vw, 33vw"
+          quality={SITE_IMAGE_QUALITY.content}
+          className="object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-br from-[#141414]/94 via-[#0f172a]/75 to-[#0f172a]/75" />
+      </div>
       <div
         className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100 motion-reduce:group-hover:opacity-0"
         aria-hidden
@@ -108,19 +114,24 @@ function ProductCard({
       <div className="relative z-10 mx-auto h-20 w-20 overflow-hidden rounded-2xl border border-[#2E2E2E] bg-[#141414] transition-[border-color,transform,box-shadow] duration-300 group-hover:scale-105 group-hover:border-[#31C3C3]/45 group-hover:shadow-[0_0_28px_-4px_rgba(49,195,195,0.5)] motion-reduce:group-hover:scale-100">
         <Image
           src={project.logo}
-          alt={`${project.name.split(" — ")[0]} logo`}
+          alt={`${project.name} logo`}
           fill
           className="object-contain p-2"
           sizes="80px"
+          quality={SITE_IMAGE_QUALITY.thumb}
+          loading="lazy"
         />
       </div>
 
       <p className="relative z-10 mt-6 text-center text-xs font-semibold uppercase tracking-[0.2em] text-[#31C3C3] transition-colors duration-300 group-hover:text-[#5ee8e8]">
         {project.category}
       </p>
-      <h3 className="relative z-10 mt-2 text-center font-heading text-2xl font-bold text-[#FAFAF8]">
+      <h3 className="relative z-10 mt-2 truncate text-center font-heading text-2xl font-bold text-[#FAFAF8]">
         {project.name}
       </h3>
+      <p className="relative z-10 mt-2 text-center text-sm font-medium leading-snug text-[#D4D4D4] transition-colors duration-300 group-hover:text-[#E8E8E8]">
+        {project.tagline}
+      </p>
       <p className="relative z-10 mt-4 flex-grow text-center text-sm leading-relaxed text-[#B8B8B8] transition-colors duration-300 group-hover:text-[#E8E8E8]">
         {project.description}
       </p>

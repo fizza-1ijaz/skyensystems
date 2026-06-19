@@ -4,6 +4,7 @@ import Image from "next/image";
 import { BookOpen } from "lucide-react";
 import { motion, useReducedMotion } from "framer-motion";
 import type { ProductScene } from "@/lib/products-page-data";
+import { SITE_IMAGE_QUALITY, shouldBypassImageOptimization } from "@/lib/site-image";
 
 type ProductMockupShowcaseProps = {
   product: ProductScene;
@@ -100,9 +101,11 @@ export function ProductMockupShowcase({
                 alt={`${product.name} mockup 1`}
                 fill
                 sizes={mainSizes}
-                quality={isLinguatude ? 100 : 85}
+                quality={SITE_IMAGE_QUALITY.hero}
+                unoptimized={shouldBypassImageOptimization(mockups[0]!)}
                 className={mainImgClass}
                 priority={priority || isLinguatude}
+                loading={priority || isLinguatude ? undefined : "lazy"}
               />
             </div>
           </div>
@@ -118,9 +121,11 @@ export function ProductMockupShowcase({
                   alt={`${product.name} mockup 2`}
                   fill
                   sizes={secondarySizes}
-                  quality={isLinguatude ? 90 : 85}
+                  quality={SITE_IMAGE_QUALITY.content}
+                  unoptimized={shouldBypassImageOptimization(mockups[1])}
                   className={secondaryImgClass}
                   priority={priority || isLinguatude}
+                  loading={priority || isLinguatude ? undefined : "lazy"}
                 />
               </div>
             </div>

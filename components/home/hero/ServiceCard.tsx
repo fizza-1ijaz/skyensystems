@@ -6,6 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import type { LucideIcon } from "lucide-react";
 import { getServiceCardTheme } from "@/lib/service-card-themes";
+import { SITE_IMAGE_QUALITY, shouldBypassImageOptimization } from "@/lib/site-image";
 import { useRevealOnce } from "@/hooks/useRevealOnce";
 import { ServiceCardBackgroundIcons } from "./HeroTechCornerIcons";
 
@@ -136,9 +137,9 @@ export function ServiceCard({
                 alt={service.title}
                 width={350}
                 height={288}
-                quality={80}
+                quality={SITE_IMAGE_QUALITY.content}
                 priority={index < 2}
-                unoptimized={service.previewImage.endsWith(".jfif")}
+                unoptimized={shouldBypassImageOptimization(service.previewImage)}
                 className="h-full w-full object-cover transition-transform duration-1000 group-hover:scale-110"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 transition-opacity duration-700 group-hover:opacity-100" />
@@ -178,9 +179,9 @@ export function ServiceCard({
               alt={service.title}
               width={400}
               height={256}
-              quality={80}
+              quality={SITE_IMAGE_QUALITY.content}
               priority={index < 2}
-              unoptimized={service.previewImage.endsWith(".jfif")}
+              unoptimized={shouldBypassImageOptimization(service.previewImage)}
               className="h-full w-full object-cover transition-transform duration-1000 group-hover:scale-110"
             />
           </div>

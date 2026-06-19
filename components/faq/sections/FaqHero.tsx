@@ -2,6 +2,8 @@
 
 import { FAQ_HERO } from "@/lib/faq-editorial-data";
 import { Reveal } from "@/components/landing/Reveal";
+import { OptimizedPhoto } from "@/components/ui/OptimizedPhoto";
+import { SITE_IMAGE_QUALITY } from "@/lib/site-image";
 
 const FAQ_HERO_IMAGE = "/images/QA.png";
 
@@ -9,7 +11,7 @@ export function FaqHero() {
   return (
     <section className="border-b border-[#E5E5E3] bg-[#F4F4F2]">
       <div className="mx-auto grid max-w-[1440px] gap-12 px-6 pb-16 pt-10 md:px-10 md:pb-20 md:pt-14 lg:grid-cols-12 lg:items-center lg:gap-11">
-        <div className="lg:col-span-7">
+        <div className="page-hero-copy lg:col-span-7">
           <Reveal>
             <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-[#8A8A8A]">
               {FAQ_HERO.eyebrow}
@@ -32,16 +34,15 @@ export function FaqHero() {
         </div>
 
         <Reveal delay={0.12} className="min-w-0 lg:col-span-5">
-          <div
-            className="relative min-h-[16rem] overflow-hidden rounded-[2rem] bg-[#F4F4F2] shadow-[0_18px_55px_rgba(10,24,42,0.08)] md:min-h-[20rem] md:rounded-[2.125rem] lg:min-h-[22rem]"
-            style={{
-              backgroundImage: `url("${encodeURI(FAQ_HERO_IMAGE)}")`,
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-            }}
-            role="img"
-            aria-label="Skyen Systems FAQ"
-          />
+          <div className="relative min-h-[16rem] overflow-hidden rounded-[2rem] bg-[#F4F4F2] shadow-[0_18px_55px_rgba(10,24,42,0.08)] md:min-h-[20rem] md:rounded-[2.125rem] lg:min-h-[22rem]">
+            <OptimizedPhoto
+              src={FAQ_HERO_IMAGE}
+              alt="Skyen Systems FAQ"
+              sizes="(max-width: 1024px) 100vw, 40vw"
+              priority
+              quality={SITE_IMAGE_QUALITY.hero}
+            />
+          </div>
         </Reveal>
       </div>
     </section>

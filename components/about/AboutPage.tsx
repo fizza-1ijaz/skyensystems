@@ -154,12 +154,12 @@ export function AboutPage() {
       {/* Vision */}
       <section className="bg-[#F4F4F2] py-16 md:py-[4.375rem]">
         <div className="mx-auto max-w-[1120px] px-6">
-          <Reveal className="max-w-3xl">
+          <Reveal className="mx-auto w-full max-w-3xl text-center">
             <p className={eyebrowClass}>Our Vision</p>
-            <h2 className="editorial-section-title mt-3 text-[#141414]">
+            <h2 className="editorial-section-title mx-auto mt-3 w-full max-w-none text-balance text-[#141414]">
               To create digital products that are useful, scalable and ready for growth.
             </h2>
-            <p className={`mt-4 ${leadClass}`}>
+            <p className={`mx-auto mt-4 max-w-2xl ${leadClass}`}>
               We believe a strong digital product should look professional, solve a real problem,
               work smoothly for users, support business goals, and keep improving after launch.
             </p>
@@ -256,9 +256,9 @@ export function AboutPage() {
       {/* Work */}
       <section className="bg-[#F4F4F2] py-16 md:py-[4.375rem]">
         <div className="mx-auto max-w-[1120px] px-6">
-          <Reveal className="max-w-3xl">
+          <Reveal className="mx-auto w-full max-w-3xl text-center">
             <p className={eyebrowClass}>Our Work</p>
-            <h2 className="editorial-section-title mt-3 text-[#141414]">
+            <h2 className="editorial-section-title mx-auto mt-3 w-full max-w-none text-balance text-[#141414]">
               Digital products we build and grow.
             </h2>
           </Reveal>
@@ -270,7 +270,7 @@ export function AboutPage() {
                   <div className="h-44 overflow-hidden">
                     <div
                       className="h-full w-full scale-100 bg-cover bg-center transition-transform duration-500 ease-out group-hover:scale-110"
-                      style={{ backgroundImage: `url('${project.image}')` }}
+                      style={{ backgroundImage: `url('${encodeURI(project.image)}')` }}
                     />
                   </div>
                   <div className="p-5 md:p-6">

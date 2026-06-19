@@ -71,7 +71,7 @@ export const PRODUCT_PROCESS_STEPS = [
 ] as const;
 
 export const PRODUCTS_QUOTE = {
-  quote: "These are not demo projects — they are real products built by our in-house team.",
+  quote: "These are not demo projects, they are real products built by our in-house team.",
   supportingText:
     "Our products show how Skyen Systems thinks, designs, develops, launches and improves digital platforms over time.",
 } as const;

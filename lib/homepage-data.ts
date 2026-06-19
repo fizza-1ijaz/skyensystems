@@ -254,7 +254,7 @@ export const WHY_CHOOSE_ITEMS = [
 
 export const AI_AUTOMATION_HIGHLIGHT = {
   eyebrow: "AI & Automation",
-  headline: "Practical AI that ships — not slide decks.",
+  headline: "Practical AI that ships, not slide decks.",
   description:
     "We integrate LLMs, workflow automation, and intelligent features into products your team actually uses. From customer-facing copilots to back-office automation, every build is scoped for measurable ROI.",
   capabilities: [

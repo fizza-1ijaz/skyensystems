@@ -37,9 +37,9 @@ export function AboutTechFocusSection() {
   return (
     <section className="py-16 md:py-[4.375rem]">
       <div className="mx-auto max-w-[1120px] px-6">
-        <Reveal className="max-w-3xl">
+        <Reveal className="mx-auto w-full max-w-3xl text-center">
           <p className={eyebrowClass}>Technology Focus</p>
-          <h2 className="editorial-section-title mt-3 text-[#141414]">
+          <h2 className="editorial-section-title mx-auto mt-3 w-full max-w-none text-balance text-[#141414]">
             We work across modern product, web, app, AI and growth systems.
           </h2>
         </Reveal>

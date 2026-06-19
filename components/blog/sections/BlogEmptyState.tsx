@@ -9,7 +9,7 @@ type BlogEmptyStateProps = {
 
 export function BlogEmptyState({ message, onReset }: BlogEmptyStateProps) {
   return (
-    <section className="bg-[#F4F4F2] py-20 md:py-28">
+    <section className="bg-[#F4F4F2] pb-20 md:pb-28">
       <div className="mx-auto max-w-[1440px] px-6 md:px-10">
         <div className="mx-auto max-w-xl border border-[#DADAD8] bg-[#FAFAF8] px-8 py-12 text-center md:px-12 md:py-16">
           <p className="font-heading text-2xl font-bold tracking-tight text-[#141414] md:text-3xl">

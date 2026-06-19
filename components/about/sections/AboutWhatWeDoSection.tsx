@@ -44,9 +44,9 @@ export function AboutWhatWeDoSection() {
       />
 
       <div className="relative mx-auto max-w-[1120px] px-6">
-        <Reveal className="max-w-3xl">
+        <Reveal className="mx-auto w-full max-w-3xl text-center">
           <p className={eyebrowClass}>What We Do</p>
-          <h2 className="editorial-section-title mt-3 text-[#141414]">
+          <h2 className="editorial-section-title mx-auto mt-3 w-full max-w-none text-balance text-[#141414]">
             Digital services that connect product strategy, technology and growth.
           </h2>
         </Reveal>

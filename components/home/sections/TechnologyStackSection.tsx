@@ -102,7 +102,7 @@ export function TechnologyStackSection() {
             Technology stack
           </p>
           <h2 className="editorial-section-title mx-auto mt-4 w-full max-w-none text-[#141414]">
-            Modern, scalable tools — documented and handed over with full ownership.
+            Modern, scalable tools, documented and handed over with full ownership.
           </h2>
           <p className="mx-auto mt-4 w-full max-w-none text-sm leading-relaxed text-[#5C5C5C] md:text-base">
             Every application we build uses proven technologies suited to your product&apos;s scale,

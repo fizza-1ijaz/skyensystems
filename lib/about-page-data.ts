@@ -160,22 +160,19 @@ export const ABOUT_WORK = [
     title: "Studiely",
     description:
       "AI-powered study app supported by app development, UI/UX, SEO, ASO, and growth systems.",
-    image:
-      "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1000&q=80",
+    image: "/images/Studiely img.jpeg",
   },
   {
     title: "Make My Lesson",
     description:
       "AI teaching assistant platform supported by product strategy, web development, SEO and marketing.",
-    image:
-      "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1000&q=80",
+    image: "/images/MML img.png",
   },
   {
     title: "Linguatude",
     description:
       "AI language learning platform supported by design, website development, SEO and growth marketing.",
-    image:
-      "https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?auto=format&fit=crop&w=1000&q=80",
+    image: "/images/linguatude img.png",
   },
 ] as const;
 

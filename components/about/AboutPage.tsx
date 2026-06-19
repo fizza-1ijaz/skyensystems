@@ -266,7 +266,13 @@ export function AboutPage() {
           <div className="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
             {ABOUT_WORK.map((project, index) => (
               <Reveal key={project.title} delay={0.04 * index}>
-                <article className="group overflow-hidden rounded-3xl border border-[#DADAD8] bg-white shadow-[0_12px_34px_rgba(16,24,40,0.045)] transition-shadow duration-300 hover:shadow-[0_20px_44px_rgba(16,24,40,0.12)]">
+                <Link
+                  href="/products"
+                  onClick={() => {
+                    sessionStorage.setItem("products-scroll-target", project.productId);
+                  }}
+                  className="group block overflow-hidden rounded-3xl border border-[#DADAD8] bg-white shadow-[0_12px_34px_rgba(16,24,40,0.045)] transition-shadow duration-300 hover:shadow-[0_20px_44px_rgba(16,24,40,0.12)]"
+                >
                   <div className="h-44 overflow-hidden">
                     <div
                       className="h-full w-full scale-100 bg-cover bg-center transition-transform duration-500 ease-out group-hover:scale-110"
@@ -274,12 +280,12 @@ export function AboutPage() {
                     />
                   </div>
                   <div className="p-5 md:p-6">
-                    <h3 className="font-heading text-xl font-bold tracking-[-0.02em] text-[#141414]">
+                    <h3 className="font-heading text-xl font-bold tracking-[-0.02em] text-[#141414] transition-colors duration-300 group-hover:text-[#31C3C3]">
                       {project.title}
                     </h3>
                     <p className={`mt-2 ${bodyMuted}`}>{project.description}</p>
                   </div>
-                </article>
+                </Link>
               </Reveal>
             ))}
           </div>

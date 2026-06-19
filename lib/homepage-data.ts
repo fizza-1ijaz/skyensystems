@@ -103,7 +103,7 @@ export const PROCESS_SECTION = {
 
 /** Compact trust strip items shown directly below the hero. */
 export const TRUST_STRIP_ITEMS = [
-  { label: "PSEB Registered", detail: "Government-recognized software export house" },
+  { label: "Bahrain HQ's", detail: "Head office and primary legal entity in Manama, Kingdom of Bahrain" },
   { label: "20+ Projects", detail: "Delivered for US, UK, GCC & regional clients" },
   { label: "4-Hour Response", detail: "Direct access to leads and engineers" },
   { label: "Dual-Region Ops", detail: "Bahrain head office · Lahore delivery centre" },

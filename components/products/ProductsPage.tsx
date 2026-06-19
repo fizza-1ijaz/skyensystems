@@ -13,10 +13,24 @@ type ProductsPageProps = {
 
 export function ProductsPage({ initialProductId }: ProductsPageProps) {
   useEffect(() => {
-    if (!initialProductId) return;
-    const target = document.getElementById(`product-${initialProductId}`);
-    if (!target) return;
-    target.scrollIntoView({ behavior: "smooth", block: "center" });
+    const scrollToProduct = (id: string) => {
+      const target = document.getElementById(id);
+      if (!target) return;
+      requestAnimationFrame(() => {
+        target.scrollIntoView({ behavior: "smooth", block: "center" });
+      });
+    };
+
+    if (initialProductId) {
+      scrollToProduct(`product-${initialProductId}`);
+      return;
+    }
+
+    const storedTarget = sessionStorage.getItem("products-scroll-target");
+    if (storedTarget) {
+      sessionStorage.removeItem("products-scroll-target");
+      scrollToProduct(`product-${storedTarget}`);
+    }
   }, [initialProductId]);
 
   return (

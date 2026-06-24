@@ -1,3 +1,4 @@
+import { unstable_noStore as noStore } from "next/cache";
 import { getRecentBlogsForConfiguredSite, type BlogListRow } from "@/lib/blogs";
 
 export type FeaturedBlogPost = {
@@ -26,6 +27,7 @@ export function mapBlogToFeaturedPost(row: BlogListRow): FeaturedBlogPost {
 
 /** Server-side fetch for homepage featured blogs from Supabase. */
 export async function fetchFeaturedBlogs(limit = 3): Promise<FeaturedBlogPost[]> {
+  noStore();
   const rows = await getRecentBlogsForConfiguredSite(limit);
   return rows.map(mapBlogToFeaturedPost);
 }

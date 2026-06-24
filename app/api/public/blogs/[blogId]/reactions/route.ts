@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { supabase } from "@/lib/supabaseClient";
+import { getSupabase } from "@/lib/supabaseClient";
 
 const TURNSTILE_VERIFY_URL =
   "https://challenges.cloudflare.com/turnstile/v0/siteverify";
@@ -45,6 +45,7 @@ export async function GET(
   { params }: { params: Promise<{ blogId: string }> },
 ) {
   const { blogId } = await params;
+  const supabase = getSupabase();
   if (!supabase) {
     return NextResponse.json(
       { ok: false, message: "Supabase is not configured." },
@@ -95,6 +96,7 @@ export async function POST(
   { params }: { params: Promise<{ blogId: string }> },
 ) {
   const { blogId } = await params;
+  const supabase = getSupabase();
   if (!supabase) {
     return NextResponse.json(
       { ok: false, message: "Supabase is not configured." },

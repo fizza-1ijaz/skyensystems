@@ -1,6 +1,8 @@
 import type { MetadataRoute } from "next";
 import { getBlogSlugsForConfiguredSite } from "@/lib/blogs";
 
+export const dynamic = "force-dynamic";
+
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://skyensystems.com";
 
 const staticRoutes = [

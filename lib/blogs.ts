@@ -1,8 +1,13 @@
 import { cache } from "react";
-import { supabase, isSupabaseConfigured } from "@/lib/supabaseClient";
+import { unstable_noStore as noStore } from "next/cache";
+import { getSupabase, isSupabaseConfigured } from "@/lib/supabaseClient";
 
 const SITE_KEY = (process.env.SITE_KEY || "skyen-systems").trim();
 const SITE_ID_OVERRIDE = process.env.SITE_ID?.trim() || "";
+
+function getClient() {
+  return getSupabase();
+}
 
 const SUPABASE_QUERY_RETRIES = Math.max(
   1,
@@ -142,9 +147,10 @@ function toSeo(site: SiteBlogPageRow | null): BlogIndexSeo {
 }
 
 export const getSiteIdForConfiguredSite = cache(async (): Promise<string | null> => {
+  noStore();
   if (SITE_ID_OVERRIDE) return SITE_ID_OVERRIDE;
-  if (!isSupabaseConfigured() || !supabase) return null;
-  const client = supabase;
+  const client = getClient();
+  if (!isSupabaseConfigured() || !client) return null;
 
   const data = await execPostgrestWithRetries("resolve site_id", () =>
     client
@@ -162,8 +168,8 @@ export const getSiteIdForConfiguredSite = cache(async (): Promise<string | null>
 });
 
 async function loadBlogPageSeo(siteId: string): Promise<SiteBlogPageRow | null> {
-  if (!isSupabaseConfigured() || !supabase) return null;
-  const client = supabase;
+  const client = getClient();
+  if (!isSupabaseConfigured() || !client) return null;
 
   try {
     return await execPostgrestWithRetries("load blog page seo", () =>
@@ -205,9 +211,10 @@ async function loadBlogPageSeo(siteId: string): Promise<SiteBlogPageRow | null> 
 export const getBlogIndexDataForConfiguredSite = cache(_getBlogIndexDataForConfiguredSite);
 
 async function _getBlogIndexDataForConfiguredSite(): Promise<BlogIndexDataForSite> {
+  noStore();
   const siteId = await getSiteIdForConfiguredSite();
 
-  if (!siteId || !isSupabaseConfigured() || !supabase) {
+  if (!siteId || !isSupabaseConfigured()) {
     return {
       site_id: siteId ?? "",
       seo: DEFAULT_INDEX_SEO,
@@ -215,7 +222,15 @@ async function _getBlogIndexDataForConfiguredSite(): Promise<BlogIndexDataForSit
       posts: [],
     };
   }
-  const client = supabase;
+  const client = getClient();
+  if (!client) {
+    return {
+      site_id: siteId,
+      seo: DEFAULT_INDEX_SEO,
+      categories: [],
+      posts: [],
+    };
+  }
 
   const [siteRow, categoriesData, postsData] = await Promise.all([
     loadBlogPageSeo(siteId),
@@ -269,9 +284,10 @@ async function _getBlogIndexDataForConfiguredSite(): Promise<BlogIndexDataForSit
 export async function getBlogBySlugForConfiguredSite(
   slug: string,
 ): Promise<BlogPostRow | null> {
+  noStore();
   const siteId = await getSiteIdForConfiguredSite();
-  if (!siteId || !isSupabaseConfigured() || !supabase) return null;
-  const client = supabase;
+  const client = getClient();
+  if (!siteId || !client) return null;
 
   const row = await execPostgrestWithRetries(`fetch blog "${slug}"`, () =>
     client
@@ -300,9 +316,10 @@ export async function getRecentBlogsForConfiguredSite(
 export async function getBlogSlugsForConfiguredSite(): Promise<
   { slug: string; date_published: string | null }[]
 > {
+  noStore();
   const siteId = await getSiteIdForConfiguredSite();
-  if (!siteId || !isSupabaseConfigured() || !supabase) return [];
-  const client = supabase;
+  const client = getClient();
+  if (!siteId || !client) return [];
 
   const data = await execPostgrestWithRetries("fetch blog slugs", () =>
     client

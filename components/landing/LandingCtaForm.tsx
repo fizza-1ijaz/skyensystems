@@ -114,7 +114,7 @@ export function LandingCtaForm() {
     return (
       <div className="rounded-2xl border border-white/10 bg-[#1a2332]/90 p-6 text-center shadow-[0_32px_80px_-48px_rgba(0,0,0,0.65)] md:p-8">
         <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-[#31C3C3]">
-          Message received
+          Message Received
         </p>
         <h3 className="mt-3 font-heading text-2xl font-bold text-white md:text-3xl">
           Thank you — we&apos;ll be in touch shortly.
@@ -127,7 +127,7 @@ export function LandingCtaForm() {
           onClick={() => setStatus("idle")}
           className="mt-8 text-sm font-semibold text-[#31C3C3] transition-colors hover:text-[#2AB0B0]"
         >
-          Send another inquiry
+          Send Another Inquiry
         </button>
       </div>
     );
@@ -173,7 +173,7 @@ export function LandingCtaForm() {
             />
           </Field>
 
-          <Field label="Service needed" htmlFor="landing-cta-service">
+          <Field label="Service Needed" htmlFor="landing-cta-service">
             <select
               id="landing-cta-service"
               required
@@ -181,7 +181,7 @@ export function LandingCtaForm() {
               onChange={update("service")}
               className={fieldSelect}
             >
-              <option value="">Select service</option>
+              <option value="">Select Service</option>
               {LANDING_CTA.form.services.map((service) => (
                 <option key={service} value={service}>
                   {service}
@@ -190,7 +190,7 @@ export function LandingCtaForm() {
             </select>
           </Field>
 
-          <Field label="Target market" htmlFor="landing-cta-market">
+          <Field label="Target Market" htmlFor="landing-cta-market">
             <select
               id="landing-cta-market"
               required
@@ -206,7 +206,7 @@ export function LandingCtaForm() {
             </select>
           </Field>
 
-          <Field label="Project details" htmlFor="landing-cta-message" className="sm:col-span-2">
+          <Field label="Project Details" htmlFor="landing-cta-message" className="sm:col-span-2">
             <textarea
               id="landing-cta-message"
               required

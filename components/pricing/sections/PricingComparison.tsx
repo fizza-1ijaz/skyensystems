@@ -18,10 +18,10 @@ export function PricingComparison() {
       <div className="relative z-10 mx-auto max-w-[1440px] px-6 md:px-10">
         <Reveal className="w-full text-center">
           <h2 className="editorial-section-title mx-auto w-full max-w-none text-balance text-[#141414]">
-            Package comparison.
+            Package Comparison.
           </h2>
           <p className="mx-auto mt-4 w-full max-w-none text-sm leading-relaxed text-[#5C5C5C] md:text-base">
-            Select a category to review launch packages, monthly retainers, or individual service
+            Select a Category to Review Launch Packages, Monthly Retainers, or Individual Service
             rates. All figures are starting points — final quotes are fixed after discovery.
           </p>
         </Reveal>
@@ -34,7 +34,7 @@ export function PricingComparison() {
           <Reveal delay={0.1}>
             <div className="border-b border-[#DADAD8] py-8">
               <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#8A8A8A]">
-                Pakistan clients
+                Pakistan Clients
               </p>
               <p className="mt-3 text-sm leading-relaxed text-[#5C5C5C]">
                 Pricing above is in USD. Indicative PKR equivalents at current rates:
@@ -48,7 +48,7 @@ export function PricingComparison() {
                 Final amounts invoiced in PKR at rates confirmed at time of engagement.
               </p>
               <p className="mt-3 text-sm text-[#5C5C5C]">
-                Contact us for a PKR quote:{" "}
+                Contact Us for a PKR Quote:{" "}
                 <Link
                   href="mailto:info@skyensystems.com"
                   className="font-semibold text-[#141414] underline-offset-2 transition-colors duration-200 hover:text-[#31C3C3] hover:underline"

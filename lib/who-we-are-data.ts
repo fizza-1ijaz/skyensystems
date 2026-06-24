@@ -1,5 +1,5 @@
 export const WHO_WE_ARE_HERO = {
-  eyebrow: "Who we are",
+  eyebrow: "Who We Are",
   headline: "We build software that creates measurable business outcomes.",
   supporting: [
     "Skyen Systems is the trading name of Qismat Ventures W.L.L. — a PSEB-registered software house with a head office in Bahrain and a primary engineering centre in Lahore.",
@@ -38,13 +38,13 @@ export const FOUNDATION_PRINCIPLES = [
 export const COMPANY_TIMELINE = [
   {
     year: "Founding",
-    title: "One team, every discipline",
+    title: "One Team, Every Discipline",
     detail:
       "Founded on the belief that excellent digital work should not require a Fortune 500 budget or seven different agencies.",
   },
   {
     year: "Bahrain",
-    title: "Head office established",
+    title: "Head Office Established",
     detail:
       "Qismat Ventures W.L.L. incorporated in the Kingdom of Bahrain (CR No. 190698-1), Al-Seef, Manama.",
   },
@@ -56,7 +56,7 @@ export const COMPANY_TIMELINE = [
   },
   {
     year: "Products",
-    title: "In-house product studio",
+    title: "In-House Product Studio",
     detail:
       "Studiely and Make My Lesson live on App Store and Play Store; Linguatude in active development.",
   },
@@ -96,13 +96,13 @@ export const CULTURE_BLOCKS = [
   {
     type: "metric" as const,
     value: "4h",
-    label: "Response standard for business inquiries",
+    label: "Response Standard for Business Inquiries",
     span: "lg:col-span-4",
   },
   {
     type: "metric" as const,
     value: "20+",
-    label: "Engagements delivered internationally",
+    label: "Engagements Delivered Internationally",
     span: "lg:col-span-4",
   },
   {
@@ -120,7 +120,7 @@ export const CULTURE_BLOCKS = [
   {
     type: "metric" as const,
     value: "3",
-    label: "Live or in-development owned products",
+    label: "Live or In-Development Owned Products",
     span: "lg:col-span-6",
   },
 ] as const;

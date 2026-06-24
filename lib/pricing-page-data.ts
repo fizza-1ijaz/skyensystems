@@ -8,7 +8,7 @@ export const PRICING_HERO = {
 } as const;
 
 export const HERO_PRICING_SUMMARY = {
-  heading: "Clear pricing starts with clear scope.",
+  heading: "Clear Pricing Starts With Clear Scope.",
   items: [
     {
       title: "Starting from $500",
@@ -199,14 +199,14 @@ export const PRICING_FACTORS_SECTION = {
 } as const;
 
 export const PRICING_FACTORS = [
-  "Project size",
-  "Number of pages or screens",
-  "UI/UX design level",
-  "Backend complexity",
-  "AI features",
-  "Third-party integrations",
-  "Timeline urgency",
-  "Post-launch support",
+  "Project Size",
+  "Number of Pages or Screens",
+  "UI/UX Design Level",
+  "Backend Complexity",
+  "AI Features",
+  "Third-Party Integrations",
+  "Timeline Urgency",
+  "Post-Launch Support",
 ] as const;
 
 export const PRICING_NOTE_SECTION = {

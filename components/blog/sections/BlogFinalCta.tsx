@@ -13,7 +13,7 @@ export function BlogFinalCta() {
         <div className="mx-auto flex max-w-3xl flex-col items-center text-center">
           <Reveal className="w-full">
             <h2 className="font-heading text-[clamp(2.25rem,5.5vw,4rem)] font-bold leading-[1.02] tracking-[-0.03em] text-[#FAFAF8]">
-              Need expertise beyond the article?
+              Need Expertise Beyond the Article?
             </h2>
           </Reveal>
 
@@ -32,13 +32,13 @@ export function BlogFinalCta() {
               href="/contact-us#inquiry"
               className="inline-flex w-full items-center justify-center sm:w-auto sm:min-w-[240px] bg-[#31C3C3] px-10 py-4 text-sm font-semibold uppercase tracking-[0.14em] text-white transition-colors duration-200 hover:bg-[#2AB0B0]"
             >
-              Start a project
+              Start a Project
             </Link>
             <Link
               href="/contact-us"
               className="inline-flex w-full items-center justify-center sm:w-auto sm:min-w-[240px] border border-white/40 bg-transparent px-10 py-4 text-sm font-semibold uppercase tracking-[0.14em] text-white transition-all duration-200 hover:border-white hover:bg-white/5"
             >
-              Contact us
+              Contact Us
             </Link>
           </Reveal>
         </div>

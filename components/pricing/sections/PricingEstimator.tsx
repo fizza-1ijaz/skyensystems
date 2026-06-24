@@ -37,10 +37,10 @@ export function PricingEstimator({
             <div className="relative z-10">
               <Reveal>
                 <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-[#8A8A8A]">
-                  Investment estimator
+                  Investment Estimator
                 </p>
                 <h2 className="editorial-section-title mt-4 max-w-xl text-balance text-[#141414]">
-                  Plan local investment with clarity.
+                  Plan Local Investment With Clarity.
                 </h2>
               </Reveal>
 

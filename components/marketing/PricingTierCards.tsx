@@ -236,7 +236,7 @@ function PricingTierCardsInner({
                     href={plan.cta}
                     className={`inline-flex w-full items-center justify-center rounded-2xl bg-gradient-to-r ${buttonGradientResolved} px-5 py-3.5 text-sm font-semibold text-white ${ctaShadowClass} ring-1 ring-white/20 transition-[box-shadow] duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2`}
                   >
-                    Get started
+                    Get Started
                   </Link>
                 </motion.div>
               </div>

@@ -1,11 +1,18 @@
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import { BlogReactionButtons } from "@/components/blog/BlogReactionButtons";
+import { BlogArticleBody } from "@/components/blog/BlogArticleBody";
+import { formatPublishDate } from "@/components/blog/blog-ui-utils";
+import {
+  estimateReadingTimeFromHtml,
+  prepareBlogArticleContent,
+} from "@/lib/blog-content";
 import {
   getBlogBySlugForConfiguredSite,
   getBlogSlugsForConfiguredSite,
 } from "@/lib/blogs";
+import { SITE_IMAGE_QUALITY } from "@/lib/site-image";
 
 type BlogSlugPageProps = {
   params: Promise<{ slug: string }>;
@@ -43,6 +50,9 @@ export default async function BlogSlugPage({ params }: BlogSlugPageProps) {
   const post = await getBlogBySlugForConfiguredSite(slug);
   if (!post) notFound();
 
+  const { html, headings } = prepareBlogArticleContent(post.content ?? "");
+  const readingTime = estimateReadingTimeFromHtml(post.content ?? "");
+
   const articleSchema = {
     "@context": "https://schema.org",
     "@type": "Article",
@@ -69,31 +79,55 @@ export default async function BlogSlugPage({ params }: BlogSlugPageProps) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
       />
-      <article className="mx-auto max-w-4xl px-6 pb-16 pt-28 md:px-10">
-        <p className="text-xs font-semibold uppercase tracking-[0.14em] text-slate-500">
-          {post.category?.name ?? post.article_section ?? "Blog"}
-        </p>
-        <h1 className="mt-3 text-4xl font-extrabold text-[#0F172A] md:text-5xl">
-          {post.title}
-        </h1>
-        {post.description ? (
-          <p className="mt-4 text-lg text-slate-600">{post.description}</p>
+      <article className="landing-editorial mx-auto max-w-[1280px] px-6 pb-16 md:px-10">
+        <header className="max-w-4xl">
+          <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#31C3C3]">
+            {post.category?.name ?? post.article_section ?? "Blog"}
+          </p>
+          <h1 className="mt-4 font-heading text-[clamp(2rem,5vw,3.5rem)] font-bold leading-[1.05] tracking-[-0.03em] text-[#141414]">
+            {post.title}
+          </h1>
+          {post.description ? (
+            <p className="mt-5 text-lg leading-relaxed text-[#5C5C5C] md:text-xl">
+              {post.description}
+            </p>
+          ) : null}
+          <div className="mt-6 flex flex-wrap items-center gap-x-4 gap-y-2 text-[10px] font-semibold uppercase tracking-[0.14em] text-[#8A8A8A]">
+            <span>{formatPublishDate(post.date_published)}</span>
+            <span aria-hidden>·</span>
+            <span>{readingTime} min read</span>
+            {post.author_name ? (
+              <>
+                <span aria-hidden>·</span>
+                <span>{post.author_name}</span>
+              </>
+            ) : null}
+          </div>
+        </header>
+
+        {post.cover_image_url ? (
+          <div className="relative mt-10 aspect-[21/9] overflow-hidden rounded-2xl border border-[#DADAD8] bg-[#0F172A]">
+            <Image
+              src={post.cover_image_url}
+              alt=""
+              fill
+              priority
+              sizes="(max-width: 1280px) 100vw, 1280px"
+              quality={SITE_IMAGE_QUALITY.hero}
+              className="object-cover"
+            />
+          </div>
         ) : null}
 
-        <div className="mt-10 rounded-2xl border border-white/70 bg-white/80 p-6 text-slate-700 shadow-sm">
-          <div className="prose prose-slate max-w-none">
-            {post.content ? (
-              <div dangerouslySetInnerHTML={{ __html: post.content }} />
-            ) : (
-              <p>Article content coming soon.</p>
-            )}
-          </div>
+        <div className="mt-10">
+          <BlogArticleBody html={html} headings={headings} />
         </div>
 
-        <BlogReactionButtons blogId={post.id} />
-
         <div className="mt-8">
-          <Link href="/blog" className="text-sm font-semibold text-[#6D5DF6]">
+          <Link
+            href="/blog"
+            className="text-sm font-semibold text-[#31C3C3] transition-colors hover:text-[#2AB0B0]"
+          >
             ← Back to blog
           </Link>
         </div>

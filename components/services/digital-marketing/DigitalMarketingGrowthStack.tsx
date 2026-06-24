@@ -112,7 +112,7 @@ export function DigitalMarketingGrowthStack() {
         <div className="mx-auto mt-14 grid max-w-5xl gap-8 lg:grid-cols-12 lg:gap-12">
           <Reveal className="lg:col-span-4">
             <p className="mb-4 text-center text-xs font-semibold uppercase tracking-[0.16em] text-[#8A8A8A]">
-              Select a category
+              Select a Category
             </p>
             <ul className="flex flex-col gap-3" role="tablist" aria-label="SEO and digital marketing growth stack">
               {DIGITAL_MARKETING_GROWTH_STACK.groups.map((group, index) => {

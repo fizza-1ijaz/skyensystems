@@ -79,7 +79,7 @@ export default function ContactUsContent() {
     <div className="pb-8 pt-12">
       <section className="relative overflow-hidden px-6 py-16 md:px-16">
         <div className="mx-auto max-w-6xl text-center">
-          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.14em] text-slate-500">Get in touch</p>
+          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.14em] text-slate-500">Get In Touch</p>
           <h1 className="text-4xl font-extrabold text-[#0F172A] md:text-6xl">Let&apos;s talk. No pitch. No pressure.</h1>
           <p className="mx-auto mt-5 max-w-2xl text-lg text-slate-600">
             Tell us what you are building and we will recommend the most practical path forward.
@@ -103,10 +103,10 @@ export default function ContactUsContent() {
               <div className="bg-white">
                 {status === "success" ? (
                   <div className="space-y-4 py-20 px-8 text-center">
-                    <h2 className="text-3xl font-bold text-[#0F172A]">Message sent</h2>
+                    <h2 className="text-3xl font-bold text-[#0F172A]">Message Sent</h2>
                     <p className="text-slate-600">We will be in touch shortly.</p>
                     <button onClick={() => setStatus("idle")} className="font-semibold text-[#6D5DF6]">
-                      Send another message
+                      Send Another Message
                     </button>
                   </div>
                 ) : (
@@ -168,12 +168,12 @@ export default function ContactUsContent() {
                             onChange={(e) => setFormData({...formData, budget: e.target.value})}
                             className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm outline-none focus:border-[#6D5DF6]"
                           >
-                            <option value="">Select budget</option>
+                            <option value="">Select Budget</option>
                             {budgetRanges.map((range) => <option key={range} value={range}>{range}</option>)}
                           </select>
                         </div>
                         <div>
-                          <label className="mb-0.5 block text-xs font-semibold text-slate-700">How found us?</label>
+                          <label className="mb-0.5 block text-xs font-semibold text-slate-700">How Found Us?</label>
                           <select
                             required
                             value={formData.source}
@@ -225,7 +225,7 @@ export default function ContactUsContent() {
             {/* Info card below the form - visually enhanced */}
             <div className="rounded-3xl bg-gradient-to-br from-[#E0F5F5] to-[#D0F0F0] p-6 shadow-lg border border-transparent">
               <div className="mb-6 text-center lg:text-left">
-                <h2 className="text-2xl font-extrabold text-[#0F172A]">Send us a message</h2>
+                <h2 className="text-2xl font-extrabold text-[#0F172A]">Send Us a Message</h2>
                 <p className="mt-2 text-slate-700">Share your requirements below and our team will reply by email.</p>
               </div>
 

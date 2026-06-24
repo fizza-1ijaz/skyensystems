@@ -18,7 +18,7 @@ export function FaqFinalCta() {
       <div className="relative mx-auto grid max-w-[1440px] gap-10 px-6 py-24 md:grid-cols-12 md:items-end md:px-10 md:py-32">
         <Reveal className="md:col-span-8">
           <h2 className="font-heading text-[clamp(2.25rem,5.5vw,4.25rem)] font-bold leading-[0.95] tracking-[-0.03em] text-[#FAFAF8]">
-            Ask us directly.
+            Ask Us Directly.
             <br />
             No pitch — just clarity.
           </h2>
@@ -32,13 +32,13 @@ export function FaqFinalCta() {
                 "polygon(0 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%)",
             }}
           >
-            Book discovery
+            Book Discovery
           </Link>
           <p className="mt-4 text-xs text-[#8A8A8A]">
             <a href="mailto:info@skyensystems.com" className="hover:text-[#31C3C3]">
               Info@skyensystems.com
             </a>
-            {" · "}4h response standard
+            {" · "}4h Response Standard
           </p>
         </Reveal>
       </div>

@@ -47,7 +47,7 @@ export function AboutWhatWeDoSection() {
         <Reveal className="mx-auto w-full max-w-3xl text-center">
           <p className={eyebrowClass}>What We Do</p>
           <h2 className="editorial-section-title mx-auto mt-3 w-full max-w-none text-balance text-[#141414]">
-            Digital services that connect product strategy, technology and growth.
+            Digital Services That Connect Product Strategy, Technology and Growth.
           </h2>
         </Reveal>
 
@@ -104,7 +104,7 @@ export function AboutWhatWeDoSection() {
                       </p>
 
                       <div className="mt-5 flex items-center gap-2 border-t border-dashed border-[#E5E5E3] pt-4 text-xs font-semibold uppercase tracking-[0.14em] text-[#31C3C3] opacity-0 transition-all duration-300 group-hover:opacity-100">
-                        <span>Explore service</span>
+                        <span>Explore Service</span>
                         <ArrowUpRight className="h-3.5 w-3.5" aria-hidden />
                       </div>
                     </div>

@@ -21,7 +21,7 @@ function Email() {
 }
 
 export const FAQ_HERO = {
-  eyebrow: "Before we start",
+  eyebrow: "Before We Start",
   headline: "Questions worth asking before building software.",
   supporting: [
     "We work transparently — fixed scope, milestone payments, and direct access to the engineers doing the work.",
@@ -34,7 +34,7 @@ export const FAQ_NAV_CATEGORIES = [
   { id: "featured", label: "Featured", num: "01" },
   { id: "projects", label: "Projects", num: "02" },
   { id: "engineering", label: "Technology", num: "03" },
-  { id: "engagement", label: "Team structure", num: "04" },
+  { id: "engagement", label: "Team Structure", num: "04" },
   { id: "communication", label: "Communication", num: "05" },
   { id: "pricing", label: "Pricing", num: "06" },
   { id: "process", label: "Process", num: "07" },
@@ -94,7 +94,7 @@ export const FAQ_CHAPTERS: FaqChapter[] = [
   {
     id: "projects",
     title: "Projects",
-    subtitle: "How engagements begin and what we need from you.",
+    subtitle: "How Engagements Begin and What We Need From You.",
     items: [
       {
         q: "How do projects start?",
@@ -145,7 +145,7 @@ export const FAQ_CHAPTERS: FaqChapter[] = [
   {
     id: "engineering",
     title: "Engineering",
-    subtitle: "Technology choices, quality, and scale.",
+    subtitle: "Technology Choices, Quality, and Scale.",
     items: [
       {
         q: "What technologies do you use?",
@@ -191,7 +191,7 @@ export const FAQ_CHAPTERS: FaqChapter[] = [
   {
     id: "communication",
     title: "Communication",
-    subtitle: "How we stay aligned throughout delivery.",
+    subtitle: "How We Stay Aligned Throughout Delivery.",
     items: [
       {
         q: "What does weekly communication look like?",
@@ -224,8 +224,8 @@ export const FAQ_CHAPTERS: FaqChapter[] = [
   },
   {
     id: "engagement",
-    title: "Engagement models",
-    subtitle: "How teams embed in your organisation.",
+    title: "Engagement Models",
+    subtitle: "How Teams Embed in Your Organisation.",
     items: [
       {
         q: "Dedicated teams",
@@ -268,7 +268,7 @@ export const FAQ_CHAPTERS: FaqChapter[] = [
   {
     id: "pricing",
     title: "Pricing & payments",
-    subtitle: "Fixed pricing, milestones, and transparency.",
+    subtitle: "Fixed Pricing, Milestones, and Transparency.",
     items: [
       {
         q: "Are there hidden fees?",
@@ -309,7 +309,7 @@ export const FAQ_CHAPTERS: FaqChapter[] = [
   {
     id: "security",
     title: "Security & compliance",
-    subtitle: "Data protection and professional standards.",
+    subtitle: "Data Protection and Professional Standards.",
     items: [
       {
         q: "How is client data protected?",
@@ -358,7 +358,7 @@ export const FAQ_CHAPTERS: FaqChapter[] = [
   {
     id: "support",
     title: "Post-launch support",
-    subtitle: "After go-live — maintenance, growth, and iteration.",
+    subtitle: "After Go-Live — Maintenance, Growth, and Iteration.",
     items: [
       {
         q: "Maintenance",

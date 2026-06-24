@@ -72,7 +72,7 @@ export function PricingTierCardsEditorial({
                   variant="on-dark"
                   className="w-full justify-center py-3 transition-colors duration-300 hover:!border-[#31C3C3] hover:!bg-[#31C3C3] hover:!text-white"
                 >
-                  Get started
+                  Get Started
                 </EditorialBoxCta>
               </div>
             </article>

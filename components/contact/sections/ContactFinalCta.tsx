@@ -11,7 +11,7 @@ export function ContactFinalCta() {
         <div className="mx-auto flex max-w-3xl flex-col items-center text-center">
           <Reveal className="w-full">
             <h2 className="font-heading text-[clamp(2rem,5vw,3.75rem)] font-bold leading-[1.02] tracking-[-0.03em] text-[#FAFAF8]">
-              Great software starts with a clear conversation.
+              Great Software Starts With a Clear Conversation.
             </h2>
           </Reveal>
 
@@ -36,7 +36,7 @@ export function ContactFinalCta() {
                   "polygon(0 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%)",
               }}
             >
-              Start your inquiry
+              Start Your Inquiry
             </Link>
             <p className="mt-4 text-xs text-white/40">Response within four business hours.</p>
           </Reveal>

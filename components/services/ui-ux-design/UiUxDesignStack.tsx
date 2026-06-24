@@ -112,7 +112,7 @@ export function UiUxDesignStack() {
         <div className="mx-auto mt-14 grid max-w-5xl gap-8 lg:grid-cols-12 lg:gap-12">
           <Reveal className="lg:col-span-4">
             <p className="mb-4 text-center text-xs font-semibold uppercase tracking-[0.16em] text-[#8A8A8A]">
-              Select a category
+              Select a Category
             </p>
             <ul className="flex flex-col gap-3" role="tablist" aria-label="UI/UX design tools and stack">
               {UI_UX_DESIGN_STACK.groups.map((group, index) => {

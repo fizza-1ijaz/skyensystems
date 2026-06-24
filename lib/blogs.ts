@@ -121,7 +121,7 @@ const DEFAULT_INDEX_SEO: BlogIndexSeo = {
   headline: "Skyen Systems Blog",
   subheadline:
     "Explore articles on smarter digital execution, growth strategy, and product thinking.",
-  empty_state_message: "Blog posts will appear here once they are published.",
+  empty_state_message: "Blog Posts Will Appear Here Once They Are Published.",
 };
 
 function normalizeCategory(value: unknown): BlogCategoryRef | null {

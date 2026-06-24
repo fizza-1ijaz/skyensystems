@@ -9,10 +9,10 @@ export type AboutServiceAccent = {
 };
 
 export const ABOUT_HERO_STATS = [
-  { value: "Web", label: "Websites & platforms" },
-  { value: "App", label: "Mobile products" },
-  { value: "AI", label: "Automation systems" },
-  { value: "SEO", label: "Digital growth" },
+  { value: "Web", label: "Websites & Platforms" },
+  { value: "App", label: "Mobile Products" },
+  { value: "AI", label: "Automation Systems" },
+  { value: "SEO", label: "Digital Growth" },
 ] as const;
 
 export const ABOUT_STORY_PILLS = [
@@ -142,15 +142,15 @@ export const ABOUT_SERVICES = [
 
 export const ABOUT_PEOPLE_POINTS = [
   {
-    title: "Product-focused communication",
+    title: "Product-Focused Communication",
     description: "We focus on clear goals, scope, priorities, and practical next steps.",
   },
   {
-    title: "Remote delivery support",
+    title: "Remote Delivery Support",
     description: "We support Australian and US businesses with structured remote collaboration.",
   },
   {
-    title: "Long-term improvement",
+    title: "Long-Term Improvement",
     description: "We support products after launch with updates, SEO, AI, analytics, and growth work.",
   },
 ] as const;

@@ -85,7 +85,7 @@ function RelatedWorkCard({
           rel="noopener noreferrer"
           className="inline-flex text-sm font-semibold text-[#31C3C3] transition-colors hover:text-[#5ee8e8]"
         >
-          View product →
+          View Product →
         </Link>
       </div>
     </motion.article>

@@ -10,7 +10,7 @@ export function EngagementModels() {
       <div className="mx-auto max-w-[1440px] px-6 md:px-10">
         <Reveal>
           <h2 className="max-w-3xl font-heading text-4xl font-bold tracking-[-0.03em] text-[#141414] md:text-5xl">
-            How we embed — strategic operating models, not pricing cards.
+            How We Embed — Strategic Operating Models, Not Pricing Cards.
           </h2>
         </Reveal>
 
@@ -46,7 +46,7 @@ export function EngagementModels() {
         </div>
 
         <Reveal className="mt-10">
-          <EditorialBoxCta href="/pricing">View pricing frameworks</EditorialBoxCta>
+          <EditorialBoxCta href="/pricing">View Pricing Frameworks</EditorialBoxCta>
         </Reveal>
       </div>
     </section>

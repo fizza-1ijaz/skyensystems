@@ -13,7 +13,7 @@ const products = [
       "Smart flashcards, adaptive quizzes, personalised revision. For students who want to study smarter.",
     logo: "/logo-studiely.jpeg",
     href: "https://studiely.com",
-    cta: "Visit me",
+    cta: "Visit Product",
   },
   {
     name: "Make My Lesson",
@@ -23,7 +23,7 @@ const products = [
       "Curriculum-aligned, time-saving, editable. For educators who have enough on their plate.",
     logo: "/logo-makemylesson2.png",
     href: "https://makemylesson.ai",
-    cta: "Visit me",
+    cta: "Visit Product",
   },
   {
     name: "Linguatude",
@@ -33,7 +33,7 @@ const products = [
       "AI conversation practice + spaced repetition + gamification. For anyone ready to actually become fluent.",
     logo: "/logo-linguatude.jpg",
     href: "https://linguatude.com",
-    cta: "Visit me",
+    cta: "Visit Product",
   },
 ];
 
@@ -54,7 +54,7 @@ export function ProductsShowcase() {
           <p className="mb-2 text-xs font-semibold uppercase tracking-[0.14em] text-slate-600">
             OUR PRODUCTS
           </p>
-          <h2 className="text-3xl font-bold text-slate-900 md:text-4xl">We don't just build for clients. We build for users.</h2>
+          <h2 className="text-3xl font-bold text-slate-900 md:text-4xl">We Don&apos;t Just Build for Clients. We Build for Users.</h2>
           <p className="mx-auto mt-4 max-w-3xl text-center text-slate-600">
             Products built and tested by the same team that builds your projects.
           </p>

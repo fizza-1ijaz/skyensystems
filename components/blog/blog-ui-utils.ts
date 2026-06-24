@@ -10,7 +10,7 @@ export function estimateReadingTime(post: Pick<BlogListRow, "description" | "tit
 }
 
 export function formatPublishDate(value: string | null): string {
-  if (!value) return "Recently published";
+  if (!value) return "Recently Published";
 
   const date = new Date(value);
   if (Number.isNaN(date.getTime())) return "Recently published";
@@ -32,17 +32,17 @@ export const FEATURED_TOPICS = [
 export const EDITORIAL_INSIGHTS = [
   {
     type: "insight" as const,
-    label: "Industry insight",
+    label: "Industry Insight",
     body: "Software decisions compound — architecture, delivery model, and team structure matter as much as feature scope.",
   },
   {
     type: "quote" as const,
-    label: "Engineering principle",
+    label: "Engineering Principle",
     body: "Build for clarity first. Systems that are understandable are systems that scale.",
   },
   {
     type: "blueprint" as const,
-    label: "Architecture note",
+    label: "Architecture Note",
     body: "Every product surface connects to a delivery system — design, engineering, deployment, and iteration.",
   },
 ] as const;

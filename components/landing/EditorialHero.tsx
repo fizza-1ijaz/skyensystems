@@ -110,7 +110,7 @@ export function EditorialHero() {
               <Link
                 href="/contact-us"
                 className="editorial-hero-cta group relative flex items-center justify-center rounded-full bg-[#31C3C3] text-center shadow-[0_24px_48px_-16px_rgba(49,195,195,0.65)]"
-                aria-label="Book a free consultation with Skyen Systems"
+                aria-label="Book a Free Consultation With Skyen Systems"
               >
                 <span className="editorial-hero-cta-label max-w-[10.5rem] shrink-0 px-3 font-semibold text-white">
                   Book a Free Consultation

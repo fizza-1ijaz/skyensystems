@@ -23,7 +23,7 @@ export function LocationsCta() {
                 "polygon(0 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%)",
             }}
           >
-            Contact us
+            Contact Us
           </Link>
           <p className="mt-4 text-xs text-[#8A8A8A]">Bahrain · Lahore · Remote clients worldwide</p>
         </Reveal>

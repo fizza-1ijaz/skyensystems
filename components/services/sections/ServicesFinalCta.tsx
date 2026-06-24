@@ -20,7 +20,7 @@ export function ServicesFinalCta() {
       <div className="relative mx-auto grid max-w-[1440px] gap-10 px-6 py-24 md:grid-cols-12 md:items-end md:px-10 md:py-32">
         <Reveal className="md:col-span-8">
           <h2 className="font-heading text-[clamp(2.25rem,5.5vw,4.25rem)] font-bold leading-[0.95] tracking-[-0.03em] text-[#FAFAF8]">
-            Tell us the problem.
+            Tell Us the Problem.
             <br />
             We&apos;ll show you the
             <br />
@@ -36,7 +36,7 @@ export function ServicesFinalCta() {
                 "polygon(0 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%)",
             }}
           >
-            Book discovery
+            Book Discovery
           </Link>
           <p className="mt-4 text-xs text-[#8A8A8A]">Response within 4 business hours.</p>
         </Reveal>

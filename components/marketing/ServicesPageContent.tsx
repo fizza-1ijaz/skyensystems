@@ -128,7 +128,7 @@ const SERVICES: ReelService[] = [
     title: "Web Development",
     short: "Web",
     sectionHeadline: "Websites & Web Applications That Work",
-    listLabel: "What we build",
+    listLabel: "What We Build",
     description:
       "Your website is working 24/7, representing your business to every potential customer who looks you up. It needs to be fast, professional, and built to convert — not just look good in a pitch deck.",
     highlights: [
@@ -154,7 +154,7 @@ const SERVICES: ReelService[] = [
     title: "App Development",
     short: "App",
     sectionHeadline: "iOS & Android Apps Your Users Will Actually Love",
-    listLabel: "What we build",
+    listLabel: "What We Build",
     description:
       "A bad app doesn't get a second chance. Users delete within 30 seconds if it's slow, confusing, or unreliable. We build apps that users keep — and come back to.",
     highlights: [
@@ -178,7 +178,7 @@ const SERVICES: ReelService[] = [
     title: "UI/UX Design",
     short: "UI",
     sectionHeadline: "Design That Does More Than Look Good",
-    listLabel: "What we design",
+    listLabel: "What We Design",
     description:
       "Great design isn't decoration — it's what determines whether your user finds what they need or gives up and leaves. We design for human behaviour, then make it beautiful.",
     highlights: [
@@ -203,7 +203,7 @@ const SERVICES: ReelService[] = [
     title: "AI Solutions",
     short: "AI",
     sectionHeadline: "Practical AI. Real Business Value.",
-    listLabel: "What we build",
+    listLabel: "What We Build",
     description:
       "AI is not a feature — it's a business decision. We help you identify where AI creates genuine value in your operation, then build it properly, not as a gimmick.",
     highlights: [
@@ -227,7 +227,7 @@ const SERVICES: ReelService[] = [
     title: "Digital Marketing",
     short: "SEO",
     sectionHeadline: "Marketing That Actually Fills Your Pipeline",
-    listLabel: "What we do",
+    listLabel: "What We Do",
     description:
       "We don't run campaigns that just get impressions. We run campaigns that get customers — with every dollar tracked to business outcomes.",
     highlights: [
@@ -249,7 +249,7 @@ const SERVICES: ReelService[] = [
     title: "Dedicated Teams",
     short: "Team",
     sectionHeadline: "Your Team. Our People.",
-    listLabel: "What you get",
+    listLabel: "What You Get",
     description:
       "Hiring is slow, expensive, and risky. Dedicated teams give you experienced developers and designers working exclusively on your projects — without the overhead of employment.",
     highlights: [
@@ -566,7 +566,7 @@ export function ServicesPageContent({ initialServiceSlug }: ServicesPageContentP
                     <p
                       className={`mt-4 text-sm font-semibold uppercase tracking-[0.12em] ${cardTheme.label}`}
                     >
-                      {activeService.listLabel ?? "What we build"}
+                      {activeService.listLabel ?? "What We Build"}
                     </p>
                     <ul className="mt-4 grid gap-2 text-left sm:grid-cols-2">
                       {activeService.highlights.map((item) => (

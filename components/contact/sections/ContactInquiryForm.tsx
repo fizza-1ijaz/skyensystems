@@ -127,7 +127,7 @@ export function ContactInquiryForm() {
         <div className="mx-auto flex w-full max-w-[800px] flex-col items-center text-center">
           <Reveal className="w-full">
             <h2 className="editorial-section-title text-balance text-[#141414]">
-              Tell us about your project.
+              Tell Us About Your Project.
             </h2>
             <p className="mx-auto mt-4 max-w-lg text-sm leading-relaxed text-[#5C5C5C] md:text-base">
               The more context you share, the more useful our first response will be. We typically
@@ -139,7 +139,7 @@ export function ContactInquiryForm() {
             {status === "success" ? (
               <div className="border border-[#DADAD8] bg-[#FAFAF8] px-10 py-14 text-center shadow-[0_24px_60px_-48px_rgba(20,20,20,0.18)] md:px-16 md:py-16">
                 <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-[#31C3C3]">
-                  Message received
+                  Message Received
                 </p>
                 <h3 className="mt-3 font-heading text-3xl font-bold text-[#141414]">
                   Thank you — we&apos;ll be in touch shortly.
@@ -158,7 +158,7 @@ export function ContactInquiryForm() {
                   className="mt-8"
                   variant="neutral"
                 >
-                  Send another inquiry
+                  Send Another Inquiry
                 </EditorialBoxButton>
               </div>
             ) : (
@@ -215,7 +215,7 @@ export function ContactInquiryForm() {
                       />
                     </Field>
 
-                    <Field label="Project type" htmlFor="contact-type">
+                    <Field label="Project Type" htmlFor="contact-type">
                       <select
                         id="contact-type"
                         required
@@ -223,7 +223,7 @@ export function ContactInquiryForm() {
                         onChange={update("projectType")}
                         className={fieldSelect}
                       >
-                        <option value="">Select type</option>
+                        <option value="">Select Type</option>
                         {PROJECT_TYPES.map((type) => (
                           <option key={type} value={type}>
                             {type}
@@ -232,7 +232,7 @@ export function ContactInquiryForm() {
                       </select>
                     </Field>
 
-                    <Field label="Budget range" htmlFor="contact-budget">
+                    <Field label="Budget Range" htmlFor="contact-budget">
                       <select
                         id="contact-budget"
                         required
@@ -240,7 +240,7 @@ export function ContactInquiryForm() {
                         onChange={update("budget")}
                         className={fieldSelect}
                       >
-                        <option value="">Select range</option>
+                        <option value="">Select Range</option>
                         {BUDGET_RANGES.map((range) => (
                           <option key={range} value={range}>
                             {range}
@@ -257,7 +257,7 @@ export function ContactInquiryForm() {
                         onChange={update("timeline")}
                         className={fieldSelect}
                       >
-                        <option value="">Select timeline</option>
+                        <option value="">Select Timeline</option>
                         {TIMELINE_OPTIONS.map((option) => (
                           <option key={option} value={option}>
                             {option}
@@ -300,7 +300,7 @@ export function ContactInquiryForm() {
                           "polygon(0 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%)",
                       }}
                     >
-                      {status === "submitting" ? "Sending…" : "Submit inquiry"}
+                      {status === "submitting" ? "Sending…" : "Submit Inquiry"}
                     </button>
 
                     <p className="mt-6 max-w-sm text-center text-xs leading-relaxed text-[#8A8A8A]">

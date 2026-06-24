@@ -78,7 +78,7 @@ export function ServiceModuleBlock({ service, index }: ServiceModuleBlockProps) 
 
           <div className="mt-8">
             <EditorialBoxCta href="/contact-us" variant="primary">
-              Book discovery
+              Book Discovery
             </EditorialBoxCta>
           </div>
         </Reveal>

@@ -111,7 +111,7 @@ export function ContactSimpleForm() {
         <Reveal>
           {status === "success" ? (
             <div className="rounded-[1.75rem] border border-[#DADAD8] bg-white px-8 py-14 text-center shadow-[0_18px_50px_rgba(10,24,42,0.08)] md:px-12">
-              <p className={eyebrowClass}>Message received</p>
+              <p className={eyebrowClass}>Message Received</p>
               <h2 className="mt-3 font-heading text-3xl font-bold text-[#141414]">
                 Thank you — we&apos;ll be in touch shortly.
               </h2>
@@ -125,7 +125,7 @@ export function ContactSimpleForm() {
                 className="mt-8"
                 variant="neutral"
               >
-                Send another request
+                Send Another Request
               </EditorialBoxButton>
             </div>
           ) : (

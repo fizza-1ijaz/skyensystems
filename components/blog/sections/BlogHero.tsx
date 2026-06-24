@@ -8,10 +8,11 @@ import { SITE_IMAGE_QUALITY } from "@/lib/site-image";
 const BLOG_HERO_IMAGE = "/images/Blog ( Top img).png";
 
 type BlogHeroProps = {
+  headline?: string;
   subheadline?: string;
 };
 
-export function BlogHero({ subheadline }: BlogHeroProps) {
+export function BlogHero({ headline, subheadline }: BlogHeroProps) {
   return (
     <section className="relative overflow-hidden bg-[#F4F4F2] pb-10 pt-10 md:pb-14 md:pt-14">
       <BlogBlueprintBackdrop parallax />
@@ -21,7 +22,7 @@ export function BlogHero({ subheadline }: BlogHeroProps) {
           <div className="page-hero-copy min-w-0">
             <Reveal>
               <h1 className="max-w-[18ch] font-heading text-[clamp(2.75rem,7vw,5.25rem)] font-bold leading-[0.92] tracking-[-0.04em] text-[#141414] lg:max-w-none">
-                Insights on software, AI, and digital transformation.
+                {headline ?? "Insights on Software, AI, and Digital Transformation."}
               </h1>
             </Reveal>
             <Reveal delay={0.06}>

@@ -38,7 +38,7 @@ function ProductViewCta({ href }: { href: string }) {
         aria-hidden
       />
       <span className="relative z-10 transition-colors duration-300 group-hover/btn:text-[#141414]">
-        View product
+        View Product
       </span>
     </MotionLink>
   );
@@ -60,7 +60,7 @@ function ViewAllProductsCta() {
         aria-hidden
       />
       <span className="relative z-10 transition-colors duration-300 group-hover/all:text-[#141414]">
-        View all products
+        View All Products
       </span>
     </MotionLink>
   );

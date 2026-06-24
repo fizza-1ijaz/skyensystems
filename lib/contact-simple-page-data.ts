@@ -13,16 +13,16 @@ export const CONTACT_SERVICES = [
   "UI/UX Design",
   "SEO & Digital Marketing",
   "Dedicated Software Development Team",
-  "Not sure yet",
+  "Not Sure Yet",
 ] as const;
 
 export const CONTACT_PROJECT_STAGES = [
-  "I have an idea",
-  "I need a new website or app",
-  "I want to improve an existing product",
-  "I need AI or automation",
-  "I need SEO / growth support",
-  "I need a dedicated team",
+  "I Have an Idea",
+  "I Need a New Website or App",
+  "I Want to Improve an Existing Product",
+  "I Need AI or Automation",
+  "I Need SEO / Growth Support",
+  "I Need a Dedicated Team",
 ] as const;
 
 export const CONTACT_FAQ = [

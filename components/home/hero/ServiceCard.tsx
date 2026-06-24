@@ -155,7 +155,7 @@ export function ServiceCard({
           href={`/services/${service.slug}`}
           className={`group/link mt-6 inline-flex items-center gap-2 text-sm font-semibold transition-all duration-300 hover:gap-3 ${theme.label}`}
         >
-          <span>See more</span>
+          <span>See More</span>
         </Link>
       </div>
 

@@ -5,8 +5,6 @@ import { BLOG_POSTS_PER_PAGE } from "@/components/blog/blog-ui-utils";
 import { BlogArticleGrid } from "@/components/blog/sections/BlogArticleGrid";
 import { BlogCategoryFilters } from "@/components/blog/sections/BlogCategoryFilters";
 import { BlogEmptyState } from "@/components/blog/sections/BlogEmptyState";
-import { BlogFeaturedArticle } from "@/components/blog/sections/BlogFeaturedArticle";
-import { BlogFeaturedTopicsBand } from "@/components/blog/sections/BlogFeaturedTopicsBand";
 import { BlogFinalCta } from "@/components/blog/sections/BlogFinalCta";
 import { BlogHero } from "@/components/blog/sections/BlogHero";
 import { BlogPagination } from "@/components/blog/sections/BlogPagination";
@@ -58,12 +56,10 @@ export function BlogPage({
   const [page, setPage] = useState(1);
 
   const hasActiveFilters = search.trim().length > 0 || categorySlug !== null;
-  const featuredPost = !hasActiveFilters && posts.length > 0 ? posts[0] : null;
 
-  const gridSource = featuredPost ? posts.slice(1) : posts;
   const filteredPosts = useMemo(
-    () => filterPosts(gridSource, search, categorySlug),
-    [gridSource, search, categorySlug],
+    () => filterPosts(posts, search, categorySlug),
+    [posts, search, categorySlug],
   );
 
   const totalPages = Math.max(1, Math.ceil(filteredPosts.length / BLOG_POSTS_PER_PAGE));
@@ -92,17 +88,13 @@ export function BlogPage({
 
   return (
     <div className="landing-editorial bg-[#F4F4F2] text-[#141414]">
-      <BlogHero subheadline={seo.subheadline} />
+      <BlogHero headline={seo.headline} subheadline={seo.subheadline} />
       <BlogSearchBar value={search} onChange={setSearch} />
       <BlogCategoryFilters
         categories={categories}
         activeSlug={categorySlug}
         onChange={setCategorySlug}
       />
-
-      {featuredPost ? <BlogFeaturedArticle post={featuredPost} /> : null}
-
-      <BlogFeaturedTopicsBand />
 
       {showEmpty ? (
         <BlogEmptyState

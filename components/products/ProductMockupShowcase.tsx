@@ -29,7 +29,7 @@ export function ProductMockupShowcase({
       >
         <div className="flex flex-col items-center gap-4 text-white/30">
           <BookOpen size={48} strokeWidth={1} />
-          <p className="text-[10px] font-semibold uppercase tracking-[0.2em]">Prototype stage</p>
+          <p className="text-[10px] font-semibold uppercase tracking-[0.2em]">Prototype Stage</p>
         </div>
       </div>
     );

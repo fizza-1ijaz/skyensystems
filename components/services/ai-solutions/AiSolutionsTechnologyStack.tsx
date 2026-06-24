@@ -112,7 +112,7 @@ export function AiSolutionsTechnologyStack() {
         <div className="mx-auto mt-14 grid max-w-5xl gap-8 lg:grid-cols-12 lg:gap-12">
           <Reveal className="lg:col-span-4">
             <p className="mb-4 text-center text-xs font-semibold uppercase tracking-[0.16em] text-[#8A8A8A]">
-              Select a stack
+              Select a Stack
             </p>
             <ul className="flex flex-col gap-3" role="tablist" aria-label="AI solutions technology stacks">
               {AI_SOLUTIONS_TECHNOLOGY_STACK.groups.map((group, index) => {

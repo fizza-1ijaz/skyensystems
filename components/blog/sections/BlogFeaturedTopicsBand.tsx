@@ -12,7 +12,7 @@ export function BlogFeaturedTopicsBand() {
             Featured topics
           </p>
           <h2 className="editorial-section-title mx-auto mt-4 w-full max-w-none text-balance text-[#FAFAF8]">
-            What we write about
+            What We Write About
           </h2>
         </Reveal>
 

@@ -9,7 +9,7 @@ export function WhoWeAreCta() {
       <div className="relative mx-auto grid max-w-[1440px] gap-10 px-6 py-24 md:grid-cols-12 md:items-end md:px-10 md:py-32">
         <Reveal className="md:col-span-8">
           <h2 className="font-heading text-[clamp(2.25rem,5.5vw,4.25rem)] font-bold leading-[0.95] tracking-[-0.03em] text-[#FAFAF8]">
-            Ready to build with a team that owns the outcome?
+            Ready to Build With a Team That Owns the Outcome?
           </h2>
         </Reveal>
         <Reveal delay={0.1} className="md:col-span-4 md:text-right">
@@ -21,7 +21,7 @@ export function WhoWeAreCta() {
                 "polygon(0 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%)",
             }}
           >
-            Start a conversation
+            Start a Conversation
           </Link>
         </Reveal>
       </div>

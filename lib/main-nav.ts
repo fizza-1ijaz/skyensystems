@@ -46,7 +46,7 @@ export const MAIN_NAV_ITEMS: readonly MainNavItem[] = [
 
   { label: "Home", href: "/" },
 
-  { label: "About us", href: "/about" },
+  { label: "About Us", href: "/about" },
 
   { label: "Services", href: PRIMARY_SERVICE_HREF, children: SERVICES_NAV_CHILDREN },
 

@@ -6,11 +6,11 @@ export const LOCATIONS_HERO = {
 } as const;
 
 export const GLOBAL_NODES = [
-  { id: "bahrain", label: "Manama", role: "Head office", x: 58, y: 38 },
-  { id: "lahore", label: "Lahore", role: "Engineering hub", x: 72, y: 28 },
-  { id: "us", label: "United States", role: "Client market", x: 22, y: 26 },
-  { id: "uk", label: "United Kingdom", role: "Client market", x: 46, y: 16 },
-  { id: "gcc", label: "GCC", role: "Client market", x: 62, y: 34 },
+  { id: "bahrain", label: "Manama", role: "Head Office", x: 58, y: 38 },
+  { id: "lahore", label: "Lahore", role: "Engineering Hub", x: 72, y: 28 },
+  { id: "us", label: "United States", role: "Client Market", x: 22, y: 26 },
+  { id: "uk", label: "United Kingdom", role: "Client Market", x: 46, y: 16 },
+  { id: "gcc", label: "GCC", role: "Client Market", x: 62, y: 34 },
 ] as const;
 
 export const LOCATION_SHOWCASE = [
@@ -48,11 +48,11 @@ export const LOCATION_SHOWCASE = [
 
 export const GLOBAL_MODEL_PILLARS = [
   {
-    title: "Timezone coverage",
+    title: "Timezone Coverage",
     description: "US-friendly overlap from Lahore plus Bahrain coordination for GCC clients.",
   },
   {
-    title: "Talent access",
+    title: "Talent Access",
     description: "PSEB-registered engineering hub with senior full-time practitioners — not bench freelancers.",
   },
   {
@@ -60,14 +60,14 @@ export const GLOBAL_MODEL_PILLARS = [
     description: "Dedicated squads scale with your roadmap without re-hiring or agency handoffs.",
   },
   {
-    title: "Regional expertise",
+    title: "Regional Expertise",
     description: "Local entity in Bahrain, export-grade delivery from Pakistan, global client experience.",
   },
 ] as const;
 
 export const LOCATION_STATS = [
   { value: "4", label: "Regions served — US, UK, GCC, Pakistan" },
-  { value: "2", label: "Operational offices" },
-  { value: "20+", label: "Projects delivered internationally" },
-  { value: "8+", label: "Industries supported" },
+  { value: "2", label: "Operational Offices" },
+  { value: "20+", label: "Projects Delivered Internationally" },
+  { value: "8+", label: "Industries Supported" },
 ] as const;

@@ -36,7 +36,7 @@ export function FeaturedBlogsClient({ posts }: FeaturedBlogsClientProps) {
               id="featured-blogs-heading"
               className="editorial-section-title mt-4 text-[#141414]"
             >
-              Latest from our blog
+              Latest From Our Blog
             </h2>
             <p className="mt-4 text-sm leading-relaxed text-[#5C5C5C] md:text-base">
               Practical perspectives on engineering, AI, product design, and delivery from the
@@ -46,7 +46,7 @@ export function FeaturedBlogsClient({ posts }: FeaturedBlogsClientProps) {
 
           <Reveal delay={0.08} className="shrink-0">
             <EditorialBoxCta href="/blog" variant="accent">
-              View all blogs
+              View All Blogs
             </EditorialBoxCta>
           </Reveal>
         </div>

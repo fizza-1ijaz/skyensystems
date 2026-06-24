@@ -32,7 +32,7 @@ export function FoundingBanner() {
           FINAL STEP
         </p>
         <h2 className="relative z-10 mx-auto mt-3 max-w-3xl text-3xl font-bold leading-tight text-[#4C1D95] md:text-4xl">
-          Ready to build something great?
+          Ready to Build Something Great?
         </h2>
         <p className="relative z-10 mx-auto mt-4 max-w-2xl text-slate-600">
           Let's start with a conversation. No commitment. No sales pressure. Just an honest look at what's possible for your business.
@@ -46,7 +46,7 @@ export function FoundingBanner() {
             <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/10 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
           </Link>
           <EditorialBoxCta href="/contact-us" variant="neutral" className="px-7 py-3.5 sm:px-8 sm:py-4">
-            Or explore our services
+            Or Explore Our Services
           </EditorialBoxCta>
         </div>
       </motion.div>

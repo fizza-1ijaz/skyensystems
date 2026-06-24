@@ -127,7 +127,7 @@ export function ServicesGrid() {
                   <p className="text-center text-xs font-semibold text-[#355173]">{features}</p>
                 </div>
                 <div className="mt-6 flex items-center justify-center text-[#31C3C3] opacity-0 transition-all duration-300 group-hover:opacity-100">
-                  <span className="text-xs font-semibold uppercase tracking-wider">See more</span>
+                  <span className="text-xs font-semibold uppercase tracking-wider">See More</span>
                 </div>
               </Link>
             </motion.article>

@@ -1,10 +1,10 @@
 import type { CapabilityVisualId } from "@/components/landing/landing-data";
 
 export const SERVICES_HERO_STATS = [
-  { value: "20+", label: "Shipped engagements" },
-  { value: "4h", label: "Response standard" },
-  { value: "3", label: "Live / in-dev products" },
-  { value: "2", label: "Global offices" },
+  { value: "20+", label: "Shipped Engagements" },
+  { value: "4h", label: "Response Standard" },
+  { value: "3", label: "Live / In-Dev Products" },
+  { value: "2", label: "Global Offices" },
 ] as const;
 
 export const SERVICES_CAPABILITY_MATRIX = [
@@ -215,21 +215,21 @@ export const TECHNOLOGY_LANDSCAPE = [
 export const ENGAGEMENT_MODELS = [
   {
     title: "Dedicated Teams",
-    subtitle: "Operating model · Embedded",
+    subtitle: "Operating Model · Embedded",
     description:
       "A full-time squad — developers, design, and delivery leadership — working exclusively on your product roadmap with US-friendly overlap.",
     fit: "Best for ongoing product evolution and scale-up velocity.",
   },
   {
     title: "Staff Augmentation",
-    subtitle: "Operating model · Extension",
+    subtitle: "Operating Model · Extension",
     description:
       "Senior engineers and designers slot into your existing rituals, tools, and management while we handle recruitment and bench strength.",
     fit: "Best when you need capacity inside your current org structure.",
   },
   {
     title: "Project Delivery",
-    subtitle: "Operating model · Fixed scope",
+    subtitle: "Operating Model · Fixed Scope",
     description:
       "Defined outcomes, milestones, and handover — from discovery through launch — with a single accountable partner.",
     fit: "Best for launches, redesigns, and bounded initiatives.",
@@ -249,7 +249,7 @@ export const PROOF_BLOCKS = [
   {
     type: "metric" as const,
     value: "20+",
-    label: "Projects delivered across US, UK, GCC & Pakistan",
+    label: "Projects Delivered Across US, UK, GCC & Pakistan",
     span: "lg:col-span-4",
   },
   {
@@ -273,7 +273,7 @@ export const PROOF_BLOCKS = [
   {
     type: "metric" as const,
     value: "4h",
-    label: "Guaranteed response to every business inquiry",
+    label: "Guaranteed Response to Every Business Inquiry",
     span: "lg:col-span-3",
   },
   {

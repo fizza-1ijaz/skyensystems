@@ -1,26 +1,26 @@
 export const HERO_PROOF_POINTS = [
   {
-    title: "PSEB-registered delivery",
+    title: "PSEB-Registered Delivery",
     description: "Government-recognized software house with verified export infrastructure in Lahore.",
   },
   {
-    title: "20+ shipped engagements",
+    title: "20+ Shipped Engagements",
     description: "Websites, apps, and platforms delivered for US, UK, GCC, and regional clients.",
   },
   {
-    title: "Product-grade engineering",
+    title: "Product-Grade Engineering",
     description: "The same team that builds Studiely, Make My Lesson, and Linguatude builds yours.",
   },
   {
-    title: "4-hour response standard",
+    title: "4-Hour Response Standard",
     description: "Direct access to leads and engineers — not a ticket queue.",
   },
   {
-    title: "Dual-region operations",
+    title: "Dual-Region Operations",
     description: "Head office in Bahrain. Development centre in Pakistan. US market focus.",
   },
   {
-    title: "End-to-end ownership",
+    title: "End-to-End Ownership",
     description: "Strategy, design, engineering, launch, and growth under one roof.",
   },
 ] as const;
@@ -110,7 +110,7 @@ export const SELECTED_WORK = [
     name: "Linguatude",
     category: "Language · In development",
     metric: "Multi-region",
-    metricLabel: "Client reach",
+    metricLabel: "Client Reach",
     description:
       "Conversation practice and spaced repetition designed for real fluency outcomes.",
     logo: "/logo-linguatude.jpg",
@@ -149,8 +149,8 @@ export const ENGAGEMENT_PHASES = [
 export { PROCESS_STAGES as PROCESS_ROADMAP_STEPS } from "@/components/landing/process/process-data";
 
 export const TRUST_STATS = [
-  { value: "20+", label: "Projects delivered" },
-  { value: "4h", label: "Response guarantee" },
-  { value: "3", label: "Live / in-dev products" },
-  { value: "2", label: "International offices" },
+  { value: "20+", label: "Projects Delivered" },
+  { value: "4h", label: "Response Guarantee" },
+  { value: "3", label: "Live / In-Dev Products" },
+  { value: "2", label: "International Offices" },
 ] as const;

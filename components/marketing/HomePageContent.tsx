@@ -289,7 +289,7 @@ export function HomePageContent() {
       <section className="mx-auto max-w-7xl overflow-x-hidden px-6 py-14 md:px-10">
         <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-2">
           <div>
-            <p className="mb-3 text-sm font-semibold uppercase tracking-[0.14em] text-slate-500">The reality</p>
+            <p className="mb-3 text-sm font-semibold uppercase tracking-[0.14em] text-slate-500">The Reality</p>
             <h2 className="text-3xl font-bold leading-tight md:text-4xl">
               Most businesses are either <span className="text-gradient">invisible online</span> or paying too much to fix it.
             </h2>
@@ -297,7 +297,7 @@ export function HomePageContent() {
           <div className="space-y-4 text-slate-600">
             <p>You have seen the quotes. $5,000 for a five-page website. $2,000 a month to post three times a week on Instagram.</p>
             <p>We removed agency overhead and kept capability. What is left is a fast, honest team delivering the same standard for a fraction of the price.</p>
-            <Link href="/about" className="inline-block rounded-xl border border-white/60 bg-white/70 px-5 py-2.5 text-sm font-semibold">How we work</Link>
+            <Link href="/about" className="inline-block rounded-xl border border-white/60 bg-white/70 px-5 py-2.5 text-sm font-semibold">How We Work</Link>
           </div>
         </div>
       </section>
@@ -439,7 +439,7 @@ export function HomePageContent() {
 
       <section className="mx-auto max-w-7xl px-6 py-14 md:px-10">
         <div className="text-center">
-          <p className="mb-3 text-sm font-semibold uppercase tracking-[0.14em] text-slate-500">Built by us, for real users</p>
+          <p className="mb-3 text-sm font-semibold uppercase tracking-[0.14em] text-slate-500">Built by Us, for Real Users</p>
           <h2 className="text-3xl font-bold md:text-4xl">
             We do not just build for clients. We build for <span className="text-gradient">ourselves.</span>
           </h2>
@@ -469,8 +469,8 @@ export function HomePageContent() {
 
       <section className="mx-auto max-w-7xl px-6 py-14 md:px-10">
         <div className="text-center">
-          <p className="mb-3 text-sm font-semibold uppercase tracking-[0.14em] text-slate-500">What we build</p>
-          <h2 className="text-3xl font-bold md:text-4xl">Everything your business needs. Nothing you do not.</h2>
+          <p className="mb-3 text-sm font-semibold uppercase tracking-[0.14em] text-slate-500">What We Build</p>
+          <h2 className="text-3xl font-bold md:text-4xl">Everything Your Business Needs. Nothing You Do Not.</h2>
           <p className="mx-auto mt-4 max-w-3xl text-slate-600">Six core services, one team.</p>
         </div>
         <div className="mt-8 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
@@ -492,8 +492,8 @@ export function HomePageContent() {
 
       <section className="mx-auto max-w-7xl px-6 py-14 md:px-10">
         <div className="text-center">
-          <p className="mb-3 text-sm font-semibold uppercase tracking-[0.14em] text-slate-500">Honest pricing</p>
-          <h2 className="text-3xl font-bold md:text-4xl">Simple pricing. No agency games.</h2>
+          <p className="mb-3 text-sm font-semibold uppercase tracking-[0.14em] text-slate-500">Honest Pricing</p>
+          <h2 className="text-3xl font-bold md:text-4xl">Simple Pricing. No Agency Games.</h2>
         </div>
         <div className="mt-8 grid gap-5 md:grid-cols-3">
           {[
@@ -505,7 +505,7 @@ export function HomePageContent() {
               <h3 className="text-xl font-bold">{name}</h3>
               <p className="mt-1 text-3xl font-bold">{price}</p>
               <p className="mt-3 text-sm text-slate-600">{desc}</p>
-              <Link href="/pricing" className="mt-4 inline-block text-sm font-semibold text-[#31C3C3]">Get started -&gt;</Link>
+              <Link href="/pricing" className="mt-4 inline-block text-sm font-semibold text-[#31C3C3]">Get Started -&gt;</Link>
             </article>
           ))}
         </div>
@@ -513,8 +513,8 @@ export function HomePageContent() {
 
       <section className="mx-auto max-w-7xl px-6 py-14 md:px-10">
         <div className="text-center">
-          <p className="mb-3 text-sm font-semibold uppercase tracking-[0.14em] text-slate-500">Who we are</p>
-          <h2 className="text-3xl font-bold md:text-4xl">Built by builders. Backed by experience.</h2>
+          <p className="mb-3 text-sm font-semibold uppercase tracking-[0.14em] text-slate-500">Who We Are</p>
+          <h2 className="text-3xl font-bold md:text-4xl">Built by Builders. Backed by Experience.</h2>
           <p className="mx-auto mt-4 max-w-3xl text-slate-600">
             Skyen Systems is the digital services arm of the Skyen Group. We built Studiely in-house and bring that same product thinking to client work.
           </p>
@@ -543,7 +543,7 @@ export function HomePageContent() {
                   <h3 className="text-lg font-semibold text-[#0f2544] md:text-xl">{service.title}</h3>
                   <p className="mt-3 text-sm text-slate-600 md:text-base">{service.description}</p>
                   <Link href={service.href} className="mt-5 inline-block text-sm font-semibold text-[#31C3C3]">
-                    Get started -&gt;
+                    Get Started -&gt;
                   </Link>
                 </div>
               </div>
@@ -554,24 +554,24 @@ export function HomePageContent() {
 
       <section className="mx-auto max-w-7xl px-6 py-14 md:px-10">
         <div className="text-center">
-          <p className="mb-3 text-sm font-semibold uppercase tracking-[0.14em] text-slate-500">What clients say</p>
-          <h2 className="text-3xl font-bold md:text-4xl">Early results. Real businesses.</h2>
+          <p className="mb-3 text-sm font-semibold uppercase tracking-[0.14em] text-slate-500">What Clients Say</p>
+          <h2 className="text-3xl font-bold md:text-4xl">Early Results. Real Businesses.</h2>
         </div>
         <div className="mt-6 rounded-3xl border border-dashed border-[#31C3C355] bg-white/70 p-8 text-center">
-          <h3 className="text-2xl font-bold">Tell us about your project.</h3>
+          <h3 className="text-2xl font-bold">Tell Us About Your Project.</h3>
           <p className="mx-auto mt-3 max-w-2xl text-slate-600">
             Share what you are building — we reply within 24 hours with an honest scope and quote.
           </p>
           <Link href="/contact-us" className="mt-5 inline-block rounded-xl bg-[#112B44] px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-[#1B3E5E]">
-            Get in touch
+            Get In Touch
           </Link>
         </div>
       </section>
 
       <section className="mx-auto max-w-7xl px-6 py-14 md:px-10">
         <div className="text-center">
-          <p className="mb-3 text-sm font-semibold uppercase tracking-[0.14em] text-slate-500">Common questions</p>
-          <h2 className="text-3xl font-bold md:text-4xl">Things people ask before they reach out.</h2>
+          <p className="mb-3 text-sm font-semibold uppercase tracking-[0.14em] text-slate-500">Common Questions</p>
+          <h2 className="text-3xl font-bold md:text-4xl">Things People Ask Before They Reach Out.</h2>
         </div>
         <div className="mt-6 grid gap-4 md:grid-cols-2">
           {[
@@ -591,10 +591,10 @@ export function HomePageContent() {
       <section className="mx-auto max-w-7xl px-6 py-14 md:px-10">
         <div className="mb-6 flex flex-col md:flex-row items-center justify-between gap-3">
           <div className="text-center md:text-left">
-            <p className="mb-3 text-sm font-semibold uppercase tracking-[0.14em] text-slate-500">From our team</p>
-            <h2 className="text-3xl font-bold md:text-4xl">Thinking out loud.</h2>
+            <p className="mb-3 text-sm font-semibold uppercase tracking-[0.14em] text-slate-500">From Our Team</p>
+            <h2 className="text-3xl font-bold md:text-4xl">Thinking Out Loud.</h2>
           </div>
-          <Link href="/blog" className="text-sm font-semibold text-[#31C3C3] whitespace-nowrap">All posts -&gt;</Link>
+          <Link href="/blog" className="text-sm font-semibold text-[#31C3C3] whitespace-nowrap">All Posts -&gt;</Link>
         </div>
         <div className="grid gap-5 md:grid-cols-3">
           {[
@@ -613,7 +613,7 @@ export function HomePageContent() {
 
       <section className="px-0 py-14">
         <div className="w-full rounded-none border-y border-white/50 bg-white/75 px-8 py-12 text-center shadow-[0_20px_60px_-32px_rgba(49,195,195,0.6)] md:px-16">
-          <p className="text-sm font-semibold uppercase tracking-[0.14em] text-slate-500">Let us work together</p>
+          <p className="text-sm font-semibold uppercase tracking-[0.14em] text-slate-500">Let Us Work Together</p>
           <h2 className="text-4xl font-bold">
             Ready to build something <span className="text-gradient">that actually works?</span>
           </h2>

@@ -50,19 +50,19 @@ export const CONTACT_PROCESS = [
 
 export const CONTACT_TRUST_COLUMNS = [
   {
-    label: "Global presence",
+    label: "Global Presence",
     body: "Head office in Manama, Bahrain. PSEB-registered delivery centre in Lahore, Pakistan. US-friendly communication.",
   },
   {
-    label: "Remote-first delivery",
+    label: "Remote-First Delivery",
     body: "Distributed squads embedded in your roadmap — async updates, weekly demos, and direct access to leads.",
   },
   {
-    label: "Enterprise practices",
+    label: "Enterprise Practices",
     body: "Version control, code review, documentation, and QA built into every engagement — not bolted on later.",
   },
   {
-    label: "One accountable team",
+    label: "One Accountable Team",
     body: "Product strategy, UX, engineering, and launch under one roof — not seven vendors passing work around.",
   },
 ] as const;
@@ -100,16 +100,16 @@ export const CONTACT_SERVICES = [
   "UI/UX Design",
   "SEO & Digital Marketing",
   "Dedicated Software Development Team",
-  "Not sure yet",
+  "Not Sure Yet",
 ] as const;
 
 export const CONTACT_PROJECT_STAGES = [
-  "I have an idea",
-  "I need a new website or app",
-  "I want to improve an existing product",
-  "I need AI or automation",
-  "I need SEO / growth support",
-  "I need a dedicated team",
+  "I Have an Idea",
+  "I Need a New Website or App",
+  "I Want to Improve an Existing Product",
+  "I Need AI or Automation",
+  "I Need SEO / Growth Support",
+  "I Need a Dedicated Team",
 ] as const;
 
 export const PROJECT_TYPES = [
@@ -130,13 +130,13 @@ export const BUDGET_RANGES = [
   "$25,000–$75,000",
   "$75,000–$150,000",
   "$150,000+",
-  "Not sure yet",
+  "Not Sure Yet",
 ] as const;
 
 export const TIMELINE_OPTIONS = [
-  "ASAP — within 4 weeks",
+  "ASAP — Within 4 Weeks",
   "1–3 months",
   "3–6 months",
   "6+ months",
-  "Exploring options",
+  "Exploring Options",
 ] as const;

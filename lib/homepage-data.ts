@@ -86,11 +86,11 @@ export const FEATURED_PRODUCTS_CARDS = [
   {
     name: "Linguatude",
     tagline: "Finally become fluent. Not just functional.",
-    category: "Language · In development",
+    category: "Language · In Development",
     description:
       "Linguatude supports learners with English test preparation, speaking practice, writing support, vocabulary improvement, and AI-powered language learning tools.",
     metric: "Multi-region",
-    metricLabel: "Client reach",
+    metricLabel: "Client Reach",
     logo: "/logo-linguatude.jpg",
     href: "https://linguatude.com",
     backgroundImage: "/images/linguatude img.png",
@@ -113,13 +113,13 @@ export const TRUST_STRIP_ITEMS = [
 ] as const;
 
 export const PROBLEM_SOLUTION = {
-  eyebrow: "The reality",
+  eyebrow: "The Reality",
   headline: "Most businesses are either invisible online or paying too much to fix it.",
   problem:
     "You have seen the quotes. $5,000 for a five-page website. $2,000 a month to post three times a week on Instagram. Agencies add overhead; freelancers disappear mid-project.",
   solution:
     "We removed agency overhead and kept capability. One accountable team delivers websites, apps, AI, and growth — at a fraction of typical US agency cost, with the standards of a product company.",
-  cta: { label: "About us", href: "/about" },
+  cta: { label: "About Us", href: "/about" },
 } as const;
 
 export const INDUSTRIES_SECTION = {
@@ -262,23 +262,23 @@ export const AI_AUTOMATION_HIGHLIGHT = {
     "We integrate LLMs, workflow automation, and intelligent features into products your team actually uses. From customer-facing copilots to back-office automation, every build is scoped for measurable ROI.",
   capabilities: [
     {
-      title: "LLM integration & custom copilots",
+      title: "LLM Integration & Custom Copilots",
       image: "/images/LLM.png",
     },
     {
-      title: "Workflow automation & data pipelines",
+      title: "Workflow Automation & Data Pipelines",
       image: "/images/Pipeline.png",
     },
     {
-      title: "AI-powered search, chat, and support",
+      title: "AI-Powered Search, Chat, and Support",
       image: "/images/AIchatbot.png",
     },
     {
-      title: "Document processing & intelligent routing",
+      title: "Document Processing & Intelligent Routing",
       image: "/images/Docprocessing.png",
     },
   ],
-  cta: { label: "Explore AI solutions", href: "/services/ai-solutions" },
+  cta: { label: "Explore AI Solutions", href: "/services/ai-solutions" },
 } as const;
 
 /** @dummy — representative stack; refine with official preferred technologies list. */
@@ -347,11 +347,11 @@ export const LANDING_CTA = {
     { value: "AUS + USA", label: "Client Support" },
   ],
   form: {
-    title: "Start with a clear project brief.",
-    badge: "Free review",
+    title: "Start With a Clear Project Brief.",
+    badge: "Free Review",
     subtitle:
       "Share the basics. Our team will review your project and guide you with the next steps.",
-    submitLabel: "Book a discovery call",
+    submitLabel: "Book a Discovery Call",
     footer:
       "Response within 4 business hours. No pressure — just a practical project direction.",
     services: [

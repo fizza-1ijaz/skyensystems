@@ -5,6 +5,7 @@ import { FeaturedBlogsSkeleton } from "@/components/home/FeaturedBlogsSkeleton";
 
 async function FeaturedBlogsContent() {
   const posts = await fetchFeaturedBlogs(3);
+  if (posts.length === 0) return null;
   return <FeaturedBlogsClient posts={posts} />;
 }
 

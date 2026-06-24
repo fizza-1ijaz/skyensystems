@@ -19,7 +19,7 @@ function usePostMeta(post: FeaturedBlogPost) {
     title: post.title,
     description: post.excerpt,
   });
-  const href = post.isPlaceholder ? "/blog" : `/blog/${post.slug}`;
+  const href = `/blog/${post.slug}`;
 
   return { readingTime, href };
 }

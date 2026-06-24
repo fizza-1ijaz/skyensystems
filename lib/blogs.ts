@@ -1,5 +1,5 @@
 import { cache } from "react";
-import { supabase } from "@/lib/supabaseClient";
+import { supabase, isSupabaseConfigured } from "@/lib/supabaseClient";
 
 const SITE_KEY = (process.env.SITE_KEY || "skyen-systems").trim();
 const SITE_ID_OVERRIDE = process.env.SITE_ID?.trim() || "";
@@ -143,7 +143,7 @@ function toSeo(site: SiteBlogPageRow | null): BlogIndexSeo {
 
 export const getSiteIdForConfiguredSite = cache(async (): Promise<string | null> => {
   if (SITE_ID_OVERRIDE) return SITE_ID_OVERRIDE;
-  if (!supabase) return null;
+  if (!isSupabaseConfigured() || !supabase) return null;
   const client = supabase;
 
   const data = await execPostgrestWithRetries("resolve site_id", () =>
@@ -162,7 +162,7 @@ export const getSiteIdForConfiguredSite = cache(async (): Promise<string | null>
 });
 
 async function loadBlogPageSeo(siteId: string): Promise<SiteBlogPageRow | null> {
-  if (!supabase) return null;
+  if (!isSupabaseConfigured() || !supabase) return null;
   const client = supabase;
 
   try {
@@ -202,10 +202,12 @@ async function loadBlogPageSeo(siteId: string): Promise<SiteBlogPageRow | null> 
   }
 }
 
-export async function getBlogIndexDataForConfiguredSite(): Promise<BlogIndexDataForSite> {
+export const getBlogIndexDataForConfiguredSite = cache(_getBlogIndexDataForConfiguredSite);
+
+async function _getBlogIndexDataForConfiguredSite(): Promise<BlogIndexDataForSite> {
   const siteId = await getSiteIdForConfiguredSite();
 
-  if (!siteId || !supabase) {
+  if (!siteId || !isSupabaseConfigured() || !supabase) {
     return {
       site_id: siteId ?? "",
       seo: DEFAULT_INDEX_SEO,
@@ -268,7 +270,7 @@ export async function getBlogBySlugForConfiguredSite(
   slug: string,
 ): Promise<BlogPostRow | null> {
   const siteId = await getSiteIdForConfiguredSite();
-  if (!siteId || !supabase) return null;
+  if (!siteId || !isSupabaseConfigured() || !supabase) return null;
   const client = supabase;
 
   const row = await execPostgrestWithRetries(`fetch blog "${slug}"`, () =>
@@ -299,7 +301,7 @@ export async function getBlogSlugsForConfiguredSite(): Promise<
   { slug: string; date_published: string | null }[]
 > {
   const siteId = await getSiteIdForConfiguredSite();
-  if (!siteId || !supabase) return [];
+  if (!siteId || !isSupabaseConfigured() || !supabase) return [];
   const client = supabase;
 
   const data = await execPostgrestWithRetries("fetch blog slugs", () =>

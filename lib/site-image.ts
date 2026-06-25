@@ -5,7 +5,7 @@ export const SITE_IMAGE_QUALITY = {
   thumb: 72,
 } as const;
 
-/** Only bypass the optimizer for formats Next cannot reliably transform. */
+/** Pre-sized WebP assets in /public — skip re-encoding through the image optimizer. */
 export function shouldBypassImageOptimization(src: string): boolean {
-  return /\.jfif($|\?)/i.test(src);
+  return /\.jfif($|\?)/i.test(src) || src.includes("/images/optimized/");
 }

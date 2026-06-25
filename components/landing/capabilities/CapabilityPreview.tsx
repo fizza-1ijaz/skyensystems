@@ -15,7 +15,7 @@ type CapabilityPreviewProps = {
 export function CapabilityPreview({
   id,
   className = "",
-  sizes = "(max-width: 768px) 100vw, 40vw",
+  sizes = "(max-width: 639px) 100vw, 300px",
   priority = false,
 }: CapabilityPreviewProps) {
   const { src, alt } = getServicePreviewImage(id);
@@ -29,7 +29,7 @@ export function CapabilityPreview({
         sizes={sizes}
         priority={priority}
         loading={priority ? undefined : "lazy"}
-        quality={SITE_IMAGE_QUALITY.content}
+        quality={SITE_IMAGE_QUALITY.thumb}
         unoptimized={shouldBypassImageOptimization(src)}
         className="object-cover transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.05]"
       />

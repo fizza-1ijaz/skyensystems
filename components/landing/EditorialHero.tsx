@@ -1,52 +1,30 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
+import { HeroDeferredVideo } from "@/components/landing/HeroDeferredVideo";
 import { Reveal } from "@/components/landing/Reveal";
 
-const HERO_VIDEO_SRC = "/videos/hero-bg.mp4";
-const HERO_VIDEO_POSTER = "/images/Team.png";
+const HERO_POSTER_DESKTOP = "/images/hero-poster-desktop.webp";
+const HERO_POSTER_MOBILE = "/images/hero-poster-mobile.webp";
 
 export function EditorialHero() {
-  const videoRef = useRef<HTMLVideoElement>(null);
-
-  const startPlayback = () => {
-    const video = videoRef.current;
-    if (!video) return;
-
-    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (prefersReducedMotion) {
-      video.pause();
-      return;
-    }
-
-    video.muted = true;
-    void video.play().catch(() => {
-      // Autoplay may be blocked until user interaction.
-    });
-  };
-
-  useEffect(() => {
-    startPlayback();
-  }, []);
-
   return (
     <section className="relative -mt-[var(--site-nav-height)] min-h-[calc(100svh+var(--site-nav-height)-1in)] overflow-hidden bg-[#0B1220] md:h-[calc(100svh+var(--site-nav-height))] md:min-h-0">
       <div className="absolute inset-0" aria-hidden>
-        <video
-          ref={videoRef}
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="auto"
-          poster={HERO_VIDEO_POSTER}
-          src={HERO_VIDEO_SRC}
-          className="h-full w-full object-cover"
-          onLoadedData={startPlayback}
-          onCanPlay={startPlayback}
-        />
+        <picture className="absolute inset-0 block h-full w-full">
+          <source media="(min-width: 768px)" srcSet={HERO_POSTER_DESKTOP} type="image/webp" />
+          <img
+            src={HERO_POSTER_MOBILE}
+            alt=""
+            fetchPriority="high"
+            decoding="async"
+            className="h-full w-full object-cover"
+          />
+        </picture>
+        <div className="absolute inset-0">
+          <HeroDeferredVideo />
+        </div>
         <div className="absolute inset-0 bg-[#0B1220]/62" />
         <div className="absolute inset-0 bg-gradient-to-r from-[#0B1220]/88 via-[#0B1220]/45 to-[#0B1220]/20" />
         <div className="absolute inset-0 bg-gradient-to-t from-[#0B1220]/75 via-transparent to-[#0B1220]/35" />

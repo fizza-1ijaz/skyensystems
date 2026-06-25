@@ -51,6 +51,7 @@ function StackBubbleButton({
             }
       }
       whileTap={reduceMotion ? undefined : { y: -1, scale: 1.015 }}
+      tabIndex={isActive ? 0 : -1}
       className={`w-full rounded-full border px-5 py-3 text-center text-sm font-semibold transition-[border-color,background-color,color] duration-200 md:text-base ${
         isActive
           ? "border-[#31C3C3] bg-[#31C3C3]/10 text-[#141414] shadow-[0_12px_32px_-24px_rgba(49,195,195,0.55)]"
@@ -115,32 +116,32 @@ export function TechnologyStackSection() {
             <p className="mb-4 text-center text-xs font-semibold uppercase tracking-[0.16em] text-[#8A8A8A]">
               Select a Stack
             </p>
-            <ul className="flex flex-col gap-3" role="tablist" aria-label="Technology stacks">
+            <div className="flex flex-col gap-3" role="tablist" aria-label="Technology stacks">
               {TECHNOLOGY_STACK.map((group, index) => {
                 const isActive = activeIndex === index;
                 return (
-                  <li key={group.category}>
-                    <StackBubbleButton
-                      label={group.category}
-                      isActive={isActive}
-                      index={index}
-                      onClick={() => setActiveIndex(index)}
-                      tabId={`tech-stack-tab-${index}`}
-                      panelId={`tech-stack-panel-${index}`}
-                    />
-                  </li>
+                  <StackBubbleButton
+                    key={group.category}
+                    label={group.category}
+                    isActive={isActive}
+                    index={index}
+                    onClick={() => setActiveIndex(index)}
+                    tabId={`tech-stack-tab-${index}`}
+                    panelId={`tech-stack-panel-${index}`}
+                  />
                 );
               })}
-            </ul>
+            </div>
           </Reveal>
 
           <Reveal delay={0.08} className="lg:col-span-8">
             <AnimatePresence mode="wait">
-              <motion.article
+              <motion.div
                 key={activeStack.category}
                 id={`tech-stack-panel-${activeIndex}`}
                 role="tabpanel"
                 aria-labelledby={`tech-stack-tab-${activeIndex}`}
+                tabIndex={0}
                 initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -8 }}
@@ -162,7 +163,7 @@ export function TechnologyStackSection() {
                     <TechBubblePill key={tech} label={tech} index={index} />
                   ))}
                 </ul>
-              </motion.article>
+              </motion.div>
             </AnimatePresence>
           </Reveal>
         </div>

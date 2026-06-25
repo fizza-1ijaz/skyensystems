@@ -1,37 +1,32 @@
 import type { CapabilityVisualId } from "@/components/landing/landing-data";
 
-const unsplash = (id: string, w = 900, h = 560) =>
-  `https://images.unsplash.com/${id}?auto=format&fit=crop&w=${w}&h=${h}&q=80`;
-
-const localImage = (path: string) => encodeURI(path);
-
 /** Editorial preview photos for each service/capability card. */
 export const SERVICE_PREVIEW_IMAGES: Record<
   CapabilityVisualId,
   { src: string; alt: string }
 > = {
   web: {
-    src: localImage("/images/Web Development ( Services).jpeg"),
+    src: "/images/optimized/web-development.webp",
     alt: "Web development service image",
   },
   mobile: {
-    src: localImage("/images/App development (Services).jpeg"),
+    src: "/images/optimized/app-development.webp",
     alt: "App development service image",
   },
   ai: {
-    src: localImage("/images/AI Solution (Services).jpeg"),
+    src: "/images/optimized/ai-solutions.webp",
     alt: "AI solutions service image",
   },
   design: {
-    src: localImage("/images/UI UX Design ( Services).jpeg"),
+    src: "/images/optimized/ui-ux-design.webp",
     alt: "UI and UX design service image",
   },
   growth: {
-    src: localImage("/images/Marketing ( Services).png"),
+    src: "/images/optimized/digital-marketing.webp",
     alt: "Digital marketing service image",
   },
   teams: {
-    src: localImage("/images/Team (Services).png"),
+    src: "/images/optimized/dedicated-teams.webp",
     alt: "Dedicated team service image",
   },
 };

@@ -1,4 +1,13 @@
 import type { NextConfig } from "next";
+import path from "node:path";
+
+const modernPolyfill = "./lib/modern-polyfill.js";
+const modernPolyfillAbsolute = path.join(process.cwd(), "lib/modern-polyfill.js");
+
+const polyfillAliases = {
+  "next/dist/build/polyfills/polyfill-module": modernPolyfill,
+  "../build/polyfills/polyfill-module": modernPolyfill,
+} as const;
 
 const nextConfig: NextConfig = {
   images: {
@@ -24,6 +33,17 @@ const nextConfig: NextConfig = {
   productionBrowserSourceMaps: false,
   poweredByHeader: false,
   reactStrictMode: true,
+  turbopack: {
+    resolveAlias: polyfillAliases,
+  },
+  webpack(config) {
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      "next/dist/build/polyfills/polyfill-module": modernPolyfillAbsolute,
+      "../build/polyfills/polyfill-module": modernPolyfillAbsolute,
+    };
+    return config;
+  },
   experimental: {
     optimizePackageImports: [
       "framer-motion",
@@ -51,7 +71,7 @@ const nextConfig: NextConfig = {
         ],
       },
       {
-        source: "/:all*(svg|jpg|jpeg|png|webp|avif|jfif|ico|woff2)",
+        source: "/:all*(svg|jpg|jpeg|png|webp|avif|jfif|ico|woff2|mp4)",
         headers: [
           {
             key: "Cache-Control",

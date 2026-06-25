@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { LandingPage } from "@/components/landing/LandingPage";
 
+export const revalidate = 3600;
+
 export const metadata: Metadata = {
   title: "Custom Software Development & AI Solutions | Skyen Systems",
   description:

@@ -29,7 +29,7 @@ export function CapabilitiesGrid() {
                   <CapabilityPreview
                     id={item.visual}
                     className="h-full w-full"
-                    sizes="(max-width: 767px) 100vw, 40vw"
+                    sizes="(max-width: 639px) 100vw, 300px"
                     priority={index === 0}
                   />
                 </div>

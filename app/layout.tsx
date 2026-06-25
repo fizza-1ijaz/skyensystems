@@ -1,14 +1,11 @@
 import type { Metadata } from "next";
+import { DeferredLayoutEnhancements } from "@/components/layout/DeferredLayoutEnhancements";
 import { Footer } from "@/components/layout/Footer";
 import { GlobalPresenceSection } from "@/components/layout/GlobalPresenceSection";
 import { Inter, Space_Grotesk } from "next/font/google";
 import { MainContent } from "@/components/layout/MainContent";
 import { Navbar } from "@/components/layout/Navbar";
-import { GlobalCursorGlow } from "@/components/ui/GlobalCursorGlow";
-import { ScrollProgress } from "@/components/ui/ScrollProgress";
 import { SmoothScrollProvider } from "@/components/ui/SmoothScrollProvider";
-import { ConsentAwareAnalytics } from "@/components/ConsentAwareAnalytics";
-import { CookieConsent } from "@/components/CookieConsent";
 import "./globals.css";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://skyensystems.com";
@@ -79,24 +76,33 @@ export default function RootLayout({
       className={`${inter.variable} ${spaceGrotesk.variable} h-full antialiased`}
     >
       <head>
-        {/* Preload critical resources */}
-        <link rel="preload" as="image" href="/bgs/cute%20blue.jfif" fetchPriority="high" />
+        <link
+          rel="preload"
+          as="image"
+          href="/images/hero-poster-desktop.webp"
+          type="image/webp"
+          media="(min-width: 768px)"
+          fetchPriority="high"
+        />
+        <link
+          rel="preload"
+          as="image"
+          href="/images/hero-poster-mobile.webp"
+          type="image/webp"
+          media="(max-width: 767px)"
+          fetchPriority="high"
+        />
         <link rel="preload" as="image" href="/logo-png.png" />
-        {/* Preconnect to external services */}
-        <link rel="preconnect" href="https://www.googletagmanager.com" />
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
       </head>
       <body className="min-h-full flex flex-col bg-[#F4F4F2] text-[#141414]">
-        <ConsentAwareAnalytics />
-        <ScrollProgress />
-        <GlobalCursorGlow />
+        <DeferredLayoutEnhancements />
         <SmoothScrollProvider>
           <Navbar />
           <MainContent>{children}</MainContent>
           <GlobalPresenceSection />
           <Footer />
         </SmoothScrollProvider>
-        <CookieConsent />
       </body>
     </html>
   );

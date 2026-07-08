@@ -70,7 +70,6 @@ function FeaturedBlogCard({ post, revealDelay = 0 }: BlogCardProps) {
             <BlogCardImage
               src={post.featuredImage}
               sizes="(max-width: 1024px) 100vw, 58vw"
-              priority
             />
             <div className="absolute inset-0 bg-gradient-to-t from-[#141414] via-[#141414]/55 to-[#141414]/15 transition-opacity duration-500 group-hover:via-[#141414]/65" />
           </div>

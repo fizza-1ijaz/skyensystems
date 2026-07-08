@@ -40,7 +40,7 @@ function FooterLink({
   external?: boolean;
 }) {
   const className =
-    "group inline-flex text-sm text-white/65 transition-colors duration-200 hover:text-white";
+    "group inline-flex text-sm text-[#C5CDD6] transition-colors duration-200 hover:text-white";
 
   if (external) {
     return (
@@ -107,7 +107,7 @@ export function Footer() {
                 SKYEN <span className="text-[#31C3C3]">SYSTEMS</span>
               </span>
             </Link>
-            <p className="mt-6 max-w-sm text-sm leading-relaxed text-white/55">
+            <p className="mt-6 max-w-sm text-sm leading-relaxed text-[#B8BFC9]">
               Software engineering, AI solutions, and digital products for ambitious
               organizations.
             </p>
@@ -125,11 +125,9 @@ export function Footer() {
         </section>
 
         {/* Bottom bar */}
-        <div className="flex flex-col gap-4 border-t border-white/10 py-8 text-xs text-white/45 md:flex-row md:items-center md:justify-between md:py-10">
-          <p className="font-medium tracking-wide text-white/55">© 2025 Skyen Systems</p>
-          <p className="text-white/45">
-            A trade name of Qismat Ventures W.L.L. · CR 190698-1
-          </p>
+        <div className="flex flex-col gap-4 border-t border-white/10 py-8 text-xs text-[#9CA3AF] md:flex-row md:items-center md:justify-between md:py-10">
+          <p className="font-medium tracking-wide">© 2025 Skyen Systems</p>
+          <p>A trade name of Qismat Ventures W.L.L. · CR 190698-1</p>
         </div>
       </div>
     </footer>

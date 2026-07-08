@@ -1,36 +1,14 @@
-"use client";
-
-import { motion, useReducedMotion } from "framer-motion";
 import { TRUST_STRIP_ITEMS } from "@/lib/homepage-data";
 import { Reveal } from "@/components/landing/Reveal";
 
-const TRUST_STRIP_SPRING = { type: "spring" as const, stiffness: 380, damping: 26, mass: 0.45 };
-
 function TrustStripCard({ item }: { item: (typeof TRUST_STRIP_ITEMS)[number] }) {
-  const reduceMotion = useReducedMotion();
-
   return (
-    <motion.div
-      className="relative flex h-full min-h-[6.5rem] flex-col bg-white px-5 py-4 md:min-h-[7rem] md:px-6 md:py-5"
-      initial={false}
-      whileHover={
-        reduceMotion
-          ? undefined
-          : {
-              y: -6,
-              scale: 1.02,
-              zIndex: 10,
-              boxShadow: "0 18px 44px -14px rgba(49,195,195,0.35)",
-            }
-      }
-      whileTap={reduceMotion ? undefined : { y: -2, scale: 0.98 }}
-      transition={TRUST_STRIP_SPRING}
-    >
+    <div className="relative flex h-full min-h-[6.5rem] flex-col bg-white px-5 py-4 transition-[transform,box-shadow] duration-300 hover:z-10 hover:-translate-y-1.5 hover:scale-[1.02] hover:shadow-[0_18px_44px_-14px_rgba(49,195,195,0.35)] motion-reduce:transform-none motion-reduce:hover:shadow-none md:min-h-[7rem] md:px-6 md:py-5">
       <p className="min-h-[2.5rem] font-heading text-sm font-bold uppercase leading-snug tracking-[0.14em] text-[#141414] md:min-h-[2.75rem] md:text-base">
         {item.label}
       </p>
       <p className="mt-2 text-xs leading-relaxed text-[#6B6B6B] md:text-sm">{item.detail}</p>
-    </motion.div>
+    </div>
   );
 }
 

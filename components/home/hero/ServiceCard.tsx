@@ -1,5 +1,6 @@
 "use client";
 
+import "./service-card.css";
 import { useReducedMotion } from "framer-motion";
 import { useEffect, useRef, useState, type CSSProperties } from "react";
 import Image from "next/image";

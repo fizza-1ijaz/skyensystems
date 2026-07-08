@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 
 const GlobalCursorGlow = dynamic(
@@ -34,13 +35,37 @@ const ConsentAwareAnalytics = dynamic(
   { ssr: false },
 );
 
+function useIdleEnhancements() {
+  const [ready, setReady] = useState(false);
+
+  useEffect(() => {
+    const enable = () => setReady(true);
+
+    if ("requestIdleCallback" in window) {
+      const id = window.requestIdleCallback(enable, { timeout: 2500 });
+      return () => window.cancelIdleCallback(id);
+    }
+
+    const timer = setTimeout(enable, 1500);
+    return () => clearTimeout(timer);
+  }, []);
+
+  return ready;
+}
+
 export function DeferredLayoutEnhancements() {
+  const ready = useIdleEnhancements();
+
   return (
     <>
       <ConsentAwareAnalytics />
-      <ScrollProgress />
-      <GlobalCursorGlow />
-      <CookieConsent />
+      {ready ? (
+        <>
+          <ScrollProgress />
+          <GlobalCursorGlow />
+          <CookieConsent />
+        </>
+      ) : null}
     </>
   );
 }

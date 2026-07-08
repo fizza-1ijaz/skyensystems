@@ -1,5 +1,6 @@
 "use client";
 
+import "./FoundingBannerCornerIcons.css";
 import {
   Cloud,
   Code2,

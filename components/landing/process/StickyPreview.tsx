@@ -43,8 +43,7 @@ function StickyPreviewComponent({ stages, activeIndex, reduceMotion }: StickyPre
               <ProcessStageImage
                 stage={stage}
                 sizes="(min-width: 1024px) 560px, 448px"
-                priority={stage.id === 1}
-                loading={stage.id === 1 ? undefined : "lazy"}
+                loading="lazy"
               />
               <div
                 className="absolute inset-0 bg-gradient-to-t from-[#141414]/50 via-transparent to-[#141414]/10"

@@ -1,0 +1,17 @@
+.founding-corner-icon {
+  transform: rotate(var(--icon-rotate, 0deg));
+  animation: founding-corner-float 5.5s ease-in-out infinite;
+  animation-delay: var(--float-delay, 0s);
+  will-change: transform;
+}
+
+@keyframes founding-corner-float {
+  0%,
+  100% {
+    transform: rotate(var(--icon-rotate, 0deg)) translate3d(0, 0, 0);
+  }
+
+  50% {
+    transform: rotate(var(--icon-rotate, 0deg)) translate3d(0, -10px, 0);
+  }
+}

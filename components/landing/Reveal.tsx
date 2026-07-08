@@ -1,7 +1,8 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
-import { useEffect, useState, type ReactNode } from "react";
+import "./reveal.css";
+import { useInViewport } from "@/hooks/useInViewport";
+import type { CSSProperties, ReactNode } from "react";
 
 type RevealProps = {
   children: ReactNode;
@@ -11,29 +12,24 @@ type RevealProps = {
 };
 
 export function Reveal({ children, className = "", delay = 0, y = 28 }: RevealProps) {
-  const prefersReducedMotion = useReducedMotion();
-  const [mounted, setMounted] = useState(false);
+  const { ref, inView } = useInViewport({
+    rootMargin: "0px 0px -8% 0px",
+    threshold: 0.15,
+    once: true,
+  });
 
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  // Static markup on server + first client paint; motion only after hydration.
-  const reduceMotion = mounted && Boolean(prefersReducedMotion);
-
-  if (!mounted || reduceMotion) {
-    return <div className={className}>{children}</div>;
-  }
+  const style = {
+    "--reveal-delay": `${delay}s`,
+    "--reveal-y": `${y}px`,
+  } as CSSProperties;
 
   return (
-    <motion.div
-      className={className}
-      initial={{ opacity: 0, y }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.2 }}
-      transition={{ duration: 0.65, delay, ease: [0.22, 1, 0.36, 1] }}
+    <div
+      ref={ref}
+      className={`reveal-fade ${inView ? "is-visible" : ""} ${className}`.trim()}
+      style={style}
     >
       {children}
-    </motion.div>
+    </div>
   );
 }

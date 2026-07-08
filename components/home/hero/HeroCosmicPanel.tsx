@@ -1,5 +1,6 @@
 "use client";
 
+import "./hero-effects.css";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 

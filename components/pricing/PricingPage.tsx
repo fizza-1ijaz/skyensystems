@@ -1,5 +1,6 @@
 "use client";
 
+import "@/components/pricing/pricing-utilities.css";
 import { PricingCurrencyConverter } from "@/components/pricing/sections/PricingCurrencyConverter";
 import { PricingCostFactors } from "@/components/pricing/sections/PricingCostFactors";
 import { PricingEngagementOverview } from "@/components/pricing/sections/PricingEngagementOverview";

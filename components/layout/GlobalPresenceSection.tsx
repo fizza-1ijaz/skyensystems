@@ -33,12 +33,12 @@ export function GlobalPresenceSection() {
               </p>
               <p className="mt-3 font-heading text-xl font-bold text-white md:text-2xl">Bahrain</p>
               <p className="mt-4 text-sm font-medium text-white/75">{LEGAL_ENTITY_LINE}</p>
-              <div className="mt-4 space-y-1 text-sm leading-relaxed text-white/55">
+              <div className="mt-4 space-y-1 text-sm leading-relaxed text-[#B8BFC9]">
                 {HEAD_OFFICE_ADDRESS_BLOCK.map((line) => (
                   <p key={line}>{line}</p>
                 ))}
               </div>
-              <div className="mt-6 space-y-2 border-t border-white/10 pt-6 text-sm text-white/55">
+              <div className="mt-6 space-y-2 border-t border-white/10 pt-6 text-sm text-[#B8BFC9]">
                 <p>{HEAD_OFFICE_CR}</p>
                 <p>
                   Phone:{" "}
@@ -62,17 +62,17 @@ export function GlobalPresenceSection() {
             </article>
 
             <article className="border-t-2 border-[#31C3C3] bg-white/[0.03] p-8 transition-colors duration-200 hover:border-[#31C3C3]/80 hover:bg-white/[0.045] md:p-10 lg:col-span-5">
-              <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-white/45">
+              <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#9CA3AF]">
                 Regional office
               </p>
               <p className="mt-3 font-heading text-xl font-bold text-white md:text-2xl">Pakistan</p>
               <p className="mt-4 text-sm font-medium text-white/75">{REGIONAL_OFFICE_NAME}</p>
-              <div className="mt-4 space-y-1 text-sm leading-relaxed text-white/55">
+              <div className="mt-4 space-y-1 text-sm leading-relaxed text-[#B8BFC9]">
                 {REGIONAL_OFFICE_ADDRESS_BLOCK.map((line) => (
                   <p key={line}>{line}</p>
                 ))}
               </div>
-              <div className="mt-6 space-y-2 border-t border-white/10 pt-6 text-sm text-white/55">
+              <div className="mt-6 space-y-2 border-t border-white/10 pt-6 text-sm text-[#B8BFC9]">
                 <p>{REGIONAL_OFFICE_PSEB_PLACEHOLDER}</p>
                 <p>
                   Phone:{" "}

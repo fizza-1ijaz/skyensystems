@@ -30,7 +30,6 @@ export function CapabilitiesGrid() {
                     id={item.visual}
                     className="h-full w-full"
                     sizes="(max-width: 639px) 100vw, 300px"
-                    priority={index === 0}
                   />
                 </div>
                 <div className="relative z-20 flex flex-1 flex-col justify-center border-t border-[#F0F0EE] bg-white px-5 py-5 md:border-l md:border-t-0 md:px-6 md:py-6 lg:px-8">

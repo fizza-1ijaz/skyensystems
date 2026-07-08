@@ -1,39 +1,35 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
-import { useEffect, useState, type ReactNode } from "react";
+import "@/components/landing/reveal.css";
+import { useInViewport } from "@/hooks/useInViewport";
+import type { CSSProperties, ReactNode } from "react";
 
 type FaqRevealProps = {
   children: ReactNode;
   className?: string;
   delay?: number;
-  /** Horizontal offset on enter — positive slides in from the right. */
   x?: number;
 };
 
 export function FaqReveal({ children, className = "", delay = 0, x = 52 }: FaqRevealProps) {
-  const prefersReducedMotion = useReducedMotion();
-  const [mounted, setMounted] = useState(false);
+  const { ref, inView } = useInViewport({
+    rootMargin: "0px 0px -8% 0px",
+    threshold: 0.15,
+    once: true,
+  });
 
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  const reduceMotion = mounted && Boolean(prefersReducedMotion);
-
-  if (!mounted || reduceMotion) {
-    return <div className={className}>{children}</div>;
-  }
+  const style = {
+    "--reveal-delay": `${delay}s`,
+    "--reveal-x": `${x}px`,
+  } as CSSProperties;
 
   return (
-    <motion.div
-      className={className}
-      initial={{ opacity: 0, x }}
-      whileInView={{ opacity: 1, x: 0 }}
-      viewport={{ once: true, amount: 0.15 }}
-      transition={{ duration: 0.7, delay, ease: [0.22, 1, 0.36, 1] }}
+    <div
+      ref={ref}
+      className={`reveal-slide-x ${inView ? "is-visible" : ""} ${className}`.trim()}
+      style={style}
     >
       {children}
-    </motion.div>
+    </div>
   );
 }

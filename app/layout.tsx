@@ -15,14 +15,16 @@ const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
   display: "swap",
-  preload: true,
+  preload: false,
+  adjustFontFallback: true,
 });
 
 const spaceGrotesk = Space_Grotesk({
   variable: "--font-space-grotesk",
   subsets: ["latin"],
   display: "swap",
-  preload: true,
+  preload: false,
+  adjustFontFallback: true,
 });
 
 export const metadata: Metadata = {
@@ -85,17 +87,17 @@ export default function RootLayout({
         <link
           rel="preload"
           as="image"
-          href="/images/hero-poster-desktop.webp"
+          href="/images/hero-poster-mobile.webp"
           type="image/webp"
-          media="(min-width: 768px)"
+          media="(max-width: 767px)"
           fetchPriority="high"
         />
         <link
           rel="preload"
           as="image"
-          href="/images/hero-poster-mobile.webp"
+          href="/images/hero-poster-desktop.webp"
           type="image/webp"
-          media="(max-width: 767px)"
+          media="(min-width: 768px)"
           fetchPriority="high"
         />
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />

@@ -45,6 +45,7 @@ const nextConfig: NextConfig = {
     return config;
   },
   experimental: {
+    inlineCss: true,
     optimizePackageImports: [
       "framer-motion",
       "lucide-react",

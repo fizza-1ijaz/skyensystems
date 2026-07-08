@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import dynamic from "next/dynamic";
 import { usePathname } from "next/navigation";
 import { useState, useEffect, useRef } from "react";
 import { ChevronDown, Menu, Search, X } from "lucide-react";
@@ -10,7 +11,14 @@ import {
   isNavItemActive,
   type MainNavItem,
 } from "@/lib/main-nav";
-import { GlobalSearchModal } from "@/components/layout/GlobalSearchModal";
+
+const GlobalSearchModal = dynamic(
+  () =>
+    import("@/components/layout/GlobalSearchModal").then((mod) => ({
+      default: mod.GlobalSearchModal,
+    })),
+  { ssr: false },
+);
 
 const NAV_LINK_CLASS =
   "whitespace-nowrap px-2 py-2 text-[12px] font-medium transition-colors sm:px-2.5 sm:text-[13px] lg:px-3";
@@ -424,7 +432,9 @@ export function Navbar() {
         </div>
       ) : null}
 
-      <GlobalSearchModal open={isSearchOpen} onClose={() => setIsSearchOpen(false)} />
+      {isSearchOpen ? (
+        <GlobalSearchModal open onClose={() => setIsSearchOpen(false)} />
+      ) : null}
     </header>
   );
 }

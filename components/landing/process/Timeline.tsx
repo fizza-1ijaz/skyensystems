@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useLayoutEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { ProcessCard } from "@/components/landing/process/ProcessCard";
 import {
@@ -25,6 +25,7 @@ function getFocusY() {
 export function Timeline({ stages, activeIndex, setStageRef, reduceMotion }: TimelineProps) {
   const lineTrackRef = useRef<HTMLDivElement>(null);
   const [progressHeight, setProgressHeight] = useState(0);
+  const rafRef = useRef<number | null>(null);
 
   const measureProgress = useCallback(() => {
     const lineTrack = lineTrackRef.current;
@@ -45,31 +46,45 @@ export function Timeline({ stages, activeIndex, setStageRef, reduceMotion }: Tim
     setProgressHeight(height);
   }, [stages.length]);
 
-  useLayoutEffect(() => {
-    measureProgress();
-  }, [measureProgress, activeIndex, stages.length]);
+  const scheduleMeasure = useCallback(() => {
+    if (rafRef.current !== null) return;
 
-  useLayoutEffect(() => {
+    rafRef.current = window.requestAnimationFrame(() => {
+      rafRef.current = null;
+      measureProgress();
+    });
+  }, [measureProgress]);
+
+  useEffect(() => {
+    scheduleMeasure();
+  }, [scheduleMeasure, stages.length]);
+
+  useEffect(() => {
     const lineTrack = lineTrackRef.current;
     if (!lineTrack || typeof ResizeObserver === "undefined") return;
 
     const resizeObserver = new ResizeObserver(() => {
-      measureProgress();
+      scheduleMeasure();
     });
 
     resizeObserver.observe(lineTrack);
     return () => resizeObserver.disconnect();
-  }, [measureProgress]);
+  }, [scheduleMeasure]);
 
-  useLayoutEffect(() => {
-    const onScroll = () => measureProgress();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll, { passive: true });
+  useEffect(() => {
+    window.addEventListener("scroll", scheduleMeasure, { passive: true });
+    window.addEventListener("resize", scheduleMeasure, { passive: true });
+
     return () => {
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
+      window.removeEventListener("scroll", scheduleMeasure);
+      window.removeEventListener("resize", scheduleMeasure);
+
+      if (rafRef.current !== null) {
+        window.cancelAnimationFrame(rafRef.current);
+        rafRef.current = null;
+      }
     };
-  }, [measureProgress]);
+  }, [scheduleMeasure]);
 
   return (
     <div className={PROCESS_STYLES.timelineTrack}>

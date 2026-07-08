@@ -7,108 +7,89 @@ type UseActiveProcessStageOptions = {
   stageCount: number;
 };
 
-function getFocusY() {
-  if (typeof window === "undefined") return 0;
-  return window.innerHeight * PROCESS_OBSERVER.focusRatio;
-}
-
 /**
- * Tracks which process stage aligns with the viewport focus line while scrolling.
+ * Tracks the active process stage with IntersectionObserver instead of scroll-time
+ * layout reads (getBoundingClientRect), avoiding forced reflows while scrolling.
  */
 export function useActiveProcessStage({ stageCount }: UseActiveProcessStageOptions) {
   const [activeIndex, setActiveIndex] = useState(0);
   const elementsRef = useRef<(HTMLElement | null)[]>(
     Array.from({ length: stageCount }, () => null),
   );
-  const rafRef = useRef<number | null>(null);
+  const ratiosRef = useRef<number[]>(Array.from({ length: stageCount }, () => 0));
+  const observerRef = useRef<IntersectionObserver | null>(null);
 
-  const updateActiveIndex = useCallback(() => {
-    const focusY = getFocusY();
-    const elements = elementsRef.current;
-
-    for (let index = 0; index < stageCount; index += 1) {
-      const element = elements[index];
-      if (!element) continue;
-
-      const rect = element.getBoundingClientRect();
-      if (rect.top <= focusY && rect.bottom > focusY) {
-        setActiveIndex(index);
-        return;
-      }
-    }
-
-    const first = elements[0];
-    const last = elements[stageCount - 1];
-
-    if (first && last) {
-      const firstRect = first.getBoundingClientRect();
-      const lastRect = last.getBoundingClientRect();
-
-      if (focusY < firstRect.top) {
-        setActiveIndex(0);
-        return;
-      }
-
-      if (focusY >= lastRect.bottom) {
-        setActiveIndex(stageCount - 1);
-        return;
-      }
-    }
-
+  const applyActiveFromRatios = useCallback(() => {
+    const ratios = ratiosRef.current;
     let bestIndex = 0;
-    let bestDistance = Infinity;
+    let bestRatio = -1;
 
     for (let index = 0; index < stageCount; index += 1) {
-      const element = elements[index];
-      if (!element) continue;
-
-      const rect = element.getBoundingClientRect();
-      const centerY = rect.top + rect.height * 0.5;
-      const distance = Math.abs(centerY - focusY);
-
-      if (distance < bestDistance) {
-        bestDistance = distance;
+      if (ratios[index] > bestRatio) {
+        bestRatio = ratios[index];
         bestIndex = index;
       }
     }
 
-    setActiveIndex(bestIndex);
+    if (bestRatio > 0) {
+      setActiveIndex(bestIndex);
+    }
   }, [stageCount]);
 
-  const scheduleUpdate = useCallback(() => {
-    if (rafRef.current !== null) return;
-    rafRef.current = window.requestAnimationFrame(() => {
-      rafRef.current = null;
-      updateActiveIndex();
-    });
-  }, [updateActiveIndex]);
+  const setStageRef = useCallback((index: number) => {
+    return (element: HTMLElement | null) => {
+      const observer = observerRef.current;
+      const previous = elementsRef.current[index];
 
-  const setStageRef = useCallback(
-    (index: number) => (element: HTMLElement | null) => {
+      if (previous && observer) {
+        observer.unobserve(previous);
+      }
+
       elementsRef.current[index] = element;
-      scheduleUpdate();
-    },
-    [scheduleUpdate],
-  );
+
+      if (element && observer) {
+        observer.observe(element);
+      }
+    };
+  }, []);
 
   useEffect(() => {
     elementsRef.current = Array.from(
       { length: stageCount },
       (_, index) => elementsRef.current[index] ?? null,
     );
-    updateActiveIndex();
+    ratiosRef.current = Array.from({ length: stageCount }, () => 0);
 
-    window.addEventListener("scroll", scheduleUpdate, { passive: true });
-    window.addEventListener("resize", scheduleUpdate, { passive: true });
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          const index = Number((entry.target as HTMLElement).dataset.stageIndex);
+          if (!Number.isNaN(index) && index >= 0 && index < stageCount) {
+            ratiosRef.current[index] = entry.intersectionRatio;
+          }
+        }
+        applyActiveFromRatios();
+      },
+      {
+        root: null,
+        rootMargin: PROCESS_OBSERVER.rootMargin,
+        threshold: [...PROCESS_OBSERVER.thresholds],
+      },
+    );
+
+    observerRef.current = observer;
+
+    for (const element of elementsRef.current) {
+      if (element) {
+        observer.observe(element);
+      }
+    }
 
     return () => {
-      window.removeEventListener("scroll", scheduleUpdate);
-      window.removeEventListener("resize", scheduleUpdate);
-      if (rafRef.current !== null) {
-        window.cancelAnimationFrame(rafRef.current);
-      }
+      observer.disconnect();
+      observerRef.current = null;
     };
-  }, [stageCount, scheduleUpdate, updateActiveIndex]);
+  }, [stageCount, applyActiveFromRatios]);
 
   return { activeIndex, setStageRef };
 }

@@ -1,5 +1,6 @@
 "use client";
 
+import "./hero-effects.css";
 import { motion } from "framer-motion";
 
 /** Organic top edge of the white content panel (viewBox 1440 × 200). */

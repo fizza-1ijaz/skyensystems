@@ -1,5 +1,6 @@
 "use client";
 
+import "./hero-effects.css";
 import { motion } from "framer-motion";
 
 const STAR_POSITIONS = [

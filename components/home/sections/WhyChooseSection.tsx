@@ -1,5 +1,3 @@
-"use client";
-
 import { WHY_CHOOSE_ITEMS, WHY_CHOOSE_SECTION } from "@/lib/homepage-data";
 import { Reveal } from "@/components/landing/Reveal";
 import { EditorialBoxCta } from "@/components/ui/EditorialBoxCta";

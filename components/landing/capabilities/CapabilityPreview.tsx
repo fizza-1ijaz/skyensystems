@@ -1,5 +1,3 @@
-"use client";
-
 import Image from "next/image";
 import type { CapabilityVisualId } from "@/components/landing/landing-data";
 import { getServicePreviewImage } from "@/lib/service-preview-images";

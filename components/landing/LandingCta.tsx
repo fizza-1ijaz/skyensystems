@@ -1,5 +1,3 @@
-"use client";
-
 import { LandingCtaForm } from "@/components/landing/LandingCtaForm";
 import { Reveal } from "@/components/landing/Reveal";
 import { LANDING_CTA } from "@/lib/homepage-data";

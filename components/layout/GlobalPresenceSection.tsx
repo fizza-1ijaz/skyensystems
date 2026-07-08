@@ -1,7 +1,4 @@
-"use client";
-
-import { BlogBlueprintBackdrop } from "@/components/blog/BlogBlueprintBackdrop";
-import {
+import { BlogBlueprintBackdropStatic } from "@/components/blog/BlogBlueprintBackdropStatic";import {
   HEAD_OFFICE_ADDRESS_BLOCK,
   HEAD_OFFICE_CR,
   HEAD_OFFICE_PHONE,
@@ -18,7 +15,7 @@ import {
 export function GlobalPresenceSection() {
   return (
     <section className="relative overflow-hidden bg-[#111827] text-white">
-      <BlogBlueprintBackdrop variant="dark" className="opacity-[0.035]" parallax />
+      <BlogBlueprintBackdropStatic variant="dark" className="opacity-[0.035]" />
 
       <div className="relative z-10 mx-auto max-w-[1440px] px-4 sm:px-6 md:px-10">
         <div className="border-t border-white/10 py-16 md:py-20">

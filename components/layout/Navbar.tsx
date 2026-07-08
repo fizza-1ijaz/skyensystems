@@ -263,13 +263,29 @@ export function Navbar() {
       return;
     }
 
+    let rafId: number | null = null;
+    let scrolled = window.scrollY > 72;
+    setHeroScrolled(scrolled);
+
     const onScroll = () => {
-      setHeroScrolled(window.scrollY > 72);
+      if (rafId !== null) return;
+
+      rafId = window.requestAnimationFrame(() => {
+        rafId = null;
+        const next = window.scrollY > 72;
+        if (next === scrolled) return;
+        scrolled = next;
+        setHeroScrolled(next);
+      });
     };
 
-    onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      if (rafId !== null) {
+        window.cancelAnimationFrame(rafId);
+      }
+    };
   }, [isHome]);
 
   useEffect(() => {

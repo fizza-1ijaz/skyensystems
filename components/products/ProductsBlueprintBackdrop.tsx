@@ -52,41 +52,63 @@ function BlueprintSvg({ variant }: { variant: "light" | "dark" }) {
   );
 }
 
-export function ProductsBlueprintBackdrop({
-  className = "",
-  variant = "light",
-  parallax = false,
-}: ProductsBlueprintBackdropProps) {
+function StaticProductsBlueprintBackdrop({
+  className,
+  variant,
+}: {
+  className: string;
+  variant: "light" | "dark";
+}) {
+  return (
+    <div className="pointer-events-none absolute inset-0">
+      <div
+        className={`pointer-events-none absolute inset-0 overflow-hidden opacity-[0.04] ${className}`}
+        aria-hidden
+      >
+        <BlueprintSvg variant={variant} />
+      </div>
+    </div>
+  );
+}
+
+function ParallaxProductsBlueprintBackdrop({
+  className,
+  variant,
+}: {
+  className: string;
+  variant: "light" | "dark";
+}) {
   const ref = useRef<HTMLDivElement>(null);
-  const prefersReducedMotion = useReducedMotion() ?? false;
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start end", "end start"],
   });
   const y = useTransform(scrollYProgress, [0, 1], [24, -24]);
 
-  const content = (
-    <div
-      className={`pointer-events-none absolute inset-0 overflow-hidden opacity-[0.04] ${className}`}
-      aria-hidden
-    >
-      <BlueprintSvg variant={variant} />
-    </div>
-  );
-
-  if (!parallax || prefersReducedMotion) {
-    return (
-      <div ref={ref} className="pointer-events-none absolute inset-0">
-        {content}
-      </div>
-    );
-  }
-
   return (
     <div ref={ref} className="pointer-events-none absolute inset-0">
       <motion.div style={{ y }} className="absolute inset-0">
-        {content}
+        <div
+          className={`pointer-events-none absolute inset-0 overflow-hidden opacity-[0.04] ${className}`}
+          aria-hidden
+        >
+          <BlueprintSvg variant={variant} />
+        </div>
       </motion.div>
     </div>
   );
+}
+
+export function ProductsBlueprintBackdrop({
+  className = "",
+  variant = "light",
+  parallax = false,
+}: ProductsBlueprintBackdropProps) {
+  const prefersReducedMotion = useReducedMotion() ?? false;
+
+  if (!parallax || prefersReducedMotion) {
+    return <StaticProductsBlueprintBackdrop className={className} variant={variant} />;
+  }
+
+  return <ParallaxProductsBlueprintBackdrop className={className} variant={variant} />;
 }

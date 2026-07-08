@@ -7,8 +7,8 @@ import { shouldUseLenis } from "@/lib/performance";
 type LenisRootProps = { children: ReactNode };
 
 /**
- * Lenis smooth scroll only on capable desktop pointers.
- * Native scroll on mobile / reduced-motion avoids fighting Framer scroll listeners.
+ * Lenis smooth scroll only on capable desktop pointers, deferred until idle
+ * so it does not compete with initial parse, layout, and LCP.
  */
 export function SmoothScrollProvider({ children }: { children: ReactNode }) {
   const [LenisRoot, setLenisRoot] = useState<((props: LenisRootProps) => ReactNode) | null>(
@@ -20,34 +20,46 @@ export function SmoothScrollProvider({ children }: { children: ReactNode }) {
 
     let cancelled = false;
 
-    void import("lenis/react").then(({ ReactLenis }) => {
-      if (cancelled) return;
+    const enableLenis = () => {
+      void import("lenis/react").then(({ ReactLenis }) => {
+        if (cancelled) return;
 
-      function LenisWrapper({ children: lenisChildren }: LenisRootProps) {
-        return (
-          <ReactLenis
-            root
-            options={{
-              duration: 1.05,
-              easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-              orientation: "vertical",
-              gestureOrientation: "vertical",
-              smoothWheel: true,
-              wheelMultiplier: 0.9,
-              touchMultiplier: 1,
-              infinite: false,
-            }}
-          >
-            {lenisChildren}
-          </ReactLenis>
-        );
-      }
+        function LenisWrapper({ children: lenisChildren }: LenisRootProps) {
+          return (
+            <ReactLenis
+              root
+              options={{
+                duration: 1.05,
+                easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+                orientation: "vertical",
+                gestureOrientation: "vertical",
+                smoothWheel: true,
+                wheelMultiplier: 0.9,
+                touchMultiplier: 1,
+                infinite: false,
+              }}
+            >
+              {lenisChildren}
+            </ReactLenis>
+          );
+        }
 
-      setLenisRoot(() => LenisWrapper);
-    });
+        setLenisRoot(() => LenisWrapper);
+      });
+    };
 
+    if ("requestIdleCallback" in window) {
+      const id = window.requestIdleCallback(enableLenis, { timeout: 3000 });
+      return () => {
+        cancelled = true;
+        window.cancelIdleCallback(id);
+      };
+    }
+
+    const timer = setTimeout(enableLenis, 2000);
     return () => {
       cancelled = true;
+      clearTimeout(timer);
     };
   }, []);
 

@@ -1,5 +1,3 @@
-"use client";
-
 import Link from "next/link";
 import { INDUSTRIES_CARDS, INDUSTRIES_SECTION } from "@/lib/homepage-data";
 import { Reveal } from "@/components/landing/Reveal";

@@ -1,5 +1,3 @@
-"use client";
-
 import { BlogCard } from "@/components/home/BlogCard";
 import { Reveal } from "@/components/landing/Reveal";
 import { EditorialBoxCta } from "@/components/ui/EditorialBoxCta";

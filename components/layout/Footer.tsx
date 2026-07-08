@@ -1,9 +1,7 @@
-"use client";
-
 import type { ReactNode } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { BlogBlueprintBackdrop } from "@/components/blog/BlogBlueprintBackdrop";
+import { BlogBlueprintBackdropStatic } from "@/components/blog/BlogBlueprintBackdropStatic";
 import { SERVICE_NAV_LINKS, PRIMARY_SERVICE_HREF } from "@/lib/services-page-data";
 
 const servicesLinks = SERVICE_NAV_LINKS;
@@ -88,7 +86,7 @@ function FooterNavGroup({ title, links }: { title: string; links: readonly { lab
 export function Footer() {
   return (
     <footer className="relative mt-0 overflow-hidden bg-[#111827] text-white">
-      <BlogBlueprintBackdrop variant="dark" className="opacity-[0.035]" parallax />
+      <BlogBlueprintBackdropStatic variant="dark" className="opacity-[0.035]" />
 
       <div className="relative z-10 mx-auto max-w-[1440px] px-4 sm:px-6 md:px-10">
         <section className="grid gap-12 border-b border-white/10 py-16 md:grid-cols-12 md:gap-10 md:py-20 lg:gap-12">

@@ -1,7 +1,6 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
-import { motion } from "framer-motion";
 import { ProcessCard } from "@/components/landing/process/ProcessCard";
 import {
   PROCESS_MOTION,
@@ -17,43 +16,68 @@ type TimelineProps = {
   reduceMotion: boolean;
 };
 
-function getFocusY() {
+type TimelineMetrics = {
+  lineTrackDocTop: number;
+  trackHeight: number;
+};
+
+function getFocusDocY() {
   if (typeof window === "undefined") return 0;
-  return window.innerHeight * PROCESS_OBSERVER.focusRatio;
+  return window.scrollY + window.innerHeight * PROCESS_OBSERVER.focusRatio;
 }
 
 export function Timeline({ stages, activeIndex, setStageRef, reduceMotion }: TimelineProps) {
   const lineTrackRef = useRef<HTMLDivElement>(null);
-  const [progressHeight, setProgressHeight] = useState(0);
-  const rafRef = useRef<number | null>(null);
+  const metricsRef = useRef<TimelineMetrics | null>(null);
+  const [progressScale, setProgressScale] = useState(0);
+  const scrollRafRef = useRef<number | null>(null);
+  const measureRafRef = useRef<number | null>(null);
 
-  const measureProgress = useCallback(() => {
+  const updateProgressFromScroll = useCallback(() => {
+    const metrics = metricsRef.current;
+    if (!metrics || metrics.trackHeight <= 0) return;
+
+    const scrolled = getFocusDocY() - metrics.lineTrackDocTop;
+    const ratio = Math.min(1, Math.max(0, scrolled / metrics.trackHeight));
+    setProgressScale(ratio);
+  }, []);
+
+  const measureMetrics = useCallback(() => {
     const lineTrack = lineTrackRef.current;
     if (!lineTrack) return;
 
-    const lineTrackTop = lineTrack.getBoundingClientRect().top;
-    const focusY = getFocusY();
+    const scrollY = window.scrollY;
+    const lineTrackDocTop = lineTrack.getBoundingClientRect().top + scrollY;
     const lastCard = lineTrack.querySelector<HTMLElement>(
       `[data-stage-index="${stages.length - 1}"]`,
     );
 
     if (!lastCard) return;
 
-    const lastCardBottom = lastCard.getBoundingClientRect().bottom - lineTrackTop;
-    const scrollProgress = focusY - lineTrackTop;
-    const height = Math.min(lastCardBottom, Math.max(0, scrollProgress));
+    const lastCardDocBottom = lastCard.getBoundingClientRect().bottom + scrollY;
+    const trackHeight = lastCardDocBottom - lineTrackDocTop;
 
-    setProgressHeight(height);
-  }, [stages.length]);
+    metricsRef.current = { lineTrackDocTop, trackHeight };
+    updateProgressFromScroll();
+  }, [stages.length, updateProgressFromScroll]);
 
   const scheduleMeasure = useCallback(() => {
-    if (rafRef.current !== null) return;
+    if (measureRafRef.current !== null) return;
 
-    rafRef.current = window.requestAnimationFrame(() => {
-      rafRef.current = null;
-      measureProgress();
+    measureRafRef.current = window.requestAnimationFrame(() => {
+      measureRafRef.current = null;
+      measureMetrics();
     });
-  }, [measureProgress]);
+  }, [measureMetrics]);
+
+  const scheduleScrollUpdate = useCallback(() => {
+    if (scrollRafRef.current !== null) return;
+
+    scrollRafRef.current = window.requestAnimationFrame(() => {
+      scrollRafRef.current = null;
+      updateProgressFromScroll();
+    });
+  }, [updateProgressFromScroll]);
 
   useEffect(() => {
     scheduleMeasure();
@@ -72,37 +96,41 @@ export function Timeline({ stages, activeIndex, setStageRef, reduceMotion }: Tim
   }, [scheduleMeasure]);
 
   useEffect(() => {
-    window.addEventListener("scroll", scheduleMeasure, { passive: true });
+    window.addEventListener("scroll", scheduleScrollUpdate, { passive: true });
     window.addEventListener("resize", scheduleMeasure, { passive: true });
 
     return () => {
-      window.removeEventListener("scroll", scheduleMeasure);
+      window.removeEventListener("scroll", scheduleScrollUpdate);
       window.removeEventListener("resize", scheduleMeasure);
 
-      if (rafRef.current !== null) {
-        window.cancelAnimationFrame(rafRef.current);
-        rafRef.current = null;
+      if (scrollRafRef.current !== null) {
+        window.cancelAnimationFrame(scrollRafRef.current);
+        scrollRafRef.current = null;
+      }
+
+      if (measureRafRef.current !== null) {
+        window.cancelAnimationFrame(measureRafRef.current);
+        measureRafRef.current = null;
       }
     };
-  }, [scheduleMeasure]);
+  }, [scheduleMeasure, scheduleScrollUpdate]);
+
+  const progressTransition = reduceMotion
+    ? undefined
+    : `transform ${PROCESS_MOTION.progressLine.duration}s cubic-bezier(${PROCESS_MOTION.progressLine.ease.join(", ")})`;
 
   return (
     <div className={PROCESS_STYLES.timelineTrack}>
       <div ref={lineTrackRef} className="relative">
         <div className={PROCESS_STYLES.timelineLine} aria-hidden />
-        <motion.div
+        <div
           className={PROCESS_STYLES.timelineProgress}
           aria-hidden
-          initial={false}
-          animate={{ height: progressHeight }}
-          transition={
-            reduceMotion
-              ? { duration: 0 }
-              : {
-                  duration: PROCESS_MOTION.progressLine.duration,
-                  ease: PROCESS_MOTION.progressLine.ease,
-                }
-          }
+          style={{
+            height: "100%",
+            transform: `scaleY(${progressScale})`,
+            transition: progressTransition,
+          }}
         />
 
         <div className={PROCESS_STYLES.stageList}>

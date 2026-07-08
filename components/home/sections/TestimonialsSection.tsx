@@ -1,5 +1,3 @@
-"use client";
-
 import { TESTIMONIALS } from "@/lib/homepage-data";
 import { Reveal } from "@/components/landing/Reveal";
 

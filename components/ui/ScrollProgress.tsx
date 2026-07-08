@@ -1,11 +1,13 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useMotionProfile } from "@/hooks/useMotionProfile";
 
 export function ScrollProgress() {
   const profile = useMotionProfile();
   const [progress, setProgress] = useState(0);
+  const maxScrollRef = useRef(0);
+  const rafRef = useRef<number | null>(null);
 
   useEffect(() => {
     if (profile !== "full") return;
@@ -13,18 +15,46 @@ export function ScrollProgress() {
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (prefersReducedMotion) return;
 
+    const measureMax = () => {
+      maxScrollRef.current = document.documentElement.scrollHeight - window.innerHeight;
+    };
+
     const update = () => {
-      const max = document.documentElement.scrollHeight - window.innerHeight;
+      const max = maxScrollRef.current;
       setProgress(max > 0 ? window.scrollY / max : 0);
     };
 
+    const scheduleUpdate = () => {
+      if (rafRef.current !== null) return;
+
+      rafRef.current = window.requestAnimationFrame(() => {
+        rafRef.current = null;
+        update();
+      });
+    };
+
+    measureMax();
     update();
-    window.addEventListener("scroll", update, { passive: true });
-    window.addEventListener("resize", update, { passive: true });
+
+    const resizeObserver =
+      typeof ResizeObserver !== "undefined"
+        ? new ResizeObserver(measureMax)
+        : null;
+
+    resizeObserver?.observe(document.documentElement);
+
+    window.addEventListener("scroll", scheduleUpdate, { passive: true });
+    window.addEventListener("resize", measureMax, { passive: true });
 
     return () => {
-      window.removeEventListener("scroll", update);
-      window.removeEventListener("resize", update);
+      window.removeEventListener("scroll", scheduleUpdate);
+      window.removeEventListener("resize", measureMax);
+      resizeObserver?.disconnect();
+
+      if (rafRef.current !== null) {
+        window.cancelAnimationFrame(rafRef.current);
+        rafRef.current = null;
+      }
     };
   }, [profile]);
 

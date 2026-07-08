@@ -1,19 +1,19 @@
 import { EditorialHero } from "@/components/landing/EditorialHero";
-import { IndustriesSection } from "@/components/landing/IndustriesSection";
-import { LandingCta } from "@/components/landing/LandingCta";
 import {
+  LazyAiAutomationHighlight,
   LazyFeaturedProductsSection,
+  LazyHomeFaqSection,
   LazyHomeProcessSection,
+  LazyIndustriesSection,
+  LazyLandingCta,
   LazyTechnologyStackSection,
+  LazyTestimonialsSection,
+  LazyWhyChooseSection,
 } from "@/components/landing/LazyHomeSections";
 import { FeaturedBlogs } from "@/components/home/FeaturedBlogs";
 import { TrustCredibilityStrip } from "@/components/home/sections/TrustCredibilityStrip";
 import { ServicesOverviewSection } from "@/components/home/sections/ServicesOverviewSection";
 import { ProblemSolutionSection } from "@/components/home/sections/ProblemSolutionSection";
-import { WhyChooseSection } from "@/components/home/sections/WhyChooseSection";
-import { AiAutomationHighlight } from "@/components/home/sections/AiAutomationHighlight";
-import { TestimonialsSection } from "@/components/home/sections/TestimonialsSection";
-import { HomeFaqSection } from "@/components/home/sections/HomeFaqSection";
 
 export function LandingPage() {
   return (
@@ -25,15 +25,15 @@ export function LandingPage() {
         <ServicesOverviewSection />
         <ProblemSolutionSection />
         <LazyFeaturedProductsSection />
-        <IndustriesSection />
+        <LazyIndustriesSection />
         <LazyHomeProcessSection />
-        <WhyChooseSection />
-        <AiAutomationHighlight />
+        <LazyWhyChooseSection />
+        <LazyAiAutomationHighlight />
         <LazyTechnologyStackSection />
-        <TestimonialsSection />
+        <LazyTestimonialsSection />
         <FeaturedBlogs />
-        <HomeFaqSection />
-        <LandingCta />
+        <LazyHomeFaqSection />
+        <LazyLandingCta />
       </div>
     </div>
   );

@@ -1,5 +1,3 @@
-"use client";
-
 import Link from "next/link";
 import { SERVICES_OVERVIEW, SERVICES_OVERVIEW_CARDS } from "@/lib/homepage-data";
 import { CapabilityPreview } from "@/components/landing/capabilities/CapabilityPreview";

@@ -6,6 +6,7 @@ import { Inter, Space_Grotesk } from "next/font/google";
 import { MainContent } from "@/components/layout/MainContent";
 import { Navbar } from "@/components/layout/Navbar";
 import { SmoothScrollProvider } from "@/components/ui/SmoothScrollProvider";
+import { CRITICAL_CSS } from "@/lib/critical-css";
 import "./globals.css";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://skyensystems.com";
@@ -13,11 +14,15 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://skyensystems.com";
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
+  display: "swap",
+  preload: true,
 });
 
 const spaceGrotesk = Space_Grotesk({
   variable: "--font-space-grotesk",
   subsets: ["latin"],
+  display: "swap",
+  preload: true,
 });
 
 export const metadata: Metadata = {
@@ -76,6 +81,7 @@ export default function RootLayout({
       className={`${inter.variable} ${spaceGrotesk.variable} h-full antialiased`}
     >
       <head>
+        <style dangerouslySetInnerHTML={{ __html: CRITICAL_CSS }} />
         <link
           rel="preload"
           as="image"
@@ -92,7 +98,6 @@ export default function RootLayout({
           media="(max-width: 767px)"
           fetchPriority="high"
         />
-        <link rel="preload" as="image" href="/logo-png.png" />
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
       </head>
       <body className="min-h-full flex flex-col bg-[#F4F4F2] text-[#141414]">

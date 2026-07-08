@@ -5,7 +5,7 @@ export const SITE_IMAGE_QUALITY = {
   thumb: 72,
 } as const;
 
-/** Pre-sized WebP assets in /public — skip re-encoding through the image optimizer. */
+/** Skip re-encoding only for legacy JFIF assets. */
 export function shouldBypassImageOptimization(src: string): boolean {
-  return /\.jfif($|\?)/i.test(src) || src.includes("/images/optimized/");
+  return /\.jfif($|\?)/i.test(src);
 }
